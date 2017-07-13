@@ -9,12 +9,12 @@
 Pod::Spec.new do |s|
   s.name             = "StylingKit"
   s.version          = "0.3.0"
-  s.summary          = "Style your iOS app with CSS, using 100% native code and no webviews." 
+  s.summary          = "Style your iOS app with CSS, using 100% native code and no webviews."
   s.description      = <<-DESC
                       StylingKit is an iOS framework that allows you to style your application using stylesheets and a CSS-like syntax. StylingKit lets you build  beautiful applications with less code and more flexibility by using familiar CSS markup to style native controls and components. Free up your team to focus on creating amazing user experiences throughout the design and development cycle.
                        DESC
 
-  s.homepage         = "https://github.com/StylingKit/StylingKit"
+  s.homepage         = "https://bitbucket.org/onsightukraine/slylingkit"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license      = {
     :type => 'Apache 2.0',
@@ -35,11 +35,11 @@ Pod::Spec.new do |s|
                 LICENSE
   }
   s.author           = { "Anton Matosov" => "anton.matosov@gmail.com" }
-  s.source           = { :git => "https://github.com/StylingKit/StylingKit.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://bitbucket.org/onsightukraine/slylingkit", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform     = :ios, '8.1'
-  
+
   s.default_subspec = 'Main'
   s.subspec 'Main' do |ss|
     ss.source_files = 'Pod/Classes/Main/**/*.{h,m,c}'
@@ -55,7 +55,7 @@ Pod::Spec.new do |s|
     ss.prefix_header_file = "Pod/Classes/freestyle/src/pixate-freestyle-Prefix.pch"
     ss.source_files = 'Pod/Classes/freestyle/src/**/*.{h,m,c}'
     ss.private_header_files = 'Pod/Classes/freestyle/src/**/*.h'
-  
+
     ss.frameworks = 'CoreText', 'QuartzCore', 'UIKit', 'Foundation', 'CoreGraphics'
   end
 
