@@ -40,6 +40,8 @@
 
 @implementation StylingKit
 
+STK_DEFINE_CLASS_LOG_LEVEL;
+
 
 + (instancetype)sharedKit
 {
@@ -86,10 +88,9 @@
 {
     @autoreleasepool
     {
-
         for (STKTheme* theme in self.themes.allValues)
         {
-            if ([theme activate])
+            if ( [theme activate] )
             {
                 _currentTheme = theme;
                 break;
@@ -117,7 +118,7 @@
                            stylesheetFileName: themeName
                                        bundle: bundle];
     self.themes[themeName] = theme;
-    
+
     return theme;
 }
 

@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
                       StylingKit is an iOS framework that allows you to style your application using stylesheets and a CSS-like syntax. StylingKit lets you build  beautiful applications with less code and more flexibility by using familiar CSS markup to style native controls and components. Free up your team to focus on creating amazing user experiences throughout the design and development cycle.
                        DESC
 
-  s.homepage         = "https://github.com/StylingKit/StylingKit"
+  s.homepage         = "https://bitbucket.org/onsightukraine/slylingkit"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license      = {
     :type => 'Apache 2.0',

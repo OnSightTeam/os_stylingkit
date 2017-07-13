@@ -315,8 +315,19 @@ static const char STYLE_CHILDREN;
 
 - (CGSize) intrinsicContentSize
 {
-    CGSize result = [super intrinsicContentSize]; 
-
+    struct objc_super superObj;
+    superObj.receiver = self;
+    superObj.super_class = [self pxClass];
+        
+    typedef CGSize(*callT)(struct objc_super*, SEL);
+#if defined(__arm64__) || defined(__x86_64__) || defined(__i386__)
+    callT sendSuper = (callT)objc_msgSendSuper;
+#else
+    callT sendSuper = (callT)objc_msgSendSuper_stret;
+#endif
+    
+    CGSize result = sendSuper(&superObj, @selector(intrinsicContentSize));
+    
     if ([PXUtils isBeforeIOS7O])
     {
         Class roundedButton = NSClassFromString(@"UIRoundedRectButton");
