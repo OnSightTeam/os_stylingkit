@@ -40,8 +40,6 @@
 
 @implementation StylingKit
 
-STK_DEFINE_CLASS_LOG_LEVEL;
-
 
 + (instancetype)sharedKit
 {

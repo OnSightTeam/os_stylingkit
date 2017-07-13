@@ -25,8 +25,6 @@
 
 @implementation STKTheme
 
-STK_DEFINE_CLASS_LOG_LEVEL;
-
 
 - (instancetype)initWithName:(NSString*)name
           stylesheetFileName:(NSString*)stylesheetFileName
