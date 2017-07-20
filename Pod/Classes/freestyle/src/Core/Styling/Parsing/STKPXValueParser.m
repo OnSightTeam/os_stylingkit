@@ -650,10 +650,10 @@ static NSString *ASSET_SCHEME = @"asset://";
     }
 
     return @[
-        [[STKPXValue alloc] initWithBytes:&top type:STKPXValueType_PXBorderStyle],
-        [[STKPXValue alloc] initWithBytes:&right type:STKPXValueType_PXBorderStyle],
-        [[STKPXValue alloc] initWithBytes:&bottom type:STKPXValueType_PXBorderStyle],
-        [[STKPXValue alloc] initWithBytes:&left type:STKPXValueType_PXBorderStyle]
+        [[STKPXValue alloc] initWithBytes:&top type:STKPXValueType_STKPXBorderStyle],
+        [[STKPXValue alloc] initWithBytes:&right type:STKPXValueType_STKPXBorderStyle],
+        [[STKPXValue alloc] initWithBytes:&bottom type:STKPXValueType_STKPXBorderStyle],
+        [[STKPXValue alloc] initWithBytes:&left type:STKPXValueType_STKPXBorderStyle]
     ];
 }
 

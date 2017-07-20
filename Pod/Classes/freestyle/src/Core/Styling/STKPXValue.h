@@ -37,10 +37,10 @@ typedef NS_ENUM(unsigned int, STKPXValueType) {
     STKPXValueType_NSLineBreakMode,
     STKPXValueType_Boolean,
     STKPXValueType_STKPXParseErrorDestination,
-    STKPXValueType_PXCacheStylesType,
+    STKPXValueType_STKPXCacheStylesType,
     STKPXValueType_UITextBorderStyle,
     STKPXValueType_CGColorRef,
-    STKPXValueType_PXBorderStyle,
+    STKPXValueType_STKPXBorderStyle,
 };
 
 @interface STKPXValue : NSObject

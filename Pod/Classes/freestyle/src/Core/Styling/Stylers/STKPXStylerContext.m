@@ -556,7 +556,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
         STKPXShadow *pxShadow = self.textShadow;
         NSShadow *shadow = [[NSShadow alloc] init];
         shadow.shadowColor = pxShadow.color;
-        shadow.shadowOffset = CGSizeMake(STKPXShadow.horizontalOffset, pxShadow.verticalOffset);
+        shadow.shadowOffset = CGSizeMake(pxShadow.horizontalOffset, pxShadow.verticalOffset);
         shadow.shadowBlurRadius = pxShadow.blurDistance;
         
         attributes[NSShadowAttributeName] = shadow;

@@ -39,7 +39,7 @@ typedef enum
  *  A STKPXPseudoClassFunction is used to select styleables based on their positions or pattern of positions from the start
  *  or end of their list of siblings
  */
-@interface STKSTKPXPseudoClassFunction : NSObject <STKPXSelector>
+@interface STKPXPseudoClassFunction : NSObject <STKPXSelector>
 
 /**
  *  Returns the type of nth-child operation that this selector will perform during matching

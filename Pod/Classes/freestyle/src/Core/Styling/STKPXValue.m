@@ -71,10 +71,10 @@
                 break;
 
             case STKPXValueType_STKPXParseErrorDestination:
-                value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(STKSTKPXParseErrorDestination)];
+                value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(STKPXParseErrorDestination)];
                 break;
 
-            case STKPXValueType_PXCacheStylesType:
+            case STKPXValueType_STKPXCacheStylesType:
                 value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(STKPXCacheStylesType)];
                 break;
 
@@ -86,7 +86,7 @@
                 value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(CGColorRef)];
                 break;
 
-            case STKPXValueType_PXBorderStyle:
+            case STKPXValueType_STKPXBorderStyle:
                 value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(STKPXBorderStyle)];
                 break;
 
@@ -180,7 +180,7 @@
     return result;
 }
 
-- (STKSTKPXParseErrorDestination)STKPXParseErrorDestinationValue
+- (STKPXParseErrorDestination)STKPXParseErrorDestinationValue
 {
     STKPXParseErrorDestination result = STKPXParseErrorDestinationNone;
 
@@ -196,7 +196,7 @@
 {
     STKPXCacheStylesType result = STKPXCacheStylesTypeNone;
 
-    if (_type == STKPXValueType_PXCacheStylesType)
+    if (_type == STKPXValueType_STKPXCacheStylesType)
     {
         [value_ getValue:&result];
     }
@@ -237,7 +237,7 @@
 {
     STKPXBorderStyle result = STKPXBorderStyleNone;
 
-    if (_type == STKPXValueType_PXBorderStyle)
+    if (_type == STKPXValueType_STKPXBorderStyle)
     {
         [value_ getValue:&result];
     }

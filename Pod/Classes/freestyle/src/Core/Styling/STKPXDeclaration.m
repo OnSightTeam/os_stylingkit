@@ -208,7 +208,7 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
     {
         STKPXBorderStyle style = [self.parser parseBorderStyle:_lexemes];
 
-        cache_ = [[STKPXValue alloc] initWithBytes:&style type:STKPXValueType_PXBorderStyle];
+        cache_ = [[STKPXValue alloc] initWithBytes:&style type:STKPXValueType_STKPXBorderStyle];
     }
 
     return ((STKPXValue *) cache_).STKPXBorderStyleValue;
@@ -255,7 +255,7 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
             }
         }
 
-        cache_ = [[STKPXValue alloc] initWithBytes:&type type:STKPXValueType_PXCacheStylesType];
+        cache_ = [[STKPXValue alloc] initWithBytes:&type type:STKPXValueType_STKPXCacheStylesType];
     }
 
     return ((STKPXValue *) cache_).STKPXCacheStylesTypeValue;
@@ -425,9 +425,9 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
     return (cache_ != [NSNull null]) ? cache_ : nil;
 }
 
-- (STKSTKPXParseErrorDestination)parseErrorDestinationValue
+- (STKPXParseErrorDestination)parseErrorDestinationValue
 {
-    if (IsNotCachedType(STKSTKPXParseErrorDestination))
+    if (IsNotCachedType(STKPXParseErrorDestination))
     {
         STKPXParseErrorDestination destination = STKPXParseErrorDestinationNone;
         NSString *text = self.firstWord;
