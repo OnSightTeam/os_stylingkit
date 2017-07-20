@@ -24,7 +24,7 @@
 //
 
 #import "NSDictionary+PXObject.h"
-#import "PXValue.h"
+#import "STKPXValue.h"
 
 void PXForceLoadNSDictionaryPXObject() {}
 
@@ -41,9 +41,9 @@ void PXForceLoadNSDictionaryPXObject() {}
 {
     id object = self[key];
 
-    if ([object isKindOfClass:[PXValue class]])
+    if ([object isKindOfClass:[STKPXValue class]])
     {
-        PXValue *value = object;
+        STKPXValue *value = object;
 
         return value.CGRectValue;
     }
@@ -57,9 +57,9 @@ void PXForceLoadNSDictionaryPXObject() {}
 {
     id object = self[key];
 
-    if ([object isKindOfClass:[PXValue class]])
+    if ([object isKindOfClass:[STKPXValue class]])
     {
-        PXValue *value = object;
+        STKPXValue *value = object;
 
         return value.CGFloatValue;
     }
@@ -73,9 +73,9 @@ void PXForceLoadNSDictionaryPXObject() {}
 {
     id object = self[key];
 
-    if ([object isKindOfClass:[PXValue class]])
+    if ([object isKindOfClass:[STKPXValue class]])
     {
-        PXValue *value = object;
+        STKPXValue *value = object;
 
         return value.CGColorRefValue;
     }
@@ -90,9 +90,9 @@ void PXForceLoadNSDictionaryPXObject() {}
 {
     id object = self[key];
 
-    if ([object isKindOfClass:[PXValue class]])
+    if ([object isKindOfClass:[STKPXValue class]])
     {
-        PXValue *value = object;
+        STKPXValue *value = object;
 
         return value.CGSizeValue;
     }
@@ -106,9 +106,9 @@ void PXForceLoadNSDictionaryPXObject() {}
 {
     id object = self[key];
 
-    if ([object isKindOfClass:[PXValue class]])
+    if ([object isKindOfClass:[STKPXValue class]])
     {
-        PXValue *value = object;
+        STKPXValue *value = object;
 
         return value.BooleanValue;
     }
@@ -122,9 +122,9 @@ void PXForceLoadNSDictionaryPXObject() {}
 {
     id object = self[key];
 
-    if ([object isKindOfClass:[PXValue class]])
+    if ([object isKindOfClass:[STKPXValue class]])
     {
-        PXValue *value = object;
+        STKPXValue *value = object;
 
         return value.CGAffineTransformValue;
     }
@@ -138,9 +138,9 @@ void PXForceLoadNSDictionaryPXObject() {}
 {
     id object = self[key];
 
-    if ([object isKindOfClass:[PXValue class]])
+    if ([object isKindOfClass:[STKPXValue class]])
     {
-        PXValue *value = object;
+        STKPXValue *value = object;
 
         return value.UIEdgeInsetsValue;
     }
@@ -154,9 +154,9 @@ void PXForceLoadNSDictionaryPXObject() {}
 {
     id object = self[key];
 
-    if ([object isKindOfClass:[PXValue class]])
+    if ([object isKindOfClass:[STKPXValue class]])
     {
-        PXValue *value = object;
+        STKPXValue *value = object;
 
         return value.NSLineBreakModeValue;
     }
@@ -170,9 +170,9 @@ void PXForceLoadNSDictionaryPXObject() {}
 {
     id object = self[key];
     
-    if ([object isKindOfClass:[PXValue class]])
+    if ([object isKindOfClass:[STKPXValue class]])
     {
-        PXValue *value = object;
+        STKPXValue *value = object;
         
         return value.NSTextAlignmentValue;
     }

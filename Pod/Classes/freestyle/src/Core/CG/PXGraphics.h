@@ -25,51 +25,51 @@
 #import "UIColor+PXColors.h"
 
 // math
-#import "PXDimension.h"
+#import "STKPXDimension.h"
 #import "PXMath.h"
-#import "PXVector.h"
+#import "STKPXVector.h"
 
 // paints
-#import "PXGradient.h"
+#import "STKPXGradient.h"
 #import "PXLinearGradient.h"
 #import "PXPaint.h"
-#import "PXPaintGroup.h"
-#import "PXRadialGradient.h"
-#import "PXSolidPaint.h"
+#import "STKPXPaintGroup.h"
+#import "STKPXRadialGradient.h"
+#import "STKPXSolidPaint.h"
 
 // parsing
-#import "PXSVGLoader.h"
+#import "STKPXSVGLoader.h"
 
 // shadows
-#import "PXShadow.h"
-#import "PXShadowGroup.h"
+#import "STKPXShadow.h"
+#import "STKPXShadowGroup.h"
 #import "PXShadowPaint.h"
 
 // shapes
-#import "PXArc.h"
+#import "STKPXArc.h"
 #import "PXBoundable.h"
-#import "PXCircle.h"
-#import "PXEllipse.h"
-#import "PXLine.h"
+#import "STKPXCircle.h"
+#import "STKPXEllipse.h"
+#import "STKPXLine.h"
 #import "PXPaintable.h"
-#import "PXPath.h"
-#import "PXPie.h"
-#import "PXPolygon.h"
-#import "PXRectangle.h"
+#import "STKPXPath.h"
+#import "STKPXPie.h"
+#import "STKPXPolygon.h"
+#import "STKPXRectangle.h"
 #import "PXRenderable.h"
-#import "PXShapeDocument.h"
-#import "PXShape.h"
-#import "PXShapeGroup.h"
+#import "STKPXShapeDocument.h"
+#import "STKPXShape.h"
+#import "STKPXShapeGroup.h"
 #ifdef PXTEXT_SUPPORT
 #import "PXText.h"
 #endif
 
 // strokes
-#import "PXNonScalingStroke.h"
-#import "PXStroke.h"
-#import "PXStrokeGroup.h"
+#import "STKPXNonScalingStroke.h"
+#import "STKPXStroke.h"
+#import "STKPXStrokeGroup.h"
 #import "PXStrokeRenderer.h"
-#import "PXStrokeStroke.h"
+#import "STKPXStrokeStroke.h"
 
 // views
-#import "PXShapeView.h"
+#import "STKPXShapeView.h"

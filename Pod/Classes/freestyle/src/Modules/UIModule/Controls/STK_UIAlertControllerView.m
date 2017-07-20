@@ -19,13 +19,13 @@
 //
 
 
-#import "PXAnimationStyler.h"
+#import "STKPXAnimationStyler.h"
 #import "UIView+PXStyling-Private.h"
-#import "PXOpacityStyler.h"
-#import "PXShapeStyler.h"
-#import "PXFillStyler.h"
-#import "PXBorderStyler.h"
-#import "PXBoxShadowStyler.h"
+#import "STKPXOpacityStyler.h"
+#import "STKPXShapeStyler.h"
+#import "STKPXFillStyler.h"
+#import "STKPXBorderStyler.h"
+#import "STKPXBoxShadowStyler.h"
 #import "PXStylingMacros.h"
 #import "STK_UIAlertControllerView.h"
 
@@ -59,12 +59,12 @@
 
   dispatch_once(&onceToken, ^{
       stylers = @[
-        PXOpacityStyler.sharedInstance,
-        PXShapeStyler.sharedInstance,
-        PXFillStyler.sharedInstance,
-        PXBorderStyler.sharedInstance,
-        PXBoxShadowStyler.sharedInstance,
-        PXAnimationStyler.sharedInstance,
+        STKPXOpacityStyler.sharedInstance,
+        STKPXShapeStyler.sharedInstance,
+        STKPXFillStyler.sharedInstance,
+        STKPXBorderStyler.sharedInstance,
+        STKPXBoxShadowStyler.sharedInstance,
+        STKPXAnimationStyler.sharedInstance,
       ];
   });
 
@@ -76,13 +76,13 @@
   static dispatch_once_t onceToken;
 
   dispatch_once(&onceToken, ^{
-      map = [PXStyleUtils viewStylerPropertyMapForStyleable:self];
+      map = [STKPXStyleUtils viewStylerPropertyMapForStyleable:self];
   });
 
   return map;
 }
 
-- (void)updateStyleWithRuleSet:(PXRuleSet*)ruleSet context:(PXStylerContext*)context {
+- (void)updateStyleWithRuleSet:(STKPXRuleSet*)ruleSet context:(STKPXStylerContext*)context {
   self.px_layer.contents = (__bridge id)(context.backgroundImage.CGImage);
 }
 

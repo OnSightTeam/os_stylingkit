@@ -23,12 +23,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXSourceWriter.h"
+#import "STKPXSourceWriter.h"
 
-@protocol PXSourceEmitter <NSObject>
+@protocol STKPXSourceEmitter <NSObject>
 
 @optional
 - (NSString *)source;
-- (void)sourceWithSourceWriter:(PXSourceWriter *)writer;
+- (void)sourceWithSourceWriter:(STKPXSourceWriter *)writer;
 
 @end

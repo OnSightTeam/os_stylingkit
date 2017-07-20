@@ -23,7 +23,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXOffsets.h"
+#import "STKPXOffsets.h"
 
 /**
  *  The PXRenderable protocol declares properties needed when describing the structure of content rendered to a
@@ -44,7 +44,7 @@
 /**
  *  Padding to be applied to this instance during rendering
  */
-@property (nonatomic) PXOffsets *padding;
+@property (nonatomic) STKPXOffsets *padding;
 
 /**
  *  The method responsible for painting this shape to the specified CGContext

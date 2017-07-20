@@ -22,7 +22,7 @@
 + (PXDeclarationHandlerBlock) TintColorDeclarationHandlerBlock:(UIBarButtonItem *)target;
 + (PXStylerCompletionBlock) FontStylerCompletionBlock:(UIBarButtonItem *)target;
 + (PXStylerCompletionBlock) PXPaintStylerCompletionBlock:(UIBarButtonItem *)target;
-+ (void) UpdateStyleWithRuleSetHandler:(PXRuleSet *)ruleSet context:(PXStylerContext *)context target:(UIBarButtonItem *)target;
++ (void) UpdateStyleWithRuleSetHandler:(STKPXRuleSet *)ruleSet context:(STKPXStylerContext *)context target:(UIBarButtonItem *)target;
     
 @end
 

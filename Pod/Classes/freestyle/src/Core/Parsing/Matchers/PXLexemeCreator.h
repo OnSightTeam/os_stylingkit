@@ -23,10 +23,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXStylesheetLexeme.h"
+#import "STKPXStylesheetLexeme.h"
 
 @protocol PXLexemeCreator <NSObject>
 
-- (PXStylesheetLexeme *)createLexemeWithString:(NSString *)aString withRange:(NSRange)aRange;
+- (STKPXStylesheetLexeme *)createLexemeWithString:(NSString *)aString withRange:(NSRange)aRange;
 
 @end

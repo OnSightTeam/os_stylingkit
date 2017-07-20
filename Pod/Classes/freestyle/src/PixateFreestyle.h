@@ -24,7 +24,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PXStylesheet.h"
+#import "STKPXStylesheet.h"
 #import "PixateFreestyleConfiguration.h"
 
 #import "UIView+PXStyling.h"
@@ -115,17 +115,17 @@
 /**
  *  A class-level getter returning the current application-level stylesheet. This value may be nil
  */
-+ (PXStylesheet *)currentApplicationStylesheet;
++ (STKPXStylesheet *)currentApplicationStylesheet;
 
 /**
  *  A class-level getter returning the current user-level stylesheet. This value may be nil
  */
-+ (PXStylesheet *)currentUserStylesheet;
++ (STKPXStylesheet *)currentUserStylesheet;
 
 /**
  *  A class-level getter returning the current view-level stylesheet. This value may be nil
  */
-+ (PXStylesheet *)currentViewStylesheet;
++ (STKPXStylesheet *)currentViewStylesheet;
 
 /**
  *  Calls updateStylesForAllViews. Please call updateStylesForAllViews directly.

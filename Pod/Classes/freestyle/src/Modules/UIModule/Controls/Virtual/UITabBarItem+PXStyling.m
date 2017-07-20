@@ -25,17 +25,17 @@
 
 #import "UITabBarItem+PXStyling.h"
 #import <objc/runtime.h>
-#import "PXShapeStyler.h"
-#import "PXFillStyler.h"
-#import "PXBorderStyler.h"
-#import "PXBoxShadowStyler.h"
-#import "PXFontStyler.h"
-#import "PXColorStyler.h"
-#import "PXTextContentStyler.h"
-#import "PXStyleUtils.h"
+#import "STKPXShapeStyler.h"
+#import "STKPXFillStyler.h"
+#import "STKPXBorderStyler.h"
+#import "STKPXBoxShadowStyler.h"
+#import "STKPXFontStyler.h"
+#import "STKPXColorStyler.h"
+#import "STKPXTextContentStyler.h"
+#import "STKPXStyleUtils.h"
 #import "PXStylingMacros.h"
 #import "UIBarItem+PXStyling.h"
-#import "PXAttributedTextStyler.h"
+#import "STKPXAttributedTextStyler.h"
 
 void PXForceLoadUITabBarItemPXStyling() {}
 
@@ -93,12 +93,12 @@ static NSDictionary *PSEUDOCLASS_MAP;
     dispatch_once(&onceToken, ^{
         stylers = @[
 
-            PXShapeStyler.sharedInstance,
-            PXFillStyler.sharedInstance,
-            PXBorderStyler.sharedInstance,
-            PXBoxShadowStyler.sharedInstance,
+            STKPXShapeStyler.sharedInstance,
+            STKPXFillStyler.sharedInstance,
+            STKPXBorderStyler.sharedInstance,
+            STKPXBoxShadowStyler.sharedInstance,
 
-            [[PXAttributedTextStyler alloc] initWithCompletionBlock:^(UIBarButtonItem *view, PXAttributedTextStyler *styler, PXStylerContext *context) {
+            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(UIBarButtonItem *view, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
                 
                 UIControlState state = ([context stateFromStateNameMap:PSEUDOCLASS_MAP]) ? [context stateFromStateNameMap:PSEUDOCLASS_MAP] : UIControlStateNormal;
                 
@@ -110,7 +110,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
                                     forState:state];
             }],
             
-            [[PXTextContentStyler alloc] initWithCompletionBlock:^(UIBarButtonItem *view, PXTextContentStyler *styler, PXStylerContext *context) {
+            [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(UIBarButtonItem *view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
                 view.title = context.text;
             }],
         ];
@@ -119,7 +119,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
 	return stylers;
 }
 
-- (void)updateStyleWithRuleSet:(PXRuleSet *)ruleSet context:(PXStylerContext *)context
+- (void)updateStyleWithRuleSet:(STKPXRuleSet *)ruleSet context:(STKPXStylerContext *)context
 {
     if([context.activeStateName isEqualToString:@"normal"])
     {

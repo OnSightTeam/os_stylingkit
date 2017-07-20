@@ -28,14 +28,14 @@
 #import <objc/runtime.h>
 #import "UIView+PXStyling.h"
 #import "NSObject+PXSubclass.h"
-#import "PXLoggingUtils.h"
-#import "PXStyleUtils.h"
+#import "STKPXLoggingUtils.h"
+#import "STKPXStyleUtils.h"
 #import "PixateFreestyle-Private.h"
 #import "PixateFreestyle.h"
-#import "PXStylesheet-Private.h"
+#import "STKPXStylesheet-Private.h"
 #import "NSDictionary+PXCSSEncoding.h"
-#import "PXRuntimeUtils.h"
-#import "PXUtils.h"
+#import "STKPXRuntimeUtils.h"
+#import "STKPXUtils.h"
 #import "NSMutableArray+QueueAdditions.h"
 #import "NSObject+PXClass.h"
 #import "NSObject+PXStyling.h"
@@ -350,7 +350,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 - (NSString *)styleKey
 {
-    return [PXStyleUtils styleKeyFromStyleable:self];
+    return [STKPXStyleUtils styleKeyFromStyleable:self];
 }
 
 - (void)setStyleClass:(NSString *)aClass
@@ -470,7 +470,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
         }
         
         // Style the styleable and optionally ALL the children (including virtual children)
-        [PXStyleUtils updateStylesForStyleable:styleable
+        [STKPXStyleUtils updateStylesForStyleable:styleable
                                 andDescendants:recurse];
     }
 }
@@ -482,17 +482,17 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
         if (child.styleMode == PXStylingNormal
             && [child conformsToProtocol:@protocol(PXVirtualControl)])
         {
-            [PXStyleUtils enumerateStyleableDescendants:child
+            [STKPXStyleUtils enumerateStyleableDescendants:child
                                              usingBlock:^(id <PXStyleable> childStyleable, BOOL *stop, BOOL *stopDescending)
                                              {
                                                  if (childStyleable.styleMode == PXStylingNormal
                                                      && [childStyleable conformsToProtocol:@protocol(PXVirtualControl)])
                                                  {
-                                                     [PXStyleUtils updateStyleForStyleable:childStyleable];
+                                                     [STKPXStyleUtils updateStyleForStyleable:childStyleable];
                                                  }
                                              }];
 
-            [PXStyleUtils updateStyleForStyleable:child];
+            [STKPXStyleUtils updateStyleForStyleable:child];
         }
     }
 }

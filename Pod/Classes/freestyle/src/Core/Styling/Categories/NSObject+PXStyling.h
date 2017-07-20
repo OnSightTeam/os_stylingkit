@@ -23,9 +23,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXDeclaration.h"
-#import "PXRuleSet.h"
-#import "PXStylerContext.h"
+#import "STKPXDeclaration.h"
+#import "STKPXRuleSet.h"
+#import "STKPXStylerContext.h"
 
 @interface NSObject (PXStyling)
 
@@ -36,6 +36,6 @@
 
 - (NSDictionary *)viewStylersByProperty;
 
-- (void)updateStyleWithRuleSet:(PXRuleSet *)ruleSet context:(PXStylerContext *)context;
+- (void)updateStyleWithRuleSet:(STKPXRuleSet *)ruleSet context:(STKPXStylerContext *)context;
 
 @end

@@ -25,13 +25,13 @@
 #import <Foundation/Foundation.h>
 #import "PXStyleable.h"
 #import "PXSourceEmitter.h"
-#import "PXSpecificity.h"
+#import "STKPXSpecificity.h"
 
 /**
  *  The PXElementMatcher protocol defines a method used to determine if a given object matches a specific selector
  *  expression as captured by the class the conforms to this protocol.
  */
-@protocol PXSelector <PXSourceEmitter>
+@protocol STKPXSelector <STKPXSourceEmitter>
 
 /**
  *  Determine if the specified element matches this PXElementMatcher
@@ -41,6 +41,6 @@
 /**
  *  Update the specified PXSpecificity instance as is appropriate for the class that conforms to this protocol
  */
-- (void)incrementSpecificity:(PXSpecificity *)specificity;
+- (void)incrementSpecificity:(STKPXSpecificity *)specificity;
 
 @end

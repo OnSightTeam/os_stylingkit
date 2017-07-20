@@ -25,7 +25,7 @@
 
 #import "PXStylerBase.h"
 #import "UIView+PXStyling.h"
-#import "PXPseudoClassSelector.h"
+#import "STKPXPseudoClassSelector.h"
 
 @implementation PXStylerBase
 
@@ -61,7 +61,7 @@
     return self.declarationHandlers.allKeys;
 }
 
-- (void)processDeclaration:(PXDeclaration *)declaration withContext:(PXStylerContext *)context
+- (void)processDeclaration:(STKPXDeclaration *)declaration withContext:(STKPXStylerContext *)context
 {
     PXDeclarationHandlerBlock block = [self declarationHandlers][declaration.name];
 
@@ -71,7 +71,7 @@
     }
 }
 
-- (void)applyStylesWithContext:(PXStylerContext *)context
+- (void)applyStylesWithContext:(STKPXStylerContext *)context
 {
     if (self.completionBlock)
     {

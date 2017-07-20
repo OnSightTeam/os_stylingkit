@@ -26,9 +26,9 @@
 #import "UIBarItem+PXStyling.h"
 #import <objc/runtime.h>
 #import "PXStylingMacros.h"
-#import "PXStyleUtils.h"
-#import "PXUtils.h"
-#import "PXVirtualStyleableControl.h"
+#import "STKPXStyleUtils.h"
+#import "STKPXUtils.h"
+#import "STKPXVirtualStyleableControl.h"
 
 static const char STYLE_CLASS_KEY;
 static const char STYLE_CLASSES_KEY;
@@ -112,7 +112,7 @@ void PXForceLoadUIBarItemPXStyling() {}
 
 - (NSString *)styleKey
 {
-    return [PXStyleUtils styleKeyFromStyleable:self];
+    return [STKPXStyleUtils styleKeyFromStyleable:self];
 }
 
 - (CGRect)bounds
@@ -236,7 +236,7 @@ void PXForceLoadUIBarItemPXStyling() {}
     static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
-        map = [PXStyleUtils viewStylerPropertyMapForStyleable:self];
+        map = [STKPXStyleUtils viewStylerPropertyMapForStyleable:self];
     });
 
     return map;

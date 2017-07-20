@@ -24,11 +24,11 @@
 //
 
 #import "PixateFreestyleConfiguration.h"
-#import "PXCacheManager.h"
+#import "STKPXCacheManager.h"
 #import "PixateFreestyle.h"
-#import "PXGenericStyler.h"
-#import "PXDeclaration.h"
-#import "PXStyleUtils.h"
+#import "STKPXGenericStyler.h"
+#import "STKPXDeclaration.h"
+#import "STKPXStyleUtils.h"
 
 @implementation PixateFreestyleConfiguration
 {
@@ -116,17 +116,17 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
 - (void)setImageCacheCount:(NSUInteger)imageCacheCount
 {
-    [PXCacheManager setImageCacheCount:imageCacheCount];
+    [STKPXCacheManager setImageCacheCount:imageCacheCount];
 }
 
 - (void)setImageCacheSize:(NSUInteger)imageCacheSize
 {
-    [PXCacheManager setImageCacheSize:imageCacheSize];
+    [STKPXCacheManager setImageCacheSize:imageCacheSize];
 }
 
 - (void)setStyleCacheCount:(NSUInteger)styleCacheCount
 {
-    [PXCacheManager setStyleCacheCount:styleCacheCount];
+    [STKPXCacheManager setStyleCacheCount:styleCacheCount];
 }
 
 #pragma mark - PXStyleable
@@ -176,7 +176,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
 - (NSString *)styleKey
 {
-    return [PXStyleUtils styleKeyFromStyleable:self];
+    return [STKPXStyleUtils styleKeyFromStyleable:self];
 }
 
 - (void)setBounds:(CGRect)bounds
@@ -196,11 +196,11 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
     dispatch_once(&onceToken, ^{
         stylers = @[
-            [[PXGenericStyler alloc] initWithHandlers: @{
-                @"parse-error-destination" : ^(PXDeclaration *declaration, PXStylerContext *context) {
+            [[STKPXGenericStyler alloc] initWithHandlers: @{
+                @"parse-error-destination" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
                     PixateFreestyle.configuration.parseErrorDestination = declaration.parseErrorDestinationValue;
                 },
-                @"cache-styles" : ^(PXDeclaration *declaration, PXStylerContext *context) {
+                @"cache-styles" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
                     PixateFreestyle.configuration.cacheStylesType = declaration.cacheStylesTypeValue;
 
                     // clear caches if they are off
@@ -213,22 +213,22 @@ STK_DEFINE_CLASS_LOG_LEVEL
                         [PixateFreestyle clearStyleCache];
                     }
                 },
-                @"image-cache-count" : ^(PXDeclaration *declaration, PXStylerContext *context) {
+                @"image-cache-count" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
                     NSString *value = declaration.stringValue;
 
                     PixateFreestyle.configuration.imageCacheCount = value.integerValue;
                 },
-                @"image-cache-size" : ^(PXDeclaration *declaration, PXStylerContext *context) {
+                @"image-cache-size" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
                     NSString *value = declaration.stringValue;
 
                     PixateFreestyle.configuration.imageCacheSize = value.integerValue;
                 },
-                @"style-cache-count" : ^(PXDeclaration *declaration, PXStylerContext *context) {
+                @"style-cache-count" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
                     NSString *value = declaration.stringValue;
 
                     PixateFreestyle.configuration.styleCacheCount = value.integerValue;
                 },
-              @"enabled" : ^(PXDeclaration* declaration, PXStylerContext* context) {
+              @"enabled" : ^(STKPXDeclaration* declaration, STKPXStylerContext* context) {
                   BOOL value = declaration.booleanValue;
 
                   PixateFreestyle.configuration.styleMode = value ? PXStylingNormal : PXStylingNone;
@@ -246,7 +246,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
     static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
-        map = [PXStyleUtils viewStylerPropertyMapForStyleable:self];
+        map = [STKPXStyleUtils viewStylerPropertyMapForStyleable:self];
     });
 
     return map;

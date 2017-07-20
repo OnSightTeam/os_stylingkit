@@ -24,7 +24,7 @@
 //
 
 #import "PXLinearGradient.h"
-#import "PXVector.h"
+#import "STKPXVector.h"
 #import "PXMath.h"
 #import "UIColor+PXColors.h"
 
@@ -174,7 +174,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 
                 case PXLinearGradientDirectionToTopRight:
                 {
-                    PXVector *toBottomRight = [PXVector vectorWithStartPoint:pathBounds.origin
+                    STKPXVector *toBottomRight = [STKPXVector vectorWithStartPoint:pathBounds.origin
                                                                     EndPoint:CGPointMake(pathBounds.origin.x + pathBounds.size.width, pathBounds.origin.y + pathBounds.size.height)];
                     angle = RADIANS_TO_DEGREES(toBottomRight.angle) - 90.0f;
                     break;
@@ -186,7 +186,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 
                 case PXLinearGradientDirectionToBottomRight:
                 {
-                    PXVector *toBottomLeft = [PXVector vectorWithStartPoint:CGPointMake(pathBounds.origin.x + pathBounds.size.width, pathBounds.origin.y)
+                    STKPXVector *toBottomLeft = [STKPXVector vectorWithStartPoint:CGPointMake(pathBounds.origin.x + pathBounds.size.width, pathBounds.origin.y)
                                                                    EndPoint:CGPointMake(pathBounds.origin.x, pathBounds.origin.y + pathBounds.size.height)];
                     angle = RADIANS_TO_DEGREES(toBottomLeft.angle) - 90.0f;
                     break;
@@ -198,7 +198,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 
                 case PXLinearGradientDirectionToBottomLeft:
                 {
-                    PXVector *toTopLeft = [PXVector vectorWithStartPoint:CGPointMake(pathBounds.origin.x + pathBounds.size.width, pathBounds.origin.y + pathBounds.size.height)
+                    STKPXVector *toTopLeft = [STKPXVector vectorWithStartPoint:CGPointMake(pathBounds.origin.x + pathBounds.size.width, pathBounds.origin.y + pathBounds.size.height)
                                                                 EndPoint:pathBounds.origin];
                     angle = RADIANS_TO_DEGREES(toTopLeft.angle) - 90.0f;
                     break;
@@ -210,7 +210,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 
                 case PXLinearGradientDirectionToTopLeft:
                 {
-                    PXVector *toTopRight = [PXVector vectorWithStartPoint:CGPointMake(pathBounds.origin.x, pathBounds.origin.y + pathBounds.size.height)
+                    STKPXVector *toTopRight = [STKPXVector vectorWithStartPoint:CGPointMake(pathBounds.origin.x, pathBounds.origin.y + pathBounds.size.height)
                                                                  EndPoint:CGPointMake(pathBounds.origin.x + pathBounds.size.width, pathBounds.origin.y)];
                     angle = RADIANS_TO_DEGREES(toTopRight.angle) - 90.0f;
                     break;
@@ -288,11 +288,11 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 
             // get corner and angle vectors
             CGFloat radians = DEGREES_TO_RADIANS(angle);
-            PXVector *cornerVector = [PXVector vectorWithStartPoint:center EndPoint:endCorner];
-            PXVector *angleVector = [PXVector vectorWithStartPoint:CGPointZero EndPoint:CGPointMake(COS(radians), SIN(radians))];
+            STKPXVector *cornerVector = [STKPXVector vectorWithStartPoint:center EndPoint:endCorner];
+            STKPXVector *angleVector = [STKPXVector vectorWithStartPoint:CGPointZero EndPoint:CGPointMake(COS(radians), SIN(radians))];
 
             // project corner vector onto angle vector
-            PXVector *projection = [cornerVector projectOnto:angleVector];
+            STKPXVector *projection = [cornerVector projectOnto:angleVector];
 
             // apply results
             point1 = CGPointMake(center.x + projection.x, center.y + projection.y);

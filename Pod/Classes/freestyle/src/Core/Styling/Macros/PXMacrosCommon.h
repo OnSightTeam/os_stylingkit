@@ -32,7 +32,7 @@
 #import "NSObject+PXClass.h"
 #import "PixateFreestyle.h"
 #import "PixateFreestyle-Private.h"
-#import "PXStyleUtils.h"
+#import "STKPXStyleUtils.h"
 #import "PXStyleable.h"
 #import "objc.h"
 

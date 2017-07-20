@@ -23,8 +23,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXRuleSet.h"
-#import "PXStylerContext.h"
+#import "STKPXRuleSet.h"
+#import "STKPXStylerContext.h"
 
 /**
  *  The PXStyler protocol is a collection of methods used to apply styles defined in a PXRuleSet to a PXStyleable
@@ -59,7 +59,7 @@
  *  @param declaration The declaration to process
  *  @param context The styler context
  */
-- (void)processDeclaration:(PXDeclaration *)declaration withContext:(PXStylerContext *)context;
+- (void)processDeclaration:(STKPXDeclaration *)declaration withContext:(STKPXStylerContext *)context;
 
 /**
  *  Apply the computed styles to the specified view. Note that it is expected that computeStylesForView:withRuleSet: has
@@ -67,6 +67,6 @@
  *
  *  @param context The styler context
  */
-- (void)applyStylesWithContext:(PXStylerContext *)context;
+- (void)applyStylesWithContext:(STKPXStylerContext *)context;
 
 @end

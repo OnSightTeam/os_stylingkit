@@ -25,32 +25,32 @@
 
 #import "UIBarButtonItem+PXStyling.h"
 #import <objc/runtime.h>
-#import "PXFillStyler.h"
-#import "PXBorderStyler.h"
-#import "PXTextContentStyler.h"
+#import "STKPXFillStyler.h"
+#import "STKPXBorderStyler.h"
+#import "STKPXTextContentStyler.h"
 #import "PXStylingMacros.h"
-#import "PXStyleUtils.h"
-#import "PXShapeStyler.h"
-#import "PXLayoutStyler.h"
+#import "STKPXStyleUtils.h"
+#import "STKPXShapeStyler.h"
+#import "STKPXLayoutStyler.h"
 
-#import "PXBarMetricsAdjustmentStyler.h"
-#import "PXTransformStyler.h"
-#import "PXOpacityStyler.h"
-#import "PXFontStyler.h"
-#import "PXPaintStyler.h"
-#import "PXLayoutStyler.h"
-#import "PXShapeStyler.h"
-#import "PXFillStyler.h"
-#import "PXBorderStyler.h"
-#import "PXBoxShadowStyler.h"
-#import "PXBarShadowStyler.h"
-#import "PXAnimationStyler.h"
-#import "PXTextShadowStyler.h"
-#import "PXGenericStyler.h"
-#import "PXAttributedTextStyler.h"
+#import "STKPXBarMetricsAdjustmentStyler.h"
+#import "STKPXTransformStyler.h"
+#import "STKPXOpacityStyler.h"
+#import "STKPXFontStyler.h"
+#import "STKPXPaintStyler.h"
+#import "STKPXLayoutStyler.h"
+#import "STKPXShapeStyler.h"
+#import "STKPXFillStyler.h"
+#import "STKPXBorderStyler.h"
+#import "STKPXBoxShadowStyler.h"
+#import "STKPXBarShadowStyler.h"
+#import "STKPXAnimationStyler.h"
+#import "STKPXTextShadowStyler.h"
+#import "STKPXGenericStyler.h"
+#import "STKPXAttributedTextStyler.h"
 
-#import "PXUtils.h"
-#import "PXVirtualStyleableControl.h"
+#import "STKPXUtils.h"
+#import "STKPXVirtualStyleableControl.h"
 
 #import "UIBarItem+PXStyling.h"
 
@@ -109,11 +109,11 @@ void PXForceLoadUIBarButtonItemPXStyling() {}
         
         // icon
         
-        PXVirtualStyleableControl *icon = [[PXVirtualStyleableControl alloc] initWithParent:self elementName:@"icon" viewStyleUpdaterBlock:^(PXRuleSet *ruleSet, PXStylerContext *context) {
+        STKPXVirtualStyleableControl *icon = [[STKPXVirtualStyleableControl alloc] initWithParent:self elementName:@"icon" viewStyleUpdaterBlock:^(STKPXRuleSet *ruleSet, STKPXStylerContext *context) {
             
             UIImage *image = context.backgroundImage;
             
-            if([PXUtils isIOS7OrGreater])
+            if([STKPXUtils isIOS7OrGreater])
             {
                 NSString *renderingMode = [context propertyValueForName:@"rendering-mode"];
                 
@@ -138,16 +138,16 @@ void PXForceLoadUIBarButtonItemPXStyling() {}
         }];
 
         icon.viewStylers = @[
-            PXOpacityStyler.sharedInstance,
-            PXShapeStyler.sharedInstance,
-            PXFillStyler.sharedInstance,
-            PXBorderStyler.sharedInstance,
-            PXBoxShadowStyler.sharedInstance,
-            PXAnimationStyler.sharedInstance,
+            STKPXOpacityStyler.sharedInstance,
+            STKPXShapeStyler.sharedInstance,
+            STKPXFillStyler.sharedInstance,
+            STKPXBorderStyler.sharedInstance,
+            STKPXBoxShadowStyler.sharedInstance,
+            STKPXAnimationStyler.sharedInstance,
 
-            [[PXGenericStyler alloc] initWithHandlers: @{
+            [[STKPXGenericStyler alloc] initWithHandlers: @{
                                                          
-               @"-ios-rendering-mode" : ^(PXDeclaration *declaration, PXStylerContext *context) {
+               @"-ios-rendering-mode" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
                 
                     NSString *mode = (declaration.stringValue).lowercaseString;
                     
@@ -191,13 +191,13 @@ void PXForceLoadUIBarButtonItemPXStyling() {}
 
     dispatch_once(&onceToken, ^{
         stylers = @[
-            PXOpacityStyler.sharedInstance,
-            PXFillStyler.sharedInstance,
-            PXBorderStyler.sharedInstance,
-            PXShapeStyler.sharedInstance,
-            PXBoxShadowStyler.sharedInstance,
+            STKPXOpacityStyler.sharedInstance,
+            STKPXFillStyler.sharedInstance,
+            STKPXBorderStyler.sharedInstance,
+            STKPXShapeStyler.sharedInstance,
+            STKPXBoxShadowStyler.sharedInstance,
 
-            [[PXAttributedTextStyler alloc] initWithCompletionBlock:^(UIBarButtonItem *view, PXAttributedTextStyler *styler, PXStylerContext *context) {
+            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(UIBarButtonItem *view, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
                 
                 UIControlState state = ([context stateFromStateNameMap:BUTTONS_PSEUDOCLASS_MAP]) ? [context stateFromStateNameMap:BUTTONS_PSEUDOCLASS_MAP] : UIControlStateNormal;
                 
@@ -209,12 +209,12 @@ void PXForceLoadUIBarButtonItemPXStyling() {}
                                     forState:state];
             }],
             
-            [[PXTextContentStyler alloc] initWithCompletionBlock:^(UIBarButtonItem *view, PXTextContentStyler *styler, PXStylerContext *context) {
+            [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(UIBarButtonItem *view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
                 view.title = context.text;
             }],
             
 
-            [[PXGenericStyler alloc] initWithHandlers: @{
+            [[STKPXGenericStyler alloc] initWithHandlers: @{
                 @"-ios-tint-color" : [UIBarButtonItem TintColorDeclarationHandlerBlock:nil]
             }],
         ];
@@ -223,7 +223,7 @@ void PXForceLoadUIBarButtonItemPXStyling() {}
 	return stylers;
 }
 
-- (void)updateStyleWithRuleSet:(PXRuleSet *)ruleSet context:(PXStylerContext *)context
+- (void)updateStyleWithRuleSet:(STKPXRuleSet *)ruleSet context:(STKPXStylerContext *)context
 {
     [UIBarButtonItem UpdateStyleWithRuleSetHandler:ruleSet context:context target:self];
 }
@@ -232,9 +232,9 @@ void PXForceLoadUIBarButtonItemPXStyling() {}
 // Shared handlers and styler blocks to more easily support appearance api
 //
 
-+ (void) UpdateStyleWithRuleSetHandler:(PXRuleSet *)ruleSet context:(PXStylerContext *)context target:(UIBarButtonItem *)target
++ (void) UpdateStyleWithRuleSetHandler:(STKPXRuleSet *)ruleSet context:(STKPXStylerContext *)context target:(UIBarButtonItem *)target
 {
-    if([PXUtils isBeforeIOS7O])
+    if([STKPXUtils isBeforeIOS7O])
     {
         if (context.usesColorOnly)
         {
@@ -253,7 +253,7 @@ void PXForceLoadUIBarButtonItemPXStyling() {}
     
 + (PXDeclarationHandlerBlock) TintColorDeclarationHandlerBlock:(UIBarButtonItem *)target
 {
-    return ^(PXDeclaration *declaration, PXStylerContext *context)
+    return ^(STKPXDeclaration *declaration, STKPXStylerContext *context)
     {
         UIBarButtonItem *view = (target == nil ? (UIBarButtonItem *)context.styleable : target);
         view.tintColor = declaration.colorValue;
@@ -262,7 +262,7 @@ void PXForceLoadUIBarButtonItemPXStyling() {}
     
 + (PXStylerCompletionBlock) FontStylerCompletionBlock:(UIBarButtonItem *)target
 {
-    return ^(UIBarButtonItem *styleable, PXOpacityStyler *styler, PXStylerContext *context)
+    return ^(UIBarButtonItem *styleable, STKPXOpacityStyler *styler, STKPXStylerContext *context)
     {
         NSDictionary *attributes = [context propertyValueForName:[NSString stringWithFormat:@"textAttributes-%@", context.activeStateName]];
         NSMutableDictionary *currentTextAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
@@ -276,7 +276,7 @@ void PXForceLoadUIBarButtonItemPXStyling() {}
     
 + (PXStylerCompletionBlock) PXPaintStylerCompletionBlock:(UIBarButtonItem *)target
 {
-    return ^(UIBarButtonItem *styleable, PXOpacityStyler *styler, PXStylerContext *context)
+    return ^(UIBarButtonItem *styleable, STKPXOpacityStyler *styler, STKPXStylerContext *context)
     {
         
         NSDictionary *attributes = [context propertyValueForName:[NSString stringWithFormat:@"textAttributes-%@", context.activeStateName]];

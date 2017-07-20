@@ -28,9 +28,9 @@
 /**
  *  The PXCombinator protocol is a generalization of a binary operator, needed by all combinators.
  */
-@protocol PXCombinator <PXSelector>
+@protocol STKPXCombinator <STKPXSelector>
 
-@property (nonatomic, readonly, strong) id<PXSelector> lhs;
-@property (nonatomic, readonly, strong) id<PXSelector> rhs;
+@property (nonatomic, readonly, strong) id<STKPXSelector> lhs;
+@property (nonatomic, readonly, strong) id<STKPXSelector> rhs;
 
 @end

@@ -26,23 +26,23 @@
 #import "UINavigationItem+PXStyling.h"
 #import <objc/runtime.h>
 #import "PXStylingMacros.h"
-#import "PXStyleUtils.h"
-#import "PXUtils.h"
-#import "PXVirtualStyleableControl.h"
-#import "PXGenericStyler.h"
-#import "PXTextContentStyler.h"
-#import "PXTransformStyler.h"
-#import "PXOpacityStyler.h"
-#import "PXFontStyler.h"
-#import "PXPaintStyler.h"
-#import "PXLayoutStyler.h"
-#import "PXShapeStyler.h"
-#import "PXFillStyler.h"
-#import "PXBorderStyler.h"
-#import "PXBoxShadowStyler.h"
-#import "PXBarShadowStyler.h"
-#import "PXAnimationStyler.h"
-#import "PXTextShadowStyler.h"
+#import "STKPXStyleUtils.h"
+#import "STKPXUtils.h"
+#import "STKPXVirtualStyleableControl.h"
+#import "STKPXGenericStyler.h"
+#import "STKPXTextContentStyler.h"
+#import "STKPXTransformStyler.h"
+#import "STKPXOpacityStyler.h"
+#import "STKPXFontStyler.h"
+#import "STKPXPaintStyler.h"
+#import "STKPXLayoutStyler.h"
+#import "STKPXShapeStyler.h"
+#import "STKPXFillStyler.h"
+#import "STKPXBorderStyler.h"
+#import "STKPXBoxShadowStyler.h"
+#import "STKPXBarShadowStyler.h"
+#import "STKPXAnimationStyler.h"
+#import "STKPXTextShadowStyler.h"
 
 static const char STYLE_CLASS_KEY;
 static const char STYLE_CLASSES_KEY;
@@ -115,7 +115,7 @@ void PXForceLoadUINavigationItemPXStyling() {}
 
 - (NSString *)styleKey
 {
-    return [PXStyleUtils styleKeyFromStyleable:self];
+    return [STKPXStyleUtils styleKeyFromStyleable:self];
 }
 
 - (CGRect)bounds
@@ -239,7 +239,7 @@ void PXForceLoadUINavigationItemPXStyling() {}
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
-        map = [PXStyleUtils viewStylerPropertyMapForStyleable:self];
+        map = [STKPXStyleUtils viewStylerPropertyMapForStyleable:self];
     });
     
     return map;
@@ -334,20 +334,20 @@ static NSDictionary *PSEUDOCLASS_MAP;
     dispatch_once(&onceToken, ^{
         stylers = @[
                     
-                    PXOpacityStyler.sharedInstance,
-                    PXFillStyler.sharedInstance,
-                    PXBorderStyler.sharedInstance,
-                    PXBoxShadowStyler.sharedInstance,
+                    STKPXOpacityStyler.sharedInstance,
+                    STKPXFillStyler.sharedInstance,
+                    STKPXBorderStyler.sharedInstance,
+                    STKPXBoxShadowStyler.sharedInstance,
 
-                    [[PXTextContentStyler alloc] initWithCompletionBlock:^(UINavigationItem *item, id<PXStyler> styler, PXStylerContext *context) {
+                    [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(UINavigationItem *item, id<PXStyler> styler, STKPXStylerContext *context) {
                         item.title = context.text;
                     }],
 
-                    [[PXGenericStyler alloc] initWithHandlers: @{
-                         @"text-transform" : ^(PXDeclaration *declaration, PXStylerContext *context) {
+                    [[STKPXGenericStyler alloc] initWithHandlers: @{
+                         @"text-transform" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
                             [context setPropertyValue:declaration.stringValue forName:@"transform"];
                          },
-                         } completionBlock:^(UINavigationItem *item, id<PXStyler> styler, PXStylerContext *context) {
+                         } completionBlock:^(UINavigationItem *item, id<PXStyler> styler, STKPXStylerContext *context) {
                              
                              NSString *transform = [context propertyValueForName:@"transform"];
                              NSString *value = item.title;
@@ -371,7 +371,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
 	return stylers;
 }
 
-- (void)updateStyleWithRuleSet:(PXRuleSet *)ruleSet context:(PXStylerContext *)context
+- (void)updateStyleWithRuleSet:(STKPXRuleSet *)ruleSet context:(STKPXStylerContext *)context
 {
     if (context.usesImage)
     {

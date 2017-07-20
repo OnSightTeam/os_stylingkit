@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0006E8C577C47BF4B7FAD6B597885046 /* PXForceLoadPixateCategories.h in Headers */ = {isa = PBXBuildFile; fileRef = 22B95B92793F18D4A5E0FCAFCA8032C6 /* PXForceLoadPixateCategories.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		0006E8C577C47BF4B7FAD6B597885046 /* STKPXForceLoadPixateCategories.h in Headers */ = {isa = PBXBuildFile; fileRef = 22B95B92793F18D4A5E0FCAFCA8032C6 /* STKPXForceLoadPixateCategories.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		00B1634A57774DAFA89E54D2CAE0383E /* PXFontStyler.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BC78DD670DDB23F672B21297D943A1C /* PXFontStyler.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		00BCB9E5BA92D4127A454E2F2EC1ACD4 /* PXUISearchBar.h in Headers */ = {isa = PBXBuildFile; fileRef = CE9468D0313B9CEAB4AB584C9E16B427 /* PXUISearchBar.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		00DE3835FA84BA32CB8137D709DE153F /* PXShapeStyler.h in Headers */ = {isa = PBXBuildFile; fileRef = B28915B3F7996E7236A2DB7C7670884D /* PXShapeStyler.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -381,7 +381,7 @@
 		E0A17D9209B685827C75C10EFB77C9B2 /* PXImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C29C59CA1C6AD38F0B55588ADD405F /* PXImageUtils.m */; };
 		E126E956184E6019ED170820B7C7EE56 /* UINavigationItem+PXStyling.h in Headers */ = {isa = PBXBuildFile; fileRef = 19708DD61E2BDFF8E7633F51E4CB1BFF /* UINavigationItem+PXStyling.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E33D2A8A725D582763B50C2324FED5DA /* PXGenericStyler.h in Headers */ = {isa = PBXBuildFile; fileRef = 93ABB1398E4B05D73914996B787FB024 /* PXGenericStyler.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		E35D9B2CDBAF27062E9F888BBD3B7782 /* PXForceLoadPixateCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 903D3DA887F5000ABDB519622F32D34F /* PXForceLoadPixateCategories.m */; };
+		E35D9B2CDBAF27062E9F888BBD3B7782 /* STKPXForceLoadPixateCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 903D3DA887F5000ABDB519622F32D34F /* STKPXForceLoadPixateCategories.m */; };
 		E3CC84DBA24A7FEED8F277BA3F7C5D5F /* PXNamedMediaExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 203512DB56F7E308EFDEED2DD6CCD4DC /* PXNamedMediaExpression.m */; };
 		E4904A1CFAE6039F0E5E2BE5FBBE04C1 /* NSObject+PXSubclass.m in Sources */ = {isa = PBXBuildFile; fileRef = FE8256221DE9FDEDE75833179E242EC9 /* NSObject+PXSubclass.m */; };
 		E4923791CE7FC3974FBD874F124F7BA9 /* PXNotPseudoClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 747875316AF7E523C6F18E5BDBA64D78 /* PXNotPseudoClass.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -491,7 +491,7 @@
 		21D37CB77A870734A3A99AD45A43BAFC /* PXSelector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXSelector.h; sourceTree = "<group>"; };
 		21E6BE132B3F8A8B2A545C2604DEA046 /* PXShadowPaint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXShadowPaint.h; sourceTree = "<group>"; };
 		225124A8FB82AEF0F8A8305D98B765BE /* Pods-CarthageProj-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CarthageProj-dummy.m"; sourceTree = "<group>"; };
-		22B95B92793F18D4A5E0FCAFCA8032C6 /* PXForceLoadPixateCategories.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXForceLoadPixateCategories.h; sourceTree = "<group>"; };
+		22B95B92793F18D4A5E0FCAFCA8032C6 /* STKPXForceLoadPixateCategories.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = STKPXForceLoadPixateCategories.h; sourceTree = "<group>"; };
 		22EA75311F153219DB4263E7DBEA8619 /* PXText.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXText.h; sourceTree = "<group>"; };
 		23196A94A5BF44B66D0D3866A48DF3DC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		235FD2161EF589317F5F625DAE7F53B4 /* PXUICollectionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXUICollectionView.m; sourceTree = "<group>"; };
@@ -682,7 +682,7 @@
 		8FFFB6EA9FAA8377112B117CB9A5D334 /* PXUITextView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXUITextView.h; sourceTree = "<group>"; };
 		902CDF8D2687D46CCE990C246D3B3808 /* PXShapeDocument.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXShapeDocument.m; sourceTree = "<group>"; };
 		9039D796A98212D1CF701FC3BC685729 /* PXNotificationInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXNotificationInfo.m; sourceTree = "<group>"; };
-		903D3DA887F5000ABDB519622F32D34F /* PXForceLoadPixateCategories.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXForceLoadPixateCategories.m; sourceTree = "<group>"; };
+		903D3DA887F5000ABDB519622F32D34F /* STKPXForceLoadPixateCategories.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = STKPXForceLoadPixateCategories.m; sourceTree = "<group>"; };
 		9165D4AB5C218CD12394F97F94A97C71 /* PXStyleTreeInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXStyleTreeInfo.m; sourceTree = "<group>"; };
 		91A7FB9E8817EE7073974C6E14E8104E /* PXForceLoadControls.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PXForceLoadControls.h; sourceTree = "<group>"; };
 		9215E36D1AD9C008C7C755265F8DC1CA /* PXGestalt.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PXGestalt.m; sourceTree = "<group>"; };
@@ -1053,8 +1053,8 @@
 				B4BA61292663542395A63E0422795947 /* NSMutableArray+StackAdditions.m */,
 				94B16616CC8D20673CF357BEEB4D4704 /* NSScanner+PXFloat.h */,
 				62B035E41478AB24C4B3C7E4E45B01D1 /* NSScanner+PXFloat.m */,
-				22B95B92793F18D4A5E0FCAFCA8032C6 /* PXForceLoadPixateCategories.h */,
-				903D3DA887F5000ABDB519622F32D34F /* PXForceLoadPixateCategories.m */,
+				22B95B92793F18D4A5E0FCAFCA8032C6 /* STKPXForceLoadPixateCategories.h */,
+				903D3DA887F5000ABDB519622F32D34F /* STKPXForceLoadPixateCategories.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1827,7 +1827,7 @@
 				00B1634A57774DAFA89E54D2CAE0383E /* PXFontStyler.h in Headers */,
 				599146155BE98C11EAD6CF8B9C23526C /* PXForceLoadCGCategories.h in Headers */,
 				921D4EA87D173E47A191F14A5C908BDB /* PXForceLoadControls.h in Headers */,
-				0006E8C577C47BF4B7FAD6B597885046 /* PXForceLoadPixateCategories.h in Headers */,
+				0006E8C577C47BF4B7FAD6B597885046 /* STKPXForceLoadPixateCategories.h in Headers */,
 				3701DDE68158618E57F5A6EB8EFEFC0F /* PXForceLoadStylingCategories.h in Headers */,
 				FE0C22A862DAAA1078C58A2101786D7E /* PXForceLoadVirtualCategories.h in Headers */,
 				E33D2A8A725D582763B50C2324FED5DA /* PXGenericStyler.h in Headers */,
@@ -2119,7 +2119,7 @@
 				9B537525863AE0E22C5589D01340F229 /* PXFontStyler.m in Sources */,
 				4B1290EF2CCA5135DD2496531B40BCEE /* PXForceLoadCGCategories.m in Sources */,
 				E6D545CA33F51F47C51362C727597A59 /* PXForceLoadControls.m in Sources */,
-				E35D9B2CDBAF27062E9F888BBD3B7782 /* PXForceLoadPixateCategories.m in Sources */,
+				E35D9B2CDBAF27062E9F888BBD3B7782 /* STKPXForceLoadPixateCategories.m in Sources */,
 				738EAC4DCE41A45AAC8CF761306CC71E /* PXForceLoadStylingCategories.m in Sources */,
 				A567D96CCC556C3C7218FDB77E56898A /* PXForceLoadVirtualCategories.m in Sources */,
 				BD389F0824F791B779B9922F337E8A82 /* PXGenericStyler.m in Sources */,

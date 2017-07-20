@@ -19,9 +19,9 @@
 // Created by Anton Matosov on 1/18/16.
 //
 
-#import <StylingKit/PXStylesheet.h>
+#import <StylingKit/STKPXStylesheet.h>
 #import "STKTheme.h"
-#import "PXStylesheet-Private.h"
+#import "STKPXStylesheet-Private.h"
 
 @implementation STKTheme
 
@@ -36,7 +36,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     if (self)
     {
         _name = name;
-        _stylesheetFileName = stylesheetFileName.length ? stylesheetFileName : @"default";
+        _stylesheetFileName = stylesheetFileName.length ? stylesheetFileName : @"dayTheme";
         _bundle = bundle;
         _origin = PXStylesheetOriginApplication;
     }
@@ -69,7 +69,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 
     if (path.length > 0)
     {
-        PXStylesheet *stylesheet = [PXStylesheet styleSheetFromFilePath:path
+        STKPXStylesheet *stylesheet = [STKPXStylesheet styleSheetFromFilePath:path
                                                              withOrigin:(PXStylesheetOrigin)self.origin];
         stylesheet.monitorChanges = YES;
 

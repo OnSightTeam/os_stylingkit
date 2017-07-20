@@ -36,7 +36,7 @@ typedef NS_ENUM(unsigned int, PXStylingMode)
     
 };
 
-@class PXRuleSet;
+@class STKPXRuleSet;
 
 /**
  *  The PXStyleable protocol defines a set of properties and methods needed in order to style a given object.

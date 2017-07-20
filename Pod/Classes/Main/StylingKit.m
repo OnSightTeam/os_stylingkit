@@ -26,11 +26,11 @@
 
 #import "StylingKit.h"
 #import "PixateFreestyle.h"
-#import "PXStylesheet-Private.h"
+#import "STKPXStylesheet-Private.h"
 #import "STKTheme.h"
 #import "STKThemesRegistry.h"
 #import "STK_UIAlertControllerView.h"
-#import "PXLoggingUtils.h"
+#import "STKPXLoggingUtils.h"
 
 @interface StylingKit ()
 

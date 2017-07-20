@@ -24,7 +24,7 @@
 
 #import "PXUIPickerViewDelegate.h"
 #import "UIView+PXStyling.h"
-#import "PXProxy.h"
+#import "STKPXProxy.h"
 
 @implementation PXUIPickerViewDelegate
 

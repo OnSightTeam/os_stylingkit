@@ -24,7 +24,7 @@
 //
 
 #import "NSMutableDictionary+PXObject.h"
-#import "PXValue.h"
+#import "STKPXValue.h"
 
 void PXForceLoadNSMutableDictionaryPXObject() {}
 
@@ -39,63 +39,63 @@ void PXForceLoadNSMutableDictionaryPXObject() {}
 
 - (void)setRect:(CGRect)rect forKey:(id<NSCopying>)key
 {
-    PXValue *value = [[PXValue alloc] initWithBytes:&rect type:PXValueType_CGRect];
+    STKPXValue *value = [[STKPXValue alloc] initWithBytes:&rect type:PXValueType_CGRect];
 
     self[key] = value;
 }
 
 - (void)setFloat:(CGFloat)floatValue forKey:(id<NSCopying>)key
 {
-    PXValue *value = [[PXValue alloc] initWithBytes:&floatValue type:PXValueType_CGFloat];
+    STKPXValue *value = [[STKPXValue alloc] initWithBytes:&floatValue type:PXValueType_CGFloat];
 
     self[key] = value;
 }
 
 - (void)setColorRef:(CGColorRef)colorRef forKey:(id<NSCopying>)key
 {
-    PXValue *value = [[PXValue alloc] initWithBytes:&colorRef type:PXValueType_CGColorRef];
+    STKPXValue *value = [[STKPXValue alloc] initWithBytes:&colorRef type:PXValueType_CGColorRef];
 
     self[key] = value;
 }
 
 - (void)setSize:(CGSize)size forKey:(id<NSCopying>)key
 {
-    PXValue *value = [[PXValue alloc] initWithBytes:&size type:PXValueType_CGSize];
+    STKPXValue *value = [[STKPXValue alloc] initWithBytes:&size type:PXValueType_CGSize];
 
     self[key] = value;
 }
 
 - (void)setBoolean:(BOOL)booleanValue forKey:(id<NSCopying>)key
 {
-    PXValue *value = [[PXValue alloc] initWithBytes:&booleanValue type:PXValueType_Boolean];
+    STKPXValue *value = [[STKPXValue alloc] initWithBytes:&booleanValue type:PXValueType_Boolean];
 
     self[key] = value;
 }
 
 - (void)setTransform:(CGAffineTransform)transform forKey:(id<NSCopying>)key
 {
-    PXValue *value = [[PXValue alloc] initWithBytes:&transform type:PXValueType_CGAffineTransform];
+    STKPXValue *value = [[STKPXValue alloc] initWithBytes:&transform type:PXValueType_CGAffineTransform];
 
     self[key] = value;
 }
 
 - (void)setInsets:(UIEdgeInsets)insets forKey:(id<NSCopying>)key
 {
-    PXValue *value = [[PXValue alloc] initWithBytes:&insets type:PXValueType_UIEdgeInsets];
+    STKPXValue *value = [[STKPXValue alloc] initWithBytes:&insets type:PXValueType_UIEdgeInsets];
 
     self[key] = value;
 }
 
 - (void)setLineBreakMode:(NSLineBreakMode)mode forKey:(id<NSCopying>)key
 {
-    PXValue *value = [[PXValue alloc] initWithBytes:&mode type:PXValueType_NSLineBreakMode];
+    STKPXValue *value = [[STKPXValue alloc] initWithBytes:&mode type:PXValueType_NSLineBreakMode];
 
     self[key] = value;
 }
 
 - (void)setTextAlignment:(NSTextAlignment)alignment forKey:(id<NSCopying>)key
 {
-    PXValue *value = [[PXValue alloc] initWithBytes:&alignment type:PXValueType_NSTextAlignment];
+    STKPXValue *value = [[STKPXValue alloc] initWithBytes:&alignment type:PXValueType_NSTextAlignment];
     
     self[key] = value;
 }

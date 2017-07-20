@@ -26,20 +26,20 @@
 #import "PixateFreestyle-Private.h"
 #import "Freestyle-Version.h"
 
-#import "PXStylesheet.h"
-#import "PXStylesheet-Private.h"
+#import "STKPXStylesheet.h"
+#import "STKPXStylesheet-Private.h"
 #import "UIView+PXStyling.h"
-#import "PXStylesheetParser.h"
-#import "PXStyleUtils.h"
+#import "STKPXStylesheetParser.h"
+#import "STKPXStyleUtils.h"
 #import "PixateFreestyleConfiguration.h"
-#import "PXStylerContext.h"
-#import "PXCacheManager.h"
+#import "STKPXStylerContext.h"
+#import "STKPXCacheManager.h"
 
-#import "PXForceLoadPixateCategories.h"
-#import "PXForceLoadStylingCategories.h"
-#import "PXForceLoadVirtualCategories.h"
-#import "PXForceLoadControls.h"
-#import "PXForceLoadCGCategories.h"
+#import "STKPXForceLoadPixateCategories.h"
+#import "STKPXForceLoadStylingCategories.h"
+#import "STKPXForceLoadVirtualCategories.h"
+#import "STKPXForceLoadControls.h"
+#import "STKPXForceLoadCGCategories.h"
 
 static void getMonthDayYear(NSDate *date, NSInteger *month_p, NSInteger *day_p, NSInteger *year_p)
 {
@@ -67,13 +67,13 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     //
     
     // Trigger categories to all load
-    [PXForceLoadPixateCategories forceLoad];
-    [PXForceLoadStylingCategories forceLoad];
-    [PXForceLoadVirtualCategories forceLoad];
-    [PXForceLoadCGCategories forceLoad];
+    [STKPXForceLoadPixateCategories forceLoad];
+    [STKPXForceLoadStylingCategories forceLoad];
+    [STKPXForceLoadVirtualCategories forceLoad];
+    [STKPXForceLoadCGCategories forceLoad];
     
     // Trigger our UI subclasses to load
-    [PXForceLoadControls forceLoad];
+    [STKPXForceLoadControls forceLoad];
 }
 
 + (void)initialize
@@ -168,15 +168,15 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 
 + (NSArray *)selectFromStyleable:(id<PXStyleable>)styleable usingSelector:(NSString *)source
 {
-    PXStylesheetParser *parser = [[PXStylesheetParser alloc] init];
-    id<PXSelector> selector = [parser parseSelectorString:source];
+    STKPXStylesheetParser *parser = [[STKPXStylesheetParser alloc] init];
+    id<STKPXSelector> selector = [parser parseSelectorString:source];
     NSMutableArray *result = nil;
 
     if (selector && parser.errors.count == 0)
     {
         result = [NSMutableArray array];
 
-        [PXStyleUtils enumerateStyleableAndDescendants:styleable usingBlock:^(id<PXStyleable> obj, BOOL *stop, BOOL *stopDescending) {
+        [STKPXStyleUtils enumerateStyleableAndDescendants:styleable usingBlock:^(id<PXStyleable> obj, BOOL *stop, BOOL *stopDescending) {
             if ([selector matches:obj])
             {
                 [result addObject:obj];
@@ -189,7 +189,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 
 + (NSString *)matchingRuleSetsForStyleable:(id<PXStyleable>)styleable
 {
-    NSArray *ruleSets = [PXStyleUtils matchingRuleSetsForStyleable:styleable];
+    NSArray *ruleSets = [STKPXStyleUtils matchingRuleSetsForStyleable:styleable];
     NSMutableArray *stringValues = [NSMutableArray arrayWithCapacity:ruleSets.count];
 
     for (id<NSObject> ruleSet in ruleSets)
@@ -202,8 +202,8 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 
 + (NSString *)matchingDeclarationsForStyleable:(id<PXStyleable>)styleable
 {
-    NSArray *ruleSets = [PXStyleUtils matchingRuleSetsForStyleable:styleable];
-    PXRuleSet *mergedRuleSet = [PXRuleSet ruleSetWithMergedRuleSets:ruleSets];
+    NSArray *ruleSets = [STKPXStyleUtils matchingRuleSetsForStyleable:styleable];
+    STKPXRuleSet *mergedRuleSet = [STKPXRuleSet ruleSetWithMergedRuleSets:ruleSets];
     NSMutableArray *declarationStrings = [NSMutableArray arrayWithCapacity:mergedRuleSet.declarations.count];
 
     for (id<NSObject> declaration in mergedRuleSet.declarations)
@@ -216,27 +216,27 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 
 + (instancetype)styleSheetFromFilePath:(NSString *)filePath withOrigin:(PXStylesheetOrigin)origin
 {
-    return [PXStylesheet styleSheetFromFilePath:filePath withOrigin:origin];
+    return [STKPXStylesheet styleSheetFromFilePath:filePath withOrigin:origin];
 }
 
 + (instancetype)styleSheetFromSource:(NSString *)source withOrigin:(PXStylesheetOrigin)origin
 {
-    return [PXStylesheet styleSheetFromSource:source withOrigin:origin];
+    return [STKPXStylesheet styleSheetFromSource:source withOrigin:origin];
 }
 
-+ (PXStylesheet *)currentApplicationStylesheet
++ (STKPXStylesheet *)currentApplicationStylesheet
 {
-    return [PXStylesheet currentApplicationStylesheet];
+    return [STKPXStylesheet currentApplicationStylesheet];
 }
 
-+ (PXStylesheet *)currentUserStylesheet
++ (STKPXStylesheet *)currentUserStylesheet
 {
-    return [PXStylesheet currentUserStylesheet];
+    return [STKPXStylesheet currentUserStylesheet];
 }
 
-+ (PXStylesheet *)currentViewStylesheet
++ (STKPXStylesheet *)currentViewStylesheet
 {
-    return [PXStylesheet currentViewStylesheet];
+    return [STKPXStylesheet currentViewStylesheet];
 }
 
 + (void)applyStylesheets
@@ -288,12 +288,12 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 
 + (void)clearImageCache
 {
-    [PXCacheManager clearImageCache];
+    [STKPXCacheManager clearImageCache];
 }
 
 + (void)clearStyleCache
 {
-    [PXCacheManager clearStyleCache];
+    [STKPXCacheManager clearStyleCache];
 }
 
 #pragma mark - Initializers
@@ -340,8 +340,8 @@ STK_DEFINE_CLASS_LOG_LEVEL;
      NSLog(@"Rotate! %d", nextOrientation);
     */
 
-    [PXCacheManager clearStyleCache];
-    [PXStylesheet clearCache];
+    [STKPXCacheManager clearStyleCache];
+    [STKPXStylesheet clearCache];
 
     UIWindow* keyWindow = [UIApplication sharedApplication].keyWindow;
     if (keyWindow.styleMode != PXStylingNormal)

@@ -25,7 +25,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PXStyler.h"
-#import "PXStylerContext.h"
+#import "STKPXStylerContext.h"
 
 /**
  *  A typedef for the block that will be called once this styler is ready to be applied to a control
@@ -34,7 +34,7 @@
  *  @param styler The styler to use when styling the view
  *  @param context Any additional context associated with this styling cycle
  */
-typedef void(^PXStylerCompletionBlock)(id<PXStyleable> view, id<PXStyler> styler, PXStylerContext *context);
+typedef void(^PXStylerCompletionBlock)(id<PXStyleable> view, id<PXStyler> styler, STKPXStylerContext *context);
 
 /**
  *  A typedef for the block that will be called for a given property.
@@ -42,7 +42,7 @@ typedef void(^PXStylerCompletionBlock)(id<PXStyleable> view, id<PXStyler> styler
  *  @param declaration The declaration to process
  *  @param context Any additional context associated with this styling cycle
  */
-typedef void(^PXDeclarationHandlerBlock)(PXDeclaration *declaration, PXStylerContext *context);
+typedef void(^PXDeclarationHandlerBlock)(STKPXDeclaration *declaration, STKPXStylerContext *context);
 
 /**
  *  A common base clase to simplify implementation of new stylers
