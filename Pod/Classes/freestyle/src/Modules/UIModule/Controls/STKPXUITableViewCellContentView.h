@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUITableViewCellContentView.h
+//  STKPXUITableViewCellContentView.h
 //  Pixate
 //
 //  Created by Paul Colton on 11/4/12.

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXBorderStyler.m
+//  STKPXBorderStyler.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,7 +24,7 @@
 //
 
 #import "STKPXBorderStyler.h"
-#import "PXPaint.h"
+#import "STKPXPaint.h"
 #import "STKPXStroke.h"
 #import "STKPXRectangle.h"
 #import "STKPXValue.h"
@@ -149,22 +149,22 @@
                 context.boxModel.borderLeftPaint = paints[3];
             },
             @"border-top-color" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                id<PXPaint> paint = declaration.paintValue;
+                id<STKPXPaint> paint = declaration.paintValue;
 
                 context.boxModel.borderTopPaint = paint;
             },
             @"border-right-color" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                id<PXPaint> paint = declaration.paintValue;
+                id<STKPXPaint> paint = declaration.paintValue;
 
                 context.boxModel.borderRightPaint = paint;
             },
             @"border-bottom-color" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                id<PXPaint> paint = declaration.paintValue;
+                id<STKPXPaint> paint = declaration.paintValue;
 
                 context.boxModel.borderBottomPaint = paint;
             },
             @"border-left-color" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                id<PXPaint> paint = declaration.paintValue;
+                id<STKPXPaint> paint = declaration.paintValue;
 
                 context.boxModel.borderLeftPaint = paint;
             },
@@ -172,28 +172,28 @@
             @"border-style" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
                 NSArray *styles = declaration.borderStyleList;
 
-                context.boxModel.borderTopStyle = ((STKPXValue *)styles[0]).PXBorderStyleValue;
-                context.boxModel.borderRightStyle = ((STKPXValue *)styles[1]).PXBorderStyleValue;
-                context.boxModel.borderBottomStyle = ((STKPXValue *)styles[2]).PXBorderStyleValue;
-                context.boxModel.borderLeftStyle = ((STKPXValue *)styles[3]).PXBorderStyleValue;
+                context.boxModel.borderTopStyle = ((STKPXValue *)styles[0]).STKPXBorderStyleValue;
+                context.boxModel.borderRightStyle = ((STKPXValue *)styles[1]).STKPXBorderStyleValue;
+                context.boxModel.borderBottomStyle = ((STKPXValue *)styles[2]).STKPXBorderStyleValue;
+                context.boxModel.borderLeftStyle = ((STKPXValue *)styles[3]).STKPXBorderStyleValue;
             },
             @"border-top-style" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                PXBorderStyle style = declaration.borderStyleValue;
+                STKPXBorderStyle style = declaration.borderStyleValue;
 
                 context.boxModel.borderTopStyle = style;
             },
             @"border-right-style" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                PXBorderStyle style = declaration.borderStyleValue;
+                STKPXBorderStyle style = declaration.borderStyleValue;
 
                 context.boxModel.borderRightStyle = style;
             },
             @"border-bottom-style" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                PXBorderStyle style = declaration.borderStyleValue;
+                STKPXBorderStyle style = declaration.borderStyleValue;
 
                 context.boxModel.borderBottomStyle = style;
             },
             @"border-left-style" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                PXBorderStyle style = declaration.borderStyleValue;
+                STKPXBorderStyle style = declaration.borderStyleValue;
 
                 context.boxModel.borderLeftStyle = style;
             },

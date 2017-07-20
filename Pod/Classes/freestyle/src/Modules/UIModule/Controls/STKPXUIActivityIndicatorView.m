@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIActivityIndicatorView.m
+//  STKPXUIActivityIndicatorView.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -26,9 +26,9 @@
 #import "STKPXUIActivityIndicatorView.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXOpacityStyler.h"
 #import "STKPXShapeStyler.h"
 #import "STKPXFillStyler.h"
@@ -124,13 +124,13 @@
 
 
 // Px Wrapped Only
-PX_PXWRAP_PROP(CALayer, layer);
+STKPX_PXWRAP_PROP(CALayer, layer);
 
 // Ti Wrapped
-PX_WRAP_1(setColor, color);
-PX_WRAP_1(setBackgroundColor, color);
-PX_WRAP_1v(setActivityIndicatorViewStyle, UIActivityIndicatorViewStyle, style);
+STKPX_WRAP_1(setColor, color);
+STKPX_WRAP_1(setBackgroundColor, color);
+STKPX_WRAP_1v(setActivityIndicatorViewStyle, UIActivityIndicatorViewStyle, style);
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end

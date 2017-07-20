@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIScrollView.m
+//  STKPXUIScrollView.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -26,9 +26,9 @@
 #import "STKPXUIScrollView.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 
 #import "STKPXOpacityStyler.h"
 #import "STKPXLayoutStyler.h"
@@ -121,15 +121,15 @@
 }
 
 // Px Wrapped Only
-PX_PXWRAP_PROP(CALayer, layer);
+STKPX_PXWRAP_PROP(CALayer, layer);
 
 // Ti Wrapped
-PX_WRAP_1(setBackgroundColor, color);
-PX_WRAP_1s(setContentSize,   CGSize,       size);
-PX_WRAP_1s(setContentOffset, CGPoint,      size);
-PX_WRAP_1s(setContentInset,  UIEdgeInsets, insets);
+STKPX_WRAP_1(setBackgroundColor, color);
+STKPX_WRAP_1s(setContentSize,   CGSize,       size);
+STKPX_WRAP_1s(setContentOffset, CGPoint,      size);
+STKPX_WRAP_1s(setContentInset,  UIEdgeInsets, insets);
 
 // Styling
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXBorderInfo.m
+//  STKPXBorderInfo.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -31,15 +31,15 @@
 
 - (instancetype)init
 {
-    return [self initWithPaint:nil width:0.0f style:PXBorderStyleNone];
+    return [self initWithPaint:nil width:0.0f style:STKPXBorderStyleNone];
 }
 
-- (instancetype)initWithPaint:(id<PXPaint>)paint width:(CGFloat)width
+- (instancetype)initWithPaint:(id<STKPXPaint>)paint width:(CGFloat)width
 {
-    return [self initWithPaint:paint width:width style:PXBorderStyleSolid];
+    return [self initWithPaint:paint width:width style:STKPXBorderStyleSolid];
 }
 
-- (instancetype)initWithPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style
+- (instancetype)initWithPaint:(id<STKPXPaint>)paint width:(CGFloat)width style:(STKPXBorderStyle)style
 {
     if (self = [super init])
     {
@@ -66,8 +66,8 @@
 {
     return
         _width > 0.0f
-    &&  _style != PXBorderStyleNone
-    &&  _style != PXBorderStyleHidden
+    &&  _style != STKPXBorderStyleNone
+    &&  _style != STKPXBorderStyleHidden
     &&  _paint != nil;
 }
 

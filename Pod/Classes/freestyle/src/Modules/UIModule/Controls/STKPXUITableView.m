@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUITableView.m
+//  STKPXUITableView.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -25,9 +25,9 @@
 
 #import "STKPXUITableView.h"
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXVirtualStyleableControl.h"
 
 #import "STKPXOpacityStyler.h"
@@ -42,23 +42,23 @@
 
 #import "STKPXProxy.h"
 #import "STKPXUITableViewDelegate.h"
-#import "NSObject+PXSwizzle.h"
+#import "NSObject+STKPXSwizzle.h"
 
 // Optimization cached value
 static Class uiPickerTableViewClass;
 
-static const char PX_DELEGATE; // the new delegate (and datasource)
-static const char PX_DELEGATE_PROXY; // the proxy for the old delegate
-//static const char PX_DATASOURCE_PROXY; // the proxy for the old datasource
+static const char STKPX_DELEGATE; // the new delegate (and datasource)
+static const char STKPX_DELEGATE_PROXY; // the proxy for the old delegate
+//static const char STKPX_DATASOURCE_PROXY; // the proxy for the old datasource
 
-@implementation UITableView (PXFreestyle)
+@implementation UITableView (STKPXFreestyle)
 
 + (void)initialize
 {
     if (self != UITableView.class)
         return;
     
-    [self swizzleMethod:@selector(setDelegate:) withMethod:@selector(px_setDelegate:)];
+    [self swizzleMethod:@selector(setDelegate:) withMethod:@selector(STKPX_setDelegate:)];
     
     // Cache this value
     static dispatch_once_t onceToken;
@@ -88,12 +88,12 @@ static const char PX_DELEGATE_PROXY; // the proxy for the old delegate
 
 - (id)pxDelegate
 {
-    id delegate = objc_getAssociatedObject(self, &PX_DELEGATE);
+    id delegate = objc_getAssociatedObject(self, &STKPX_DELEGATE);
     
     if(delegate == nil)
     {
         delegate = [[STKPXUITableViewDelegate alloc] init];
-        objc_setAssociatedObject(self, &PX_DELEGATE, delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, &STKPX_DELEGATE, delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
     return delegate;
@@ -101,12 +101,12 @@ static const char PX_DELEGATE_PROXY; // the proxy for the old delegate
 
 - (id)pxDelegateProxy
 {
-    id proxy = objc_getAssociatedObject(self, &PX_DELEGATE_PROXY);
+    id proxy = objc_getAssociatedObject(self, &STKPX_DELEGATE_PROXY);
     
     if(proxy == nil)
     {
         proxy = [[STKPXProxy alloc] initWithBaseOject:nil overridingObject:[self pxDelegate]];
-        objc_setAssociatedObject(self, &PX_DELEGATE_PROXY, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, &STKPX_DELEGATE_PROXY, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
     return proxy;
@@ -130,12 +130,12 @@ static const char PX_DELEGATE_PROXY; // the proxy for the old delegate
 /*
  - (id)pxDatasourceProxy
  {
- id proxy = objc_getAssociatedObject(self, &PX_DATASOURCE_PROXY);
+ id proxy = objc_getAssociatedObject(self, &STKPX_DATASOURCE_PROXY);
  
  if(proxy == nil)
  {
- proxy = [[PXProxy alloc] initWithBaseOject:nil overridingObject:[self pxDelegate]];
- objc_setAssociatedObject(self, &PX_DATASOURCE_PROXY, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+ proxy = [[STKPXProxy alloc] initWithBaseOject:nil overridingObject:[self pxDelegate]];
+ objc_setAssociatedObject(self, &STKPX_DATASOURCE_PROXY, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
  }
  
  return proxy;
@@ -311,15 +311,15 @@ static const char PX_DELEGATE_PROXY; // the proxy for the old delegate
 // Wrappers
 //
 
-PX_WRAP_1(setBackgroundColor, color);
-PX_WRAP_1(setBackgroundView, view);
-PX_WRAP_1(setSeparatorColor, color);
-PX_WRAP_1v(setSeparatorStyle, UITableViewCellSeparatorStyle, style);
+STKPX_WRAP_1(setBackgroundColor, color);
+STKPX_WRAP_1(setBackgroundView, view);
+STKPX_WRAP_1(setSeparatorColor, color);
+STKPX_WRAP_1v(setSeparatorStyle, UITableViewCellSeparatorStyle, style);
 
-PX_WRAP_1s(setContentSize,   CGSize,       size);
-PX_WRAP_1s(setContentOffset, CGPoint,      size);
-PX_WRAP_1s(setContentInset,  UIEdgeInsets, insets);
+STKPX_WRAP_1s(setContentSize,   CGSize,       size);
+STKPX_WRAP_1s(setContentOffset, CGPoint,      size);
+STKPX_WRAP_1s(setContentInset,  UIEdgeInsets, insets);
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE_RECURSIVE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE_RECURSIVE
 
 @end

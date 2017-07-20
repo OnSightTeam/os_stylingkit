@@ -15,7 +15,7 @@
  */
 
 //
-//  PXBarShadowStyler
+//  STKPXBarShadowStyler
 //  Pixate
 //
 //  Created by Kevin Lindsey on 10/15/12.
@@ -23,7 +23,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PXStylerBase.h"
+#import "STKPXStylerBase.h"
 
 /**
  *  - shadow: <url>
@@ -32,6 +32,6 @@
  *  - shadow-padding: <number>
  */
 
-@interface STKPXBarShadowStyler : PXStylerBase
+@interface STKPXBarShadowStyler : STKPXStylerBase
 
 @end

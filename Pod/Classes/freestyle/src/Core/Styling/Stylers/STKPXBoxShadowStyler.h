@@ -15,14 +15,14 @@
  */
 
 //
-//  PXBoxShadowStyler.h
+//  STKPXBoxShadowStyler.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/18/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXStylerBase.h"
+#import "STKPXStylerBase.h"
 
 /**
  *  - box-shadow: <shadow> ["," <shadow>]*
@@ -33,7 +33,7 @@
  *  any outer shadows to the view being styled. It is important to know that if you provide a callback for you box
  *  shadow styler, you are responsible for applying the outer shadows.
  */
-@interface STKPXBoxShadowStyler : PXStylerBase
+@interface STKPXBoxShadowStyler : STKPXStylerBase
 
 + (STKPXBoxShadowStyler *)sharedInstance;
 

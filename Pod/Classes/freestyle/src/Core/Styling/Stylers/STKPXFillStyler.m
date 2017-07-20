@@ -15,7 +15,7 @@
  */
 
 //
-//  PXFillStyler.m
+//  STKPXFillStyler.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/18/12.
@@ -85,7 +85,7 @@
                 context.insets = UIEdgeInsetsMake(insets.top, value, insets.bottom, insets.right);
             },
             @"background-image" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                id<PXPaint> paint = declaration.paintValue;
+                id<STKPXPaint> paint = declaration.paintValue;
 
                 if ([paint isKindOfClass:[STKPXPaintGroup class]])
                 {

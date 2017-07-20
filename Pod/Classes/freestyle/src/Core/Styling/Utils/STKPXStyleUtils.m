@@ -15,7 +15,7 @@
  */
 
 //
-//  PXStyleUtils.m
+//  STKPXStyleUtils.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -30,12 +30,12 @@
 #import "PixateFreestyle.h"
 #import "objc.h"
 #import "STKPXStylesheet-Private.h"
-#import "NSDictionary+PXObject.h"
-#import "NSMutableDictionary+PXObject.h"
+#import "NSDictionary+STKPXObject.h"
+#import "NSMutableDictionary+STKPXObject.h"
 #import "STKPXStyleTreeInfo.h"
 #import "STKPXStyleInfo.h"
-#import "NSObject+PXStyling.h"
-#import "PXStyler.h"
+#import "NSObject+STKPXStyling.h"
+#import "STKPXStyler.h"
 #import "STKPXVirtualStyleableControl.h"
 
 #import <QuartzCore/QuartzCore.h>
@@ -51,11 +51,11 @@ static const char viewDelegate;
 
 STK_DEFINE_CLASS_LOG_LEVEL;
 
-+ (NSArray *)elementChildrenOfStyleable:(id<PXStyleable>)styleable
++ (NSArray *)elementChildrenOfStyleable:(id<STKPXStyleable>)styleable
 {
     NSMutableArray *children = [[NSMutableArray alloc] init];
 
-    [styleable.pxStyleChildren enumerateObjectsUsingBlock:^(id<PXStyleable> obj, NSUInteger idx, BOOL *stop) {
+    [styleable.pxStyleChildren enumerateObjectsUsingBlock:^(id<STKPXStyleable> obj, NSUInteger idx, BOOL *stop) {
         if (![obj.pxStyleElementName hasPrefix:@"#"])
         {
             [children addObject:obj];
@@ -65,11 +65,11 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     return children;
 }
 
-+ (NSArray *)elementChildrenOfStyleable:(id<PXStyleable>)styleable ofType:(NSString *)type
++ (NSArray *)elementChildrenOfStyleable:(id<STKPXStyleable>)styleable ofType:(NSString *)type
 {
     NSMutableArray *childrenOfType = [[NSMutableArray alloc] init];
 
-    [styleable.pxStyleChildren enumerateObjectsUsingBlock:^(id<PXStyleable> obj, NSUInteger idx, BOOL *stop) {
+    [styleable.pxStyleChildren enumerateObjectsUsingBlock:^(id<STKPXStyleable> obj, NSUInteger idx, BOOL *stop) {
         if (![obj.pxStyleElementName hasPrefix:@"#"])
         {
             if ([obj.pxStyleElementName isEqualToString:type])
@@ -82,7 +82,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     return childrenOfType;
 }
 
-+ (NSInteger)childCountForStyleable:(id<PXStyleable>)styleable
++ (NSInteger)childCountForStyleable:(id<STKPXStyleable>)styleable
 {
     NSInteger result = 0;
 
@@ -112,9 +112,9 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     return result;
 }
 
-+ (PXStyleableChildrenInfo *)childrenInfoForStyleable:(id<PXStyleable>)styleable
++ (STKPXStyleableChildrenInfo *)childrenInfoForStyleable:(id<STKPXStyleable>)styleable
 {
-    PXStyleableChildrenInfo *result = malloc(sizeof(PXStyleableChildrenInfo));
+    STKPXStyleableChildrenInfo *result = malloc(sizeof(STKPXStyleableChildrenInfo));
 
     // init
     result->childrenCount = 0;
@@ -122,7 +122,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     result->childrenIndex = NSNotFound;
     result->childrenOfTypeIndex = NSNotFound;
 
-    id<PXStyleable> parent = styleable.pxStyleParent;
+    id<STKPXStyleable> parent = styleable.pxStyleParent;
 
     NSIndexPath *path = nil;
     
@@ -166,7 +166,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     }
     else
     {
-        [parent.pxStyleChildren enumerateObjectsUsingBlock:^(id<PXStyleable> obj, NSUInteger idx, BOOL *stop) {
+        [parent.pxStyleChildren enumerateObjectsUsingBlock:^(id<STKPXStyleable> obj, NSUInteger idx, BOOL *stop) {
             if (![obj.pxStyleElementName hasPrefix:@"#"])
             {
                 result->childrenCount++;
@@ -211,7 +211,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     return result;
 }
 
-+ (NSString *)descriptionForStyleable:(id<PXStyleable>)styleable
++ (NSString *)descriptionForStyleable:(id<STKPXStyleable>)styleable
 {
     NSMutableArray *parts = [[NSMutableArray alloc] init];
 
@@ -234,12 +234,12 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     return [parts componentsJoinedByString:@""];
 }
 
-+ (NSString *)styleKeyFromStyleable:(id<PXStyleable>)styleable
++ (NSString *)styleKeyFromStyleable:(id<STKPXStyleable>)styleable
 {
     return [[styleable.class description] stringByAppendingPathComponent:[STKPXStyleUtils selectorFromStyleable:styleable]];
 }
 
-+ (NSString *)selectorFromStyleable:(id<PXStyleable>)styleable
++ (NSString *)selectorFromStyleable:(id<STKPXStyleable>)styleable
 {
     NSMutableArray *parts = [[NSMutableArray alloc] init];
 
@@ -260,7 +260,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     return [parts componentsJoinedByString:@""];
 }
 
-+ (void)enumerateStyleableAndDescendants:(id<PXStyleable>)styleable usingBlock:(void (^)(id obj, BOOL *stop, BOOL *stopDescending))block
++ (void)enumerateStyleableAndDescendants:(id<STKPXStyleable>)styleable usingBlock:(void (^)(id obj, BOOL *stop, BOOL *stopDescending))block
 {
     if (styleable && block)
     {
@@ -275,7 +275,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     }
 }
 
-+ (void)enumerateStyleableDescendants:(id<PXStyleable>)styleable usingBlock:(void (^)(id obj, BOOL *stop, BOOL *stopDescending))block
++ (void)enumerateStyleableDescendants:(id<STKPXStyleable>)styleable usingBlock:(void (^)(id obj, BOOL *stop, BOOL *stopDescending))block
 {
     if (styleable && block)
     {
@@ -302,7 +302,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     // loop until the queue is empty or we're told to stop
     while (queue.count > 0 && !stop)
     {
-        id<PXStyleable> current = [queue dequeue];
+        id<STKPXStyleable> current = [queue dequeue];
 
         // process styleable
         block(current, &stop, &stopDescending);
@@ -318,7 +318,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     }
 }
 
-+ (NSDictionary *)viewStylerPropertyMapForStyleable:(id<PXStyleable>)styleable
++ (NSDictionary *)viewStylerPropertyMapForStyleable:(id<STKPXStyleable>)styleable
 {
     NSArray *viewStylers = ([styleable respondsToSelector:@selector(viewStylers)])
         ? ((NSObject *)styleable).viewStylers
@@ -327,7 +327,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     // build a dictionary of property names to stylers
     NSMutableDictionary *properties = [[NSMutableDictionary alloc] init];
 
-    for (id<PXStyler> styler in viewStylers)
+    for (id<STKPXStyler> styler in viewStylers)
     {
         for (NSString *property in styler.supportedProperties)
         {
@@ -338,7 +338,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     return properties;
 }
 
-+ (NSMutableArray *)matchingRuleSetsForStyleable:(id<PXStyleable>)styleable
++ (NSMutableArray *)matchingRuleSetsForStyleable:(id<STKPXStyleable>)styleable
 {
     // find matching rule sets, regardless of any supported or specified pseudo-classes
     NSMutableArray *ruleSets = [[STKPXStylesheet currentApplicationStylesheet] ruleSetsMatchingStyleable:styleable].mutableCopy;
@@ -363,7 +363,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     return ruleSets;
 }
 
-+ (NSArray *)filterRuleSets:(NSArray *)ruleSets forStyleable:(id<PXStyleable>)styleable byState:(NSString *)stateName
++ (NSArray *)filterRuleSets:(NSArray *)ruleSets forStyleable:(id<STKPXStyleable>)styleable byState:(NSString *)stateName
 {
     NSMutableArray *ruleSetsForState = [[NSMutableArray alloc] init];
 
@@ -440,7 +440,7 @@ NSUInteger STKHashFromCGRect(CGRect rect)
         + (*(NSUInteger *)&rect.size.width << 10 ^ *(NSUInteger *)&rect.size.height);
 }
 
-+ (BOOL)stylesOfStyleable:(id<PXStyleable>)styleable matchDeclarations:(NSArray *)declarations state:(NSString *)state
++ (BOOL)stylesOfStyleable:(id<STKPXStyleable>)styleable matchDeclarations:(NSArray *)declarations state:(NSString *)state
 {
     BOOL result = NO;
 
@@ -481,7 +481,7 @@ NSUInteger STKHashFromCGRect(CGRect rect)
         // show hashes match or save new (different) hash for next time
         if (result)
         {
-            DDLogInfo(@"Styleable's style does not need updating: %@", [PXStyleUtils descriptionForStyleable:styleable]);
+            DDLogInfo(@"Styleable's style does not need updating: %@", [STKPXStyleUtils descriptionForStyleable:styleable]);
         }
         else
         {
@@ -492,19 +492,19 @@ NSUInteger STKHashFromCGRect(CGRect rect)
     return result;
 }
 
-+ (void)invalidateStyleable:(id<PXStyleable>)styleable
++ (void)invalidateStyleable:(id<STKPXStyleable>)styleable
 {
     objc_setAssociatedObject(styleable, &hash, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-+ (void)invalidateStyleableAndDescendants:(id<PXStyleable>)styleable
++ (void)invalidateStyleableAndDescendants:(id<STKPXStyleable>)styleable
 {
-    [STKPXStyleUtils enumerateStyleableAndDescendants:styleable usingBlock:^(id<PXStyleable> s, BOOL *stop, BOOL *stopDescending) {
+    [STKPXStyleUtils enumerateStyleableAndDescendants:styleable usingBlock:^(id<STKPXStyleable> s, BOOL *stop, BOOL *stopDescending) {
         objc_setAssociatedObject(s, &hash, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }];
 }
 
-+ (NSUInteger)hashValueForStyleable:(id<PXStyleable>)styleable state:(NSString *)state
++ (NSUInteger)hashValueForStyleable:(id<STKPXStyleable>)styleable state:(NSString *)state
 {
     NSMutableDictionary *cachedHashValues = objc_getAssociatedObject(styleable, &hash);
     NSString *stateNameKey = (state) ? state : @"";
@@ -516,7 +516,7 @@ NSUInteger STKHashFromCGRect(CGRect rect)
     return cachedHash;
 }
 
-+ (void)updateStyleForStyleable:(id<PXStyleable>)styleable
++ (void)updateStyleForStyleable:(id<STKPXStyleable>)styleable
 {
     static NSMutableSet *viewsBeingStyled;
     static dispatch_once_t onceToken;
@@ -524,8 +524,8 @@ NSUInteger STKHashFromCGRect(CGRect rect)
         viewsBeingStyled = [NSMutableSet set];
     });
 
-    if (styleable.styleMode == PXStylingNone
-      || [PixateFreestyle configuration].styleMode == PXStylingNone)
+    if (styleable.styleMode == STKPXStylingNone
+      || [PixateFreestyle configuration].styleMode == STKPXStylingNone)
     {
         return;
     }
@@ -586,14 +586,14 @@ NSUInteger STKHashFromCGRect(CGRect rect)
     }
 }
 
-+ (void)updateStylesForStyleable:(id<PXStyleable>)styleable andDescendants:(BOOL)recurse
++ (void)updateStylesForStyleable:(id<STKPXStyleable>)styleable andDescendants:(BOOL)recurse
 {
     if (styleable)
     {
         if (recurse)
         {
             [STKPXStyleUtils enumerateStyleableAndDescendants:styleable
-                                                usingBlock:^(id <PXStyleable> obj, BOOL *stop, BOOL *stopDescending)
+                                                usingBlock:^(id <STKPXStyleable> obj, BOOL *stop, BOOL *stopDescending)
                                                 {
                                                     [STKPXStyleUtils updateStyleForStyleable:obj];
 

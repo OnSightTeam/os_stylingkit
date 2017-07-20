@@ -15,7 +15,7 @@
  */
 
 //
-//  PXPolygon.h
+//  STKPXPolygon.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 6/9/12.
@@ -25,7 +25,7 @@
 #import "STKPXShape.h"
 
 /**
- *  A PXShape sub-class used to render open and closed polygons
+ *  A STKPXShape sub-class used to render open and closed polygons
  */
 @interface STKPXPolygon : STKPXShape
 

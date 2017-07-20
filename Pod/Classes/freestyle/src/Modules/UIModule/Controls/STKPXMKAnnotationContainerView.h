@@ -15,7 +15,7 @@
  */
 
 //
-//  PXMKAnnotationContainerView.h
+//  STKPXMKAnnotationContainerView.h
 //  Pixate
 //
 //  Created by Paul Colton on 11/29/12.

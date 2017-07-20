@@ -15,7 +15,7 @@
  */
 
 //
-//  PXBoxShadowStyler.m
+//  STKPXBoxShadowStyler.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/18/12.
@@ -66,7 +66,7 @@
     }
     else
     {
-        id<PXStyleable> styleable = context.styleable;
+        id<STKPXStyleable> styleable = context.styleable;
 
         if ([styleable isKindOfClass:[UIView class]])
         {

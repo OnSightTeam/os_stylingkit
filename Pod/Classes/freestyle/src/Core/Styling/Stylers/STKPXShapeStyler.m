@@ -15,7 +15,7 @@
  */
 
 //
-//  PXShapeStyler.m
+//  STKPXShapeStyler.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/18/12.
@@ -62,11 +62,11 @@
                 }
                 else if ([@"arrow-button-left" isEqualToString:stringValue])
                 {
-                    context.shape = [[STKPXArrowRectangle alloc] initWithDirection:PXArrowRectangleDirectionLeft];
+                    context.shape = [[STKPXArrowRectangle alloc] initWithDirection:STKPXArrowRectangleDirectionLeft];
                 }
                 else if ([@"arrow-button-right" isEqualToString:stringValue])
                 {
-                    context.shape = [[STKPXArrowRectangle alloc] initWithDirection:PXArrowRectangleDirectionRight];
+                    context.shape = [[STKPXArrowRectangle alloc] initWithDirection:STKPXArrowRectangleDirectionRight];
                 }
                 else
                 {

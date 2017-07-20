@@ -15,7 +15,7 @@
  */
 
 //
-//  PXText.h
+//  STKPXText.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -26,7 +26,7 @@
 #import "STKPXShape.h"
 
 /**
- *  A PXShape sub-class used to render text
+ *  A STKPXShape sub-class used to render text
  */
 @interface STKPXText : STKPXShape
 
@@ -51,14 +51,14 @@
 @property (nonatomic) CGFloat fontSize;
 
 /**
- *  Allocates and initializes a new PXText instance using the specified text
+ *  Allocates and initializes a new STKPXText instance using the specified text
  *
  *  @param text The text to render
  */
 + (instancetype)textWithString:(NSString *)text;
 
 /**
- *  Initializers a newly allocated PXText instance and sets its text to the specified value
+ *  Initializers a newly allocated STKPXText instance and sets its text to the specified value
  *
  *  @param text The text to render
  */

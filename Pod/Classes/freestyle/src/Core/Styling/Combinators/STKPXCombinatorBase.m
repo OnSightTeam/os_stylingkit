@@ -15,7 +15,7 @@
  */
 
 //
-//  PXCombinatorBase.h
+//  STKPXCombinatorBase.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -57,7 +57,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
 #pragma mark - Methods
 
-- (BOOL)matches:(id<PXStyleable>)element
+- (BOOL)matches:(id<STKPXStyleable>)element
 {
     DDLogError(@"The 'matches:' method should not be called and should be overridden");
 
@@ -71,7 +71,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
     [self->_rhs incrementSpecificity:specificity];
 }
 
-#pragma mark - PXSourcEmitter Methods
+#pragma mark - STKPXSourcEmitter Methods
 
 - (NSString *)source
 {

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIButton.m
+//  STKPXUIButton.m
 //  Pixate
 //
 //  Created by Paul Colton on 9/13/12.
@@ -25,12 +25,12 @@
 #import "STKPXUIButton.h"
 
 #import "PixateFreestyle.h"
-#import "PXStylingMacros.h"
+#import "STKPXStylingMacros.h"
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "NSDictionary+PXObject.h"
-#import "NSMutableDictionary+PXObject.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "NSDictionary+STKPXObject.h"
+#import "NSMutableDictionary+STKPXObject.h"
 
 #import "STKPXOpacityStyler.h"
 #import "STKPXFontStyler.h"
@@ -55,8 +55,8 @@
 
 #import "STKPXStyleUtils.h"
 #import "STKPXUtils.h"
-#import "NSMutableDictionary+PXObject.h"
-#import "NSDictionary+PXObject.h"
+#import "NSMutableDictionary+STKPXObject.h"
+#import "NSDictionary+STKPXObject.h"
 #import "STKPXUIView.h"
 #import "STKPXAnimationPropertyHandler.h"
 
@@ -280,12 +280,12 @@ static const char STYLE_CHILDREN;
     return map;
 }
 
-//- (void)PX_UIControlEventTouchDown_Dummy {}
+//- (void)STKPX_UIControlEventTouchDown_Dummy {}
 
 - (void)updateStyleWithRuleSet:(STKPXRuleSet *)ruleSet context:(STKPXStylerContext *)context
 {
-//    [self addTarget:self action:@selector(PX_UIControlEventTouchDown_Dummy) forControlEvents:UIControlEventTouchDown];
-//    [self addTarget:self action:@selector(PX_UIControlEventTouchDown_Dummy) forControlEvents:UIControlEventTouchUpInside];
+//    [self addTarget:self action:@selector(STKPX_UIControlEventTouchDown_Dummy) forControlEvents:UIControlEventTouchDown];
+//    [self addTarget:self action:@selector(STKPX_UIControlEventTouchDown_Dummy) forControlEvents:UIControlEventTouchUpInside];
 
     //- (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents
 
@@ -361,27 +361,27 @@ static const char STYLE_CHILDREN;
 }
 
 // Px Wrapped Only
-PX_PXWRAP_PROP(UILabel, titleLabel);
-PX_PXWRAP_1s(setTransform, CGAffineTransform, transform);
-PX_PXWRAP_1s(setAlpha, CGFloat, alpha);
-PX_PXWRAP_1s(setBounds, CGRect, rect);
-PX_PXWRAP_1s(setFrame,  CGRect, rect);
-PX_PXWRAP_2v(setTitle, title, forState, UIControlState, state);
-PX_PXWRAP_2v(setAttributedTitle, string, forState, UIControlState, state);
+STKPX_PXWRAP_PROP(UILabel, titleLabel);
+STKPX_PXWRAP_1s(setTransform, CGAffineTransform, transform);
+STKPX_PXWRAP_1s(setAlpha, CGFloat, alpha);
+STKPX_PXWRAP_1s(setBounds, CGRect, rect);
+STKPX_PXWRAP_1s(setFrame,  CGRect, rect);
+STKPX_PXWRAP_2v(setTitle, title, forState, UIControlState, state);
+STKPX_PXWRAP_2v(setAttributedTitle, string, forState, UIControlState, state);
 
 // Ti Wrapped as well
-PX_WRAP_1(setTintColor, color);
-PX_WRAP_1(setBackgroundColor, color);
-PX_WRAP_1s(setContentEdgeInsets, UIEdgeInsets, insets);
-PX_WRAP_1s(setTitleEdgeInsets,   UIEdgeInsets, insets);
-PX_WRAP_1s(setImageEdgeInsets,   UIEdgeInsets, insets);
-PX_WRAP_2v(setImage, image, forState, UIControlState, state);
-PX_WRAP_2v(setBackgroundImage, image, forState, UIControlState, state);
-PX_WRAP_2v(setTitleColor,      color, forState, UIControlState, state);
-PX_WRAP_2v(setTitleShadowColor, color, forState, UIControlState, state);
+STKPX_WRAP_1(setTintColor, color);
+STKPX_WRAP_1(setBackgroundColor, color);
+STKPX_WRAP_1s(setContentEdgeInsets, UIEdgeInsets, insets);
+STKPX_WRAP_1s(setTitleEdgeInsets,   UIEdgeInsets, insets);
+STKPX_WRAP_1s(setImageEdgeInsets,   UIEdgeInsets, insets);
+STKPX_WRAP_2v(setImage, image, forState, UIControlState, state);
+STKPX_WRAP_2v(setBackgroundImage, image, forState, UIControlState, state);
+STKPX_WRAP_2v(setTitleColor,      color, forState, UIControlState, state);
+STKPX_WRAP_2v(setTitleShadowColor, color, forState, UIControlState, state);
 
 // Styling overrides
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 /* HOLD
 -(void)sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event

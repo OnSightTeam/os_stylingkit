@@ -15,7 +15,7 @@
  */
 
 //
-//  PXAttributeSelectorOperator.h
+//  STKPXAttributeSelectorOperator.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 9/1/12.
@@ -23,11 +23,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXSelector.h"
+#import "STKPXSelector.h"
 #import "STKPXAttributeSelector.h"
 
 /**
- *  The PXAttributeSelectorOperatorType enumeration defines the operators available when matching the content of an
+ *  The STKPXAttributeSelectorOperatorType enumeration defines the operators available when matching the content of an
  *  attribute against a value.
  */
 typedef enum
@@ -38,10 +38,10 @@ typedef enum
     kAttributeSelectorOperatorEqual,
     kAttributeSelectorOperatorListContains,
     kAttributeSelectorOperatorEqualWithHyphen
-} PXAttributeSelectorOperatorType;
+} STKPXAttributeSelectorOperatorType;
 
 /**
- *  A PXAttributeSelectorOperator is used to determine if the given attribute matches a value, using a specific string
+ *  A STKPXAttributeSelectorOperator is used to determine if the given attribute matches a value, using a specific string
  *  matching operator.
  */
 @interface STKPXAttributeSelectorOperator : NSObject <STKPXSelector>
@@ -49,7 +49,7 @@ typedef enum
 /**
  *  The type of match to be performed on the attribute value
  */
-@property (nonatomic, readonly) PXAttributeSelectorOperatorType operatorType;
+@property (nonatomic, readonly) STKPXAttributeSelectorOperatorType operatorType;
 
 /**
  *  The attribute to match
@@ -68,7 +68,7 @@ typedef enum
  *  @param attributeSelector The attribute selector to which the operator will be applied
  *  @param value The string value used by the operator when matching the matched attribute's value
  */
-- (id)initWithOperatorType:(PXAttributeSelectorOperatorType)type
+- (id)initWithOperatorType:(STKPXAttributeSelectorOperatorType)type
          attributeSelector:(STKPXAttributeSelector *)attributeSelector
                stringValue:(NSString *)value;
 

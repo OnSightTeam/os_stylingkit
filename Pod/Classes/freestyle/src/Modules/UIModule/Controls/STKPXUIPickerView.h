@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIPickerView.h
+//  STKPXUIPickerView.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -32,10 +32,10 @@
  *
  *  UIPickerView supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXAnimationStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXAnimationStyler
  *
  */
 @interface STKPXUIPickerView : UIPickerView

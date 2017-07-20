@@ -15,7 +15,7 @@
  */
 
 //
-//  PXForceLoadPixateCategories.h
+//  STKPXForceLoadPixateCategories.h
 //  Pixate
 //
 //  Created by Paul Colton on 12/10/13.

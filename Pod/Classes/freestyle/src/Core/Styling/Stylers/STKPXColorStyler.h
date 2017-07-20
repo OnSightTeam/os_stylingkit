@@ -15,18 +15,18 @@
  */
 
 //
-//  PXColorStyler.h
+//  STKPXColorStyler.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 11/3/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXStylerBase.h"
+#import "STKPXStylerBase.h"
 
 /**
  *  - color: <color>
  */
-@interface STKPXColorStyler : PXStylerBase
+@interface STKPXColorStyler : STKPXStylerBase
 
 @end

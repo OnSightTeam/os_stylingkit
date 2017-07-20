@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUICollectionsView.h
+//  STKPXUICollectionsView.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -32,14 +32,14 @@
  *
  *  UICollectionsView supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXAnimationStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXAnimationStyler
  *  - selection-mode: single | multiple
  *  - cell-size: <size>
  *  - cell-width: <length>
@@ -50,6 +50,6 @@
 
 @end
 
-@interface UICollectionView (PXFreestyle)
+@interface UICollectionView (STKPXFreestyle)
 
 @end

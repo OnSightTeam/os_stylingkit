@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUISlider.m
+//  STKPXUISlider.m
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -24,9 +24,9 @@
 
 #import "STKPXUISlider.h"
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXVirtualStyleableControl.h"
 
 #import "STKPXOpacityStyler.h"
@@ -216,17 +216,17 @@ static NSDictionary *PSEUDOCLASS_MAP;
     }
 }
 
-PX_WRAP_1(setBackgroundColor, color);
-PX_WRAP_1(setMinimumValueImage, image);
-PX_WRAP_1(setMaximumValueImage, image);
-PX_WRAP_1(setMaximumTrackTintColor, color);
-PX_WRAP_1(setMinimumTrackTintColor, color);
-PX_WRAP_1(setThumbTintColor, color);
+STKPX_WRAP_1(setBackgroundColor, color);
+STKPX_WRAP_1(setMinimumValueImage, image);
+STKPX_WRAP_1(setMaximumValueImage, image);
+STKPX_WRAP_1(setMaximumTrackTintColor, color);
+STKPX_WRAP_1(setMinimumTrackTintColor, color);
+STKPX_WRAP_1(setThumbTintColor, color);
 
-PX_WRAP_2v(setMaximumTrackImage, image, forState, UIControlState, state);
-PX_WRAP_2v(setMinimumTrackImage, image, forState, UIControlState, state);
-PX_WRAP_2v(setThumbImage, image, forState, UIControlState, state);
+STKPX_WRAP_2v(setMaximumTrackImage, image, forState, UIControlState, state);
+STKPX_WRAP_2v(setMinimumTrackImage, image, forState, UIControlState, state);
+STKPX_WRAP_2v(setThumbImage, image, forState, UIControlState, state);
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXFontEntry.h
+//  STKPXFontEntry.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.

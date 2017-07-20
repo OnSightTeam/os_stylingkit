@@ -15,7 +15,7 @@
  */
 
 //
-//  PXDeclaration.h
+//  STKPXDeclaration.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,7 +24,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXPaint.h"
+#import "STKPXPaint.h"
 #import "STKPXShadow.h"
 #import "STKPXDimension.h"
 #import "STKPXOffsets.h"
@@ -32,7 +32,7 @@
 #import "STKPXBorderInfo.h"
 
 /**
- *  PXDeclaration represents a single property/value pair in a CSS rule set. A declaration consists of a property name
+ *  STKPXDeclaration represents a single property/value pair in a CSS rule set. A declaration consists of a property name
  *  and a property value. However, due to the nature of Pixate's 2-pass parsing, the property value in these instances
  *  is actually an array of lexemes. As such, a number of convenience methods are provided to convert the lexemes to a
  *  concrete value type.
@@ -44,14 +44,14 @@
 @property (nonatomic) BOOL important;
 
 /**
- *  Initializes a newly allocated PXDeclaration using the specified property name
+ *  Initializes a newly allocated STKPXDeclaration using the specified property name
  *
  *  @param name The property name for this declaration
  */
 - (instancetype)initWithName:(NSString *)name;
 
 /**
- *  Initializes a newly allocated PXDeclaration using the specified property name and value. The value will be tokenized
+ *  Initializes a newly allocated STKPXDeclaration using the specified property name and value. The value will be tokenized
  *  to populate the lexemes property.
  *
  *  @param name The property name
@@ -121,7 +121,7 @@
 /**
  *  Convert the declaration value to a border style
  */
-@property (NS_NONATOMIC_IOSONLY, readonly) PXBorderStyle borderStyleValue;
+@property (NS_NONATOMIC_IOSONLY, readonly) STKPXBorderStyle borderStyleValue;
 
 /**
  *  Convert the decalration value to a list of border styles. This allows 1 = 4 values, similar to padding
@@ -129,9 +129,9 @@
 @property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *borderStyleList;
 
 /**
- *  Convert the declaration value to a PXCacheStylesType value
+ *  Convert the declaration value to a STKPXCacheStylesType value
  */
-@property (NS_NONATOMIC_IOSONLY, readonly) PXCacheStylesType cacheStylesTypeValue;
+@property (NS_NONATOMIC_IOSONLY, readonly) STKPXCacheStylesType cacheStylesTypeValue;
 
 /**
  *  Convert the declaration value to a color value
@@ -154,7 +154,7 @@
 @property (NS_NONATOMIC_IOSONLY, readonly) UIEdgeInsets insetsValue;
 
 /**
- *  Convert the declaration value to a PXDimension length value
+ *  Convert the declaration value to a STKPXDimension length value
  */
 @property (NS_NONATOMIC_IOSONLY, readonly, strong) STKPXDimension *lengthValue;
 
@@ -181,12 +181,12 @@
 /**
  *  Convert the declaration value to a paint value
  */
-@property (NS_NONATOMIC_IOSONLY, readonly, strong) id<PXPaint> paintValue;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) id<STKPXPaint> paintValue;
 
 /**
  *  Convert the declaration value to a parse error destination value
  */
-@property (NS_NONATOMIC_IOSONLY, readonly) PXParseErrorDestination parseErrorDestinationValue;
+@property (NS_NONATOMIC_IOSONLY, readonly) STKPXParseErrorDestination parseErrorDestinationValue;
 
 /**
  *  Convert the declaration value to seconds

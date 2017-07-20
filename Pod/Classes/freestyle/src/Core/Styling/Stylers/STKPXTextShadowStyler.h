@@ -15,7 +15,7 @@
  */
 
 //
-//  PXTextShadowStyler.h
+//  STKPXTextShadowStyler.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 5/20/13.
@@ -23,13 +23,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXStylerBase.h"
+#import "STKPXStylerBase.h"
 
 /**
  *  - text-shadow: <shadow>
  */
 
-@interface STKPXTextShadowStyler : PXStylerBase
+@interface STKPXTextShadowStyler : STKPXStylerBase
 
 + (STKPXTextShadowStyler *)sharedInstance;
 

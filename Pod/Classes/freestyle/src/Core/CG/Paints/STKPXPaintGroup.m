@@ -15,7 +15,7 @@
  */
 
 //
-//  PXPaintGroup.m
+//  STKPXPaintGroup.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -38,7 +38,7 @@
 {
     if (self = [super init])
     {
-        [paints enumerateObjectsUsingBlock:^(id<PXPaint> paint, NSUInteger idx, BOOL *stop) {
+        [paints enumerateObjectsUsingBlock:^(id<STKPXPaint> paint, NSUInteger idx, BOOL *stop) {
             [self addPaint:paint];
         }];
     }
@@ -55,7 +55,7 @@
 
 #pragma mark - Methods
 
-- (void)addPaint:(id<PXPaint>)paint
+- (void)addPaint:(id<STKPXPaint>)paint
 {
     if (paint)
     {
@@ -68,32 +68,32 @@
     }
 }
 
-#pragma mark - PXPaint implementation
+#pragma mark - STKPXPaint implementation
 
 - (void)applyFillToPath:(CGPathRef)path withContext:(CGContextRef)context
 {
-    for (id<PXPaint> paint in paints_)
+    for (id<STKPXPaint> paint in paints_)
     {
         [paint applyFillToPath:path withContext:context];
     }
 }
 
-- (id<PXPaint>)lightenByPercent:(CGFloat)percent
+- (id<STKPXPaint>)lightenByPercent:(CGFloat)percent
 {
     STKPXPaintGroup *group = [[STKPXPaintGroup alloc] init];
 
-    [paints_ enumerateObjectsUsingBlock:^(id<PXPaint> paint, NSUInteger idx, BOOL *stop) {
+    [paints_ enumerateObjectsUsingBlock:^(id<STKPXPaint> paint, NSUInteger idx, BOOL *stop) {
         [group addPaint:[paint lightenByPercent:percent]];
     }];
 
     return group;
 }
 
-- (id<PXPaint>)darkenByPercent:(CGFloat)percent
+- (id<STKPXPaint>)darkenByPercent:(CGFloat)percent
 {
     STKPXPaintGroup *group = [[STKPXPaintGroup alloc] init];
 
-    [paints_ enumerateObjectsUsingBlock:^(id<PXPaint> paint, NSUInteger idx, BOOL *stop) {
+    [paints_ enumerateObjectsUsingBlock:^(id<STKPXPaint> paint, NSUInteger idx, BOOL *stop) {
         [group addPaint:[paint darkenByPercent:percent]];
     }];
 
@@ -106,7 +106,7 @@
 {
     BOOL result = YES;
 
-    for (id<PXPaint> paint in paints_)
+    for (id<STKPXPaint> paint in paints_)
     {
         if (paint.isOpaque == NO)
         {

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXVirtualControlBase.h
+//  STKPXVirtualControlBase.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,12 +24,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXVirtualControl.h"
+#import "STKPXVirtualControl.h"
 #import "STKPXStylerContext.h"
 
-typedef void(^PXViewStyleUpdaterBlock)(STKPXRuleSet *ruleSet, STKPXStylerContext *context);
+typedef void(^STKPXViewStyleUpdaterBlock)(STKPXRuleSet *ruleSet, STKPXStylerContext *context);
 
-@interface STKPXVirtualStyleableControl : NSObject <PXVirtualControl>
+@interface STKPXVirtualStyleableControl : NSObject <STKPXVirtualControl>
 
 @property (nonatomic, copy) NSArray *pxStyleChildren;
 @property (nonatomic, copy) NSArray *viewStylers;
@@ -37,7 +37,7 @@ typedef void(^PXViewStyleUpdaterBlock)(STKPXRuleSet *ruleSet, STKPXStylerContext
 @property (nonatomic, copy) NSString *defaultPseudoClass;
 @property (nonatomic, weak) CALayer *layer;
 
-- (instancetype)initWithParent:(id<PXStyleable>)parent elementName:(NSString *)elementName;
-- (instancetype)initWithParent:(id<PXStyleable>)parent elementName:(NSString *)elementName viewStyleUpdaterBlock:(PXViewStyleUpdaterBlock)block NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithParent:(id<STKPXStyleable>)parent elementName:(NSString *)elementName;
+- (instancetype)initWithParent:(id<STKPXStyleable>)parent elementName:(NSString *)elementName viewStyleUpdaterBlock:(STKPXViewStyleUpdaterBlock)block NS_DESIGNATED_INITIALIZER;
 
 @end

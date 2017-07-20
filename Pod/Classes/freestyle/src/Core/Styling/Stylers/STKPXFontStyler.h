@@ -15,7 +15,7 @@
  */
 
 //
-//  PXFontStyler.h
+//  STKPXFontStyler.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/9/12.
@@ -23,7 +23,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXStylerBase.h"
+#import "STKPXStylerBase.h"
 
 /**
  *  - font-family: <string>
@@ -33,6 +33,6 @@
  *  - font-stretch: normal | ultra-condensed | extra-condensed | condensed | semi-condensed | semi-expanded | expanded | extra-expanded | ultra-expanded
  */
 
-@interface STKPXFontStyler : PXStylerBase
+@interface STKPXFontStyler : STKPXStylerBase
 
 @end

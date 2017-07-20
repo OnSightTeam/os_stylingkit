@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUITableView.h
+//  STKPXUITableView.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -32,13 +32,13 @@
  *
  *  UITableView supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *  - row-height: <length>
  *  - header-height: <length>
  *  - footer-height: <length>
@@ -49,13 +49,13 @@
  *  - content-size: <size>
  *  - content-offset: <size>
  *  - content-inset: <insets>
- *  - PXAnimationStyler
+ *  - STKPXAnimationStyler
  *
  */
 @interface STKPXUITableView : UITableView
 
 @end
 
-@interface UITableView (PXFreestyle)
+@interface UITableView (STKPXFreestyle)
 
 @end

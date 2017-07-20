@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIImageView.h
+//  STKPXUIImageView.h
 //  Pixate
 //
 //  Created by Paul Colton on 9/18/12.
@@ -37,14 +37,14 @@
  *
  *  UIImageView supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXAnimationStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXAnimationStyler
  *  - -ios-tint-color: <paint>  // iOS 7 or later
  *  - -ios-rendering-mode: original | template | automatic  // iOS 7 or later
  *

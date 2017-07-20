@@ -15,7 +15,7 @@
  */
 
 //
-//  PXShadow.h
+//  STKPXShadow.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 8/31/12.
@@ -23,12 +23,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXShadowPaint.h"
+#import "STKPXShadowPaint.h"
 
 /**
- *  PXShadow is used to capture all settings needed to render a box shadow.
+ *  STKPXShadow is used to capture all settings needed to render a box shadow.
  */
-@interface STKPXShadow : NSObject <PXShadowPaint>
+@interface STKPXShadow : NSObject <STKPXShadowPaint>
 
 /**
  *  A flag indicating whether the shadow should be applied inside or outside of the contour being shadowed

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIPickerView.m
+//  STKPXUIPickerView.m
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -24,9 +24,9 @@
 
 #import "STKPXUIPickerView.h"
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 
 #import "STKPXOpacityStyler.h"
 #import "STKPXLayoutStyler.h"
@@ -34,11 +34,11 @@
 #import "STKPXAnimationStyler.h"
 #import "STKPXProxy.h"
 
-#import "PXUIPickerViewDelegate.h"
+#import "STKPXUIPickerViewDelegate.h"
 
-//static const char PX_DELEGATE; // the new delegate (and datasource)
-//static const char PX_DELEGATE_PROXY; // the proxy for the old delegate
-//static const char PX_DATASOURCE_PROXY; // the proxy for the old datasource
+//static const char STKPX_DELEGATE; // the new delegate (and datasource)
+//static const char STKPX_DELEGATE_PROXY; // the proxy for the old delegate
+//static const char STKPX_DATASOURCE_PROXY; // the proxy for the old datasource
 
 @implementation STKPXUIPickerView
 
@@ -76,14 +76,14 @@
 // Internal methods for proxys
 //
 
-- (PXUIPickerViewDelegate *)pxDelegate
+- (STKPXUIPickerViewDelegate *)pxDelegate
 {
-    id delegate = objc_getAssociatedObject(self, &PX_DELEGATE);
+    id delegate = objc_getAssociatedObject(self, &STKPX_DELEGATE);
     
     if(delegate == nil)
     {
-        delegate = [[PXUIPickerViewDelegate alloc] init];
-        objc_setAssociatedObject(self, &PX_DELEGATE, delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        delegate = [[STKPXUIPickerViewDelegate alloc] init];
+        objc_setAssociatedObject(self, &STKPX_DELEGATE, delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
     return delegate;
@@ -91,12 +91,12 @@
 
 - (id<UIPickerViewDelegate>)pxDelegateProxy
 {
-    id proxy = objc_getAssociatedObject(self, &PX_DELEGATE_PROXY);
+    id proxy = objc_getAssociatedObject(self, &STKPX_DELEGATE_PROXY);
     
     if(proxy == nil)
     {
-        proxy = [[PXProxy alloc] initWithBaseOject:nil overridingObject:[self pxDelegate]];
-        objc_setAssociatedObject(self, &PX_DELEGATE_PROXY, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        proxy = [[STKPXProxy alloc] initWithBaseOject:nil overridingObject:[self pxDelegate]];
+        objc_setAssociatedObject(self, &STKPX_DELEGATE_PROXY, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
     return proxy;
@@ -104,12 +104,12 @@
 
 - (id<UIPickerViewDataSource>)pxDatasourceProxy
 {
-    id proxy = objc_getAssociatedObject(self, &PX_DATASOURCE_PROXY);
+    id proxy = objc_getAssociatedObject(self, &STKPX_DATASOURCE_PROXY);
     
     if(proxy == nil)
     {
-        proxy = [[PXProxy alloc] initWithBaseOject:nil overridingObject:[self pxDelegate]];
-        objc_setAssociatedObject(self, &PX_DATASOURCE_PROXY, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        proxy = [[STKPXProxy alloc] initWithBaseOject:nil overridingObject:[self pxDelegate]];
+        objc_setAssociatedObject(self, &STKPX_DATASOURCE_PROXY, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
     return proxy;
@@ -146,6 +146,6 @@
     return map;
 }
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end

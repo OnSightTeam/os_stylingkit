@@ -15,7 +15,7 @@
  */
 
 //
-//  PXClassUtils.h
+//  STKPXClassUtils.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 1/4/13.

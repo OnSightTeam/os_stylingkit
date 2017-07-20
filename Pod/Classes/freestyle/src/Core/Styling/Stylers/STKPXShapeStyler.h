@@ -15,20 +15,20 @@
  */
 
 //
-//  PXShapeStyler.h
+//  STKPXShapeStyler.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/18/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXStylerBase.h"
+#import "STKPXStylerBase.h"
 
 /**
  *  - shape: ellipse | rectangle | arrow-button-left | arrow-button-right
  */
 
-@interface STKPXShapeStyler : PXStylerBase
+@interface STKPXShapeStyler : STKPXStylerBase
 
 + (STKPXShapeStyler *)sharedInstance;
 

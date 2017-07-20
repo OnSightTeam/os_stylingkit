@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUISegmentedControl.h
+//  STKPXUISegmentedControl.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -32,17 +32,17 @@
  *
  *  UISegmentedControl supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXTextShadowStyler
- *  - PXFontStyler
- *  - PXPaintStyler
- *  - PXAnimationStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXTextShadowStyler
+ *  - STKPXFontStyler
+ *  - STKPXPaintStyler
+ *  - STKPXAnimationStyler
  *
  *  UISegmentedControl supports the following pseudo-class states:
  *
@@ -57,10 +57,10 @@
  *
  *  UISegmentedControl divider supports the following properties:
  *
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *
  */
 @interface STKPXUISegmentedControl : UISegmentedControl

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXAnimationPropertyHandler.h
+//  STKPXAnimationPropertyHandler.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 3/31/13.
@@ -32,16 +32,16 @@
  *  @param styler The styler to use when styling the view
  *  @param context Any additional context associated with this styling cycle
  */
-typedef id(^PXAnimationPropertyHandlerBlock)(STKPXDeclaration *declaration);
+typedef id(^STKPXAnimationPropertyHandlerBlock)(STKPXDeclaration *declaration);
 
 @interface STKPXAnimationPropertyHandler : NSObject
 
 @property (nonatomic, strong) NSString *keyPath;
-@property (nonatomic, strong) PXAnimationPropertyHandlerBlock block;
+@property (nonatomic, strong) STKPXAnimationPropertyHandlerBlock block;
 
-+ (PXAnimationPropertyHandlerBlock)FloatValueBlock;
++ (STKPXAnimationPropertyHandlerBlock)FloatValueBlock;
 
-- (id)initWithKeyPath:(NSString *)keyPath block:(PXAnimationPropertyHandlerBlock)block;
+- (id)initWithKeyPath:(NSString *)keyPath block:(STKPXAnimationPropertyHandlerBlock)block;
 - (id)getValueFromDeclaration:(STKPXDeclaration *)declaration;
 
 @end

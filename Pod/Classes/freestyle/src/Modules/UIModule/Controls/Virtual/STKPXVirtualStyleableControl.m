@@ -15,7 +15,7 @@
  */
 
 //
-//  PXVirtualControlBase.m
+//  STKPXVirtualControlBase.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -28,12 +28,12 @@
 
 @implementation STKPXVirtualStyleableControl
 {
-    PXViewStyleUpdaterBlock _block;
+    STKPXViewStyleUpdaterBlock _block;
     NSString *_styleClass;
     NSSet *_styleClasses;
 }
 
-// synthesize properties coming from PXStyleable protocol
+// synthesize properties coming from STKPXStyleable protocol
 
 @synthesize styleId;
 @synthesize styleCSS;
@@ -51,12 +51,12 @@
     return [self initWithParent:nil elementName:@"" viewStyleUpdaterBlock:nil];
 }
 
-- (instancetype)initWithParent:(id<PXStyleable>)parent elementName:(NSString *)elementName
+- (instancetype)initWithParent:(id<STKPXStyleable>)parent elementName:(NSString *)elementName
 {
     return [self initWithParent:parent elementName:elementName viewStyleUpdaterBlock:nil];
 }
 
-- (instancetype)initWithParent:(id<PXStyleable>)parent elementName:(NSString *)elementName viewStyleUpdaterBlock:(PXViewStyleUpdaterBlock)block
+- (instancetype)initWithParent:(id<STKPXStyleable>)parent elementName:(NSString *)elementName viewStyleUpdaterBlock:(STKPXViewStyleUpdaterBlock)block
 {
     if (self = [super init])
     {
@@ -65,7 +65,7 @@
         _block = block;
         _bounds = CGRectZero;
         _frame = CGRectZero;
-        _styleMode = PXStylingNormal;
+        _styleMode = STKPXStylingNormal;
     }
 
     return self;
@@ -82,7 +82,7 @@
 {
     if(CGRectEqualToRect(_bounds, CGRectZero))
     {
-        return ((id<PXStyleable>)_parent).bounds;
+        return ((id<STKPXStyleable>)_parent).bounds;
     }
     else
     {
@@ -94,7 +94,7 @@
 {
     if(CGRectEqualToRect(_frame, CGRectZero))
     {
-        return ((id<PXStyleable>)_parent).frame;
+        return ((id<STKPXStyleable>)_parent).frame;
     }
     else
     {

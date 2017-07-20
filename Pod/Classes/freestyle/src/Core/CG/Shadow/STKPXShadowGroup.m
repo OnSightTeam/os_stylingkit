@@ -15,7 +15,7 @@
  */
 
 //
-//  PXShadowGroup.m
+//  STKPXShadowGroup.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/7/12.
@@ -43,7 +43,7 @@
 
 #pragma mark - Methods
 
-- (void)addShadowPaint:(id<PXShadowPaint>)shadow
+- (void)addShadowPaint:(id<STKPXShadowPaint>)shadow
 {
     if (shadow)
     {
@@ -58,7 +58,7 @@
 
 - (void)applyInsetToPath:(CGPathRef)path withContext:(CGContextRef)context
 {
-    for (id<PXShadowPaint> shadow in shadows_)
+    for (id<STKPXShadowPaint> shadow in shadows_)
     {
         [shadow applyInsetToPath:path withContext:context];
     }
@@ -66,7 +66,7 @@
 
 - (void)applyOutsetToPath:(CGPathRef)path withContext:(CGContextRef)context
 {
-    for (id<PXShadowPaint> shadow in shadows_)
+    for (id<STKPXShadowPaint> shadow in shadows_)
     {
         [shadow applyOutsetToPath:path withContext:context];
     }

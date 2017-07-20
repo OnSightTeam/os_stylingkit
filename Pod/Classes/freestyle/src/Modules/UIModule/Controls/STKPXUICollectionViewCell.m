@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUICollectionViewCell.m
+//  STKPXUICollectionViewCell.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -26,9 +26,9 @@
 #import "STKPXUICollectionViewCell.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXOpacityStyler.h"
 #import "STKPXLayoutStyler.h"
 #import "STKPXTransformStyler.h"
@@ -45,8 +45,8 @@
 static NSDictionary *PSEUDOCLASS_MAP;
 static const char STYLE_CHILDREN;
 
-@interface PXUIImageViewWrapper_UICollectionViewCell : UIImageView @end
-@implementation PXUIImageViewWrapper_UICollectionViewCell @end
+@interface STKPXUIImageViewWrapper_UICollectionViewCell : UIImageView @end
+@implementation STKPXUIImageViewWrapper_UICollectionViewCell @end
 
 @implementation STKPXUICollectionViewCell
 
@@ -183,13 +183,13 @@ static const char STYLE_CHILDREN;
         {
             [self px_setBackgroundColor: [UIColor clearColor]];
             
-            if([self.px_backgroundView isKindOfClass:[PXUIImageViewWrapper_UICollectionViewCell class]] == NO)
+            if([self.px_backgroundView isKindOfClass:[STKPXUIImageViewWrapper_UICollectionViewCell class]] == NO)
             {
-                [self px_setBackgroundView: [[PXUIImageViewWrapper_UICollectionViewCell alloc] initWithImage:context.backgroundImage]];
+                [self px_setBackgroundView: [[STKPXUIImageViewWrapper_UICollectionViewCell alloc] initWithImage:context.backgroundImage]];
             }
             else
             {
-                PXUIImageViewWrapper_UICollectionViewCell *view = (PXUIImageViewWrapper_UICollectionViewCell *) self.backgroundView;
+                STKPXUIImageViewWrapper_UICollectionViewCell *view = (STKPXUIImageViewWrapper_UICollectionViewCell *) self.backgroundView;
                 view.image = context.backgroundImage;
             }
         }
@@ -202,13 +202,13 @@ static const char STYLE_CHILDREN;
         }
         else if(context.usesImage)
         {
-            if([self.px_selectedBackgroundView isKindOfClass:[PXUIImageViewWrapper_UICollectionViewCell class]] == NO)
+            if([self.px_selectedBackgroundView isKindOfClass:[STKPXUIImageViewWrapper_UICollectionViewCell class]] == NO)
             {
-                [self px_setSelectedBackgroundView: [[PXUIImageViewWrapper_UICollectionViewCell alloc] initWithImage:context.backgroundImage]];
+                [self px_setSelectedBackgroundView: [[STKPXUIImageViewWrapper_UICollectionViewCell alloc] initWithImage:context.backgroundImage]];
             }
             else
             {
-                PXUIImageViewWrapper_UICollectionViewCell *view = (PXUIImageViewWrapper_UICollectionViewCell *) self.px_selectedBackgroundView;
+                STKPXUIImageViewWrapper_UICollectionViewCell *view = (STKPXUIImageViewWrapper_UICollectionViewCell *) self.px_selectedBackgroundView;
                 view.image = context.backgroundImage;
             }
         }
@@ -219,7 +219,7 @@ static const char STYLE_CHILDREN;
 // Overrides
 //
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 - (void)prepareForReuse
 {
@@ -232,12 +232,12 @@ PX_LAYOUT_SUBVIEWS_OVERRIDE
 //
 
 // Ti Wrapped
-PX_WRAP_PROP(UIView, contentView);
-PX_WRAP_PROP(UIView, backgroundView);
-PX_WRAP_PROP(UIView, selectedBackgroundView);
+STKPX_WRAP_PROP(UIView, contentView);
+STKPX_WRAP_PROP(UIView, backgroundView);
+STKPX_WRAP_PROP(UIView, selectedBackgroundView);
 
-PX_WRAP_1(setBackgroundColor, color);
-PX_WRAP_1(setBackgroundView, view);
-PX_WRAP_1(setSelectedBackgroundView, view);
+STKPX_WRAP_1(setBackgroundColor, color);
+STKPX_WRAP_1(setBackgroundView, view);
+STKPX_WRAP_1(setSelectedBackgroundView, view);
 
 @end

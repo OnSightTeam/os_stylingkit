@@ -15,7 +15,7 @@
  */
 
 //
-//  PXCombinatorBase.h
+//  STKPXCombinatorBase.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 9/25/12.
@@ -23,10 +23,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXCombinator.h"
+#import "STKPXCombinator.h"
 
 /**
- *  The PXCombinatorBase is an abstract base class used to capture the common functionality of all combinators in one
+ *  The STKPXCombinatorBase is an abstract base class used to capture the common functionality of all combinators in one
  *  place. Instances of this class should not be created.
  */
 @interface STKPXCombinatorBase : NSObject <STKPXCombinator>

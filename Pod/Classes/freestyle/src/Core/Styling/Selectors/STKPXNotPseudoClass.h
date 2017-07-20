@@ -15,7 +15,7 @@
  */
 
 //
-//  PXNotPseudoClass.h
+//  STKPXNotPseudoClass.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 9/1/12.
@@ -23,10 +23,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXSelector.h"
+#import "STKPXSelector.h"
 
 /**
- *  A PXNotSelector negates a given selector expression
+ *  A STKPXNotSelector negates a given selector expression
  */
 @interface STKPXNotPseudoClass : NSObject <STKPXSelector>
 
@@ -39,7 +39,7 @@
 /**
  *  Initializer a new instance with the specified expression
  *
- *  @param expression The PXElementMatcher expression to negate
+ *  @param expression The STKPXElementMatcher expression to negate
  */
 - (id)initWithExpression:(id<STKPXSelector>)expression;
 

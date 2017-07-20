@@ -27,12 +27,12 @@
 #import "STKPXStylesheet.h"
 #import "PixateFreestyleConfiguration.h"
 
-#import "UIView+PXStyling.h"
-#import "NSDictionary+PXCSSEncoding.h"
-#import "UIBarButtonItem+PXStyling.h"
-#import "UITabBarItem+PXStyling.h"
-#import "UINavigationItem+PXStyling.h"
-#import "UIColor+PXColors.h"
+#import "UIView+STKPXStyling.h"
+#import "NSDictionary+STKPXCSSEncoding.h"
+#import "UIBarButtonItem+STKPXStyling.h"
+#import "UITabBarItem+STKPXStyling.h"
+#import "UINavigationItem+STKPXStyling.h"
+#import "UIColor+STKPXColors.h"
 
 /**
  * This is the main entry point into the Pixate Engine
@@ -79,14 +79,14 @@
  *  @param styleable The root of the tree to search
  *  @param source The selector to use for matching
  */
-+ (NSArray *)selectFromStyleable:(id<PXStyleable>)styleable usingSelector:(NSString *)source;
++ (NSArray *)selectFromStyleable:(id<STKPXStyleable>)styleable usingSelector:(NSString *)source;
 
 /**
  *  Return a string representation of all active rule sets matching the specified styleable
  *
  *  @param styleable The styleable to match
  */
-+ (NSString *)matchingRuleSetsForStyleable:(id<PXStyleable>)styleable;
++ (NSString *)matchingRuleSetsForStyleable:(id<STKPXStyleable>)styleable;
 
 /**
  *  Return a string representation of all active declarations that apply to the specified styleable. Note that the list
@@ -94,7 +94,7 @@
  *
  *  @param styleable The styleable to match
  */
-+ (NSString *)matchingDeclarationsForStyleable:(id<PXStyleable>)styleable;
++ (NSString *)matchingDeclarationsForStyleable:(id<STKPXStyleable>)styleable;
 
 /**
  *  Allocate and initialize a new stylesheet using the specified source and stylesheet origin
@@ -102,7 +102,7 @@
  *  @param source The CSS source for this stylesheet
  *  @param origin The specificity origin for this stylesheet
  */
-+ (id)styleSheetFromSource:(NSString *)source withOrigin:(PXStylesheetOrigin)origin;
++ (id)styleSheetFromSource:(NSString *)source withOrigin:(STKPXStylesheetOrigin)origin;
 
 /**
  *  Allocate and initialize a new styleheet for the specified path and stylesheet origin
@@ -110,7 +110,7 @@
  *  @param filePath The string path to the stylesheet file
  *  @param origin The specificity origin for this stylesheet
  */
-+ (id)styleSheetFromFilePath:(NSString *)filePath withOrigin:(PXStylesheetOrigin)origin;
++ (id)styleSheetFromFilePath:(NSString *)filePath withOrigin:(STKPXStylesheetOrigin)origin;
 
 /**
  *  A class-level getter returning the current application-level stylesheet. This value may be nil
@@ -142,28 +142,28 @@
  *
  *  @param styleable The styleable to update
  */
-+ (void)updateStyles:(id<PXStyleable>)styleable;
++ (void)updateStyles:(id<STKPXStyleable>)styleable;
 
 /**
  *  Update styles for this styleable only
  *
  *  @param styleable The styleable to update
  */
-+ (void)updateStylesNonRecursively:(id<PXStyleable>)styleable;
++ (void)updateStylesNonRecursively:(id<STKPXStyleable>)styleable;
 
 /**
  *  Update styles for this styleable and all of its descendant styleables asynchronously
  *
  *  @param styleable The styleable to update
  */
-+ (void)updateStylesAsync:(id<PXStyleable>)styleable;
++ (void)updateStylesAsync:(id<STKPXStyleable>)styleable;
 
 /**
  *  Update styles for this styleable only asynchronously
  *
  *  @param styleable The styleable to update
  */
-+ (void)updateStylesNonRecursivelyAsync:(id<PXStyleable>)styleable;
++ (void)updateStylesNonRecursivelyAsync:(id<STKPXStyleable>)styleable;
 
 /**
  *  Remove all content from Pixate's image cache, if one is being used

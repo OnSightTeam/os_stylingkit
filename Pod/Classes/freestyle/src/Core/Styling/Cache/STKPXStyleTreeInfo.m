@@ -15,7 +15,7 @@
  */
 
 //
-//  PXStyleCache.m
+//  STKPXStyleCache.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -38,7 +38,7 @@
 
 #pragma mark - Initializers
 
-- (instancetype)initWithStyleable:(id<PXStyleable>)styleable
+- (instancetype)initWithStyleable:(id<STKPXStyleable>)styleable
 {
     if (self = [super init])
     {
@@ -64,7 +64,7 @@
 
 #pragma mark - Methods
 
-- (void)applyStylesToStyleable:(id<PXStyleable>)styleable
+- (void)applyStylesToStyleable:(id<STKPXStyleable>)styleable
 {
     if (styleableStyleInfo_ != nil)
     {
@@ -73,7 +73,7 @@
 
     [childStyleInfo_ enumerateKeysAndObjectsUsingBlock:^(NSIndexPath *indexPath, STKPXStyleInfo *styleInfo, BOOL *stop)
     {
-        id<PXStyleable> child = [self findDescendantOfStyleable:styleable
+        id<STKPXStyleable> child = [self findDescendantOfStyleable:styleable
                                                   fromIndexPath:indexPath];
 
         if (child != nil)
@@ -88,12 +88,12 @@
     }];
 }
 
-- (id<PXStyleable>)findDescendantOfStyleable:(id<PXStyleable>)styleable
+- (id<STKPXStyleable>)findDescendantOfStyleable:(id<STKPXStyleable>)styleable
                                fromIndexPath:(NSIndexPath *)indexPath
 {
     NSUInteger indexes[indexPath.length];
     [indexPath getIndexes:indexes];
-    id<PXStyleable> result = styleable;
+    id<STKPXStyleable> result = styleable;
 
     for (int i = 0; i < indexPath.length; i++)
     {
@@ -114,13 +114,13 @@
     return result;
 }
 
-- (void)collectChildStyleInfoForStyleable:(id<PXStyleable>)styleable
+- (void)collectChildStyleInfoForStyleable:(id<STKPXStyleable>)styleable
 {
     NSUInteger index = 0;
 
     descendantCount_ = 0;
 
-    for (id<PXStyleable> child in styleable.pxStyleChildren)
+    for (id<STKPXStyleable> child in styleable.pxStyleChildren)
     {
         NSIndexPath *childIndexPath = [NSIndexPath indexPathWithIndex:index++];
 
@@ -129,7 +129,7 @@
     }
 }
 
-- (void)setChildStyleInfoForStyleable:(id<PXStyleable>)styleable withIndexPath:(NSIndexPath *)indexPath
+- (void)setChildStyleInfoForStyleable:(id<STKPXStyleable>)styleable withIndexPath:(NSIndexPath *)indexPath
 {
     // get style info for this child
     STKPXStyleInfo *styleInfo = [STKPXStyleInfo styleInfoForStyleable:styleable];
@@ -147,7 +147,7 @@
     // now process this child's children
     NSUInteger index = 0;
 
-    for (id<PXStyleable> child in styleable.pxStyleChildren)
+    for (id<STKPXStyleable> child in styleable.pxStyleChildren)
     {
         NSIndexPath *childIndexPath = [indexPath indexPathByAddingIndex:index++];
 

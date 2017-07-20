@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIRefreshControl.h
+//  STKPXUIRefreshControl.h
 //  Pixate
 //
 //  Created by Paul Colton on 12/12/12.
@@ -31,10 +31,10 @@
  *
  *  UIRefreshControl supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXOpacityStyler
- *  - PXColorStyler
- *  - PXAnimationStyler
+ *  - STKPXTransformStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXColorStyler
+ *  - STKPXAnimationStyler
  *
  **/
 @interface STKPXUIRefreshControl : UIRefreshControl

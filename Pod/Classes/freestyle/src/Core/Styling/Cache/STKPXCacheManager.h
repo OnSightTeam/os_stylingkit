@@ -15,7 +15,7 @@
  */
 
 //
-//  PXCacheManager.h
+//  STKPXCacheManager.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 10/7/13.

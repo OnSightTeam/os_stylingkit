@@ -15,7 +15,7 @@
  */
 
 //
-//  PXMediaGroup.m
+//  STKPXMediaGroup.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -36,7 +36,7 @@
 
 #pragma mark - Initializers
 
-- (instancetype)initWithQuery:(id<PXMediaExpression>)query origin:(PXStylesheetOrigin)origin
+- (instancetype)initWithQuery:(id<STKPXMediaExpression>)query origin:(STKPXStylesheetOrigin)origin
 {
     if (self = [super init])
     {
@@ -54,7 +54,7 @@
     return ruleSets_;
 }
 
-- (NSArray *)ruleSetsForStyleable:(id<PXStyleable>)styleable
+- (NSArray *)ruleSetsForStyleable:(id<STKPXStyleable>)styleable
 {
     // gather keys
     NSString *elementName = styleable.pxStyleElementName;

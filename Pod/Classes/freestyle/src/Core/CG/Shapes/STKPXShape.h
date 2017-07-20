@@ -15,7 +15,7 @@
  */
 
 //
-//  PXShape.h
+//  STKPXShape.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,17 +24,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXRenderable.h"
-#import "PXPaintable.h"
+#import "STKPXRenderable.h"
+#import "STKPXPaintable.h"
 #import "STKPXShapeDocument.h"
 
 /**
  *  A common base class for all shapes in ShapeKit.
  *
- *  A PXShape must implement the PXRenderable protocol and the PXPaintable protocol. This class can be used to cache the
+ *  A STKPXShape must implement the STKPXRenderable protocol and the STKPXPaintable protocol. This class can be used to cache the
  *  geometry of the shape it describes.
  */
-@interface STKPXShape : NSObject <PXRenderable,PXPaintable>
+@interface STKPXShape : NSObject <STKPXRenderable,STKPXPaintable>
 
 /**
  *  A read-only property of the path data associated with this shape instance.
@@ -45,7 +45,7 @@
 @property (readonly, nonatomic) CGPathRef path;
 
 /**
- *  A read-only property pointing to the PXScene that owns this instance.
+ *  A read-only property pointing to the STKPXScene that owns this instance.
  *
  *  This property can be thought of as being analogous to the W3C DOM Node#getDocument method.
  */
@@ -71,7 +71,7 @@
  *  Render any children associated with this shape.
  *
  *  This method is used to render any child content associated with this shape. In most cases, this will only be used by
- *  container classes, such as PXShapeGroup.
+ *  container classes, such as STKPXShapeGroup.
  *
  *  @param context The context into which children of this shape should be rendered.
  */

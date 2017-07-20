@@ -15,7 +15,7 @@
  */
 
 //
-//  PXArrowRectangle.h
+//  STKPXArrowRectangle.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/19/12.
@@ -27,15 +27,15 @@
 
 typedef enum
 {
-    PXArrowRectangleDirectionLeft,
-    PXArrowRectangleDirectionRight
-} PXArrowRectangleDirection;
+    STKPXArrowRectangleDirectionLeft,
+    STKPXArrowRectangleDirectionRight
+} STKPXArrowRectangleDirection;
 
 @interface STKPXArrowRectangle : STKPXRectangle
 
-@property (nonatomic) PXArrowRectangleDirection direction;
+@property (nonatomic) STKPXArrowRectangleDirection direction;
 
-- (id)initWithDirection:(PXArrowRectangleDirection)direction;
-- (id)initWithRect:(CGRect)bounds direction:(PXArrowRectangleDirection)direction;
+- (id)initWithDirection:(STKPXArrowRectangleDirection)direction;
+- (id)initWithRect:(CGRect)bounds direction:(STKPXArrowRectangleDirection)direction;
 
 @end

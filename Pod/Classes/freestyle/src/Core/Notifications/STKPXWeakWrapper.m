@@ -15,7 +15,7 @@
  */
 
 //
-//  PXWeakWrapper.m
+//  STKPXWeakWrapper.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.

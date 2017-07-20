@@ -15,7 +15,7 @@
  */
 
 //
-//  PXProxy.h
+//  STKPXProxy.h
 //  Pixate
 //
 //  Created by Paul Colton on 11/22/13.

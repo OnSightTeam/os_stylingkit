@@ -15,19 +15,19 @@
  */
 
 //
-//  PXTextContentStyler.h
+//  STKPXTextContentStyler.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 1/8/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
 
-#import "PXStylerBase.h"
+#import "STKPXStylerBase.h"
 
 /**
  *  - text: <string>
  */
 
-@interface STKPXTextContentStyler : PXStylerBase
+@interface STKPXTextContentStyler : STKPXStylerBase
 
 @end

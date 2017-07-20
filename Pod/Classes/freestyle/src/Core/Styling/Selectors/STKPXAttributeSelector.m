@@ -15,7 +15,7 @@
  */
 
 //
-//  PXAttributeSelector.m
+//  STKPXAttributeSelector.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,7 +24,7 @@
 //
 
 #import "STKPXAttributeSelector.h"
-#import "PXStyleable.h"
+#import "STKPXStyleable.h"
 #import "STKPXSpecificity.h"
 #import "STKPXStyleUtils.h"
 
@@ -55,7 +55,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
     return self;
 }
 
-#pragma mark - PXAttributeMatcher Implementation
+#pragma mark - STKPXAttributeMatcher Implementation
 
 - (void)incrementSpecificity:(STKPXSpecificity *)specificity
 {
@@ -63,7 +63,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
     [specificity incrementSpecifity:kSpecificityTypeClassOrAttribute];
 }
 
-- (BOOL)matches:(id<PXStyleable>)element
+- (BOOL)matches:(id<STKPXStyleable>)element
 {
     BOOL result = NO;
 
@@ -75,11 +75,11 @@ STK_DEFINE_CLASS_LOG_LEVEL
 #if LOG_VERBOSE
     if (result)
     {
-        DDLogVerbose(@"'%@' attribute exists on '%@'", _attributeName, [PXStyleUtils descriptionForStyleable:element]);
+        DDLogVerbose(@"'%@' attribute exists on '%@'", _attributeName, [STKPXStyleUtils descriptionForStyleable:element]);
     }
     else
     {
-        DDLogVerbose(@"'%@' attribute does not exist on '%@'", _attributeName, [PXStyleUtils descriptionForStyleable:element]);
+        DDLogVerbose(@"'%@' attribute does not exist on '%@'", _attributeName, [STKPXStyleUtils descriptionForStyleable:element]);
     }
 #endif
 

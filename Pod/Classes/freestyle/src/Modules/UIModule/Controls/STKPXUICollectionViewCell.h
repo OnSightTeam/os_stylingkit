@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUICollectionViewCell.h
+//  STKPXUICollectionViewCell.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -37,14 +37,14 @@
  *
  *  UICollectionsViewCell supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXAnimationStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXAnimationStyler
  *
  *  UICollectionsViewCell adds support for the following children:
  *
@@ -52,11 +52,11 @@
  *
  *  UICollectionsViewCell content-view supports the following properties:
  *
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *
  */
 @interface STKPXUICollectionViewCell : UICollectionViewCell

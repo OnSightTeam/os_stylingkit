@@ -15,7 +15,7 @@
  */
 
 //
-//  PXAnimationStyler.m
+//  STKPXAnimationStyler.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -84,7 +84,7 @@
                      STKPXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
                      NSNumber *value = timingFunctions[i];
 
-                     info.animationTimingFunction = (PXAnimationTimingFunction) value.intValue;
+                     info.animationTimingFunction = (STKPXAnimationTimingFunction) value.intValue;
                  }
              },
              @"animation-iteration-count" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
@@ -106,7 +106,7 @@
                      STKPXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
                      NSNumber *value = directions[i];
 
-                     info.animationDirection = (PXAnimationDirection) value.intValue;
+                     info.animationDirection = (STKPXAnimationDirection) value.intValue;
                  }
              },
              @"animation-play-state" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
@@ -117,7 +117,7 @@
                      STKPXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
                      NSNumber *value = playStates[i];
 
-                     info.animationPlayState = (PXAnimationPlayState) value.intValue;
+                     info.animationPlayState = (STKPXAnimationPlayState) value.intValue;
                  }
              },
              @"animation-delay" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
@@ -139,7 +139,7 @@
                      STKPXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
                      NSNumber *value = fillModes[i];
 
-                     info.animationFillMode = (PXAnimationFillMode) value.intValue;
+                     info.animationFillMode = (STKPXAnimationFillMode) value.intValue;
                  }
              },
         };
@@ -242,7 +242,7 @@
     return KEY_PATH_FROM_PROPERTY;
 }
 
-- (NSArray *)keyframeAnimationsFromInfos:(NSArray *)infos styleable:(id<PXStyleable>)styleable
+- (NSArray *)keyframeAnimationsFromInfos:(NSArray *)infos styleable:(id<STKPXStyleable>)styleable
 {
     NSMutableArray *result = [[NSMutableArray alloc] init];
     NSMutableDictionary *propertyHandlers = [[NSMutableDictionary alloc] initWithDictionary:[self defaultAnimationPropertyHandlers]];

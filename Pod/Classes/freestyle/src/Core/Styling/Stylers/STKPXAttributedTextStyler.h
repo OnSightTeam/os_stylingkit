@@ -15,14 +15,14 @@
  */
 
 //
-//  PXAttributedTextStyler.h
+//  STKPXAttributedTextStyler.h
 //  Pixate
 //
 //  Created by Robin Debreuil on 1/9/2014.
 //  Copyright (c) 2014 Pixate, Inc. All rights reserved.
 //
 
-#import "PXStylerBase.h"
+#import "STKPXStylerBase.h"
 
 /**
  *  - text: <string>
@@ -37,6 +37,6 @@
  *  - text-decoration: underline | line-through | letterpress
  */
 
-@interface STKPXAttributedTextStyler : PXStylerBase
+@interface STKPXAttributedTextStyler : STKPXStylerBase
 
 @end

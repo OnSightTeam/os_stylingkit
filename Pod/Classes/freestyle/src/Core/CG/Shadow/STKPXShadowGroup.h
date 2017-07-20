@@ -15,7 +15,7 @@
  */
 
 //
-//  PXShadowGroup.h
+//  STKPXShadowGroup.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/7/12.
@@ -23,28 +23,28 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXShadowPaint.h"
+#import "STKPXShadowPaint.h"
 
 /**
- *  A PXShadowGroup serves as a collection of PXShadowPaints
+ *  A STKPXShadowGroup serves as a collection of STKPXShadowPaints
  */
-@interface STKPXShadowGroup : NSObject <PXShadowPaint>
+@interface STKPXShadowGroup : NSObject <STKPXShadowPaint>
 
 /**
- *  Returns the number of PXShadowPaints in this group
+ *  Returns the number of STKPXShadowPaints in this group
  */
 @property (nonatomic, readonly) NSUInteger count;
 
 /**
- *  The list of PXShadowPaints associated with this shadow group
+ *  The list of STKPXShadowPaints associated with this shadow group
  */
 @property (nonatomic, readonly) NSArray *shadows;
 
 /**
- *  Add a PXShapowPaint to this shadow group
+ *  Add a STKPXShapowPaint to this shadow group
  *
- *  @param shadow The PXShadowPaint to add
+ *  @param shadow The STKPXShadowPaint to add
  */
-- (void)addShadowPaint:(id<PXShadowPaint>)shadow;
+- (void)addShadowPaint:(id<STKPXShadowPaint>)shadow;
 
 @end

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIRefreshControl.m
+//  STKPXUIRefreshControl.m
 //  Pixate
 //
 //  Created by Paul Colton on 12/12/12.
@@ -23,9 +23,9 @@
 //
 
 #import "STKPXUIRefreshControl.h"
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 
 #import "STKPXOpacityStyler.h"
 #import "STKPXPaintStyler.h"
@@ -88,10 +88,10 @@
     return map;
 }
 
-PX_WRAP_1(setTintColor, color);
+STKPX_WRAP_1(setTintColor, color);
 
 // Overrides
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE_RECURSIVE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE_RECURSIVE
 
 @end

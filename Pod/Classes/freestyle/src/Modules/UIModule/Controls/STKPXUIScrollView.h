@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIScrollView.h
+//  STKPXUIScrollView.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -32,17 +32,17 @@
  *
  *  UIScrollView supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *  - content-size: <size>
  *  - content-offset: <size>
  *  - content-inset: <insets>
- *  - PXAnimationStyler
+ *  - STKPXAnimationStyler
  *
  */
 @interface STKPXUIScrollView : UIScrollView

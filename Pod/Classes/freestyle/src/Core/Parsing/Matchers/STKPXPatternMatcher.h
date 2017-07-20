@@ -15,7 +15,7 @@
  */
 
 //
-//  PXPatternMatcher.h
+//  STKPXPatternMatcher.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 6/23/12.
@@ -23,9 +23,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXLexemeCreator.h"
+#import "STKPXLexemeCreator.h"
 
-@interface STKPXPatternMatcher : NSObject <PXLexemeCreator>
+@interface STKPXPatternMatcher : NSObject <STKPXLexemeCreator>
 {
     @protected
     NSRegularExpression *pattern;

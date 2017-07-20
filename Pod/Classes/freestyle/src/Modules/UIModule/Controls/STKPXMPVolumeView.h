@@ -15,7 +15,7 @@
  */
 
 //
-//  PXMPVolumeView.h
+//  STKPXMPVolumeView.h
 //  Pixate
 //
 //  Created by Paul Colton on 12/12/12.
@@ -36,10 +36,10 @@
  *
  *  MPVolumeView supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXAnimationStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXAnimationStyler
  *
  */
 @interface STKPXMPVolumeView : UIView

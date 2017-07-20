@@ -15,7 +15,7 @@
  */
 
 //
-//  PXBorderInfo.h
+//  STKPXBorderInfo.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,29 +24,29 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXPaint.h"
+#import "STKPXPaint.h"
 
-typedef NS_ENUM(unsigned int, PXBorderStyle) {
-    PXBorderStyleNone,
-    PXBorderStyleHidden,
-    PXBorderStyleDotted,
-    PXBorderStyleDashed,
-    PXBorderStyleSolid,
-    PXBorderStyleDouble,
-    PXBorderStyleGroove,
-    PXBorderStyleRidge,
-    PXBorderStyleInset,
-    PXBorderStyleOutset
+typedef NS_ENUM(unsigned int, STKPXBorderStyle) {
+    STKPXBorderStyleNone,
+    STKPXBorderStyleHidden,
+    STKPXBorderStyleDotted,
+    STKPXBorderStyleDashed,
+    STKPXBorderStyleSolid,
+    STKPXBorderStyleDouble,
+    STKPXBorderStyleGroove,
+    STKPXBorderStyleRidge,
+    STKPXBorderStyleInset,
+    STKPXBorderStyleOutset
 };
 
 @interface STKPXBorderInfo : NSObject
 
-@property (nonatomic) id<PXPaint> paint;
-@property (nonatomic) PXBorderStyle style;
+@property (nonatomic) id<STKPXPaint> paint;
+@property (nonatomic) STKPXBorderStyle style;
 @property (nonatomic) CGFloat width;
 
-- (instancetype)initWithPaint:(id<PXPaint>)paint width:(CGFloat)width;
-- (instancetype)initWithPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithPaint:(id<STKPXPaint>)paint width:(CGFloat)width;
+- (instancetype)initWithPaint:(id<STKPXPaint>)paint width:(CGFloat)width style:(STKPXBorderStyle)style NS_DESIGNATED_INITIALIZER;
 
 @property (NS_NONATOMIC_IOSONLY, getter=isOpaque, readonly) BOOL opaque;
 @property (NS_NONATOMIC_IOSONLY, readonly) BOOL hasContent;

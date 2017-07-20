@@ -15,7 +15,7 @@
  */
 
 //
-//  PXVector.h
+//  STKPXVector.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -26,7 +26,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- *  PXVector implements some commonly used vector operations
+ *  STKPXVector implements some commonly used vector operations
  */
 @interface STKPXVector : NSObject
 

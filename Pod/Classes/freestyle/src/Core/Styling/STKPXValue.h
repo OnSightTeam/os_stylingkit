@@ -15,7 +15,7 @@
  */
 
 //
-//  PXValue.h
+//  STKPXValue.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -27,29 +27,29 @@
 #import "PixateFreestyleConfiguration.h"
 #import "STKPXBorderInfo.h"
 
-typedef NS_ENUM(unsigned int, PXValueType) {
-    PXValueType_CGRect,
-    PXValueType_CGSize,
-    PXValueType_CGFloat,
-    PXValueType_CGAffineTransform,
-    PXValueType_UIEdgeInsets,
-    PXValueType_NSTextAlignment,
-    PXValueType_NSLineBreakMode,
-    PXValueType_Boolean,
-    PXValueType_PXParseErrorDestination,
-    PXValueType_PXCacheStylesType,
-    PXValueType_UITextBorderStyle,
-    PXValueType_CGColorRef,
-    PXValueType_PXBorderStyle,
+typedef NS_ENUM(unsigned int, STKPXValueType) {
+    STKPXValueType_CGRect,
+    STKPXValueType_CGSize,
+    STKPXValueType_CGFloat,
+    STKPXValueType_CGAffineTransform,
+    STKPXValueType_UIEdgeInsets,
+    STKPXValueType_NSTextAlignment,
+    STKPXValueType_NSLineBreakMode,
+    STKPXValueType_Boolean,
+    STKPXValueType_STKPXParseErrorDestination,
+    STKPXValueType_PXCacheStylesType,
+    STKPXValueType_UITextBorderStyle,
+    STKPXValueType_CGColorRef,
+    STKPXValueType_PXBorderStyle,
 };
 
 @interface STKPXValue : NSObject
 
-@property (nonatomic, readonly) PXValueType type;
+@property (nonatomic, readonly) STKPXValueType type;
 
 - (instancetype)init NS_UNAVAILABLE;
 
-- (instancetype)initWithBytes:(const void *)value type:(PXValueType)type NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithBytes:(const void *)value type:(STKPXValueType)type NS_DESIGNATED_INITIALIZER;
 
 @property (NS_NONATOMIC_IOSONLY, readonly) CGRect CGRectValue;
 @property (NS_NONATOMIC_IOSONLY, readonly) CGSize CGSizeValue;
@@ -59,10 +59,10 @@ typedef NS_ENUM(unsigned int, PXValueType) {
 @property (NS_NONATOMIC_IOSONLY, readonly) NSTextAlignment NSTextAlignmentValue;
 @property (NS_NONATOMIC_IOSONLY, readonly) NSLineBreakMode NSLineBreakModeValue;
 @property (NS_NONATOMIC_IOSONLY, readonly) BOOL BooleanValue;
-@property (NS_NONATOMIC_IOSONLY, readonly) PXParseErrorDestination PXParseErrorDestinationValue;
-@property (NS_NONATOMIC_IOSONLY, readonly) PXCacheStylesType PXCacheStylesTypeValue;
+@property (NS_NONATOMIC_IOSONLY, readonly) STKPXParseErrorDestination STKPXParseErrorDestinationValue;
+@property (NS_NONATOMIC_IOSONLY, readonly) STKPXCacheStylesType STKPXCacheStylesTypeValue;
 @property (NS_NONATOMIC_IOSONLY, readonly) UITextBorderStyle UITextBorderStyleValue;
 @property (NS_NONATOMIC_IOSONLY, readonly) CGColorRef CGColorRefValue CF_RETURNS_NOT_RETAINED;
-@property (NS_NONATOMIC_IOSONLY, readonly) PXBorderStyle PXBorderStyleValue;
+@property (NS_NONATOMIC_IOSONLY, readonly) STKPXBorderStyle STKPXBorderStyleValue;
 
 @end

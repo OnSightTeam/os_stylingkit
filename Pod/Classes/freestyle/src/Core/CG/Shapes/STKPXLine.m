@@ -15,7 +15,7 @@
  */
 
 //
-//  PXLine.m
+//  STKPXLine.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.

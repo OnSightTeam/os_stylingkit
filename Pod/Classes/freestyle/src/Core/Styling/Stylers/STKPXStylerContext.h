@@ -15,7 +15,7 @@
  */
 
 //
-//  PXStylerContext.h
+//  STKPXStylerContext.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 11/15/12.
@@ -23,27 +23,27 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXStyleable.h"
+#import "STKPXStyleable.h"
 #import "STKPXShape.h"
-#import "PXPaint.h"
-#import "PXShadowPaint.h"
+#import "STKPXPaint.h"
+#import "STKPXShadowPaint.h"
 #import "STKPXShadowGroup.h"
 #import "STKPXOffsets.h"
 #import "STKPXDimension.h"
 #import "STKPXAnimationInfo.h"
 #import "STKPXBoxModel.h"
 
-@protocol PXStyler;
+@protocol STKPXStyler;
 
 @interface STKPXStylerContext : NSObject
 
-@property (nonatomic, strong) id<PXStyleable> styleable;
+@property (nonatomic, strong) id<STKPXStyleable> styleable;
 @property (nonatomic, strong) NSString *activeStateName;
 @property (nonatomic) NSUInteger styleHash;
 
 @property (nonatomic, strong) STKPXShape *shape;
 
-// This group of properties is for PXLayoutStyler
+// This group of properties is for STKPXLayoutStyler
 @property (nonatomic) CGFloat top;
 @property (nonatomic) CGFloat left;
 @property (nonatomic) CGFloat width;
@@ -55,11 +55,11 @@
 
 @property (nonatomic, strong) STKPXBoxModel *boxModel;
 
-@property (nonatomic, strong) id<PXPaint> fill;
-@property (nonatomic, strong) id<PXPaint> imageFill;
+@property (nonatomic, strong) id<STKPXPaint> fill;
+@property (nonatomic, strong) id<STKPXPaint> imageFill;
 
-@property (nonatomic, strong) id<PXShadowPaint> shadow;
-@property (nonatomic, strong) id<PXShadowPaint> textShadow;
+@property (nonatomic, strong) id<STKPXShadowPaint> shadow;
+@property (nonatomic, strong) id<STKPXShadowPaint> textShadow;
 @property (nonatomic, readonly, strong) STKPXShadowGroup *innerShadow;
 @property (nonatomic, readonly, strong) STKPXShadowGroup *outerShadow;
 @property (nonatomic) CGFloat opacity;
@@ -82,17 +82,17 @@
 @property (nonatomic, strong) NSString *textTransform;
 @property (nonatomic, strong) NSString *textDecoration;
 
-// This group of properties is for PXBarShadowStyler
+// This group of properties is for STKPXBarShadowStyler
 @property (nonatomic) CGRect shadowBounds;
 @property (nonatomic) NSURL *shadowUrl;
 @property (nonatomic) UIImage *shadowImage;
 @property (nonatomic) UIEdgeInsets shadowInsets;
 @property (nonatomic) CGFloat shadowPadding;
 
-// This group of properties is for PXAnimationStyler
+// This group of properties is for STKPXAnimationStyler
 @property (nonatomic, strong) NSMutableArray *animationInfos;
 
-// This group of properties is for PXTransitionStyler
+// This group of properties is for STKPXTransitionStyler
 @property (nonatomic, strong) NSMutableArray *transitionInfos;
 
 /*

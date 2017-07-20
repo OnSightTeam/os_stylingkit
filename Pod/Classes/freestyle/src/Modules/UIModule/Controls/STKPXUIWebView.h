@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIWebView.h
+//  STKPXUIWebView.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -32,10 +32,10 @@
  *
  *  UIWebView supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXAnimationStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXAnimationStyler
  *
  */
 @interface STKPXUIWebView : UIWebView

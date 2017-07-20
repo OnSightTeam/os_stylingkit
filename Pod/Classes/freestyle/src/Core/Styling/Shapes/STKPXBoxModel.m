@@ -15,7 +15,7 @@
  */
 
 //
-//  PXBoxModel.m
+//  STKPXBoxModel.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -65,12 +65,12 @@
 
 #pragma mark - Getters
 
-- (id<PXPaint>)borderTopPaint
+- (id<STKPXPaint>)borderTopPaint
 {
     return borderTop_.paint;
 }
 
-- (PXBorderStyle)borderTopStyle
+- (STKPXBorderStyle)borderTopStyle
 {
     return borderTop_.style;
 }
@@ -80,12 +80,12 @@
     return borderTop_.width;
 }
 
-- (id<PXPaint>)borderRightPaint
+- (id<STKPXPaint>)borderRightPaint
 {
     return borderRight_.paint;
 }
 
-- (PXBorderStyle)borderRightStyle
+- (STKPXBorderStyle)borderRightStyle
 {
     return borderRight_.style;
 }
@@ -95,12 +95,12 @@
     return borderRight_.width;
 }
 
-- (id<PXPaint>)borderBottomPaint
+- (id<STKPXPaint>)borderBottomPaint
 {
     return borderBottom_.paint;
 }
 
-- (PXBorderStyle)borderBottomStyle
+- (STKPXBorderStyle)borderBottomStyle
 {
     return borderBottom_.style;
 }
@@ -110,12 +110,12 @@
     return borderBottom_.width;
 }
 
-- (id<PXPaint>)borderLeftPaint
+- (id<STKPXPaint>)borderLeftPaint
 {
     return borderLeft_.paint;
 }
 
-- (PXBorderStyle)borderLeftStyle
+- (STKPXBorderStyle)borderLeftStyle
 {
     return borderLeft_.style;
 }
@@ -172,13 +172,13 @@
 
 #pragma mark - Setters
 
-- (void)setBorderTopPaint:(id<PXPaint>)borderTopPaint
+- (void)setBorderTopPaint:(id<STKPXPaint>)borderTopPaint
 {
     borderTop_.paint = borderTopPaint;
     [self clearPath];
 }
 
-- (void)setBorderTopStyle:(PXBorderStyle)borderTopStyle
+- (void)setBorderTopStyle:(STKPXBorderStyle)borderTopStyle
 {
     borderTop_.style = borderTopStyle;
     [self clearPath];
@@ -190,13 +190,13 @@
     [self clearPath];
 }
 
-- (void)setBorderRightPaint:(id<PXPaint>)borderRightPaint
+- (void)setBorderRightPaint:(id<STKPXPaint>)borderRightPaint
 {
     borderRight_.paint = borderRightPaint;
     [self clearPath];
 }
 
-- (void)setBorderRightStyle:(PXBorderStyle)borderRightStyle
+- (void)setBorderRightStyle:(STKPXBorderStyle)borderRightStyle
 {
     borderRight_.style = borderRightStyle;
     [self clearPath];
@@ -208,13 +208,13 @@
     [self clearPath];
 }
 
-- (void)setBorderBottomPaint:(id<PXPaint>)borderBottomPaint
+- (void)setBorderBottomPaint:(id<STKPXPaint>)borderBottomPaint
 {
     borderBottom_.paint = borderBottomPaint;
     [self clearPath];
 }
 
-- (void)setBorderBottomStyle:(PXBorderStyle)borderBottomStyle
+- (void)setBorderBottomStyle:(STKPXBorderStyle)borderBottomStyle
 {
     borderBottom_.style = borderBottomStyle;
     [self clearPath];
@@ -226,13 +226,13 @@
     [self clearPath];
 }
 
-- (void)setBorderLeftPaint:(id<PXPaint>)borderLeftPaint
+- (void)setBorderLeftPaint:(id<STKPXPaint>)borderLeftPaint
 {
     borderLeft_.paint = borderLeftPaint;
     [self clearPath];
 }
 
-- (void)setBorderLeftStyle:(PXBorderStyle)borderLeftStyle
+- (void)setBorderLeftStyle:(STKPXBorderStyle)borderLeftStyle
 {
     borderLeft_.style = borderLeftStyle;
     [self clearPath];
@@ -244,35 +244,35 @@
     [self clearPath];
 }
 
-- (void)setBorderTopPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style
+- (void)setBorderTopPaint:(id<STKPXPaint>)paint width:(CGFloat)width style:(STKPXBorderStyle)style
 {
     self.borderTopPaint = paint;
     self.borderTopWidth = width;
     self.borderTopStyle = style;
 }
 
-- (void)setBorderRightPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style
+- (void)setBorderRightPaint:(id<STKPXPaint>)paint width:(CGFloat)width style:(STKPXBorderStyle)style
 {
     self.borderRightPaint = paint;
     self.borderRightWidth = width;
     self.borderRightStyle = style;
 }
 
-- (void)setBorderBottomPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style
+- (void)setBorderBottomPaint:(id<STKPXPaint>)paint width:(CGFloat)width style:(STKPXBorderStyle)style
 {
     self.borderBottomPaint = paint;
     self.borderBottomWidth = width;
     self.borderBottomStyle = style;
 }
 
-- (void)setBorderLeftPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style
+- (void)setBorderLeftPaint:(id<STKPXPaint>)paint width:(CGFloat)width style:(STKPXBorderStyle)style
 {
     self.borderLeftPaint = paint;
     self.borderLeftWidth = width;
     self.borderLeftStyle = style;
 }
 
-- (void)setBorderPaint:(id<PXPaint>)paint
+- (void)setBorderPaint:(id<STKPXPaint>)paint
 {
     self.borderTopPaint = paint;
     self.borderRightPaint = paint;
@@ -288,7 +288,7 @@
     self.borderLeftWidth = width;
 }
 
-- (void)setBorderStyle:(PXBorderStyle)style
+- (void)setBorderStyle:(STKPXBorderStyle)style
 {
     self.borderTopStyle = style;
     self.borderRightStyle = style;
@@ -296,7 +296,7 @@
     self.borderLeftStyle = style;
 }
 
-- (void)setBorderPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style
+- (void)setBorderPaint:(id<STKPXPaint>)paint width:(CGFloat)width style:(STKPXBorderStyle)style
 {
     [self setBorderTopPaint:paint width:width style:style];
     [self setBorderRightPaint:paint width:width style:style];
@@ -391,7 +391,7 @@
 
         switch (borderTop_.style)
         {
-            case PXBorderStyleSolid:
+            case STKPXBorderStyleSolid:
                 [borderPathTop_ moveToX:borderLeft y:borderTop];
                 [borderPathTop_ lineToX:borderRight y:borderTop];
                 [borderPathTop_ lineToX:contentRight y:contentTop];
@@ -400,7 +400,7 @@
                 borderPathTop_.fill = borderTop_.paint;
                 break;
 
-            case PXBorderStyleDashed:
+            case STKPXBorderStyleDashed:
             {
                 CGFloat y = (borderTop + contentTop) * 0.5f;
                 CGFloat width = borderTop_.width;
@@ -415,7 +415,7 @@
                 break;
             }
 
-            case PXBorderStyleDotted:
+            case STKPXBorderStyleDotted:
             {
                 CGFloat y = (borderTop + contentTop) * 0.5f;
                 CGFloat width = borderTop_.width;
@@ -430,19 +430,19 @@
                 break;
             }
 
-            case PXBorderStyleDouble:
+            case STKPXBorderStyleDouble:
                 // TODO:
                 break;
 
-            case PXBorderStyleGroove:
-            case PXBorderStyleInset:
-            case PXBorderStyleOutset:
-            case PXBorderStyleRidge:
+            case STKPXBorderStyleGroove:
+            case STKPXBorderStyleInset:
+            case STKPXBorderStyleOutset:
+            case STKPXBorderStyleRidge:
                 break;
 
             // NOTE: We should never hit these cases
-            case PXBorderStyleNone:
-            case PXBorderStyleHidden:
+            case STKPXBorderStyleNone:
+            case STKPXBorderStyleHidden:
             default:
                 break;
         }
@@ -455,7 +455,7 @@
 
         switch (borderRight_.style)
         {
-            case PXBorderStyleSolid:
+            case STKPXBorderStyleSolid:
                 [borderPathRight_ moveToX:borderRight y:borderTop];
                 [borderPathRight_ lineToX:borderRight y:borderBottom];
                 [borderPathRight_ lineToX:contentRight y:contentBottom];
@@ -464,7 +464,7 @@
                 borderPathRight_.fill = borderRight_.paint;
                 break;
 
-            case PXBorderStyleDashed:
+            case STKPXBorderStyleDashed:
             {
                 CGFloat x = (borderRight + contentRight) * 0.5f;
                 CGFloat width = borderRight_.width;
@@ -479,7 +479,7 @@
                 break;
             }
 
-            case PXBorderStyleDotted:
+            case STKPXBorderStyleDotted:
             {
                 CGFloat x = (borderRight + contentRight) * 0.5f;
                 CGFloat width = borderRight_.width;
@@ -494,16 +494,16 @@
                 break;
             }
 
-            case PXBorderStyleDouble:
-            case PXBorderStyleGroove:
-            case PXBorderStyleInset:
-            case PXBorderStyleOutset:
-            case PXBorderStyleRidge:
+            case STKPXBorderStyleDouble:
+            case STKPXBorderStyleGroove:
+            case STKPXBorderStyleInset:
+            case STKPXBorderStyleOutset:
+            case STKPXBorderStyleRidge:
                 break;
 
             // NOTE: We should never hit these cases
-            case PXBorderStyleNone:
-            case PXBorderStyleHidden:
+            case STKPXBorderStyleNone:
+            case STKPXBorderStyleHidden:
             default:
                 break;
         }
@@ -516,7 +516,7 @@
 
         switch (borderBottom_.style)
         {
-            case PXBorderStyleSolid:
+            case STKPXBorderStyleSolid:
                 [borderPathBottom_ moveToX:contentRight y:contentBottom];
                 [borderPathBottom_ lineToX:borderRight y:borderBottom];
                 [borderPathBottom_ lineToX:borderLeft y:borderBottom];
@@ -525,7 +525,7 @@
                 borderPathBottom_.fill = borderBottom_.paint;
                 break;
 
-            case PXBorderStyleDashed:
+            case STKPXBorderStyleDashed:
             {
                 CGFloat y = (borderBottom + contentBottom) * 0.5f;
                 CGFloat width = borderBottom_.width;
@@ -540,7 +540,7 @@
                 break;
             }
 
-            case PXBorderStyleDotted:
+            case STKPXBorderStyleDotted:
             {
                 CGFloat y = (borderBottom + contentBottom) * 0.5f;
                 CGFloat width = borderBottom_.width;
@@ -555,16 +555,16 @@
                 break;
             }
 
-            case PXBorderStyleDouble:
-            case PXBorderStyleGroove:
-            case PXBorderStyleInset:
-            case PXBorderStyleOutset:
-            case PXBorderStyleRidge:
+            case STKPXBorderStyleDouble:
+            case STKPXBorderStyleGroove:
+            case STKPXBorderStyleInset:
+            case STKPXBorderStyleOutset:
+            case STKPXBorderStyleRidge:
                 break;
 
             // NOTE: We should never hit these cases
-            case PXBorderStyleNone:
-            case PXBorderStyleHidden:
+            case STKPXBorderStyleNone:
+            case STKPXBorderStyleHidden:
             default:
                 break;
         }
@@ -577,7 +577,7 @@
 
         switch (borderLeft_.style)
         {
-            case PXBorderStyleSolid:
+            case STKPXBorderStyleSolid:
                 [borderPathLeft_ moveToX:contentLeft y:contentTop];
                 [borderPathLeft_ lineToX:contentLeft y:contentBottom];
                 [borderPathLeft_ lineToX:borderLeft y:borderBottom];
@@ -586,7 +586,7 @@
                 borderPathLeft_.fill = borderLeft_.paint;
                 break;
 
-            case PXBorderStyleDashed:
+            case STKPXBorderStyleDashed:
             {
                 CGFloat x = (borderLeft + contentLeft) * 0.5f;
                 CGFloat width = borderLeft_.width;
@@ -601,7 +601,7 @@
                 break;
             }
 
-            case PXBorderStyleDotted:
+            case STKPXBorderStyleDotted:
             {
                 CGFloat x = (borderLeft + contentLeft) * 0.5f;
                 CGFloat width = borderLeft_.width;
@@ -616,16 +616,16 @@
                 break;
             }
 
-            case PXBorderStyleDouble:
-            case PXBorderStyleGroove:
-            case PXBorderStyleInset:
-            case PXBorderStyleOutset:
-            case PXBorderStyleRidge:
+            case STKPXBorderStyleDouble:
+            case STKPXBorderStyleGroove:
+            case STKPXBorderStyleInset:
+            case STKPXBorderStyleOutset:
+            case STKPXBorderStyleRidge:
                 break;
 
             // NOTE: We should never hit these cases
-            case PXBorderStyleNone:
-            case PXBorderStyleHidden:
+            case STKPXBorderStyleNone:
+            case STKPXBorderStyleHidden:
             default:
                 break;
         }

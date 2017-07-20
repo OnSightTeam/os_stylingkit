@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUITableViewDelegate.h
+//  STKPXUITableViewDelegate.h
 //  Pixate
 //
 //  Created by Paul Colton on 11/24/13.

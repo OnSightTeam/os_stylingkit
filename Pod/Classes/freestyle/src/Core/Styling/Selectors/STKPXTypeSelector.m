@@ -15,7 +15,7 @@
  */
 
 //
-//  PXTypeSelector.m
+//  STKPXTypeSelector.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -164,7 +164,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
     }
 }
 
-- (BOOL)matches:(id<PXStyleable>)element
+- (BOOL)matches:(id<STKPXStyleable>)element
 {
     BOOL result = NO;
 
@@ -175,7 +175,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
     }
     else
     {
-        if ([element respondsToSelector:@selector(pxStyleNamespace)])
+        if ([element respondsToSelector:@selector(STKPXStyleNamespace)])
         {
             NSString *elementNamespace = element.pxStyleNamespace;
 
@@ -232,11 +232,11 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
     if (result)
     {
-        DDLogVerbose(@"%@ matched %@", self.description, [PXStyleUtils descriptionForStyleable:element]);
+        DDLogVerbose(@"%@ matched %@", self.description, [STKPXStyleUtils descriptionForStyleable:element]);
     }
     else
     {
-        DDLogVerbose(@"%@ did not match %@", self.description, [PXStyleUtils descriptionForStyleable:element]);
+        DDLogVerbose(@"%@ did not match %@", self.description, [STKPXStyleUtils descriptionForStyleable:element]);
     }
 
     return result;
@@ -263,7 +263,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
     return result;
 }
 
-#pragma mark - PXSourceEmitter Methods
+#pragma mark - STKPXSourceEmitter Methods
 
 - (NSString *)source
 {

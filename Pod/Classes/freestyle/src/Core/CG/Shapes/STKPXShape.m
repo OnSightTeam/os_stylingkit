@@ -15,7 +15,7 @@
  */
 
 //
-//  PXShape.m
+//  STKPXShape.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -80,7 +80,7 @@
 
 - (STKPXShapeDocument *)owningDocument
 {
-    id<PXRenderable> result = self;
+    id<STKPXRenderable> result = self;
 
     while (result.parent != nil)
     {
@@ -109,7 +109,7 @@
     self->_path = aPath;
 }
 
-- (void)setStroke:(id<PXStrokeRenderer>)stroke
+- (void)setStroke:(id<STKPXStrokeRenderer>)stroke
 {
     if (self->_stroke != stroke)
     {
@@ -118,7 +118,7 @@
     }
 }
 
-- (void)setFill:(id<PXPaint>)fill
+- (void)setFill:(id<STKPXPaint>)fill
 {
     if (self->_fill != fill)
     {
@@ -166,7 +166,7 @@
     }
 }
 
-- (void)setShadow:(id<PXShadowPaint>)shadow
+- (void)setShadow:(id<STKPXShadowPaint>)shadow
 {
     if (self->_shadow != shadow)
     {

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXChildCombinator.h
+//  STKPXChildCombinator.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 9/25/12.
@@ -26,7 +26,7 @@
 #import "STKPXCombinatorBase.h"
 
 /**
- *  PXChildCombinator implements the child combinator. This combinator requires that its selector on its right-hand side
+ *  STKPXChildCombinator implements the child combinator. This combinator requires that its selector on its right-hand side
  *  must match as a child of what matches its left-hand selector.
  */
 @interface STKPXChildCombinator : STKPXCombinatorBase

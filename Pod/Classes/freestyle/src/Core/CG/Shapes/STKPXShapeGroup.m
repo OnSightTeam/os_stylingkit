@@ -15,7 +15,7 @@
  */
 
 //
-//  PXShapeGroup.m
+//  STKPXShapeGroup.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,7 +24,7 @@
 //
 
 #import "STKPXShapeGroup.h"
-#import "PXRenderable.h"
+#import "STKPXRenderable.h"
 
 @implementation STKPXShapeGroup
 {
@@ -58,7 +58,7 @@
 
 #pragma mark - Methods
 
-- (void)addShape:(id<PXRenderable>)shape
+- (void)addShape:(id<STKPXRenderable>)shape
 {
     if (shape)
     {
@@ -70,7 +70,7 @@
     }
 }
 
-- (void)removeShape:(id<PXRenderable>)shape
+- (void)removeShape:(id<STKPXRenderable>)shape
 {
     if (shape)
     {
@@ -81,7 +81,7 @@
     }
 }
 
-- (id<PXRenderable>)shapeAtIndex:(NSUInteger)index
+- (id<STKPXRenderable>)shapeAtIndex:(NSUInteger)index
 {
     return (shapes_) ? shapes_[index] : nil;
 }
@@ -179,7 +179,7 @@
 
     CGContextConcatCTM(context, matrix);
 
-    for (id<PXRenderable> shape in shapes_)
+    for (id<STKPXRenderable> shape in shapes_)
     {
         [shape render:context];
     }
@@ -189,7 +189,7 @@
 
 - (void)dealloc
 {
-    for (id<PXRenderable> shape in shapes_)
+    for (id<STKPXRenderable> shape in shapes_)
     {
         shape.parent = nil;
     }

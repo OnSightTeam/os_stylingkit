@@ -15,7 +15,7 @@
  */
 
 //
-//  PXAttributeSelector.h
+//  STKPXAttributeSelector.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 9/1/12.
@@ -23,10 +23,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXSelector.h"
+#import "STKPXSelector.h"
 
 /**
- *  A PXAttributeSelector is used to determine if a given element has a specific attribute defined on it.
+ *  A STKPXAttributeSelector is used to determine if a given element has a specific attribute defined on it.
  */
 @interface STKPXAttributeSelector : NSObject <STKPXSelector>
 

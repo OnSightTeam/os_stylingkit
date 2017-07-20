@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUITextField.h
+//  STKPXUITextField.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 10/10/12.
@@ -37,16 +37,16 @@
  *
  *  UITextField supports the following properties
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXFontStyler
- *  - PXColorStyler
- *  - PXTextContentStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXFontStyler
+ *  - STKPXColorStyler
+ *  - STKPXTextContentStyler
  *  - text-align: left | center | right
  *  - -ios-border-style: none | line | bezel | rounded-rect
  *  - padding: <padding>
@@ -57,14 +57,14 @@
  *
  *  UITextField placeholder supports the following properties
  *
- *  - PXTextShadowStyler
- *  - PXFontStyler
- *  - PXColorStyler
- *  - PXTextContentStyler
+ *  - STKPXTextShadowStyler
+ *  - STKPXFontStyler
+ *  - STKPXColorStyler
+ *  - STKPXTextContentStyler
  *
  *  UITextField attributed-text supports the following properties:
  *
- *  - PXAttributedTextStyler
+ *  - STKPXAttributedTextStyler
  *
  */
 @interface STKPXUITextField : UITextField

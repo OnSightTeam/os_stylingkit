@@ -15,14 +15,14 @@
  */
 
 //
-//  PXTransitionStyler.h
+//  STKPXTransitionStyler.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 3/7/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
 
-#import "PXStylerBase.h"
+#import "STKPXStylerBase.h"
 
 /**
  *  - transition: <single-transition>#
@@ -31,6 +31,6 @@
  *  - transition-timing-function: <timing-function>#
  *  - transition-delay: <time>#
  */
-@interface STKPXTransitionStyler : PXStylerBase
+@interface STKPXTransitionStyler : STKPXStylerBase
 
 @end

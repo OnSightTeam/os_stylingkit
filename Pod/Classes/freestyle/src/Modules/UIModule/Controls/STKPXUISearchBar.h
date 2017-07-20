@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUISearchBar.h
+//  STKPXUISearchBar.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -32,15 +32,15 @@
  *
  *  UISearchBar supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXFillStyler
- *  - PXBoxShadowStyler
- *  - PXTextShadowStyler
- *  - PXTextContentStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXFillStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXTextShadowStyler
+ *  - STKPXTextContentStyler
  *  - bar-style: default | black
- *  - PXAnimationStyler
+ *  - STKPXAnimationStyler
  *  - color: <paint>
  *  - -ios-tint-color: <paint>
  *

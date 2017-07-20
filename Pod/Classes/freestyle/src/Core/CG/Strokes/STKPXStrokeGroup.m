@@ -15,7 +15,7 @@
  */
 
 //
-//  PXStrokeGroup.m
+//  STKPXStrokeGroup.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 7/2/12.
@@ -31,7 +31,7 @@
 
 #pragma mark - Methods
 
-- (void)addStroke:(id<PXStrokeRenderer>)stroke
+- (void)addStroke:(id<STKPXStrokeRenderer>)stroke
 {
     if (stroke)
     {
@@ -50,7 +50,7 @@
 {
     BOOL result = YES;
 
-    for (id<PXStrokeRenderer> stroke in strokes_)
+    for (id<STKPXStrokeRenderer> stroke in strokes_)
     {
         if (stroke.isOpaque == NO)
         {
@@ -62,13 +62,13 @@
     return result;
 }
 
-#pragma mark - PXStrokeRenderer implementation
+#pragma mark - STKPXStrokeRenderer implementation
 
 - (void)applyStrokeToPath:(CGPathRef)path withContext:(CGContextRef)context
 {
     if (strokes_)
     {
-        for (id<PXStrokeRenderer> stroke in strokes_)
+        for (id<STKPXStrokeRenderer> stroke in strokes_)
         {
             [stroke applyStrokeToPath:path withContext:context];
         }

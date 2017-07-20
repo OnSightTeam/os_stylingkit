@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUINavigationBar.h
+//  STKPXUINavigationBar.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/8/12.
@@ -37,17 +37,17 @@
  *
  *  UINavigationBar supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXBarMetricsAdjustmentStyler
- *  - PXFontStyler
- *  - PXPaintStyler
- *  - PXBarShadowStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXBarMetricsAdjustmentStyler
+ *  - STKPXFontStyler
+ *  - STKPXPaintStyler
+ *  - STKPXBarShadowStyler
  *  - color: <paint> // Deprecated in 1.1. Please use 'color' on the 'title' child element
  *  - text-shadow: <shadow> // Deprecated in 1.1. Please use 'text-shadow' on the 'title' child element
  *  - font-family: <string> // Deprecated in 1.1. Please use 'font-family' on the 'title' child element
@@ -55,7 +55,7 @@
  *  - font-style: normal | italic | oblique // Deprecated in 1.1. Please use 'font-style' on the 'title' child element
  *  - font-weight: normal | bold | black | heavy | extra-bold | ultra-bold | semi-bold | demi-bold | medium | light | extra-thin | ultra-thin | thin | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 // Deprecated in 1.1. Please use 'font-weight' on the 'title' child element
  *  - font-stretch: normal | ultra-condensed | extra-condensed | condensed | semi-condensed | semi-expanded | expanded | extra-expanded | ultra-expanded // Deprecated in 1.1. Please use 'font-stretch' on the 'title' child element
- *  - PXTextContentStyler
+ *  - STKPXTextContentStyler
  *  - text-transform: lowercase | uppercase | capitalize
  *
  *  UINavigationBar adds support for the following children:
@@ -69,44 +69,44 @@
  *
  *  UINavigationBar title supports the following properties:
  *
- *  - PXTextShadowStyler
- *  - PXFontStyler
- *  - PXPaintStyler
+ *  - STKPXTextShadowStyler
+ *  - STKPXFontStyler
+ *  - STKPXPaintStyler
  *
  *  UINavigationBar back-indicator supports the following properties:
  *
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *
  *  UINavigationBar back-indicator-mask supports the following properties:
  *
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *
  *  UINavigationBar button-appearance supports the following properties:
  *
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXFontStyler
- *  - PXPaintStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXFontStyler
+ *  - STKPXPaintStyler
  *  - ios-tint-color: <color>
  *
  *  UINavigationBar back-button-appearance supports the following properties:
  *
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *
  *  NOTE: For opacity, 1.0 is opaque and anything less means non-opaque
  *  NOTE: See UIBarButtonItem properties for back-,left-,right-bar-buttons

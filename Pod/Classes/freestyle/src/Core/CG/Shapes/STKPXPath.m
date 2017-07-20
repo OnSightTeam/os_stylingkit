@@ -15,7 +15,7 @@
  */
 
 //
-//  PXPath.m
+//  STKPXPath.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,10 +24,10 @@
 //
 
 #import "STKPXPath.h"
-#import "PXEllipticalArc.h"
-#import "NSScanner+PXFloat.h"
+#import "STKPXEllipticalArc.h"
+#import "NSScanner+STKPXFloat.h"
 #import "PixateFreestyle.h"
-#import "PXMath.h"
+#import "STKPXMath.h"
 #import "STKPXVector.h"
 
 @implementation STKPXPath

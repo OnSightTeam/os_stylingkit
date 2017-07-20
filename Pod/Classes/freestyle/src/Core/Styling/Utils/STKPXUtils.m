@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUtils.m
+//  STKPXUtils.m
 //  Pixate
 //
 //  Created by Paul Colton on 11/27/12.

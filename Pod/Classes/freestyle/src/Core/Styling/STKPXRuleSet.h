@@ -15,7 +15,7 @@
  */
 
 //
-//  PXRuleSet.h
+//  STKPXRuleSet.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -28,10 +28,10 @@
 #import "STKPXTypeSelector.h"
 #import "STKPXDeclarationContainer.h"
 #import "STKPXDeclaration.h"
-#import "PXStyleable.h"
+#import "STKPXStyleable.h"
 
 /**
- *  A PXRuleSet represents a single CSS rule set. A rule set consists of selectors and declarations. A specificity is
+ *  A STKPXRuleSet represents a single CSS rule set. A rule set consists of selectors and declarations. A specificity is
  *  associated with each rule set to assist in the calculation of weights and cascading of declarations.
  */
 @interface STKPXRuleSet : STKPXDeclarationContainer
@@ -73,6 +73,6 @@
  *
  *  @param element The element to test
  */
-- (BOOL)matches:(id<PXStyleable>)element;
+- (BOOL)matches:(id<STKPXStyleable>)element;
 
 @end

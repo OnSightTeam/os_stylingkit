@@ -15,7 +15,7 @@
  */
 
 //
-//  PXAnimationPropertyHandler.m
+//  STKPXAnimationPropertyHandler.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -29,7 +29,7 @@
 
 #pragma mark - Static Methods
 
-+ (PXAnimationPropertyHandlerBlock)FloatValueBlock
++ (STKPXAnimationPropertyHandlerBlock)FloatValueBlock
 {
     return (id)^(STKPXDeclaration *declaration)
     {
@@ -39,7 +39,7 @@
 
 #pragma mark - Initializers
 
-- (instancetype)initWithKeyPath:(NSString *)keyPath block:(PXAnimationPropertyHandlerBlock)block
+- (instancetype)initWithKeyPath:(NSString *)keyPath block:(STKPXAnimationPropertyHandlerBlock)block
 {
     if (self = [super init])
     {

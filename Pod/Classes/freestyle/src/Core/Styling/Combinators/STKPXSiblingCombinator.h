@@ -15,7 +15,7 @@
  */
 
 //
-//  PXSiblingCombinator.h
+//  STKPXSiblingCombinator.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 9/25/12.
@@ -26,7 +26,7 @@
 #import "STKPXCombinatorBase.h"
 
 /**
- *  PXSiblingCombinator implements the general sibling combinator. This combinator requires that its selector on its
+ *  STKPXSiblingCombinator implements the general sibling combinator. This combinator requires that its selector on its
  *  right-hand side must match as a sibling after its left-hand selector.
  */
 @interface STKPXSiblingCombinator : STKPXCombinatorBase

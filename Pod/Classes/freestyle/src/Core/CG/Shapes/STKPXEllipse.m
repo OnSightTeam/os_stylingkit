@@ -15,7 +15,7 @@
  */
 
 //
-//  PXEllipse.m
+//  STKPXEllipse.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXTransitionRuleSetInfo.h
+//  STKPXTransitionRuleSetInfo.h
 //  Pixate
 //
 //  Created by Paul Colton on 2/28/13.
@@ -23,7 +23,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXStyleable.h"
+#import "STKPXStyleable.h"
 
 @interface STKPXTransitionRuleSetInfo : NSObject
 
@@ -34,6 +34,6 @@
 @property (nonatomic, readonly, strong) STKPXRuleSet *mergedRuleSet;
 @property (nonatomic, readonly, strong) NSArray *transitions;
 
-- (id)initWithStyleable:(id<PXStyleable>)styleable withStateName:(NSString *)stateName;
+- (id)initWithStyleable:(id<STKPXStyleable>)styleable withStateName:(NSString *)stateName;
 
 @end

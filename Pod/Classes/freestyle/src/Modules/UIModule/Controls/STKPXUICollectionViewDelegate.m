@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUICollectionViewDelegate.m
+//  STKPXUICollectionViewDelegate.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -27,9 +27,9 @@
 #import "STKPXProxy.h"
 #import "STKPXStyleUtils.h"
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXUICollectionViewCell.h"
 #import "UICollectionViewCell+STKStyling.h"
 
@@ -100,7 +100,7 @@
     [STKPXStyleUtils setItemIndex:indexPath forObject:cell];
 
     // This will call update styles if styling is still enabled
-    cell.styleMode = PXStylingNormal;
+    cell.styleMode = STKPXStylingNormal;
 
     [STKPXStyleUtils setItemIndex:nil forObject:cell];
     

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXNonScalingStroke.h
+//  STKPXNonScalingStroke.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 7/26/12.
@@ -25,7 +25,7 @@
 #import "STKPXStroke.h"
 
 /**
- *  PXNonScalingStroke is a special stroke implementation that tries its best to preserve its stroke width, in screen
+ *  STKPXNonScalingStroke is a special stroke implementation that tries its best to preserve its stroke width, in screen
  *  coordinates, regardless of the current transform being applied to the shape using this stroke
  */
 @interface STKPXNonScalingStroke : STKPXStroke

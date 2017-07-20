@@ -15,7 +15,7 @@
  */
 
 //
-//  PXForceLoadStylingCategories.m
+//  STKPXForceLoadStylingCategories.m
 //  Pixate
 //
 //  Created by Paul Colton on 12/10/13.
@@ -23,35 +23,35 @@
 //
 
 #import "STKPXForceLoadStylingCategories.h"
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "NSObject+PXStyling.h"
-#import "NSObject+PXSubclass.h"
-#import "NSObject+PXClass.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "NSObject+STKPXStyling.h"
+#import "NSObject+STKPXSubclass.h"
+#import "NSObject+STKPXClass.h"
 #import "NSArray+Reverse.h"
-#import "NSMutableDictionary+PXObject.h"
-#import "NSDictionary+PXCSSEncoding.h"
-#import "NSDictionary+PXObject.h"
+#import "NSMutableDictionary+STKPXObject.h"
+#import "NSDictionary+STKPXCSSEncoding.h"
+#import "NSDictionary+STKPXObject.h"
 
-extern void PXForceLoadNSArrayReverse();
-extern void PXForceLoadNSDictionaryPXCSSEncoding();
-extern void PXForceLoadNSDictionaryPXObject();
-extern void PXForceLoadNSMutableDictionaryPXObject();
-extern void PXForceLoadNSObjectPXSubclass();
-extern void PXForceLoadNSObjectPXSwizzle();
-extern void PXForceLoadUIViewPXStyling();
+extern void STKPXForceLoadNSArrayReverse();
+extern void STKPXForceLoadNSDictionaryPXCSSEncoding();
+extern void STKPXForceLoadNSDictionaryPXObject();
+extern void STKPXForceLoadNSMutableDictionaryPXObject();
+extern void STKPXForceLoadNSObjectPXSubclass();
+extern void STKPXForceLoadNSObjectPXSwizzle();
+extern void STKPXForceLoadUIViewPXStyling();
 
 @implementation STKPXForceLoadStylingCategories
 
 +(void)forceLoad
 {
-    PXForceLoadNSArrayReverse();
-    PXForceLoadNSDictionaryPXCSSEncoding();
-    PXForceLoadNSDictionaryPXObject();
-    PXForceLoadNSMutableDictionaryPXObject();
-    PXForceLoadNSObjectPXSubclass();
-    PXForceLoadNSObjectPXSwizzle();
-    PXForceLoadUIViewPXStyling();
+    STKPXForceLoadNSArrayReverse();
+    STKPXForceLoadNSDictionaryPXCSSEncoding();
+    STKPXForceLoadNSDictionaryPXObject();
+    STKPXForceLoadNSMutableDictionaryPXObject();
+    STKPXForceLoadNSObjectPXSubclass();
+    STKPXForceLoadNSObjectPXSwizzle();
+    STKPXForceLoadUIViewPXStyling();
 }
 
 @end

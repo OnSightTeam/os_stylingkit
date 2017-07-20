@@ -15,7 +15,7 @@
  */
 
 //
-//  PXFontInfo.h
+//  STKPXFontInfo.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 3/13/13.

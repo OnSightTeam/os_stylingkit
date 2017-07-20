@@ -15,7 +15,7 @@
  */
 
 //
-//  PXGenericStyler.m
+//  STKPXGenericStyler.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -35,7 +35,7 @@
     return [self initWithHandlers:handlers completionBlock:nil];
 }
 
-- (instancetype)initWithHandlers:(NSDictionary *)handlers completionBlock:(PXStylerCompletionBlock)block
+- (instancetype)initWithHandlers:(NSDictionary *)handlers completionBlock:(STKPXStylerCompletionBlock)block
 {
     if (self = [super initWithCompletionBlock:block])
     {

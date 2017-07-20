@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIStepper.m
+//  STKPXUIStepper.m
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -25,9 +25,9 @@
 #import "STKPXUIStepper.h"
 
 #import "STKPXUtils.h"
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXVirtualStyleableControl.h"
 
 #import "STKPXOpacityStyler.h"
@@ -208,15 +208,15 @@ static char const STYLE_CHILDREN;
 
 }
 
-PX_WRAP_1(setTintColor, color);
+STKPX_WRAP_1(setTintColor, color);
 
-PX_WRAP_2v(setIncrementImage, image, forState, UIControlState, state);
-PX_WRAP_2v(setDecrementImage, image, forState, UIControlState, state);
-PX_WRAP_2v(setBackgroundImage, image, forState, UIControlState, state);
+STKPX_WRAP_2v(setIncrementImage, image, forState, UIControlState, state);
+STKPX_WRAP_2v(setDecrementImage, image, forState, UIControlState, state);
+STKPX_WRAP_2v(setBackgroundImage, image, forState, UIControlState, state);
 
-PX_WRAP_3v(setDividerImage, image, forLeftSegmentState, UIControlState, lstate, rightSegmentState, UIControlState, rstate);
+STKPX_WRAP_3v(setDividerImage, image, forLeftSegmentState, UIControlState, lstate, rightSegmentState, UIControlState, rstate);
 
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end

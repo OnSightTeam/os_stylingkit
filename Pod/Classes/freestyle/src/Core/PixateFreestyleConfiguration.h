@@ -23,34 +23,34 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXStyleable.h"
+#import "STKPXStyleable.h"
 
 /**
- *  A PXParseErrorDestination enumeration captures the various parse error logging destinations. These are set using the
+ *  A STKPXParseErrorDestination enumeration captures the various parse error logging destinations. These are set using the
  *  parse-error-destination property for the pixate-config element.
  */
 typedef enum {
-    PXParseErrorDestinationNone,
-    PXParseErrorDestinationConsole,
-#ifdef PX_LOGGING
-    PXParseErrorDestination_Logger
+    STKPXParseErrorDestinationNone,
+    STKPXParseErrorDestinationConsole,
+#ifdef STKPX_LOGGING
+    STKPXParseErrorDestination_Logger
 #endif
-} PXParseErrorDestination;
+} STKPXParseErrorDestination;
 
 /**
- *  A PXCacheStylesType enumeration determines if Pixate will try to cache styling.
+ *  A STKPXCacheStylesType enumeration determines if Pixate will try to cache styling.
  */
 typedef enum {
-    PXCacheStylesTypeNone = 0,      // Do not perform any type of style caching
-    PXCacheStylesTypeStyleOnce = 1, // Do not style a styleable unless styling has changed
-    PXCacheStylesTypeSave = 2,      // Save styling info for a styleable and it descendants and style those items directly
-    PXCacheStylesTypeImages = 4     // Cache background images
-} PXCacheStylesType;
+    STKPXCacheStylesTypeNone = 0,      // Do not perform any type of style caching
+    STKPXCacheStylesTypeStyleOnce = 1, // Do not style a styleable unless styling has changed
+    STKPXCacheStylesTypeSave = 2,      // Save styling info for a styleable and it descendants and style those items directly
+    STKPXCacheStylesTypeImages = 4     // Cache background images
+} STKPXCacheStylesType;
 
 /**
  *  The PixateConfiguration class is used to set and retrieve global settings for Pixate.
  */
-@interface PixateFreestyleConfiguration : NSObject <PXStyleable>
+@interface PixateFreestyleConfiguration : NSObject <STKPXStyleable>
 
 /**
  *  Allow a style id to be associated with this object
@@ -65,19 +65,19 @@ typedef enum {
 /**
  *  Set the styling mode of this object
  */
-@property (nonatomic) PXStylingMode styleMode;
+@property (nonatomic) STKPXStylingMode styleMode;
 
 /**
  *  Determine where parse errors will be emitted
  */
-@property (nonatomic) PXParseErrorDestination parseErrorDestination;
+@property (nonatomic) STKPXParseErrorDestination parseErrorDestination;
 
 /**
  *  Determine if view styling is cached
  */
-@property (nonatomic) PXCacheStylesType cacheStylesType;
+@property (nonatomic) STKPXCacheStylesType cacheStylesType;
 
-// These are convenience methods for checking the PXCacheStylesType flags in the cachStylesType property
+// These are convenience methods for checking the STKPXCacheStylesType flags in the cachStylesType property
 - (BOOL)cacheImages;
 - (BOOL)cacheStyles;
 - (BOOL)preventRedundantStyling;

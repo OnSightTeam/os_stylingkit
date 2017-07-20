@@ -15,7 +15,7 @@
  */
 
 //
-//  PXArc.m
+//  STKPXArc.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,7 +24,7 @@
 //
 
 #import "STKPXArc.h"
-#import "PXMath.h"
+#import "STKPXMath.h"
 
 @implementation STKPXArc
 

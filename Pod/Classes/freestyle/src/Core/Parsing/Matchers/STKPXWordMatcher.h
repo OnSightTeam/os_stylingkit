@@ -15,7 +15,7 @@
  */
 
 //
-//  PXWordMatcher.h
+//  STKPXWordMatcher.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.

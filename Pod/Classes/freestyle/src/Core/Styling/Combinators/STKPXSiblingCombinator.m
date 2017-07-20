@@ -15,7 +15,7 @@
  */
 
 //
-//  PXSiblingCombinator.m
+//  STKPXSiblingCombinator.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -39,7 +39,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
 #pragma mark - Methods
 
-- (BOOL)matches:(id<PXStyleable>)element
+- (BOOL)matches:(id<STKPXStyleable>)element
 {
     BOOL result = NO;
 
@@ -47,9 +47,9 @@ STK_DEFINE_CLASS_LOG_LEVEL
     {
         id parent = element.pxStyleParent;
 
-        if ([parent conformsToProtocol:@protocol(PXStyleable)])
+        if ([parent conformsToProtocol:@protocol(STKPXStyleable)])
         {
-            id<PXStyleable> styleableParent = parent;
+            id<STKPXStyleable> styleableParent = parent;
             NSArray *children = [STKPXStyleUtils elementChildrenOfStyleable:styleableParent];
             NSUInteger elementIndex = [children indexOfObject:element];
 
@@ -57,9 +57,9 @@ STK_DEFINE_CLASS_LOG_LEVEL
             {
                 id previousSibling = children[i];
 
-                if ([previousSibling conformsToProtocol:@protocol(PXStyleable)])
+                if ([previousSibling conformsToProtocol:@protocol(STKPXStyleable)])
                 {
-                    id<PXStyleable> styleablePreviousSibling = previousSibling;
+                    id<STKPXStyleable> styleablePreviousSibling = previousSibling;
 
                     result = [self.lhs matches:styleablePreviousSibling];
                 }
@@ -69,11 +69,11 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
     if (result)
     {
-        DDLogVerbose(@"%@ matched %@", self.description, [PXStyleUtils descriptionForStyleable:element]);
+        DDLogVerbose(@"%@ matched %@", self.description, [STKPXStyleUtils descriptionForStyleable:element]);
     }
     else
     {
-        DDLogVerbose(@"%@ did not match %@", self.description, [PXStyleUtils descriptionForStyleable:element]);
+        DDLogVerbose(@"%@ did not match %@", self.description, [STKPXStyleUtils descriptionForStyleable:element]);
     }
 
     return result;

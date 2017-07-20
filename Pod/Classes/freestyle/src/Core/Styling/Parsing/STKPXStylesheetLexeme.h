@@ -15,7 +15,7 @@
  */
 
 //
-//  PXLexeme.h
+//  STKPXLexeme.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,13 +24,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXLexeme.h"
+#import "STKPXLexeme.h"
 
-typedef NS_ENUM(unsigned int, PXLexemeFlagType) {
-    PXLexemeFlagFollowsWhitespace = 1
+typedef NS_ENUM(unsigned int, STKPXLexemeFlagType) {
+    STKPXLexemeFlagFollowsWhitespace = 1
 };
 
-@interface STKPXStylesheetLexeme : NSObject <PXLexeme>
+@interface STKPXStylesheetLexeme : NSObject <STKPXLexeme>
 
 + (instancetype)lexemeWithType:(int)type;
 + (instancetype)lexemeWithType:(int)type withRange:(NSRange)range;

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXAttributeSelectorOperator.m
+//  STKPXAttributeSelectorOperator.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,7 +24,7 @@
 //
 
 #import "STKPXAttributeSelectorOperator.h"
-#import "PXStyleable.h"
+#import "STKPXStyleable.h"
 #import "STKPXSpecificity.h"
 #import "STKPXStyleUtils.h"
 
@@ -38,7 +38,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
 #pragma mark - Initializers
 
-- (instancetype)initWithOperatorType:(PXAttributeSelectorOperatorType)type
+- (instancetype)initWithOperatorType:(STKPXAttributeSelectorOperatorType)type
          attributeSelector:(STKPXAttributeSelector *)attributeSelector
                stringValue:(NSString *)value
 {
@@ -52,14 +52,14 @@ STK_DEFINE_CLASS_LOG_LEVEL
     return self;
 }
 
-#pragma mark - PXAttributeMatcher Implementation
+#pragma mark - STKPXAttributeMatcher Implementation
 
 - (void)incrementSpecificity:(STKPXSpecificity *)specificity
 {
     [specificity incrementSpecifity:kSpecificityTypeClassOrAttribute];
 }
 
-- (BOOL)matches:(id<PXStyleable>)element
+- (BOOL)matches:(id<STKPXStyleable>)element
 {
     BOOL result = NO;
 
@@ -110,11 +110,11 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
     if (result)
     {
-        DDLogVerbose(@"%@ matched %@", self.description, [PXStyleUtils descriptionForStyleable:element]);
+        DDLogVerbose(@"%@ matched %@", self.description, [STKPXStyleUtils descriptionForStyleable:element]);
     }
     else
     {
-        DDLogVerbose(@"%@ did not match %@", self.description, [PXStyleUtils descriptionForStyleable:element]);
+        DDLogVerbose(@"%@ did not match %@", self.description, [STKPXStyleUtils descriptionForStyleable:element]);
     }
 
     return result;

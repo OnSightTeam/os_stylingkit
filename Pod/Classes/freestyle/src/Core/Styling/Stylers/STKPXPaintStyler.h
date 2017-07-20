@@ -15,21 +15,21 @@
  */
 
 //
-//  PXPaintStyler.h
+//  STKPXPaintStyler.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 11/3/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXStylerBase.h"
-#import "PXPaint.h"
+#import "STKPXStylerBase.h"
+#import "STKPXPaint.h"
 
 /**
  *  - color: <paint>
  *  - -ios-tint-color: <paint>
  */
-@interface STKPXPaintStyler : PXStylerBase
+@interface STKPXPaintStyler : STKPXStylerBase
 
 + (STKPXPaintStyler *)sharedInstanceForTintColor;
 

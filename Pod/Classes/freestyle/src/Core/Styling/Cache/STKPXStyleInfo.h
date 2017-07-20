@@ -15,7 +15,7 @@
  */
 
 //
-//  PXStyleInfo.h
+//  STKPXStyleInfo.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 10/2/13.
@@ -23,7 +23,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXStyleable.h"
+#import "STKPXStyleable.h"
 
 @interface STKPXStyleInfo : NSObject
 
@@ -32,9 +32,9 @@
 @property (nonatomic) BOOL forceInvalidation;
 @property (nonatomic) BOOL changeable;
 
-+ (STKPXStyleInfo *)styleInfoForStyleable:(id<PXStyleable>)styleable;
-+ (STKPXStyleInfo *)styleInfoForStyleable:(id<PXStyleable>)styleable checkPseudoClassFunction:(NSNumber**)checkPseudoClassFunction;
-+ (void)setStyleInfo:(STKPXStyleInfo *)styleInfo withRuleSets:(NSArray *)ruleSets styleable:(id<PXStyleable>)styleable stateName:(NSString *)stateName;
++ (STKPXStyleInfo *)styleInfoForStyleable:(id<STKPXStyleable>)styleable;
++ (STKPXStyleInfo *)styleInfoForStyleable:(id<STKPXStyleable>)styleable checkPseudoClassFunction:(NSNumber**)checkPseudoClassFunction;
++ (void)setStyleInfo:(STKPXStyleInfo *)styleInfo withRuleSets:(NSArray *)ruleSets styleable:(id<STKPXStyleable>)styleable stateName:(NSString *)stateName;
 
 - (id)initWithStyleKey:(NSString *)styleKey;
 
@@ -43,6 +43,6 @@
 - (NSArray *)declarationsForState:(NSString *)stateName;
 - (NSSet *)stylersForState:(NSString *)stateName;
 
-- (void)applyToStyleable:(id<PXStyleable>)styleable;
+- (void)applyToStyleable:(id<STKPXStyleable>)styleable;
 
 @end

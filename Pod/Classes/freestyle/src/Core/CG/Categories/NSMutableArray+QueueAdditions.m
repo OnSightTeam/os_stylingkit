@@ -25,7 +25,7 @@
 
 #import "NSMutableArray+QueueAdditions.h"
 
-void PXForceLoadQueueAdditions() {}
+void STKPXForceLoadQueueAdditions() {}
 
 @implementation NSMutableArray (QueueAdditions)
 

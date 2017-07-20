@@ -15,7 +15,7 @@
  */
 
 //
-//  PXSSLexer.h
+//  STKPXSSLexer.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -27,10 +27,10 @@
 #import "STKPXStylesheetLexeme.h"
 
 /**
- *  The PXStylesheetLexerDelegate protocol defines a set of events that will fire during the lifetime of a
- *  PXStylesheetLexer
+ *  The STKPXStylesheetLexerDelegate protocol defines a set of events that will fire during the lifetime of a
+ *  STKPXStylesheetLexer
  */
-@protocol PXStylesheetLexerDelegate <NSObject>
+@protocol STKPXStylesheetLexerDelegate <NSObject>
 
 @optional
 
@@ -43,7 +43,7 @@
 @end
 
 /**
- *  PXStylesheetLexer is responsible for converting an NSString into a stream of PXLexemes. Eacn PXLexeme represents an
+ *  STKPXStylesheetLexer is responsible for converting an NSString into a stream of STKPXLexemes. Eacn STKPXLexeme represents an
  *  instance of a CSS token.
  */
 @interface STKPXStylesheetLexer : NSObject
@@ -56,7 +56,7 @@
 /**
  *  A delegate to call when various events occur within the lexer
  */
-@property (nonatomic, weak) id<PXStylesheetLexerDelegate> delegate;
+@property (nonatomic, weak) id<STKPXStylesheetLexerDelegate> delegate;
 
 /**
  *  Initializer a new instance with the specified source value

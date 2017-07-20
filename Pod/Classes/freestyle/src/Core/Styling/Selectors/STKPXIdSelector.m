@@ -15,7 +15,7 @@
  */
 
 //
-//  PXIdSelector.m
+//  STKPXIdSelector.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,10 +24,10 @@
 //
 
 #import "STKPXIdSelector.h"
-#import "PXStyleable.h"
+#import "STKPXStyleable.h"
 #import "STKPXSpecificity.h"
 #import "STKPXStyleUtils.h"
-#import "PXLog.h"
+#import "STKPXLog.h"
 
 @implementation STKPXIdSelector
 
@@ -52,23 +52,23 @@ STK_DEFINE_CLASS_LOG_LEVEL
     [specificity incrementSpecifity:kSpecificityTypeId];
 }
 
-- (BOOL)matches:(id<PXStyleable>)element
+- (BOOL)matches:(id<STKPXStyleable>)element
 {
     BOOL result = [_idValue isEqualToString:element.styleId];
 
     if (result)
     {
-        DDLogVerbose(@"%@ matched %@", self.description, [PXStyleUtils descriptionForStyleable:element]);
+        DDLogVerbose(@"%@ matched %@", self.description, [STKPXStyleUtils descriptionForStyleable:element]);
     }
     else
     {
-        DDLogVerbose(@"%@ did not match %@", self.description, [PXStyleUtils descriptionForStyleable:element]);
+        DDLogVerbose(@"%@ did not match %@", self.description, [STKPXStyleUtils descriptionForStyleable:element]);
     }
 
     return result;
 }
 
-#pragma mark - PXSourceEmitter Methods
+#pragma mark - STKPXSourceEmitter Methods
 
 - (void)sourceWithSourceWriter:(id)writer
 {

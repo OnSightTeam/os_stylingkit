@@ -15,7 +15,7 @@
  */
 
 //
-//  PXKeyframeAnimation.m
+//  STKPXKeyframeAnimation.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 3/28/13.
@@ -35,7 +35,7 @@
 
 #pragma mark - Setters
 
-- (void)setFillMode:(PXAnimationFillMode)fillMode
+- (void)setFillMode:(STKPXAnimationFillMode)fillMode
 {
     _fillMode = fillMode;
 
@@ -44,20 +44,20 @@
 
     switch (_fillMode)
     {
-        case PXAnimationFillModeBackwards:
+        case STKPXAnimationFillModeBackwards:
             caFillMode_ = kCAFillModeBackwards;
             break;
 
-        case PXAnimationFillModeBoth:
+        case STKPXAnimationFillModeBoth:
             caFillMode_ = kCAFillModeBoth;
             break;
 
-        case PXAnimationFillModeForwards:
+        case STKPXAnimationFillModeForwards:
             caFillMode_ = kCAFillModeForwards;
             break;
 
-        case PXAnimationFillModeNone:
-        case PXAnimationFillModeUndefined:
+        case STKPXAnimationFillModeNone:
+        case STKPXAnimationFillModeUndefined:
         default:
             break;
     }
@@ -85,7 +85,7 @@
     [_keyTimes addObject:@(keyTime)];
 }
 
-- (void)addTimingFunction:(PXAnimationTimingFunction)timingFunction
+- (void)addTimingFunction:(STKPXAnimationTimingFunction)timingFunction
 {
     if (_timingFunctions == nil)
     {
@@ -97,28 +97,28 @@
 
     switch (timingFunction)
     {
-        case PXAnimationTimingFunctionEase:
+        case STKPXAnimationTimingFunctionEase:
             break;
 
-        case PXAnimationTimingFunctionEaseIn:
+        case STKPXAnimationTimingFunctionEaseIn:
             tf = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
             break;
 
-        case PXAnimationTimingFunctionEaseInOut:
+        case STKPXAnimationTimingFunctionEaseInOut:
             tf = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
             break;
 
-        case PXAnimationTimingFunctionEaseOut:
+        case STKPXAnimationTimingFunctionEaseOut:
             tf = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
             break;
 
-        case PXAnimationTimingFunctionLinear:
+        case STKPXAnimationTimingFunctionLinear:
             tf = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
             break;
 
-        case PXAnimationTimingFunctionStepEnd:
-        case PXAnimationTimingFunctionStepStart:
-        case PXAnimationTimingFunctionUndefined:
+        case STKPXAnimationTimingFunctionStepEnd:
+        case STKPXAnimationTimingFunctionStepStart:
+        case STKPXAnimationTimingFunctionUndefined:
         default:
             break;
     }

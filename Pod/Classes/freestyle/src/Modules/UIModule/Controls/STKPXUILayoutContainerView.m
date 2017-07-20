@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUILayoutContainerView.m
+//  STKPXUILayoutContainerView.m
 //  Pixate
 //
 //  Created by Paul Colton on 2/21/13.
@@ -23,8 +23,8 @@
 //
 
 #import "STKPXUILayoutContainerView.h"
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
 #import "STKPXUtils.h"
 #import "objc.h"
 #import "STKPXViewUtils.h"
@@ -34,11 +34,11 @@
 /* DISABLED
  + (void)initialize
 {
-    if (self != PXUILayoutContainerView.class)
+    if (self != STKPXUILayoutContainerView.class)
         return;
  
     [UIView registerDynamicSubclass:self
-                           forClass:[PXUILayoutContainerView targetSuperclass]
+                           forClass:[STKPXUILayoutContainerView targetSuperclass]
                     withElementName:@"layout-container-view"];
 }
 
@@ -47,7 +47,7 @@
 	static Class targetSuperclass = nil;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		targetSuperclass = //[PXUtils isIOS6OrGreater] ?
+		targetSuperclass = //[STKPXUtils isIOS6OrGreater] ?
         NSClassFromString([[self description] substringFromIndex:2])
         //: nil
         ;

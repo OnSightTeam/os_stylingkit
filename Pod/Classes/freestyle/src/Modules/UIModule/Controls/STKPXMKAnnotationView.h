@@ -15,7 +15,7 @@
  */
 
 //
-//  PXAnnotationView.h
+//  STKPXAnnotationView.h
 //  Pixate
 //
 //  Created by Paul Colton on 11/29/12.
@@ -32,14 +32,14 @@
  *
  *  MKMapView supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXAnimationStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXAnimationStyler
  *
  */
 

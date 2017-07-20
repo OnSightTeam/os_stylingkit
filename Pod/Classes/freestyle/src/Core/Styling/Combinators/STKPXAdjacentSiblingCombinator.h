@@ -15,7 +15,7 @@
  */
 
 //
-//  PXAdjacentSiblingCombinator.h
+//  STKPXAdjacentSiblingCombinator.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 9/25/12.
@@ -26,7 +26,7 @@
 #import "STKPXCombinatorBase.h"
 
 /**
- *  PXAdjacentSiblingCombinator implements the adjacent sibling combinator. This combinator requires that its selector
+ *  STKPXAdjacentSiblingCombinator implements the adjacent sibling combinator. This combinator requires that its selector
  *  on its right-hand side must match immediately after its left-hand selector, where the two matches must be against
  *  siblings
  */

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXStyleCache.h
+//  STKPXStyleCache.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,7 +24,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXStyleable.h"
+#import "STKPXStyleable.h"
 
 @interface STKPXStyleTreeInfo : NSObject
 
@@ -33,8 +33,8 @@
 
 - (instancetype)init NS_UNAVAILABLE;
 
-- (instancetype)initWithStyleable:(id<PXStyleable>)styleable NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithStyleable:(id<STKPXStyleable>)styleable NS_DESIGNATED_INITIALIZER;
 
-- (void)applyStylesToStyleable:(id<PXStyleable>)styleable;
+- (void)applyStylesToStyleable:(id<STKPXStyleable>)styleable;
 
 @end

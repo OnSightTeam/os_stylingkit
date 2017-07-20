@@ -15,7 +15,7 @@
  */
 
 //
-//  PXTransformStyler.m
+//  STKPXTransformStyler.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/17/12.
@@ -47,9 +47,9 @@ PixateFreestyle.titaniumMode && \
 	return sharedInstance;
 }
 
-+ (PXStylerCompletionBlock)AssignTransformCompletionBlock
++ (STKPXStylerCompletionBlock)AssignTransformCompletionBlock
 {
-    return ^(id<PXStyleable> view, STKPXTransformStyler *styler, STKPXStylerContext *context)
+    return ^(id<STKPXStyleable> view, STKPXTransformStyler *styler, STKPXStylerContext *context)
     {
         if(IS_TITANIUM_CLASS(view))
         {
@@ -60,13 +60,13 @@ PixateFreestyle.titaniumMode && \
                 //NSLog(@"SUPERVIEW: %@", view);
             }
             
-            if ([view respondsToSelector:NSSelectorFromString(@"px_set2DTransform:")])
+            if ([view respondsToSelector:NSSelectorFromString(@"STKPX_set2DTransform:")])
             {
                 NSValue *transformValue = [NSValue valueWithCGAffineTransform:context.transform];
                 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-                [view performSelector:NSSelectorFromString(@"px_set2DTransform:") withObject:transformValue];
+                [view performSelector:NSSelectorFromString(@"STKPX_set2DTransform:") withObject:transformValue];
 #pragma clang diagnostic popk
             }
         }

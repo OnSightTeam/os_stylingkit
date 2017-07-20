@@ -15,7 +15,7 @@
  */
 
 //
-//  PXScene.m
+//  STKPXScene.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -54,7 +54,7 @@
 
 #pragma mark - Getters
 
-- (id<PXRenderable>)parent
+- (id<STKPXRenderable>)parent
 {
     return nil;
 }
@@ -76,12 +76,12 @@
     }
 }
 
-- (void)setParent:(id<PXRenderable>)parent
+- (void)setParent:(id<STKPXRenderable>)parent
 {
     // scenes are always the top-most parent
 }
 
-- (void)setShape:(id<PXRenderable>)aShape
+- (void)setShape:(id<STKPXRenderable>)aShape
 {
     if (_shape != aShape)
     {
@@ -103,9 +103,9 @@
 
 #pragma mark - Methods
 
-- (id<PXRenderable>)shapeForName:(NSString *)name
+- (id<STKPXRenderable>)shapeForName:(NSString *)name
 {
-    id<PXRenderable> result = nil;
+    id<STKPXRenderable> result = nil;
 
     if (nameDictionary && name)
     {
@@ -115,7 +115,7 @@
     return result;
 }
 
-- (void)addShape:(id<PXRenderable>)aShape forName:(NSString *)aName
+- (void)addShape:(id<STKPXRenderable>)aShape forName:(NSString *)aName
 {
     if (aName && aShape)
     {
@@ -128,7 +128,7 @@
     }
 }
 
-#pragma mark - PXRenderable Methods
+#pragma mark - STKPXRenderable Methods
 
 - (void)render:(CGContextRef)context
 {

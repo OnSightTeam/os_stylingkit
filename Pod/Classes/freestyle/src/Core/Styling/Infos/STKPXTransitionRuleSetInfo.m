@@ -15,7 +15,7 @@
  */
 
 //
-//  PXTransitionRuleSetInfo.m
+//  STKPXTransitionRuleSetInfo.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,14 +24,14 @@
 //
 
 #import "STKPXTransitionRuleSetInfo.h"
-#import "PXStylingMacros.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXStyleUtils.h"
 #import "STKPXRuleSet.h"
 #import "STKPXTransitionStyler.h"
 
 @implementation STKPXTransitionRuleSetInfo
 
-- (instancetype)initWithStyleable:(id<PXStyleable>)styleable withStateName:(NSString *)stateName
+- (instancetype)initWithStyleable:(id<STKPXStyleable>)styleable withStateName:(NSString *)stateName
 {
     if (self = [super init])
     {

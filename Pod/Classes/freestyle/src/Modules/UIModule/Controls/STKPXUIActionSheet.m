@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIActionSheet.m
+//  STKPXUIActionSheet.m
 //  Pixate
 //
 //  Created by Paul Colton on 12/12/12.
@@ -25,9 +25,9 @@
 #import "STKPXUIActionSheet.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXOpacityStyler.h"
 #import "STKPXShapeStyler.h"
 #import "STKPXFillStyler.h"
@@ -82,9 +82,9 @@
 }
 
 // Px Wrapped Only
-PX_PXWRAP_PROP(CALayer, layer);
+STKPX_PXWRAP_PROP(CALayer, layer);
 
 // Styling overrides
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end

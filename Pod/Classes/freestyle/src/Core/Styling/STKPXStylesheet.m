@@ -15,7 +15,7 @@
  */
 
 //
-//  PXStylesheet.m
+//  STKPXStylesheet.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/19/15.
@@ -29,11 +29,11 @@
 #import "STKPXStylesheetParser.h"
 #import "STKPXFileWatcher.h"
 #import "STKPXStyleUtils.h"
-#import "PXMediaExpression.h"
+#import "STKPXMediaExpression.h"
 #import "STKPXMediaGroup.h"
 #import "PixateFreestyle.h"
 
-//NSString *const PXStylesheetDidChangeNotification = @"kPXStylesheetDidChangeNotification";
+//NSString *const STKPXStylesheetDidChangeNotification = @"kPXStylesheetDidChangeNotification";
 
 static STKPXStylesheetParser *PARSER;
 
@@ -44,7 +44,7 @@ static STKPXStylesheet *currentViewStylesheet = nil;
 @implementation STKPXStylesheet
 {
     NSMutableArray *mediaGroups_;
-    id<PXMediaExpression> activeMediaQuery_;
+    id<STKPXMediaExpression> activeMediaQuery_;
     STKPXMediaGroup *activeMediaGroup_;
     NSMutableDictionary *namespacePrefixMap_;
     NSMutableDictionary *keyframesByName_;
@@ -63,12 +63,12 @@ STK_DEFINE_CLASS_LOG_LEVEL
     }
 }
 
-+ (instancetype)styleSheetFromSource:(NSString *)source withOrigin:(PXStylesheetOrigin)origin
++ (instancetype)styleSheetFromSource:(NSString *)source withOrigin:(STKPXStylesheetOrigin)origin
 {
     return [self styleSheetFromSource:source withOrigin:origin filename:nil];
 }
 
-+ (instancetype)styleSheetFromSource:(NSString *)source withOrigin:(PXStylesheetOrigin)origin filename:(NSString *)name
++ (instancetype)styleSheetFromSource:(NSString *)source withOrigin:(STKPXStylesheetOrigin)origin filename:(NSString *)name
 {
     STKPXStylesheet *result = nil;
 
@@ -93,7 +93,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
     return result;
 }
 
-+ (instancetype)styleSheetFromFilePath:(NSString *)aFilePath withOrigin:(PXStylesheetOrigin)origin
++ (instancetype)styleSheetFromFilePath:(NSString *)aFilePath withOrigin:(STKPXStylesheetOrigin)origin
 {
     NSString* source = [NSString stringWithContentsOfFile:aFilePath encoding:NSUTF8StringEncoding error:NULL];
 
@@ -111,10 +111,10 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
 - (instancetype)init
 {
-    return [self initWithOrigin:PXStylesheetOriginApplication];
+    return [self initWithOrigin:STKPXStylesheetOriginApplication];
 }
 
-- (instancetype)initWithOrigin:(PXStylesheetOrigin)anOrigin
+- (instancetype)initWithOrigin:(STKPXStylesheetOrigin)anOrigin
 {
     if (self = [super init])
     {
@@ -154,7 +154,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
     return combined;
 }
 
-- (NSArray *)ruleSetsForStyleable:(id<PXStyleable>)styleable
+- (NSArray *)ruleSetsForStyleable:(id<STKPXStyleable>)styleable
 {
     NSMutableArray *combined;
 
@@ -196,7 +196,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
 #pragma mark - Setters
 
-- (void)setActiveMediaQuery:(id<PXMediaExpression>)activeMediaQuery
+- (void)setActiveMediaQuery:(id<STKPXMediaExpression>)activeMediaQuery
 {
     // TODO: test for equivalence of active query? If they match, then do nothing
     activeMediaQuery_ = activeMediaQuery;
@@ -242,7 +242,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
     }
 }
 
-- (void)addMediaGroup:(PXMediaGroup *)mediaGroup
+- (void)addMediaGroup:(STKPXMediaGroup *)mediaGroup
 {
     if (mediaGroup)
     {
@@ -255,20 +255,20 @@ STK_DEFINE_CLASS_LOG_LEVEL
     }
 }
 
-- (NSArray *)ruleSetsMatchingStyleable:(id<PXStyleable>)element
+- (NSArray *)ruleSetsMatchingStyleable:(id<STKPXStyleable>)element
 {
     NSMutableArray *result = [NSMutableArray array];
 
     if (element)
     {
         NSArray *candidateRuleSets = [self ruleSetsForStyleable:element];
-        DDLogDebug(@"%@ = %lu", [PXStyleUtils descriptionForStyleable:element], (unsigned long)candidateRuleSets.count);
+        DDLogDebug(@"%@ = %lu", [STKPXStyleUtils descriptionForStyleable:element], (unsigned long)candidateRuleSets.count);
 
         for (STKPXRuleSet *ruleSet in candidateRuleSets)
         {
             if ([ruleSet matches:element])
             {
-                DDLogInfo(@"%@ matched\n%@", [PXStyleUtils descriptionForStyleable:element], ruleSet.description);
+                DDLogInfo(@"%@ matched\n%@", [STKPXStyleUtils descriptionForStyleable:element], ruleSet.description);
 
                 [result addObject:ruleSet];
             }
@@ -337,24 +337,24 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
 #pragma mark - Static private methods
 
-+ (void)assignCurrentStylesheet:(STKPXStylesheet *)sheet withOrigin:(PXStylesheetOrigin)anOrigin
++ (void)assignCurrentStylesheet:(STKPXStylesheet *)sheet withOrigin:(STKPXStylesheetOrigin)anOrigin
 {
     switch (anOrigin)
     {
-        case PXStylesheetOriginApplication:
+        case STKPXStylesheetOriginApplication:
             currentApplicationStylesheet = sheet;
             break;
 
-        case PXStylesheetOriginUser:
+        case STKPXStylesheetOriginUser:
             currentUserStylesheet = sheet;
             break;
 
-        case PXStylesheetOriginView:
+        case STKPXStylesheetOriginView:
             currentViewStylesheet = sheet;
             break;
 
-        case PXStylesheetOriginInline:
-            // this origin type should never be handled here, but in PXStyleController directly
+        case STKPXStylesheetOriginInline:
+            // this origin type should never be handled here, but in STKPXStyleController directly
             break;
     }
 }

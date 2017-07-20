@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUITableViewDelegate.m
+//  STKPXUITableViewDelegate.m
 //  Pixate
 //
 //  Created by Paul Colton on 11/24/13.
@@ -24,9 +24,9 @@
 
 #import "STKPXUITableViewDelegate.h"
 #import <objc/runtime.h>
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXUITableViewCell.h"
 #import "STKPXUITableViewHeaderFooterView.h"
 #import "STKPXProxy.h"
@@ -40,7 +40,7 @@
     // Apparently we need to do this because at times, we get normal cells here.
     if([UIView subclassIfNeeded:[STKPXUITableViewHeaderFooterView class] object:view] == YES)
     {
-        view.styleMode = PXStylingNormal;
+        view.styleMode = STKPXStylingNormal;
     }
     
     [view updateStyles];
@@ -51,7 +51,7 @@
     // Apparently we need to do this because at times, we get normal cells here.
     if([UIView subclassIfNeeded:[STKPXUITableViewHeaderFooterView class] object:view] == YES)
     {
-        view.styleMode = PXStylingNormal;
+        view.styleMode = STKPXStylingNormal;
     }
     
     [view updateStyles];
@@ -61,7 +61,7 @@
 {
     if([UIView subclassIfNeeded:[STKPXUITableViewCell class] object:cell] == YES)
     {
-        cell.styleMode = PXStylingNormal;
+        cell.styleMode = STKPXStylingNormal;
     }
     
     [STKPXStyleUtils setItemIndex:indexPath forObject:cell];
@@ -82,16 +82,16 @@
  */
 //- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 //{
-//    NSLog(@"numberOfRowsInSection: %@", [((PXProxy *)tableView.dataSource) baseObject]);
+//    NSLog(@"numberOfRowsInSection: %@", [((STKPXProxy *)tableView.dataSource) baseObject]);
 //    
-//    return [[((PXProxy *)tableView.dataSource) baseObject] tableView:tableView numberOfRowsInSection:section];
+//    return [[((STKPXProxy *)tableView.dataSource) baseObject] tableView:tableView numberOfRowsInSection:section];
 //}
 //
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //{
-//    NSLog(@"cellForRowAtIndexPath: %@", [((PXProxy *)tableView.dataSource) baseObject]);
+//    NSLog(@"cellForRowAtIndexPath: %@", [((STKPXProxy *)tableView.dataSource) baseObject]);
 //
-//    return [[((PXProxy *)tableView.dataSource) baseObject] tableView:tableView cellForRowAtIndexPath:indexPath];
+//    return [[((STKPXProxy *)tableView.dataSource) baseObject] tableView:tableView cellForRowAtIndexPath:indexPath];
 //}
 
 //
@@ -99,7 +99,7 @@
 //
 //-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 //{
-//    NSString *title = [[((PXProxy *) tableView.dataSource) baseObject] tableView:tableView
+//    NSString *title = [[((STKPXProxy *) tableView.dataSource) baseObject] tableView:tableView
 //                                                         titleForHeaderInSection:section];
 //
 //    return title;

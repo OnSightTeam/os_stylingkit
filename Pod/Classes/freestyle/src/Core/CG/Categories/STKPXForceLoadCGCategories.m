@@ -15,7 +15,7 @@
  */
 
 //
-//  PXForceLoadCGCategories.m
+//  STKPXForceLoadCGCategories.m
 //  Pixate
 //
 //  Created by Paul Colton on 12/10/13.
@@ -24,11 +24,11 @@
 
 #import "STKPXForceLoadCGCategories.h"
 
-extern void PXForceLoadUIColorPXColor();
+extern void STKPXForceLoadUIColorPXColor();
 
 @implementation STKPXForceLoadCGCategories
 +(void)forceLoad
 {
-    PXForceLoadUIColorPXColor();
+    STKPXForceLoadUIColorPXColor();
 }
 @end

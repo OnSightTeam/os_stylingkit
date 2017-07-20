@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUITextView.m
+//  STKPXUITextView.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 10/10/12.
@@ -25,9 +25,9 @@
 #import "STKPXUITextView.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 
 #import "STKPXOpacityStyler.h"
 #import "STKPXFontStyler.h"
@@ -199,18 +199,18 @@ static const char STYLE_CHILDREN;
 }
 
 // Px Wrapped Only
-PX_PXWRAP_PROP(CALayer, layer);
-PX_PXWRAP_1(setText, text);
-PX_PXWRAP_1(setAttributedText, text);
+STKPX_PXWRAP_PROP(CALayer, layer);
+STKPX_PXWRAP_1(setText, text);
+STKPX_PXWRAP_1(setAttributedText, text);
 
 // Ti Wrapped
-PX_WRAP_1(setTextColor, color);
-PX_WRAP_1(setFont, font);
-PX_WRAP_1(setBackgroundColor, color);
-PX_WRAP_1v(setTextAlignment, NSTextAlignment, alignment);
+STKPX_WRAP_1(setTextColor, color);
+STKPX_WRAP_1(setFont, font);
+STKPX_WRAP_1(setBackgroundColor, color);
+STKPX_WRAP_1v(setTextAlignment, NSTextAlignment, alignment);
 
-PX_WRAP_1s(setContentSize,   CGSize,       size);
-PX_WRAP_1s(setContentOffset, CGPoint,      size);
-PX_WRAP_1s(setContentInset,  UIEdgeInsets, insets);
+STKPX_WRAP_1s(setContentSize,   CGSize,       size);
+STKPX_WRAP_1s(setContentOffset, CGPoint,      size);
+STKPX_WRAP_1s(setContentInset,  UIEdgeInsets, insets);
 
 @end

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUISlider.h
+//  STKPXUISlider.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -32,14 +32,14 @@
  *
  *  UISlider supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXAnimationStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXAnimationStyler
  *
  *  UISlider adds support for the following children:
  *
@@ -59,8 +59,8 @@
  *  UISlider min-track supports the following properties:
  *
  *  - color: <color>
- *  - PXFillStyler
- *  - PXBorderStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
  *
  *  UISlider max-track supports the following pseudo-class states:
  *
@@ -72,22 +72,22 @@
  *  UISlider max-track supports the following properties:
  *
  *  - color: <color>
- *  - PXFillStyler
- *  - PXBorderStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
  *
  *  UISlider min-value supports the following properties:
  *
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *
  *  UISlider max-value supports the following properties:
  *
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *
  *  UISlider thumb supports the following pseudo-class states:
  *
@@ -99,10 +99,10 @@
  *  UISlider thumb supports the following properties:
  *
  *  - color: <color>
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *
  */
 

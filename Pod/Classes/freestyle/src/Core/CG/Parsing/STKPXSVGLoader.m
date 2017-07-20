@@ -15,7 +15,7 @@
  */
 
 //
-//  PXSVGLoader.m
+//  STKPXSVGLoader.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -26,8 +26,8 @@
 #import "STKPXSVGLoader.h"
 #import "STKPXTransformParser.h"
 #import "STKPXValueParser.h"
-#import "PXGraphics.h"
-#import "NSScanner+PXFloat.h"
+#import "STKPXGraphics.h"
+#import "NSScanner+STKPXFloat.h"
 #import "PixateFreestyle.h"
 
 @implementation STKPXSVGLoader
@@ -39,8 +39,8 @@
     STKPXGradient *currentGradient;
     NSMutableDictionary *gradients;
     NSDictionary *alignTypes;
-#ifdef PXTEXT_SUPPORT
-    PXText *currentTextElement;
+#ifdef STKPXTEXT_SUPPORT
+    STKPXText *currentTextElement;
 #endif
 }
 
@@ -74,7 +74,7 @@ static STKPXValueParser *VALUE_PARSER;
 
 #pragma mark - Static Methods
 
-+ (PXShapeDocument *) loadFromURL:(NSURL *)URL
++ (STKPXShapeDocument *) loadFromURL:(NSURL *)URL
 {
     NSData *data = [NSData dataWithContentsOfURL:URL];
 
@@ -106,7 +106,7 @@ static STKPXValueParser *VALUE_PARSER;
     return document;
 }
 
-+ (PXShapeDocument *) loadFromData:(NSData *)data
++ (STKPXShapeDocument *) loadFromData:(NSData *)data
 {
     // create and init NSXMLParser object
     NSXMLParser *nsXmlParser = [[NSXMLParser alloc] initWithData:data];
@@ -447,19 +447,19 @@ didStartElement:(NSString *)elementName
         NSString *gradientUnits = attributeDict[@"gradientUnits"];
         CGAffineTransform transform = [self transformFromString:attributeDict[@"gradientTransform"]];
 
-        PXLinearGradient *gradient = [[PXLinearGradient alloc] init];
+        STKPXLinearGradient *gradient = [[STKPXLinearGradient alloc] init];
         gradient.p1 = CGPointMake(x1, y1);
         gradient.p2 = CGPointMake(x2, y2);
         gradient.transform = transform;
 
         if ([@"userSpaceOnUse" isEqualToString:gradientUnits])
         {
-            gradient.gradientUnits = PXGradientUnitsUserSpace;
+            gradient.gradientUnits = STKPXGradientUnitsUserSpace;
         }
         else
         {
             // assume all non-valid values in addition to "objectBoundingBox" mean bounding box
-            gradient.gradientUnits = PXGradientUnitsBoundingBox;
+            gradient.gradientUnits = STKPXGradientUnitsBoundingBox;
         }
 
         currentGradient = gradient;
@@ -492,12 +492,12 @@ didStartElement:(NSString *)elementName
 
         if ([@"userSpaceOnUse" isEqualToString:gradientUnits])
         {
-            gradient.gradientUnits = PXGradientUnitsUserSpace;
+            gradient.gradientUnits = STKPXGradientUnitsUserSpace;
         }
         else
         {
             // assume all non-valid values in addition to "objectBoundingBox" mean bounding box
-            gradient.gradientUnits = PXGradientUnitsBoundingBox;
+            gradient.gradientUnits = STKPXGradientUnitsBoundingBox;
         }
 
         if (fxString && fyString)
@@ -570,11 +570,11 @@ didStartElement:(NSString *)elementName
 
 - (void)startTextElement:(NSDictionary *)attributeDict
 {
-#ifdef PXTEXT_SUPPORT
+#ifdef STKPXTEXT_SUPPORT
     CGFloat x = [self numberFromString:[attributeDict objectForKey:@"x"]];
     CGFloat y = [self numberFromString:[attributeDict objectForKey:@"y"]];
 
-    PXText *text = [[PXText alloc] init];
+    STKPXText *text = [[STKPXText alloc] init];
 
     text.origin = CGPointMake(x, y);
 
@@ -646,7 +646,7 @@ didStartElement:(NSString *)elementName
 
 - (void)endTextElement
 {
-#ifdef PXTEXT_SUPPORT
+#ifdef STKPXTEXT_SUPPORT
     // TODO: grab accumulated text and assigned to text element
     currentTextElement.text = @"Professional!";
     currentTextElement = nil;
@@ -864,9 +864,9 @@ didStartElement:(NSString *)elementName
     return [[STKPXPolygon alloc] initWithPoints:points];
 }
 
-- (id<PXPaint>)paintFromString:(NSString *)attributeValue withOpacityString:(NSString *)opacityValue
+- (id<STKPXPaint>)paintFromString:(NSString *)attributeValue withOpacityString:(NSString *)opacityValue
 {
-    id<PXPaint> paint = nil;
+    id<STKPXPaint> paint = nil;
 
     if (attributeValue)
     {
@@ -900,7 +900,7 @@ didStartElement:(NSString *)elementName
 
             if (color)
             {
-                paint = [[PXSolidPaint alloc] initWithColor:color];
+                paint = [[STKPXSolidPaint alloc] initWithColor:color];
             }
             */
         }
@@ -915,7 +915,7 @@ didStartElement:(NSString *)elementName
 
     if (attributeValue)
     {
-        if ([attributeValue hasSuffix:@"px"])
+        if ([attributeValue hasSuffix:@"STKPX"])
         {
             number = [attributeValue substringToIndex:attributeValue.length - 2].floatValue;
         }

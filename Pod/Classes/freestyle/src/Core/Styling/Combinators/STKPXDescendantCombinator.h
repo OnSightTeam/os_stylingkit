@@ -15,7 +15,7 @@
  */
 
 //
-//  PXDescendentCombinator.h
+//  STKPXDescendentCombinator.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 9/25/12.
@@ -26,7 +26,7 @@
 #import "STKPXCombinatorBase.h"
 
 /**
- *  PXDescendantCombinator implements the descendant combinator. This combinator requires that its selector on its
+ *  STKPXDescendantCombinator implements the descendant combinator. This combinator requires that its selector on its
  *  right-hand side must match as a descendant of what matches its left-hand selector.
  */
 @interface STKPXDescendantCombinator : STKPXCombinatorBase

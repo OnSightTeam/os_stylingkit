@@ -15,7 +15,7 @@
  */
 
 //
-//  PXKeyframeAnimation.h
+//  STKPXKeyframeAnimation.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 3/28/13.
@@ -34,13 +34,13 @@
 @property (nonatomic) NSArray *values;
 @property (nonatomic) NSArray *keyTimes;
 @property (nonatomic) NSArray *timingFunctions;
-@property (nonatomic) PXAnimationFillMode fillMode;
+@property (nonatomic) STKPXAnimationFillMode fillMode;
 @property (nonatomic) NSUInteger repeatCount;
 
 @property (nonatomic) CAKeyframeAnimation *caKeyframeAnimation;
 
 - (void)addValue:(id)value;
 - (void)addKeyTime:(CGFloat)keyTime;
-- (void)addTimingFunction:(PXAnimationTimingFunction)timingFunction;
+- (void)addTimingFunction:(STKPXAnimationTimingFunction)timingFunction;
 
 @end

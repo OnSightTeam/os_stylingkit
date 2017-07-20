@@ -15,7 +15,7 @@
  */
 
 //
-//  PXGenericStyler.h
+//  STKPXGenericStyler.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,14 +23,14 @@
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
 
-#import "PXStylerBase.h"
+#import "STKPXStylerBase.h"
 
-@interface STKPXGenericStyler : PXStylerBase
+@interface STKPXGenericStyler : STKPXStylerBase
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithCompletionBlock:(PXStylerCompletionBlock)block NS_UNAVAILABLE;
+- (instancetype)initWithCompletionBlock:(STKPXStylerCompletionBlock)block NS_UNAVAILABLE;
 
 - (instancetype)initWithHandlers:(NSDictionary *)handlers;
-- (instancetype)initWithHandlers:(NSDictionary *)handlers completionBlock:(PXStylerCompletionBlock)block NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithHandlers:(NSDictionary *)handlers completionBlock:(STKPXStylerCompletionBlock)block NS_DESIGNATED_INITIALIZER;
 
 @end

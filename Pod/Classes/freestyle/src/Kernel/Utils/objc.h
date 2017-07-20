@@ -20,8 +20,8 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#ifndef PXStyleKit_objc_h
-#define PXStyleKit_objc_h
+#ifndef STKPXStyleKit_objc_h
+#define STKPXStyleKit_objc_h
 
 #ifdef __OBJC__
 #import <objc/runtime.h>

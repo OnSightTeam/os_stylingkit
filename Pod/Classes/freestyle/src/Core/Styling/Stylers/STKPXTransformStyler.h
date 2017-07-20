@@ -15,20 +15,20 @@
  */
 
 //
-//  PXTransformStyler.h
+//  STKPXTransformStyler.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/17/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXStylerBase.h"
+#import "STKPXStylerBase.h"
 
 /**
  *  - transform: <transform>+
  */
 
-@interface STKPXTransformStyler : PXStylerBase
+@interface STKPXTransformStyler : STKPXStylerBase
 
 + (STKPXTransformStyler *)sharedInstance;
 

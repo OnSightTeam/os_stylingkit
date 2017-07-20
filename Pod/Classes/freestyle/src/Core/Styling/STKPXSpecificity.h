@@ -15,7 +15,7 @@
  */
 
 //
-//  PXSpecificity.h
+//  STKPXSpecificity.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -26,10 +26,10 @@
 #import <Foundation/Foundation.h>
 
 /**
- *  The PXSpecificityType enumeration defines a list of specificity levels for rule sets based on the rule sets
+ *  The STKPXSpecificityType enumeration defines a list of specificity levels for rule sets based on the rule sets
  *  selector
  */
-typedef NS_ENUM(unsigned int, PXSpecificityType)
+typedef NS_ENUM(unsigned int, STKPXSpecificityType)
 {
     kSpecificityTypeOrigin,
     kSpecificityTypeId,
@@ -38,7 +38,7 @@ typedef NS_ENUM(unsigned int, PXSpecificityType)
 };
 
 /**
- *  A PXSpecificity represents an order lists of specificities based on specificity type. Instances of this class are
+ *  A STKPXSpecificity represents an order lists of specificities based on specificity type. Instances of this class are
  *  used to determine the specificity of declarations in order to derive a list of declarations to apply given a set of
  *  rule sets being applied to a given element.
  */
@@ -46,9 +46,9 @@ typedef NS_ENUM(unsigned int, PXSpecificityType)
 
 /**
  *  Compare the current specificity to another, returning a CFComparisonResult. This is used to sort arrays of
- *  items with specificity, typically PXRuleSets
+ *  items with specificity, typically STKPXRuleSets
  *
- *  @param specificity The other PXSpecificity to compare against
+ *  @param specificity The other STKPXSpecificity to compare against
  */
 - (NSComparisonResult)compareSpecificity:(STKPXSpecificity *)specificity;
 
@@ -57,7 +57,7 @@ typedef NS_ENUM(unsigned int, PXSpecificityType)
  *
  *  @param specificity The specificity type being incremented
  */
-- (void)incrementSpecifity:(PXSpecificityType)specificity;
+- (void)incrementSpecifity:(STKPXSpecificityType)specificity;
 
 /**
  *  Set the specificity counter for a given specificity type
@@ -65,6 +65,6 @@ typedef NS_ENUM(unsigned int, PXSpecificityType)
  *  @param specificity The specificity type being set
  *  @param value The new value
  */
-- (void)setSpecificity:(PXSpecificityType)specificity toValue:(int)value;
+- (void)setSpecificity:(STKPXSpecificityType)specificity toValue:(int)value;
 
 @end

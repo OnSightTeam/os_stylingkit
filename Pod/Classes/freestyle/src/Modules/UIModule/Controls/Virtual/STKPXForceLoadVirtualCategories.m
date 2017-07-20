@@ -15,7 +15,7 @@
  */
 
 //
-//  PXForceLoadVirtualCategories.m
+//  STKPXForceLoadVirtualCategories.m
 //  Pixate
 //
 //  Created by Paul Colton on 12/10/13.
@@ -24,18 +24,18 @@
 
 #import "STKPXForceLoadVirtualCategories.h"
 
-extern void PXForceLoadUIBarItemPXStyling();
-extern void PXForceLoadUIBarButtonItemPXStyling();
-extern void PXForceLoadUITabBarItemPXStyling();
-extern void PXForceLoadUINavigationItemPXStyling();
+extern void STKPXForceLoadUIBarItemPXStyling();
+extern void STKPXForceLoadUIBarButtonItemPXStyling();
+extern void STKPXForceLoadUITabBarItemPXStyling();
+extern void STKPXForceLoadUINavigationItemPXStyling();
 
 @implementation STKPXForceLoadVirtualCategories
 
 +(void)forceLoad
 {
-    PXForceLoadUIBarItemPXStyling();
-    PXForceLoadUIBarButtonItemPXStyling();
-    PXForceLoadUITabBarItemPXStyling();
-    PXForceLoadUINavigationItemPXStyling();
+    STKPXForceLoadUIBarItemPXStyling();
+    STKPXForceLoadUIBarButtonItemPXStyling();
+    STKPXForceLoadUITabBarItemPXStyling();
+    STKPXForceLoadUINavigationItemPXStyling();
 }
 @end

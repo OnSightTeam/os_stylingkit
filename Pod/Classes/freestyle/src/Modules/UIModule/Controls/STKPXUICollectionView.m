@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUICollectionView.m
+//  STKPXUICollectionView.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -26,9 +26,9 @@
 #import "STKPXUICollectionView.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXOpacityStyler.h"
 #import "STKPXLayoutStyler.h"
 #import "STKPXTransformStyler.h"
@@ -43,34 +43,34 @@
 #import "STKPXGenericStyler.h"
 
 #import "STKPXProxy.h"
-#import "NSObject+PXSubclass.h"
+#import "NSObject+STKPXSubclass.h"
 #import "STKPXUICollectionViewDelegate.h"
-#import "NSObject+PXSwizzle.h"
+#import "NSObject+STKPXSwizzle.h"
 
-static const char PX_DELEGATE; // the new delegate (and datasource)
-static const char PX_DELEGATE_PROXY; // the proxy for the old delegate
-static const char PX_DATASOURCE_PROXY; // the proxy for the old datasource
+static const char STKPX_DELEGATE; // the new delegate (and datasource)
+static const char STKPX_DELEGATE_PROXY; // the proxy for the old delegate
+static const char STKPX_DATASOURCE_PROXY; // the proxy for the old datasource
 
-@implementation UICollectionView (PXFreestyle)
+@implementation UICollectionView (STKPXFreestyle)
 
 + (void)initialize
 {
     if (self != UICollectionView.class)
         return;
     
-    [self swizzleMethod:@selector(setDelegate:) withMethod:@selector(px_setDelegate:)];
-    [self swizzleMethod:@selector(setDataSource:) withMethod:@selector(px_setDataSource:)];
+    [self swizzleMethod:@selector(setDelegate:) withMethod:@selector(STKPX_setDelegate:)];
+    [self swizzleMethod:@selector(setDataSource:) withMethod:@selector(STKPX_setDataSource:)];
 }
 
 -(void)px_setDelegate:(id<UICollectionViewDelegate>)delegate
 {
-    id proxy = [self stk_makeProxyFor:delegate withAssocObjectAddress:&PX_DELEGATE_PROXY];
+    id proxy = [self stk_makeProxyFor:delegate withAssocObjectAddress:&STKPX_DELEGATE_PROXY];
     [self px_setDelegate:proxy];
 }
 
 -(void)px_setDataSource:(id<UICollectionViewDataSource>)dataSource
 {
-    id proxy = [self stk_makeProxyFor:dataSource withAssocObjectAddress:&PX_DATASOURCE_PROXY];
+    id proxy = [self stk_makeProxyFor:dataSource withAssocObjectAddress:&STKPX_DATASOURCE_PROXY];
     [self px_setDataSource:proxy];
 }
 
@@ -89,13 +89,13 @@ static const char PX_DATASOURCE_PROXY; // the proxy for the old datasource
 
 - (STKPXUICollectionViewDelegate *)pxDelegate
 {
-    STKPXUICollectionViewDelegate *delegate = objc_getAssociatedObject(self, &PX_DELEGATE);
+    STKPXUICollectionViewDelegate *delegate = objc_getAssociatedObject(self, &STKPX_DELEGATE);
 
     if(delegate == nil)
     {
         delegate = [[STKPXUICollectionViewDelegate alloc] init];
         delegate.collectionView = self;
-        objc_setAssociatedObject(self, &PX_DELEGATE, delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, &STKPX_DELEGATE, delegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 
     return delegate;
@@ -104,7 +104,7 @@ static const char PX_DATASOURCE_PROXY; // the proxy for the old datasource
 @end
 
 //
-// PXUICollectionView
+// STKPXUICollectionView
 //
 
 @implementation STKPXUICollectionView
@@ -217,14 +217,14 @@ static const char PX_DATASOURCE_PROXY; // the proxy for the old datasource
 #pragma mark - Wrappers
 
 // Px Wrapped Only
-PX_PXWRAP_PROP(CALayer, layer);
+STKPX_PXWRAP_PROP(CALayer, layer);
 
 // Ti Wrapped
-PX_WRAP_PROP(UIView, backgroundView);
+STKPX_WRAP_PROP(UIView, backgroundView);
 
-PX_WRAP_1(setBackgroundColor, color);
-PX_WRAP_1(setBackgroundView, view);
+STKPX_WRAP_1(setBackgroundColor, color);
+STKPX_WRAP_1(setBackgroundView, view);
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE_RECURSIVE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE_RECURSIVE
 
 @end

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUISwitch.m
+//  STKPXUISwitch.m
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -25,9 +25,9 @@
 #import "STKPXUISwitch.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXDeclaration.h"
 #import "STKPXVirtualStyleableControl.h"
 #import "STKPXUtils.h"
@@ -184,17 +184,17 @@ static char const STYLE_CHILDREN;
 }
 
 // Px Wrapped Only
-PX_PXWRAP_PROP(CALayer, layer);
+STKPX_PXWRAP_PROP(CALayer, layer);
 
 // Ti Wrapped
-PX_WRAP_1(setOnImage, image);
-PX_WRAP_1(setOffImage, image);
-PX_WRAP_1(setTintColor, color);
-PX_WRAP_1(setThumbTintColor, color);
-PX_WRAP_1(setOnTintColor, color);
-PX_WRAP_1(setBackgroundColor, color);
+STKPX_WRAP_1(setOnImage, image);
+STKPX_WRAP_1(setOffImage, image);
+STKPX_WRAP_1(setTintColor, color);
+STKPX_WRAP_1(setThumbTintColor, color);
+STKPX_WRAP_1(setOnTintColor, color);
+STKPX_WRAP_1(setBackgroundColor, color);
 
 // Styling
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end

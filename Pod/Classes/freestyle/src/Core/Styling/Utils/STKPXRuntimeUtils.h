@@ -15,7 +15,7 @@
  */
 
 //
-//  PXRuntimeUtils.h
+//  STKPXRuntimeUtils.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 3/20/13.

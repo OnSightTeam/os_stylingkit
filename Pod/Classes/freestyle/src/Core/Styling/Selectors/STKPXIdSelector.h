@@ -15,7 +15,7 @@
  */
 
 //
-//  PXIdSelector.h
+//  STKPXIdSelector.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 7/9/12.
@@ -23,10 +23,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXSelector.h"
+#import "STKPXSelector.h"
 
 /**
- *  A PXIdExpression determines if an element defines an id attribute if it its value matches a specific string.
+ *  A STKPXIdExpression determines if an element defines an id attribute if it its value matches a specific string.
  */
 @interface STKPXIdSelector : NSObject <STKPXSelector>
 

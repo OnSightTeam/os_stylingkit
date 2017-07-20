@@ -97,11 +97,11 @@ STK_DEFINE_CLASS_LOG_LEVEL;
             }
         }
 
-        [UIView appearanceWhenContainedIn:[UIDatePicker class], [STK_UIAlertControllerView targetSuperclass], nil].styleMode = PXStylingNone;
+        [UIView appearanceWhenContainedIn:[UIDatePicker class], [STK_UIAlertControllerView targetSuperclass], nil].styleMode = STKPXStylingNone;
 
 
         // Set default styling mode of any UIView to 'normal' (i.e. stylable)
-        [UIView appearance].styleMode = PXStylingNormal;
+        [UIView appearance].styleMode = STKPXStylingNormal;
     }
 }
 

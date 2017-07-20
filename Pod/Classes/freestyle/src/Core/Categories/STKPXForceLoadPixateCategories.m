@@ -15,7 +15,7 @@
  */
 
 //
-//  PXForceLoadPixateCategories.m
+//  STKPXForceLoadPixateCategories.m
 //  Pixate
 //
 //  Created by Paul Colton on 12/10/13.
@@ -24,17 +24,17 @@
 
 #import "STKPXForceLoadPixateCategories.h"
 
-extern void PXForceLoadQueueAdditions();
-extern void PXForceLoadStackAdditions();
-extern void PXForceLoadNSScannerPXFloat();
+extern void STKPXForceLoadQueueAdditions();
+extern void STKPXForceLoadStackAdditions();
+extern void STKPXForceLoadNSScannerPXFloat();
 
 @implementation STKPXForceLoadPixateCategories
 
 +(void)forceLoad
 {
-    PXForceLoadQueueAdditions();
-    PXForceLoadStackAdditions();
-    PXForceLoadNSScannerPXFloat();
+    STKPXForceLoadQueueAdditions();
+    STKPXForceLoadStackAdditions();
+    STKPXForceLoadNSScannerPXFloat();
 }
 
 @end

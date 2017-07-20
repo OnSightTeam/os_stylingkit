@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIWindow.m
+//  STKPXUIWindow.m
 //  Pixate
 //
 //  Created by Paul Colton on 8/27/13.
@@ -24,12 +24,12 @@
 
 #import "STKPXUIWindow.h"
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
 #import "STKPXViewUtils.h"
 #import "STKPXPaintStyler.h"
 
-#import "PXStylingMacros.h"
+#import "STKPXStylingMacros.h"
 
 @implementation STKPXUIWindow
 
@@ -68,6 +68,6 @@
 }
 
 // Styling
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end

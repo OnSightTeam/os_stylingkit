@@ -15,7 +15,7 @@
  */
 
 //
-//  PXRectangle.m
+//  STKPXRectangle.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,7 +24,7 @@
 //
 
 #import "STKPXRectangle.h"
-#import "PXEllipticalArc.h"
+#import "STKPXEllipticalArc.h"
 
 @implementation STKPXRectangle
 

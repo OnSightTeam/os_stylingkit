@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIPageControl.m
+//  STKPXUIPageControl.m
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -25,9 +25,9 @@
 #import "STKPXUIPageControl.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXUtils.h"
 
 #import "STKPXOpacityStyler.h"
@@ -118,13 +118,13 @@
 }
 
 // Px Wrapped Only
-PX_PXWRAP_PROP(CALayer, layer);
+STKPX_PXWRAP_PROP(CALayer, layer);
 
 // Ti Wrapped
-PX_WRAP_1(setBackgroundColor, color);
-PX_WRAP_1(setPageIndicatorTintColor, color);
-PX_WRAP_1(setCurrentPageIndicatorTintColor, color);
+STKPX_WRAP_1(setBackgroundColor, color);
+STKPX_WRAP_1(setPageIndicatorTintColor, color);
+STKPX_WRAP_1(setCurrentPageIndicatorTintColor, color);
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXDimension.h
+//  STKPXDimension.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -28,7 +28,7 @@
 /**
  *  An enumeration indicating a dimension type
  */
-typedef NS_ENUM(unsigned int, PXDimensionType)
+typedef NS_ENUM(unsigned int, STKPXDimensionType)
 {
     kDimensionTypeEms,
     kDimensionTypeExs,
@@ -51,7 +51,7 @@ typedef NS_ENUM(unsigned int, PXDimensionType)
 };
 
 /**
- *  PXDimension is used to associate a dimensions with a float. Methods are included to inquire into the general
+ *  STKPXDimension is used to associate a dimensions with a float. Methods are included to inquire into the general
  *  category of the dimension (length, angle, time, etc.). Some conversions between dimensions is included.
  */
 @interface STKPXDimension : NSObject
@@ -67,14 +67,14 @@ typedef NS_ENUM(unsigned int, PXDimensionType)
 @property (readonly, nonatomic, strong) NSString *dimension;
 
 /**
- *  The dimension type of this dimension as defined in the PXSSDimensionType enumeration. If this value is
+ *  The dimension type of this dimension as defined in the STKPXSSDimensionType enumeration. If this value is
  *  kDimensionTypeUserDefined, then dimension will be defined, incidating the string value used when creating this
  *  instance.
  */
-@property (readonly, nonatomic) PXDimensionType type;
+@property (readonly, nonatomic) STKPXDimensionType type;
 
 /**
- *  Allocate and initialize a new PXDimension using the given number and dimension
+ *  Allocate and initialize a new STKPXDimension using the given number and dimension
  *
  *  @param number The dimension's scalar value
  *  @param dimension The dimension units as a string
@@ -122,19 +122,19 @@ typedef NS_ENUM(unsigned int, PXDimensionType)
 @property (NS_NONATOMIC_IOSONLY, getter=isUserDefined, readonly) BOOL userDefined;
 
 /**
- *  Return a new PXDimension, converting this instance's value to points. If this instance is not a length, then a zero
+ *  Return a new STKPXDimension, converting this instance's value to points. If this instance is not a length, then a zero
  *  value will be returned.
  */
 @property (NS_NONATOMIC_IOSONLY, readonly, strong) STKPXDimension *points;
 
 /**
- *  Return a new PXDimension, converting this instance's value to degrees. If this instance is not an angle, then a zero
+ *  Return a new STKPXDimension, converting this instance's value to degrees. If this instance is not an angle, then a zero
  *  value will be returned.
  */
 @property (NS_NONATOMIC_IOSONLY, readonly, strong) STKPXDimension *degrees;
 
 /**
- *  Return a new PXDimesion, converting this instance's value to radians. If this instance is not an angle, then a zero
+ *  Return a new STKPXDimesion, converting this instance's value to radians. If this instance is not an angle, then a zero
  *  value will be returned.
  */
 @property (NS_NONATOMIC_IOSONLY, readonly, strong) STKPXDimension *radians;

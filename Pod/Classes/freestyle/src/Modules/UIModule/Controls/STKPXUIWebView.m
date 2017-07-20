@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIWebView.m
+//  STKPXUIWebView.m
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -24,9 +24,9 @@
 
 #import "STKPXUIWebView.h"
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 
 #import "STKPXOpacityStyler.h"
 #import "STKPXLayoutStyler.h"
@@ -72,6 +72,6 @@
     return map;
 }
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIWindow.h
+//  STKPXUIWindow.h
 //  Pixate
 //
 //  Created by Paul Colton on 8/27/13.

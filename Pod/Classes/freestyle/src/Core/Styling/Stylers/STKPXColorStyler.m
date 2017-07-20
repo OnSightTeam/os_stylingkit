@@ -15,7 +15,7 @@
  */
 
 //
-//  PXColorStyler.m
+//  STKPXColorStyler.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 11/3/12.

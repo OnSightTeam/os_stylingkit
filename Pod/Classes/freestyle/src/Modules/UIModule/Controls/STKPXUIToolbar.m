@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIToolbar.m
+//  STKPXUIToolbar.m
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -24,12 +24,12 @@
 
 #import "STKPXUIToolbar.h"
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXVirtualStyleableControl.h"
-#import "UIBarButtonItem+PXStyling.h"
-#import "UIBarButtonItem+PXStyling-Private.h"
+#import "UIBarButtonItem+STKPXStyling.h"
+#import "UIBarButtonItem+STKPXStyling-Private.h"
 #import "STKPXUtils.h"
 
 #import "STKPXOpacityStyler.h"
@@ -97,7 +97,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
                                    
                                    [[STKPXFontStyler alloc] initWithCompletionBlock:[UIBarButtonItem FontStylerCompletionBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]],
                                    
-                                   [[STKPXPaintStyler alloc] initWithCompletionBlock:[UIBarButtonItem PXPaintStylerCompletionBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]],
+                                   [[STKPXPaintStyler alloc] initWithCompletionBlock:[UIBarButtonItem STKPXPaintStylerCompletionBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]],
                                    
                                    [[STKPXGenericStyler alloc] initWithHandlers: @{
                                         @"-ios-tint-color" : [UIBarButtonItem TintColorDeclarationHandlerBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]
@@ -220,13 +220,13 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
     
 }
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
-PX_WRAP_1(setTintColor, color);
-PX_WRAP_1(setBarTintColor, color);
-PX_WRAP_1(setBackgroundColor, color);
-PX_WRAP_1b(setTranslucent, flag);
-PX_WRAP_2v(setShadowImage, image, forToolbarPosition, UIToolbarPosition, position);
-PX_WRAP_3v(setBackgroundImage, image, forToolbarPosition, UIToolbarPosition, position, barMetrics, UIBarMetrics, metrics);
+STKPX_WRAP_1(setTintColor, color);
+STKPX_WRAP_1(setBarTintColor, color);
+STKPX_WRAP_1(setBackgroundColor, color);
+STKPX_WRAP_1b(setTranslucent, flag);
+STKPX_WRAP_2v(setShadowImage, image, forToolbarPosition, UIToolbarPosition, position);
+STKPX_WRAP_3v(setBackgroundImage, image, forToolbarPosition, UIToolbarPosition, position, barMetrics, UIBarMetrics, metrics);
 
 @end

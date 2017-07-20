@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUITextField.m
+//  STKPXUITextField.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -26,9 +26,9 @@
 #import "STKPXUITextField.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXStyleUtils.h"
 #import "STKPXTransitionRuleSetInfo.h"
 #import "STKPXNotificationManager.h"
@@ -59,13 +59,13 @@
 static const char STYLE_CHILDREN;
 static const char STATE_KEY;
 
-// Private PX_PositionCursorDelegate class
-@interface PX_PositionCursorDelegate : NSObject <CAAnimationDelegate>
+// Private STKPX_PositionCursorDelegate class
+@interface STKPX_PositionCursorDelegate : NSObject <CAAnimationDelegate>
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype) initWithTextField:(UITextField *)textField NS_DESIGNATED_INITIALIZER;
 @end
 
-@implementation PX_PositionCursorDelegate
+@implementation STKPX_PositionCursorDelegate
 {
     UITextField *textField_;
 }
@@ -89,7 +89,7 @@ static const char STATE_KEY;
     textField_.selectedTextRange = currentPos;
 }
 @end
-// End PX_PositionCursorDelegate Private class
+// End STKPX_PositionCursorDelegate Private class
 
 static char PADDING;
 
@@ -408,17 +408,17 @@ static NSDictionary *PSEUDOCLASS_MAP;
 // Wrappers
 //
 
-PX_PXWRAP_1(setText, text);
-PX_PXWRAP_1(setPlaceholder, text);
-PX_PXWRAP_1(setAttributedText, text);
-PX_PXWRAP_1(setAttributedPlaceholder, text);
+STKPX_PXWRAP_1(setText, text);
+STKPX_PXWRAP_1(setPlaceholder, text);
+STKPX_PXWRAP_1(setAttributedText, text);
+STKPX_PXWRAP_1(setAttributedPlaceholder, text);
 
-PX_WRAP_1(setTextColor, color);
-PX_WRAP_1(setFont, font);
-PX_WRAP_1(setBackgroundColor, color);
+STKPX_WRAP_1(setTextColor, color);
+STKPX_WRAP_1(setFont, font);
+STKPX_WRAP_1(setBackgroundColor, color);
 
-PX_WRAP_1v(setTextAlignment, NSTextAlignment, alignment);
-PX_WRAP_1v(setBorderStyle, UITextBorderStyle, style);
+STKPX_WRAP_1v(setTextAlignment, NSTextAlignment, alignment);
+STKPX_WRAP_1v(setBorderStyle, UITextBorderStyle, style);
 
 #pragma mark - Getters
 
@@ -438,7 +438,7 @@ PX_WRAP_1v(setBorderStyle, UITextBorderStyle, style);
 // Overrides
 //
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 -(void)setText:(NSString *)text
 {
@@ -534,7 +534,7 @@ PX_LAYOUT_SUBVIEWS_OVERRIDE
             trans.type = kCATransitionFade;
             trans.subtype = kCATransitionFromTop;
             trans.removedOnCompletion = YES;
-            trans.delegate = [[PX_PositionCursorDelegate alloc] initWithTextField:textField];
+            trans.delegate = [[STKPX_PositionCursorDelegate alloc] initWithTextField:textField];
 
             [textField.layer removeAllAnimations];
             [textField.layer addAnimation:trans forKey:@"transition"];

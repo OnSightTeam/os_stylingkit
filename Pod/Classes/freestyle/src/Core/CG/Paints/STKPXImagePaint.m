@@ -15,7 +15,7 @@
  */
 
 //
-//  PXImagePaint.m
+//  STKPXImagePaint.m
 //  Pixate
 //
 //  Modified by Anton Matosov
@@ -123,7 +123,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     return image;
 }
 
-#pragma mark - PXPaint Implementation
+#pragma mark - STKPXPaint Implementation
 
 - (void)applyFillToPath:(CGPathRef)path withContext:(CGContextRef)context
 {
@@ -145,13 +145,13 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     }
 }
 
-- (id<PXPaint>)lightenByPercent:(CGFloat)percent
+- (id<STKPXPaint>)lightenByPercent:(CGFloat)percent
 {
     // TODO:
     return self;
 }
 
-- (id<PXPaint>)darkenByPercent:(CGFloat)percent
+- (id<STKPXPaint>)darkenByPercent:(CGFloat)percent
 {
     // TODO:
     return self;

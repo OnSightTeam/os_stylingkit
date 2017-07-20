@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIPageControl.h
+//  STKPXUIPageControl.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -32,16 +32,16 @@
  *
  *  UIPageControl supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *  - color: <color>            // iOS 6.x only - pageIndicatorTintColor
  *  - current-color: <color>    // iOS 6.x only - currentPageIndicatorTintColor
- *  - PXAnimationStyler
+ *  - STKPXAnimationStyler
  *
  */
 

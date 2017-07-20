@@ -15,7 +15,7 @@
  */
 
 //
-//  PXFontRegistry.m
+//  STKPXFontRegistry.m
 //  Pixate
 //
 //  Modified by Anton Matosov
@@ -26,6 +26,7 @@
 #import "STKPXFontRegistry.h"
 #import "STKPXFontEntry.h"
 #import <CoreText/CTFontManager.h>
+#import <UIKit/UIKit.h>
 
 @implementation STKPXFontRegistry
 
@@ -141,7 +142,7 @@ static NSMutableSet *LOADED_FONTS;
             if (!CTFontManagerRegisterGraphicsFont(font, &error))
             {
                 CFStringRef errorDescription = CFErrorCopyDescription(error);
-                DDLogError(@"Failed to load font: %@", errorDescription);
+                NSLog(@"Failed to load font: %@", errorDescription);
                 CFRelease(errorDescription);
             }
 

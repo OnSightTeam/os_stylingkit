@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIActionSheet.h
+//  STKPXUIActionSheet.h
 //  Pixate
 //
 //  Created by Paul Colton on 12/12/12.
@@ -32,12 +32,12 @@
  *
  *  UIActionSheet supports the following properties:
  *
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXAnimationStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXAnimationStyler
  *
  */
 @interface STKPXUIActionSheet : UIActionSheet

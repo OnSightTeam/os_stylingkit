@@ -15,7 +15,7 @@
  */
 
 //
-//  PXArc.h
+//  STKPXArc.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 9/4/12.
@@ -25,7 +25,7 @@
 #import "STKPXShape.h"
 
 /**
- *  A PXShape subclass used to render arcs
+ *  A STKPXShape subclass used to render arcs
  */
 @interface STKPXArc : STKPXShape
 

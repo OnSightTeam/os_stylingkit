@@ -15,7 +15,7 @@
  */
 
 //
-//  PXTransformTokenType.h
+//  STKPXTransformTokenType.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -26,44 +26,44 @@
 #import <Foundation/Foundation.h>
 
 /**
- *  An enumeration of the PXTransform token types
+ *  An enumeration of the STKPXTransform token types
  */
-typedef NS_ENUM(int, PXTransformTokens)
+typedef NS_ENUM(int, STKPXTransformTokens)
 {
-    PXTransformToken_ERROR = -1,
-    PXTransformToken_EOF,
+    STKPXTransformToken_ERROR = -1,
+    STKPXTransformToken_EOF,
 
-    PXTransformToken_WHITESPACE,
+    STKPXTransformToken_WHITESPACE,
 
-    PXTransformToken_EMS,
-    PXTransformToken_EXS,
-    PXTransformToken_LENGTH,
-    PXTransformToken_ANGLE,
-    PXTransformToken_TIME,
-    PXTransformToken_FREQUENCY,
-    PXTransformToken_PERCENTAGE,
-    PXTransformToken_DIMENSION,
-    PXTransformToken_NUMBER,
+    STKPXTransformToken_EMS,
+    STKPXTransformToken_EXS,
+    STKPXTransformToken_LENGTH,
+    STKPXTransformToken_ANGLE,
+    STKPXTransformToken_TIME,
+    STKPXTransformToken_FREQUENCY,
+    STKPXTransformToken_PERCENTAGE,
+    STKPXTransformToken_DIMENSION,
+    STKPXTransformToken_NUMBER,
 
-    PXTransformToken_LPAREN,
-    PXTransformToken_RPAREN,
-    PXTransformToken_COMMA,
+    STKPXTransformToken_LPAREN,
+    STKPXTransformToken_RPAREN,
+    STKPXTransformToken_COMMA,
 
-    PXTransformToken_TRANSLATE,
-    PXTransformToken_TRANSLATEX,
-    PXTransformToken_TRANSLATEY,
-    PXTransformToken_SCALE,
-    PXTransformToken_SCALEX,
-    PXTransformToken_SCALEY,
-    PXTransformToken_SKEW,
-    PXTransformToken_SKEWX,
-    PXTransformToken_SKEWY,
-    PXTransformToken_ROTATE,
-    PXTransformToken_MATRIX
+    STKPXTransformToken_TRANSLATE,
+    STKPXTransformToken_TRANSLATEX,
+    STKPXTransformToken_TRANSLATEY,
+    STKPXTransformToken_SCALE,
+    STKPXTransformToken_SCALEX,
+    STKPXTransformToken_SCALEY,
+    STKPXTransformToken_SKEW,
+    STKPXTransformToken_SKEWX,
+    STKPXTransformToken_SKEWY,
+    STKPXTransformToken_ROTATE,
+    STKPXTransformToken_MATRIX
 };
 
 /**
- *  A singleton class used to represent a PXTransform token type
+ *  A singleton class used to represent a STKPXTransform token type
  */
 @interface STKPXTransformTokenType : NSObject
 
@@ -72,6 +72,6 @@ typedef NS_ENUM(int, PXTransformTokens)
  *
  *  @param type The value of the enumeration to convert to a string
  */
-+ (NSString *)typeNameForInt:(PXTransformTokens)type;
++ (NSString *)typeNameForInt:(STKPXTransformTokens)type;
 
 @end

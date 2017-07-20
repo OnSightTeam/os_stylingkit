@@ -15,7 +15,7 @@
  */
 
 //
-//  PXWordMatcher.m
+//  STKPXWordMatcher.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -61,7 +61,7 @@
     return self;
 }
 
-#pragma mark - PXSLexemeCreator implementation
+#pragma mark - STKPXSLexemeCreator implementation
 
 - (STKPXStylesheetLexeme *)createLexemeWithString:(NSString *)aString withRange:(NSRange)aRange
 {

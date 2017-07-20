@@ -25,7 +25,7 @@
 
 #import "NSArray+Reverse.h"
 
-void PXForceLoadNSArrayReverse() {}
+void STKPXForceLoadNSArrayReverse() {}
 
 @implementation NSArray (Reverse)
 

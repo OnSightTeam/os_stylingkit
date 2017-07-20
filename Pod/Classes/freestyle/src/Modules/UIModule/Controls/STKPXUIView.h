@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIView.h
+//  STKPXUIView.h
 //  Pixate
 //
 //  Created by Paul Colton on 9/13/12.
@@ -36,22 +36,22 @@
  *
  *  UIView supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXAnimationStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXAnimationStyler
  *  - -ios-tint-color: <paint>  // iOS 7 or later
  *
  *  UIView layer supports the following properties:
  *
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *
  */
 @interface STKPXUIView : UIView

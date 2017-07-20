@@ -15,7 +15,7 @@
  */
 
 //
-//  PXMediaExpressionGroup.h
+//  STKPXMediaExpressionGroup.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 1/10/13.
@@ -23,12 +23,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXMediaExpression.h"
+#import "STKPXMediaExpression.h"
 
-@interface STKPXMediaExpressionGroup : NSObject <PXMediaExpression>
+@interface STKPXMediaExpressionGroup : NSObject <STKPXMediaExpression>
 
 @property (nonatomic, readonly, strong) NSArray *expressions;
 
-- (void)addExpression:(id<PXMediaExpression>)expression;
+- (void)addExpression:(id<STKPXMediaExpression>)expression;
 
 @end

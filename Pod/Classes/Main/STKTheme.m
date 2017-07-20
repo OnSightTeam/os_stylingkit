@@ -38,7 +38,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
         _name = name;
         _stylesheetFileName = stylesheetFileName.length ? stylesheetFileName : @"dayTheme";
         _bundle = bundle;
-        _origin = PXStylesheetOriginApplication;
+        _origin = STKPXStylesheetOriginApplication;
     }
 
     return self;
@@ -70,7 +70,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     if (path.length > 0)
     {
         STKPXStylesheet *stylesheet = [STKPXStylesheet styleSheetFromFilePath:path
-                                                             withOrigin:(PXStylesheetOrigin)self.origin];
+                                                             withOrigin:(STKPXStylesheetOrigin)self.origin];
         stylesheet.monitorChanges = YES;
 
         result = YES;

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXOffsets.h
+//  STKPXOffsets.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,6 +24,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface STKPXOffsets : NSObject
 

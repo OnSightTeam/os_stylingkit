@@ -15,7 +15,7 @@
  */
 
 //
-//  PXCircle.h
+//  STKPXCircle.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 5/31/12.
@@ -26,7 +26,7 @@
 #import "STKPXShape.h"
 
 /**
- *  A PXShape sub-class used to render circles
+ *  A STKPXShape sub-class used to render circles
  */
 @interface STKPXCircle : STKPXShape
 

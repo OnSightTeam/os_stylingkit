@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUITableViewCell.m
+//  STKPXUITableViewCell.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -26,9 +26,9 @@
 #import "STKPXUITableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXOpacityStyler.h"
 #import "STKPXTransformStyler.h"
 #import "STKPXVirtualStyleableControl.h"
@@ -55,7 +55,7 @@
 #import "STKPXAttributedTextStyler.h"
 
 
-#import "NSObject+PXSubclass.h"
+#import "NSObject+STKPXSubclass.h"
 #import "STKPXUILabel.h"
 
 static NSDictionary *PSEUDOCLASS_MAP;
@@ -67,8 +67,8 @@ static const char CELL_BACKGROUND_SET;
 static const char TEXT_LABEL_BACKGROUND_SET;
 static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
 
-@interface PXUIImageViewWrapper_UITableViewCell : UIImageView @end
-@implementation PXUIImageViewWrapper_UITableViewCell @end
+@interface STKPXUIImageViewWrapper_UITableViewCell : UIImageView @end
+@implementation STKPXUIImageViewWrapper_UITableViewCell @end
 
 @implementation STKPXUITableViewCell
 
@@ -553,21 +553,21 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
         {
             [self px_setBackgroundColor: [UIColor clearColor]];
             
-            if([self.px_backgroundView isKindOfClass:[PXUIImageViewWrapper_UITableViewCell class]] == NO)
+            if([self.px_backgroundView isKindOfClass:[STKPXUIImageViewWrapper_UITableViewCell class]] == NO)
             {
-                [self px_setBackgroundView: [[PXUIImageViewWrapper_UITableViewCell alloc] initWithImage:context.backgroundImage]];
+                [self px_setBackgroundView: [[STKPXUIImageViewWrapper_UITableViewCell alloc] initWithImage:context.backgroundImage]];
 
                 if([parent isKindOfClass:[UITableView class]] && parent.style == UITableViewStyleGrouped)
                 {
                     // This _shouldn't_ cause a recursive loop as we only ever do it on first
-                    // creation of the PXViewWrapper for the background view. Subsequent stylings
+                    // creation of the STKPXViewWrapper for the background view. Subsequent stylings
                     // should use the cached version and therefore not reach this call.
                     [self setNeedsLayout];
                 }
             }
             else
             {
-                PXUIImageViewWrapper_UITableViewCell *view = (PXUIImageViewWrapper_UITableViewCell *) self.backgroundView;
+                STKPXUIImageViewWrapper_UITableViewCell *view = (STKPXUIImageViewWrapper_UITableViewCell *) self.backgroundView;
                 view.image = context.backgroundImage;
             }
             
@@ -586,13 +586,13 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
         }
         else
         {
-            if([self.px_selectedBackgroundView isKindOfClass:[PXUIImageViewWrapper_UITableViewCell class]] == NO)
+            if([self.px_selectedBackgroundView isKindOfClass:[STKPXUIImageViewWrapper_UITableViewCell class]] == NO)
             {
-                [self px_setSelectedBackgroundView: [[PXUIImageViewWrapper_UITableViewCell alloc] initWithImage:context.backgroundImage]];
+                [self px_setSelectedBackgroundView: [[STKPXUIImageViewWrapper_UITableViewCell alloc] initWithImage:context.backgroundImage]];
             }
             else
             {
-                PXUIImageViewWrapper_UITableViewCell *view = (PXUIImageViewWrapper_UITableViewCell *) self.px_selectedBackgroundView;
+                STKPXUIImageViewWrapper_UITableViewCell *view = (STKPXUIImageViewWrapper_UITableViewCell *) self.px_selectedBackgroundView;
                 view.image = context.backgroundImage;
             }
         }
@@ -605,13 +605,13 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
         }
         else
         {
-            if([self.px_multipleSelectionBackgroundView isKindOfClass:[PXUIImageViewWrapper_UITableViewCell class]] == NO)
+            if([self.px_multipleSelectionBackgroundView isKindOfClass:[STKPXUIImageViewWrapper_UITableViewCell class]] == NO)
             {
                 [self px_setMultipleSelectionBackgroundView: [[UIImageView alloc] initWithImage:context.backgroundImage]];
             }
             else
             {
-                PXUIImageViewWrapper_UITableViewCell *view = (PXUIImageViewWrapper_UITableViewCell *) self.px_multipleSelectionBackgroundView;
+                STKPXUIImageViewWrapper_UITableViewCell *view = (STKPXUIImageViewWrapper_UITableViewCell *) self.px_multipleSelectionBackgroundView;
                 view.image = context.backgroundImage;
             }
         }
@@ -633,15 +633,15 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
 // Weappers
 //
 
-PX_WRAP_PROP(UIView, contentView);
-PX_WRAP_PROP(UIView, backgroundView);
-PX_WRAP_PROP(UIView, selectedBackgroundView);
-PX_WRAP_PROP(UIView, multipleSelectionBackgroundView);
+STKPX_WRAP_PROP(UIView, contentView);
+STKPX_WRAP_PROP(UIView, backgroundView);
+STKPX_WRAP_PROP(UIView, selectedBackgroundView);
+STKPX_WRAP_PROP(UIView, multipleSelectionBackgroundView);
 
-PX_WRAP_1(setBackgroundColor, color);
-PX_WRAP_1(setBackgroundView, view);
-PX_WRAP_1(setSelectedBackgroundView, view);
-PX_WRAP_1(setMultipleSelectionBackgroundView, view);
+STKPX_WRAP_1(setBackgroundColor, color);
+STKPX_WRAP_1(setBackgroundView, view);
+STKPX_WRAP_1(setSelectedBackgroundView, view);
+STKPX_WRAP_1(setMultipleSelectionBackgroundView, view);
 
 
 - (id)pxStyleParent

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXOpacityStyler.h
+//  STKPXOpacityStyler.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/9/12.
@@ -23,12 +23,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXStylerBase.h"
+#import "STKPXStylerBase.h"
 
 /**
  *  - opacity: <number>
  */
-@interface STKPXOpacityStyler : PXStylerBase
+@interface STKPXOpacityStyler : STKPXStylerBase
 
 /*
  * Singleton access

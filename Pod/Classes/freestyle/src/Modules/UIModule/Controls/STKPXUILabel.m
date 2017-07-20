@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUILabel.m
+//  STKPXUILabel.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -25,13 +25,13 @@
 
 #import "STKPXUILabel.h"
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXViewUtils.h"
 #import "STKPXStyleUtils.h"
-#import "NSMutableDictionary+PXObject.h"
-#import "NSDictionary+PXObject.h"
+#import "NSMutableDictionary+STKPXObject.h"
+#import "NSDictionary+STKPXObject.h"
 #import "STKPXUIView.h"
 
 #import "STKPXOpacityStyler.h"
@@ -309,19 +309,19 @@ NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
 
 
 // Px Wrapped Only
-PX_PXWRAP_1(setText, text);
+STKPX_PXWRAP_1(setText, text);
 
 // Ti Wrapped Also
-PX_WRAP_1(setShadowColor, color);
-PX_WRAP_1(setFont, font);
-PX_WRAP_1(setTextColor, color);
-PX_WRAP_1(setHighlightedTextColor, color);
-PX_WRAP_1(setBackgroundColor, color);
-PX_WRAP_1s(setShadowOffset, CGSize, offset);
-PX_WRAP_1v(setTextAlignment, NSTextAlignment, alignment);
-PX_WRAP_1v(setLineBreakMode, NSLineBreakMode, mode);
+STKPX_WRAP_1(setShadowColor, color);
+STKPX_WRAP_1(setFont, font);
+STKPX_WRAP_1(setTextColor, color);
+STKPX_WRAP_1(setHighlightedTextColor, color);
+STKPX_WRAP_1(setBackgroundColor, color);
+STKPX_WRAP_1s(setShadowOffset, CGSize, offset);
+STKPX_WRAP_1v(setTextAlignment, NSTextAlignment, alignment);
+STKPX_WRAP_1v(setLineBreakMode, NSLineBreakMode, mode);
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end
 

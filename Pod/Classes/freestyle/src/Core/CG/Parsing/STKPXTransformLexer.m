@@ -15,7 +15,7 @@
  */
 
 //
-//  PXTransformLexer.m
+//  STKPXTransformLexer.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -48,51 +48,51 @@
         NSMutableArray *tokenList = [NSMutableArray array];
 
         // whitespace
-        [tokenList addObject: [[STKPXPatternMatcher alloc] initWithType:PXTransformToken_WHITESPACE
+        [tokenList addObject: [[STKPXPatternMatcher alloc] initWithType:STKPXTransformToken_WHITESPACE
                                                      withPatternString:@"^[ \\t\\r\\n]+"]];
 
         // dimensions
         NSDictionary *unitMap = @{
-                                  @"em": @(PXTransformToken_EMS),
-                                  @"ex": @(PXTransformToken_EXS),
-                                  @"px": @(PXTransformToken_LENGTH),
-                                  @"dpx": @(PXTransformToken_LENGTH),
-                                  @"cm": @(PXTransformToken_LENGTH),
-                                  @"mm": @(PXTransformToken_LENGTH),
-                                  @"in": @(PXTransformToken_LENGTH),
-                                  @"pt": @(PXTransformToken_LENGTH),
-                                  @"pc": @(PXTransformToken_LENGTH),
-                                  @"deg": @(PXTransformToken_ANGLE),
-                                  @"rad": @(PXTransformToken_ANGLE),
-                                  @"grad": @(PXTransformToken_ANGLE),
-                                  @"ms": @(PXTransformToken_TIME),
-                                  @"s": @(PXTransformToken_TIME),
-                                  @"Hz": @(PXTransformToken_FREQUENCY),
-                                  @"kHz": @(PXTransformToken_FREQUENCY),
-                                  @"%": @(PXTransformToken_PERCENTAGE),
-                                  @"[-a-zA-Z_][-a-zA-Z0-9_]*": @(PXTransformToken_DIMENSION)
+                                  @"em": @(STKPXTransformToken_EMS),
+                                  @"ex": @(STKPXTransformToken_EXS),
+                                  @"STKPX": @(STKPXTransformToken_LENGTH),
+                                  @"dpx": @(STKPXTransformToken_LENGTH),
+                                  @"cm": @(STKPXTransformToken_LENGTH),
+                                  @"mm": @(STKPXTransformToken_LENGTH),
+                                  @"in": @(STKPXTransformToken_LENGTH),
+                                  @"pt": @(STKPXTransformToken_LENGTH),
+                                  @"pc": @(STKPXTransformToken_LENGTH),
+                                  @"deg": @(STKPXTransformToken_ANGLE),
+                                  @"rad": @(STKPXTransformToken_ANGLE),
+                                  @"grad": @(STKPXTransformToken_ANGLE),
+                                  @"ms": @(STKPXTransformToken_TIME),
+                                  @"s": @(STKPXTransformToken_TIME),
+                                  @"Hz": @(STKPXTransformToken_FREQUENCY),
+                                  @"kHz": @(STKPXTransformToken_FREQUENCY),
+                                  @"%": @(STKPXTransformToken_PERCENTAGE),
+                                  @"[-a-zA-Z_][-a-zA-Z0-9_]*": @(STKPXTransformToken_DIMENSION)
                                   };
-        [tokenList addObject:[[STKPXNumberMatcher alloc] initWithType:PXTransformToken_NUMBER withDictionary:unitMap withUnknownType:PXTransformToken_DIMENSION]];
+        [tokenList addObject:[[STKPXNumberMatcher alloc] initWithType:STKPXTransformToken_NUMBER withDictionary:unitMap withUnknownType:STKPXTransformToken_DIMENSION]];
 
         // keywords
-        NSDictionary *keywordMap = @{@"translate": @(PXTransformToken_TRANSLATE),
-                                    @"translateX": @(PXTransformToken_TRANSLATEX),
-                                    @"translateY": @(PXTransformToken_TRANSLATEY),
-                                    @"scale": @(PXTransformToken_SCALE),
-                                    @"scaleX": @(PXTransformToken_SCALEX),
-                                    @"scaleY": @(PXTransformToken_SCALEY),
-                                    @"skew": @(PXTransformToken_SKEW),
-                                    @"skewX": @(PXTransformToken_SKEWX),
-                                    @"skewY": @(PXTransformToken_SKEWY),
-                                    @"rotate": @(PXTransformToken_ROTATE),
-                                    @"matrix": @(PXTransformToken_MATRIX)};
+        NSDictionary *keywordMap = @{@"translate": @(STKPXTransformToken_TRANSLATE),
+                                    @"translateX": @(STKPXTransformToken_TRANSLATEX),
+                                    @"translateY": @(STKPXTransformToken_TRANSLATEY),
+                                    @"scale": @(STKPXTransformToken_SCALE),
+                                    @"scaleX": @(STKPXTransformToken_SCALEX),
+                                    @"scaleY": @(STKPXTransformToken_SCALEY),
+                                    @"skew": @(STKPXTransformToken_SKEW),
+                                    @"skewX": @(STKPXTransformToken_SKEWX),
+                                    @"skewY": @(STKPXTransformToken_SKEWY),
+                                    @"rotate": @(STKPXTransformToken_ROTATE),
+                                    @"matrix": @(STKPXTransformToken_MATRIX)};
         [tokenList addObject:[[STKPXWordMatcher alloc] initWithDictionary:keywordMap]];
 
         // single-character operators
         NSString *operators = @"(),";
-        NSArray *operatorTypes = @[@(PXTransformToken_LPAREN),
-                                  @(PXTransformToken_RPAREN),
-                                  @(PXTransformToken_COMMA)];
+        NSArray *operatorTypes = @[@(STKPXTransformToken_LPAREN),
+                                  @(STKPXTransformToken_RPAREN),
+                                  @(STKPXTransformToken_COMMA)];
         [tokenList addObject:[[STKPXCharacterMatcher alloc] initWithCharactersInString:operators withTypes:operatorTypes]];
 
         self->tokens = tokenList;
@@ -135,7 +135,7 @@
             NSRange range = NSMakeRange(offset, length - offset);
             STKPXStylesheetLexeme *candidate = nil;
 
-            for (id<PXLexemeCreator> creator in tokens)
+            for (id<STKPXLexemeCreator> creator in tokens)
             {
                 STKPXStylesheetLexeme *lexeme = [creator createLexemeWithString:source withRange:range];
 
@@ -150,7 +150,7 @@
             }
 
             // skip whitespace
-            if (!candidate || candidate.type != PXTransformToken_WHITESPACE)
+            if (!candidate || candidate.type != STKPXTransformToken_WHITESPACE)
             {
                 result = candidate;
                 break;

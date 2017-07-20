@@ -15,7 +15,7 @@
  */
 
 //
-//  PXNonScalingStroke.m
+//  STKPXNonScalingStroke.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 7/26/12.
@@ -23,7 +23,7 @@
 //
 
 #import "STKPXNonScalingStroke.h"
-#import "PXMath.h"
+#import "STKPXMath.h"
 
 @implementation STKPXNonScalingStroke
 

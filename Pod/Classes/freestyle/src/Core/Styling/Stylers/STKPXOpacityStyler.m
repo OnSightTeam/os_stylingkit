@@ -15,7 +15,7 @@
  */
 
 //
-//  PXOpacityStyler.m
+//  STKPXOpacityStyler.m
 //  Pixate
 //
 //  Created by Paul Colton on 10/9/12.
@@ -36,7 +36,7 @@
     dispatch_once(&onceToken, ^
     {
         sharedInstance = [[STKPXOpacityStyler alloc]
-            initWithCompletionBlock:^(id <PXStyleable> view, STKPXOpacityStyler *styler, STKPXStylerContext *context)
+            initWithCompletionBlock:^(id <STKPXStyleable> view, STKPXOpacityStyler *styler, STKPXStylerContext *context)
             {
                 if ([view isKindOfClass:NSClassFromString(@"UIView")])
                 {

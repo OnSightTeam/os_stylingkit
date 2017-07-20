@@ -15,7 +15,7 @@
  */
 
 //
-//  PXLexeme.m
+//  STKPXLexeme.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -82,7 +82,7 @@
 
 - (NSString *)name
 {
-    //return [PXSSTokenType typeNameForInt:type];
+    //return [STKPXSSTokenType typeNameForInt:type];
     return [STKPXStylesheetTokenType typeNameForInt:_type];
 }
 

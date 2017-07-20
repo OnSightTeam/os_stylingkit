@@ -16,7 +16,7 @@
  */
 
 //
-//  PXUINavigationBar.m
+//  STKPXUINavigationBar.m
 //  Pixate
 //
 //  Modified by Anton Matosov
@@ -26,11 +26,11 @@
 
 #import "STKPXUINavigationBar.h"
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXVirtualStyleableControl.h"
-#import "NSObject+PXSubclass.h"
+#import "NSObject+STKPXSubclass.h"
 #import "STKPXUtils.h"
 #import "STKPXImageUtils.h"
 
@@ -49,8 +49,8 @@
 #import "STKPXTextShadowStyler.h"
 #import "STKPXGenericStyler.h"
 #import "STKPXTextContentStyler.h"
-#import "UINavigationItem+PXStyling.h"
-#import "UIBarButtonItem+PXStyling-Private.h"
+#import "UINavigationItem+STKPXStyling.h"
+#import "UIBarButtonItem+STKPXStyling-Private.h"
 
 static const char STYLE_CHILDREN;
 static NSDictionary *PSEUDOCLASS_MAP;
@@ -263,7 +263,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
 
             [[STKPXFontStyler alloc] initWithCompletionBlock:[UIBarButtonItem FontStylerCompletionBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]],
             
-            [[STKPXPaintStyler alloc] initWithCompletionBlock:[UIBarButtonItem PXPaintStylerCompletionBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]],
+            [[STKPXPaintStyler alloc] initWithCompletionBlock:[UIBarButtonItem STKPXPaintStylerCompletionBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]],
 
             [[STKPXGenericStyler alloc] initWithHandlers: @{
                 @"-ios-tint-color" : [UIBarButtonItem TintColorDeclarationHandlerBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]
@@ -435,8 +435,8 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
             /*
              *  - background-position: any | bottom | top | top-attached;
              *
-            [[PXGenericStyler alloc] initWithHandlers: @{
-                @"background-position" : ^(PXDeclaration *declaration, PXStylerContext *context)
+            [[STKPXGenericStyler alloc] initWithHandlers: @{
+                @"background-position" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context)
                 {
                     NSString *position = [declaration.stringValue lowercaseString];
                     [context setPropertyValue:position forName:@"background-position"];
@@ -483,7 +483,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
     else if (context.usesImage)
     {
         /*
-        if([PXUtils isIOS7OrGreater])
+        if([STKPXUtils isIOS7OrGreater])
         {
             UIBarPosition position = UIBarPositionAny;
             NSString *backgroundPosition = [context propertyValueForName:@"background-position"];
@@ -520,7 +520,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
 }
 
 // Overrides
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 // This will allow for the dynamically added content to style, like the UINavigationItems
 -(void)addSubview:(UIView *)view
@@ -535,15 +535,15 @@ PX_LAYOUT_SUBVIEWS_OVERRIDE
 }
 
 // Ti Wrapped
-PX_WRAP_1(setTintColor, color);
-PX_WRAP_1(setBarTintColor, color);
-PX_WRAP_1(setBackgroundColor, color);
-PX_WRAP_1(setShadowImage, image);
-PX_WRAP_1(setTitleTextAttributes, attribs);
-PX_WRAP_1b(setTranslucent, flag);
-//BUSTED:PX_WRAP_3v(setBackgroundImage, image, forBarPosition, UIBarPosition, position, barMetrics, UIBarMetrics, metrics);
-PX_WRAP_2v(setBackgroundImage, image, forBarMetrics, UIBarMetrics, metrics);
-PX_WRAP_2vv(setTitleVerticalPositionAdjustment, CGFloat, adjustment, forBarMetrics, UIBarMetrics, metrics);
+STKPX_WRAP_1(setTintColor, color);
+STKPX_WRAP_1(setBarTintColor, color);
+STKPX_WRAP_1(setBackgroundColor, color);
+STKPX_WRAP_1(setShadowImage, image);
+STKPX_WRAP_1(setTitleTextAttributes, attribs);
+STKPX_WRAP_1b(setTranslucent, flag);
+//BUSTED:STKPX_WRAP_3v(setBackgroundImage, image, forBarPosition, UIBarPosition, position, barMetrics, UIBarMetrics, metrics);
+STKPX_WRAP_2v(setBackgroundImage, image, forBarMetrics, UIBarMetrics, metrics);
+STKPX_WRAP_2vv(setTitleVerticalPositionAdjustment, CGFloat, adjustment, forBarMetrics, UIBarMetrics, metrics);
 
 @end
 

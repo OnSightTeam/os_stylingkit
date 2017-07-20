@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUISegmentedControl.m
+//  STKPXUISegmentedControl.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -25,9 +25,9 @@
 
 #import "STKPXUISegmentedControl.h"
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXVirtualStyleableControl.h"
 
 #import "STKPXOpacityStyler.h"
@@ -207,16 +207,16 @@ static char const STYLE_CHILDREN;
     }
 }
 
-PX_WRAP_1(setTintColor, color);
+STKPX_WRAP_1(setTintColor, color);
 
-PX_WRAP_2v(setBackgroundImage, image, forState, UIControlState, state);
-PX_WRAP_2v(setTitleTextAttributes, attribs, forState, UIControlState, state);
+STKPX_WRAP_2v(setBackgroundImage, image, forState, UIControlState, state);
+STKPX_WRAP_2v(setTitleTextAttributes, attribs, forState, UIControlState, state);
 
-PX_WRAP_3v(setBackgroundImage, image, forState, UIControlState, state, barMetrics, UIBarMetrics, metrics);
+STKPX_WRAP_3v(setBackgroundImage, image, forState, UIControlState, state, barMetrics, UIBarMetrics, metrics);
 
-PX_WRAP_4v(setDividerImage, image, forLeftSegmentState, UIControlState, lstate, rightSegmentState, UIControlState, rstate,barMetrics, UIBarMetrics, metrics);
+STKPX_WRAP_4v(setDividerImage, image, forLeftSegmentState, UIControlState, lstate, rightSegmentState, UIControlState, rstate,barMetrics, UIBarMetrics, metrics);
 
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end

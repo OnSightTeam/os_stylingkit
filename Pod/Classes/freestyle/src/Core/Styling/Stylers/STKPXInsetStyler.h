@@ -15,19 +15,19 @@
  */
 
 //
-//  PXInsetStyler.h
+//  STKPXInsetStyler.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/20/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXStylerBase.h"
+#import "STKPXStylerBase.h"
 
-@interface STKPXInsetStyler : PXStylerBase
+@interface STKPXInsetStyler : STKPXStylerBase
 
 @property (nonatomic) UIEdgeInsets insets;
 
-- (id)initWithBaseName:(NSString *)baseName completionBlock:(PXStylerCompletionBlock)block;
+- (id)initWithBaseName:(NSString *)baseName completionBlock:(STKPXStylerCompletionBlock)block;
 
 @end

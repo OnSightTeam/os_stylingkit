@@ -15,7 +15,7 @@
  */
 
 //
-//  PXPaintStyler.m
+//  STKPXPaintStyler.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 11/3/12.
@@ -41,9 +41,9 @@
 	return sharedInstance;
 }
 
-+ (PXStylerCompletionBlock)SetTintColorCompletionBlock
++ (STKPXStylerCompletionBlock)SetTintColorCompletionBlock
 {
-    return ^(id<PXStyleable> view, STKPXPaintStyler *styler, STKPXStylerContext *context)
+    return ^(id<STKPXStyleable> view, STKPXPaintStyler *styler, STKPXStylerContext *context)
     {
         UIColor *color = (UIColor *)[context propertyValueForName:@"-ios-tint-color"];
         
@@ -61,9 +61,9 @@
 
     dispatch_once(&onceToken, ^{
         
-        PXDeclarationHandlerBlock colorHandlerBlock = ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+        STKPXDeclarationHandlerBlock colorHandlerBlock = ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
             
-            id<PXPaint> paint = declaration.paintValue;
+            id<STKPXPaint> paint = declaration.paintValue;
             
             [context setPropertyValue:paint forName:@"paint"];
             
@@ -81,9 +81,9 @@
         };
         
         
-        PXDeclarationHandlerBlock tintColorHandlerBlock = ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+        STKPXDeclarationHandlerBlock tintColorHandlerBlock = ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
             
-            id<PXPaint> paint = declaration.paintValue;
+            id<STKPXPaint> paint = declaration.paintValue;
             
             [context setPropertyValue:paint forName:@"paint"];
             

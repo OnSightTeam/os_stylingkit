@@ -15,7 +15,7 @@
  */
 
 //
-//  PXAnimationInfo.h
+//  STKPXAnimationInfo.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -29,16 +29,16 @@
 /**
  *  An enumeration indicating what type of timing function to use in an animation
  */
-typedef NS_ENUM(int, PXAnimationTimingFunction)
+typedef NS_ENUM(int, STKPXAnimationTimingFunction)
 {
-    PXAnimationTimingFunctionUndefined = -1,
-    PXAnimationTimingFunctionEase,          // ease [default]
-    PXAnimationTimingFunctionLinear,        // linear
-    PXAnimationTimingFunctionEaseIn,        // ease-in
-    PXAnimationTimingFunctionEaseOut,       // ease-out
-    PXAnimationTimingFunctionEaseInOut,     // ease-in-out
-    PXAnimationTimingFunctionStepStart,     // step-start
-    PXAnimationTimingFunctionStepEnd,       // step-end
+    STKPXAnimationTimingFunctionUndefined = -1,
+    STKPXAnimationTimingFunctionEase,          // ease [default]
+    STKPXAnimationTimingFunctionLinear,        // linear
+    STKPXAnimationTimingFunctionEaseIn,        // ease-in
+    STKPXAnimationTimingFunctionEaseOut,       // ease-out
+    STKPXAnimationTimingFunctionEaseInOut,     // ease-in-out
+    STKPXAnimationTimingFunctionStepStart,     // step-start
+    STKPXAnimationTimingFunctionStepEnd,       // step-end
                                             // steps(<integer>[, [ start | end ] ]?)
                                             // cubic-bezier(<number>, <number>, <number>, <number>)
 };
@@ -46,47 +46,47 @@ typedef NS_ENUM(int, PXAnimationTimingFunction)
 /**
  *  An enumeration indicating the direction of an animation
  */
-typedef NS_ENUM(int, PXAnimationDirection)
+typedef NS_ENUM(int, STKPXAnimationDirection)
 {
-    PXAnimationDirectionUndefined = -1,
-    PXAnimationDirectionNormal,             // normal [default]
-    PXAnimationDirectionReverse,            // reverse
-    PXAnimationDirectionAlternate,          // alternate
-    PXAnimationDirectionAlternateReverse    // alternate-reverse
+    STKPXAnimationDirectionUndefined = -1,
+    STKPXAnimationDirectionNormal,             // normal [default]
+    STKPXAnimationDirectionReverse,            // reverse
+    STKPXAnimationDirectionAlternate,          // alternate
+    STKPXAnimationDirectionAlternateReverse    // alternate-reverse
 };
 
 /**
  *  An enumeration indicating the current state of an animation
  */
-typedef NS_ENUM(int, PXAnimationPlayState)
+typedef NS_ENUM(int, STKPXAnimationPlayState)
 {
-    PXAnimationPlayStateUndefined = -1,
-    PXAnimationPlayStateRunning,            // running [default]
-    PXAnimationPlayStatePaused              // paused
+    STKPXAnimationPlayStateUndefined = -1,
+    STKPXAnimationPlayStateRunning,            // running [default]
+    STKPXAnimationPlayStatePaused              // paused
 };
 
 /**
  *  An enumeration indicating how an animation should fill its remaining time
  */
-typedef NS_ENUM(int, PXAnimationFillMode)
+typedef NS_ENUM(int, STKPXAnimationFillMode)
 {
-    PXAnimationFillModeUndefined = -1,
-    PXAnimationFillModeNone,                // none [default]
-    PXAnimationFillModeForwards,            // forwards
-    PXAnimationFillModeBackwards,           // backwards
-    PXAnimationFillModeBoth                 // both
+    STKPXAnimationFillModeUndefined = -1,
+    STKPXAnimationFillModeNone,                // none [default]
+    STKPXAnimationFillModeForwards,            // forwards
+    STKPXAnimationFillModeBackwards,           // backwards
+    STKPXAnimationFillModeBoth                 // both
 };
 
 @interface STKPXAnimationInfo : NSObject
 
 @property (nonatomic, strong) NSString *animationName;
 @property (nonatomic) CGFloat animationDuration;
-@property (nonatomic) PXAnimationTimingFunction animationTimingFunction;
+@property (nonatomic) STKPXAnimationTimingFunction animationTimingFunction;
 @property (nonatomic) NSUInteger animationIterationCount;
-@property (nonatomic) PXAnimationDirection animationDirection;
-@property (nonatomic) PXAnimationPlayState animationPlayState;
+@property (nonatomic) STKPXAnimationDirection animationDirection;
+@property (nonatomic) STKPXAnimationPlayState animationPlayState;
 @property (nonatomic) CGFloat animationDelay;
-@property (nonatomic) PXAnimationFillMode animationFillMode;
+@property (nonatomic) STKPXAnimationFillMode animationFillMode;
 
 @property (nonatomic, strong, readonly) STKPXKeyframe *keyframe;
 @property (nonatomic, readonly, getter = isValid) BOOL valid;

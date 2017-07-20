@@ -15,7 +15,7 @@
  */
 
 //
-//  PXSSLexer.m
+//  STKPXSSLexer.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -79,137 +79,137 @@
         NSMutableArray *tokenList = [NSMutableArray array];
 
         // whitespace
-        [tokenList addObject: [[STKPXPatternMatcher alloc] initWithType:PXSS_WHITESPACE
+        [tokenList addObject: [[STKPXPatternMatcher alloc] initWithType:STKPXSS_WHITESPACE
                                                      withPatternString:@"^[ \\t\\r\\n]+"]];
-        [tokenList addObject: [[STKPXPatternMatcher alloc] initWithType:PXSS_WHITESPACE
+        [tokenList addObject: [[STKPXPatternMatcher alloc] initWithType:STKPXSS_WHITESPACE
                                                     withPatternString:@"^/\\*(?:.|[\n\r])*?\\*/"]];
 
         // pseudo-classes
         NSDictionary *pseudoClassMap = @{
-            @":not(": @(PXSS_NOT_PSEUDO_CLASS),
-            @":link": @(PXSS_LINK_PSEUDO_CLASS),
-            @":visited": @(PXSS_VISITED_PSEUDO_CLASS),
-            @":hover": @(PXSS_HOVER_PSEUDO_CLASS),
-            @":active": @(PXSS_ACTIVE_PSEUDO_CLASS),
-            @":focus": @(PXSS_FOCUS_PSEUDO_CLASS),
-            @":target": @(PXSS_TARGET_PSEUDO_CLASS),
-            @":lang(": @(PXSS_LANG_PSEUDO_CLASS),
-            @":enabled": @(PXSS_ENABLED_PSEUDO_CLASS),
-            @":checked": @(PXSS_CHECKED_PSEUDO_CLASS),
-            @":indeterminate": @(PXSS_INDETERMINATE_PSEUDO_CLASS),
-            @":root": @(PXSS_ROOT_PSEUDO_CLASS),
-            @":nth-child(": @(PXSS_NTH_CHILD_PSEUDO_CLASS),
-            @":nth-last-child(": @(PXSS_NTH_LAST_CHILD_PSEUDO_CLASS),
-            @":nth-of-type(": @(PXSS_NTH_OF_TYPE_PSEUDO_CLASS),
-            @":nth-last-of-type(": @(PXSS_NTH_LAST_OF_TYPE_PSEUDO_CLASS),
-            @":first-child": @(PXSS_FIRST_CHILD_PSEUDO_CLASS),
-            @":last-child": @(PXSS_LAST_CHILD_PSEUDO_CLASS),
-            @":first-of-type": @(PXSS_FIRST_OF_TYPE_PSEUDO_CLASS),
-            @":last-of-type": @(PXSS_LAST_OF_TYPE_PSEUDO_CLASS),
-            @":only-child": @(PXSS_ONLY_CHILD_PSEUDO_CLASS),
-            @":only-of-type": @(PXSS_ONLY_OF_TYPE_PSEUDO_CLASS),
-            @":empty": @(PXSS_EMPTY_PSEUDO_CLASS),
-            @":first-line": @(PXSS_FIRST_LINE_PSEUDO_ELEMENT),
-            @":first-letter": @(PXSS_FIRST_LETTER_PSEUDO_ELEMENT),
-            @":before": @(PXSS_BEFORE_PSEUDO_ELEMENT),
-            @":after": @(PXSS_AFTER_PSEUDO_ELEMENT),
+            @":not(": @(STKPXSS_NOT_PSEUDO_CLASS),
+            @":link": @(STKPXSS_LINK_PSEUDO_CLASS),
+            @":visited": @(STKPXSS_VISITED_PSEUDO_CLASS),
+            @":hover": @(STKPXSS_HOVER_PSEUDO_CLASS),
+            @":active": @(STKPXSS_ACTIVE_PSEUDO_CLASS),
+            @":focus": @(STKPXSS_FOCUS_PSEUDO_CLASS),
+            @":target": @(STKPXSS_TARGET_PSEUDO_CLASS),
+            @":lang(": @(STKPXSS_LANG_PSEUDO_CLASS),
+            @":enabled": @(STKPXSS_ENABLED_PSEUDO_CLASS),
+            @":checked": @(STKPXSS_CHECKED_PSEUDO_CLASS),
+            @":indeterminate": @(STKPXSS_INDETERMINATE_PSEUDO_CLASS),
+            @":root": @(STKPXSS_ROOT_PSEUDO_CLASS),
+            @":nth-child(": @(STKPXSS_NTH_CHILD_PSEUDO_CLASS),
+            @":nth-last-child(": @(STKPXSS_NTH_LAST_CHILD_PSEUDO_CLASS),
+            @":nth-of-type(": @(STKPXSS_NTH_OF_TYPE_PSEUDO_CLASS),
+            @":nth-last-of-type(": @(STKPXSS_NTH_LAST_OF_TYPE_PSEUDO_CLASS),
+            @":first-child": @(STKPXSS_FIRST_CHILD_PSEUDO_CLASS),
+            @":last-child": @(STKPXSS_LAST_CHILD_PSEUDO_CLASS),
+            @":first-of-type": @(STKPXSS_FIRST_OF_TYPE_PSEUDO_CLASS),
+            @":last-of-type": @(STKPXSS_LAST_OF_TYPE_PSEUDO_CLASS),
+            @":only-child": @(STKPXSS_ONLY_CHILD_PSEUDO_CLASS),
+            @":only-of-type": @(STKPXSS_ONLY_OF_TYPE_PSEUDO_CLASS),
+            @":empty": @(STKPXSS_EMPTY_PSEUDO_CLASS),
+            @":first-line": @(STKPXSS_FIRST_LINE_PSEUDO_ELEMENT),
+            @":first-letter": @(STKPXSS_FIRST_LETTER_PSEUDO_ELEMENT),
+            @":before": @(STKPXSS_BEFORE_PSEUDO_ELEMENT),
+            @":after": @(STKPXSS_AFTER_PSEUDO_ELEMENT),
         };
         [tokenList addObject:[[STKPXWordMatcher alloc] initWithDictionary:pseudoClassMap usingSymbols:YES]];
 
         // functions
         NSDictionary *functionMap = @{
-            @"linear-gradient(": @(PXSS_LINEAR_GRADIENT),
-            @"radial-gradient(": @(PXSS_RADIAL_GRADIENT),
-            @"hsb(": @(PXSS_HSB),
-            @"hsba(": @(PXSS_HSBA),
-            @"hsl(": @(PXSS_HSL),
-            @"hsla(": @(PXSS_HSLA),
-            @"rgb(": @(PXSS_RGB),
-            @"rgba(": @(PXSS_RGBA)
+            @"linear-gradient(": @(STKPXSS_LINEAR_GRADIENT),
+            @"radial-gradient(": @(STKPXSS_RADIAL_GRADIENT),
+            @"hsb(": @(STKPXSS_HSB),
+            @"hsba(": @(STKPXSS_HSBA),
+            @"hsl(": @(STKPXSS_HSL),
+            @"hsla(": @(STKPXSS_HSLA),
+            @"rgb(": @(STKPXSS_RGB),
+            @"rgba(": @(STKPXSS_RGBA)
         };
         [tokenList addObject:[[STKPXWordMatcher alloc] initWithDictionary:functionMap usingSymbols:YES]];
 
         // urls
-        [tokenList addObject:[[STKPXURLMatcher alloc] initWithType:PXSS_URL]];
+        [tokenList addObject:[[STKPXURLMatcher alloc] initWithType:STKPXSS_URL]];
 
         // nth
-        [tokenList addObject:[[STKPXPatternMatcher alloc] initWithType:PXSS_NTH withPatternString:@"^[-+]?\\d*[nN]\\b"]];
+        [tokenList addObject:[[STKPXPatternMatcher alloc] initWithType:STKPXSS_NTH withPatternString:@"^[-+]?\\d*[nN]\\b"]];
 
         // dimensions
         NSDictionary *unitMap = @{
-            @"em": @(PXSS_EMS),
-            @"ex": @(PXSS_EXS),
-            @"px": @(PXSS_LENGTH),
-            @"dpx": @(PXSS_LENGTH),
-            @"cm": @(PXSS_LENGTH),
-            @"mm": @(PXSS_LENGTH),
-            @"in": @(PXSS_LENGTH),
-            @"pt": @(PXSS_LENGTH),
-            @"pc": @(PXSS_LENGTH),
-            @"deg": @(PXSS_ANGLE),
-            @"rad": @(PXSS_ANGLE),
-            @"grad": @(PXSS_ANGLE),
-            @"ms": @(PXSS_TIME),
-            @"s": @(PXSS_TIME),
-            @"Hz": @(PXSS_FREQUENCY),
-            @"kHz": @(PXSS_FREQUENCY),
-            @"%": @(PXSS_PERCENTAGE),
-            @"[-a-zA-Z_][-a-zA-Z0-9_]*": @(PXSS_DIMENSION)
+            @"em": @(STKPXSS_EMS),
+            @"ex": @(STKPXSS_EXS),
+            @"STKPX": @(STKPXSS_LENGTH),
+            @"dpx": @(STKPXSS_LENGTH),
+            @"cm": @(STKPXSS_LENGTH),
+            @"mm": @(STKPXSS_LENGTH),
+            @"in": @(STKPXSS_LENGTH),
+            @"pt": @(STKPXSS_LENGTH),
+            @"pc": @(STKPXSS_LENGTH),
+            @"deg": @(STKPXSS_ANGLE),
+            @"rad": @(STKPXSS_ANGLE),
+            @"grad": @(STKPXSS_ANGLE),
+            @"ms": @(STKPXSS_TIME),
+            @"s": @(STKPXSS_TIME),
+            @"Hz": @(STKPXSS_FREQUENCY),
+            @"kHz": @(STKPXSS_FREQUENCY),
+            @"%": @(STKPXSS_PERCENTAGE),
+            @"[-a-zA-Z_][-a-zA-Z0-9_]*": @(STKPXSS_DIMENSION)
         };
-        [tokenList addObject:[[STKPXNumberMatcher alloc] initWithType:PXSS_NUMBER withDictionary:unitMap withUnknownType:PXSS_DIMENSION]];
+        [tokenList addObject:[[STKPXNumberMatcher alloc] initWithType:STKPXSS_NUMBER withDictionary:unitMap withUnknownType:STKPXSS_DIMENSION]];
 
         // hex colors
-        [tokenList addObject:[[STKPXPatternMatcher alloc] initWithType:PXSS_HEX_COLOR withPatternString:@"^#(?:[a-fA-F0-9]{8}|[a-fA-F0-9]{6}|[a-fA-F0-9]{4}|[a-fA-F0-9]{3})\\b"]];
+        [tokenList addObject:[[STKPXPatternMatcher alloc] initWithType:STKPXSS_HEX_COLOR withPatternString:@"^#(?:[a-fA-F0-9]{8}|[a-fA-F0-9]{6}|[a-fA-F0-9]{4}|[a-fA-F0-9]{3})\\b"]];
 
         // various identifiers
         NSDictionary *keywordMap = @{
-            @"@keyframes" : @(PXSS_KEYFRAMES),
-            @"@namespace" : @(PXSS_NAMESPACE),
-            @"@import" : @(PXSS_IMPORT),
-            @"@media" : @(PXSS_MEDIA),
-            @"@font-face": @(PXSS_FONT_FACE),
-            @"and" : @(PXSS_AND),
+            @"@keyframes" : @(STKPXSS_KEYFRAMES),
+            @"@namespace" : @(STKPXSS_NAMESPACE),
+            @"@import" : @(STKPXSS_IMPORT),
+            @"@media" : @(STKPXSS_MEDIA),
+            @"@font-face": @(STKPXSS_FONT_FACE),
+            @"and" : @(STKPXSS_AND),
         };
         [tokenList addObject:[[STKPXWordMatcher alloc] initWithDictionary:keywordMap]];
-        [tokenList addObject:[[STKPXPatternMatcher alloc] initWithType:PXSS_CLASS withPatternString:@"^\\.(?:[-a-zA-Z_]|\\\\[^\\r\\n\\f0-9a-f])(?:[-a-zA-Z0-9_]|\\\\[^\\r\\n\\f0-9a-f])*"]];
-        [tokenList addObject:[[STKPXPatternMatcher alloc] initWithType:PXSS_ID withPatternString:@"^#(?:[-a-zA-Z_]|\\\\[^\\r\\n\\f0-9a-f])(?:[-a-zA-Z0-9_]|\\\\[^\\r\\n\\f0-9a-f])*"]];
-        [tokenList addObject:[[STKPXPatternMatcher alloc] initWithType:PXSS_IDENTIFIER withPatternString:@"^(?:[-a-zA-Z_]|\\\\[^\\r\\n\\f0-9a-f])(?:[-a-zA-Z0-9_]|\\\\[^\\r\\n\\f0-9a-f])*"]];
-        [tokenList addObject:[[STKPXPatternMatcher alloc] initWithType:PXSS_IMPORTANT withPatternString:@"^!\\s*important\\b"]];
+        [tokenList addObject:[[STKPXPatternMatcher alloc] initWithType:STKPXSS_CLASS withPatternString:@"^\\.(?:[-a-zA-Z_]|\\\\[^\\r\\n\\f0-9a-f])(?:[-a-zA-Z0-9_]|\\\\[^\\r\\n\\f0-9a-f])*"]];
+        [tokenList addObject:[[STKPXPatternMatcher alloc] initWithType:STKPXSS_ID withPatternString:@"^#(?:[-a-zA-Z_]|\\\\[^\\r\\n\\f0-9a-f])(?:[-a-zA-Z0-9_]|\\\\[^\\r\\n\\f0-9a-f])*"]];
+        [tokenList addObject:[[STKPXPatternMatcher alloc] initWithType:STKPXSS_IDENTIFIER withPatternString:@"^(?:[-a-zA-Z_]|\\\\[^\\r\\n\\f0-9a-f])(?:[-a-zA-Z0-9_]|\\\\[^\\r\\n\\f0-9a-f])*"]];
+        [tokenList addObject:[[STKPXPatternMatcher alloc] initWithType:STKPXSS_IMPORTANT withPatternString:@"^!\\s*important\\b"]];
 
         // strings
-        [tokenList addObject:[[STKPXPatternMatcher alloc] initWithType:PXSS_STRING withPatternString:@"^\"(?:[^\"\\\\\\r\\n\\f]|\\\\[^\\r\\n\\f])*\""]];
-        [tokenList addObject:[[STKPXPatternMatcher alloc] initWithType:PXSS_STRING withPatternString:@"^'(?:[^'\\\\\\r\\n\\f]|\\\\[^\\r\\n\\f])*'"]];
+        [tokenList addObject:[[STKPXPatternMatcher alloc] initWithType:STKPXSS_STRING withPatternString:@"^\"(?:[^\"\\\\\\r\\n\\f]|\\\\[^\\r\\n\\f])*\""]];
+        [tokenList addObject:[[STKPXPatternMatcher alloc] initWithType:STKPXSS_STRING withPatternString:@"^'(?:[^'\\\\\\r\\n\\f]|\\\\[^\\r\\n\\f])*'"]];
 
         // multi-character operators
         NSDictionary *operatorMap = @{
-            @"::": @(PXSS_DOUBLE_COLON),
-            @"^=": @(PXSS_STARTS_WITH),
-            @"$=": @(PXSS_ENDS_WITH),
-            @"*=": @(PXSS_CONTAINS),
-            @"~=": @(PXSS_LIST_CONTAINS),
-            @"|=": @(PXSS_EQUALS_WITH_HYPHEN),
+            @"::": @(STKPXSS_DOUBLE_COLON),
+            @"^=": @(STKPXSS_STARTS_WITH),
+            @"$=": @(STKPXSS_ENDS_WITH),
+            @"*=": @(STKPXSS_CONTAINS),
+            @"~=": @(STKPXSS_LIST_CONTAINS),
+            @"|=": @(STKPXSS_EQUALS_WITH_HYPHEN),
         };
         [tokenList addObject:[[STKPXWordMatcher alloc] initWithDictionary:operatorMap usingSymbols:YES]];
 
         // single-character operators
         NSString *operators = @"{}()[];>+~*=:,|/";
         NSArray *operatorTypes = @[
-            @(PXSS_LCURLY),
-            @(PXSS_RCURLY),
-            @(PXSS_LPAREN),
-            @(PXSS_RPAREN),
-            @(PXSS_LBRACKET),
-            @(PXSS_RBRACKET),
-            @(PXSS_SEMICOLON),
-            @(PXSS_GREATER_THAN),
-            @(PXSS_PLUS),
-            @(PXSS_TILDE),
-            @(PXSS_STAR),
-            @(PXSS_EQUAL),
-            @(PXSS_COLON),
-            @(PXSS_COMMA),
-            @(PXSS_PIPE),
-            @(PXSS_SLASH)
+            @(STKPXSS_LCURLY),
+            @(STKPXSS_RCURLY),
+            @(STKPXSS_LPAREN),
+            @(STKPXSS_RPAREN),
+            @(STKPXSS_LBRACKET),
+            @(STKPXSS_RBRACKET),
+            @(STKPXSS_SEMICOLON),
+            @(STKPXSS_GREATER_THAN),
+            @(STKPXSS_PLUS),
+            @(STKPXSS_TILDE),
+            @(STKPXSS_STAR),
+            @(STKPXSS_EQUAL),
+            @(STKPXSS_COLON),
+            @(STKPXSS_COMMA),
+            @(STKPXSS_PIPE),
+            @(STKPXSS_SLASH)
         ];
         [tokenList addObject:[[STKPXCharacterMatcher alloc] initWithCharactersInString:operators withTypes:operatorTypes]];
 
@@ -253,11 +253,11 @@
         [lexemeStack_ push:lexeme];
 
         // reverse block depth settings
-        if (lexeme.type == PXSS_LCURLY)
+        if (lexeme.type == STKPXSS_LCURLY)
         {
             [self decreaseNesting];
         }
-        else if (lexeme.type == PXSS_RCURLY)
+        else if (lexeme.type == STKPXSS_RCURLY)
         {
             [self increaseNesting];
         }
@@ -329,7 +329,7 @@
             NSRange range = NSMakeRange(offset_, length - offset_);
             STKPXStylesheetLexeme *candidate = nil;
 
-            for (id<PXLexemeCreator> creator in tokens_)
+            for (id<STKPXLexemeCreator> creator in tokens_)
             {
                 STKPXStylesheetLexeme *lexeme = [creator createLexemeWithString:_source withRange:range];
 
@@ -342,14 +342,14 @@
 
                     if (followsWhitespace)
                     {
-                        [lexeme setFlag:PXLexemeFlagFollowsWhitespace];
+                        [lexeme setFlag:STKPXLexemeFlagFollowsWhitespace];
                     }
                     break;
                 }
             }
 
             // skip whitespace
-            if (!candidate || candidate.type != PXSS_WHITESPACE)
+            if (!candidate || candidate.type != STKPXSS_WHITESPACE)
             {
                 result = candidate;
                 break;
@@ -364,11 +364,11 @@
         if (!result && offset_ < length)
         {
             NSRange range = NSMakeRange(offset_, 1);
-            result = [STKPXStylesheetLexeme lexemeWithType:PXSS_ERROR withRange:range withValue:[_source substringWithRange:range]];
+            result = [STKPXStylesheetLexeme lexemeWithType:STKPXSS_ERROR withRange:range withValue:[_source substringWithRange:range]];
 
             if (followsWhitespace)
             {
-                [result setFlag:PXLexemeFlagFollowsWhitespace];
+                [result setFlag:STKPXLexemeFlagFollowsWhitespace];
             }
 
             offset_++;
@@ -377,32 +377,32 @@
 
     if (result)
     {
-        BOOL followsWhitespace = [result flagIsSet:PXLexemeFlagFollowsWhitespace];
+        BOOL followsWhitespace = [result flagIsSet:STKPXLexemeFlagFollowsWhitespace];
 
-        if (blockDepth_ == 0 && result.type == PXSS_HEX_COLOR)
+        if (blockDepth_ == 0 && result.type == STKPXSS_HEX_COLOR)
         {
             // fix-up colors to be ids outside of declaration blocks
-            result = [STKPXStylesheetLexeme lexemeWithType:PXSS_ID withRange:result.range withValue:result.value];
+            result = [STKPXStylesheetLexeme lexemeWithType:STKPXSS_ID withRange:result.range withValue:result.value];
 
             if (followsWhitespace)
             {
-                [result setFlag:PXLexemeFlagFollowsWhitespace];
+                [result setFlag:STKPXLexemeFlagFollowsWhitespace];
             }
         }
 
         switch (result.type)
         {
-            case PXSS_LCURLY:
+            case STKPXSS_LCURLY:
                 [self increaseNesting];
                 break;
 
-            case PXSS_RCURLY:
+            case STKPXSS_RCURLY:
                 [self decreaseNesting];
                 break;
 
-            case PXSS_ID:
-            case PXSS_CLASS:
-            case PXSS_IDENTIFIER:
+            case STKPXSS_ID:
+            case STKPXSS_CLASS:
+            case STKPXSS_IDENTIFIER:
             {
                 NSString *stringValue = result.value;
 
@@ -415,7 +415,7 @@
 
                     if (followsWhitespace)
                     {
-                        [result setFlag:PXLexemeFlagFollowsWhitespace];
+                        [result setFlag:STKPXLexemeFlagFollowsWhitespace];
                     }
                 }
 

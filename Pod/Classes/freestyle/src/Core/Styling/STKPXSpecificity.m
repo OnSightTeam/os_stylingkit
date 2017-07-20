@@ -15,7 +15,7 @@
  */
 
 //
-//  PXSpecificity.m
+//  STKPXSpecificity.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -77,7 +77,7 @@
     return NSOrderedSame;
 }
 
-- (void)incrementSpecifity:(PXSpecificityType)specificity
+- (void)incrementSpecifity:(STKPXSpecificityType)specificity
 {
     if (values && specificity < self->length)
     {
@@ -85,7 +85,7 @@
     }
 }
 
-- (void)setSpecificity:(PXSpecificityType)specificity toValue:(int)value
+- (void)setSpecificity:(STKPXSpecificityType)specificity toValue:(int)value
 {
     if (values && specificity < self->length)
     {

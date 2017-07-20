@@ -15,7 +15,7 @@
  */
 
 //
-//  PXNumberMatcher.h
+//  STKPXNumberMatcher.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 6/23/12.

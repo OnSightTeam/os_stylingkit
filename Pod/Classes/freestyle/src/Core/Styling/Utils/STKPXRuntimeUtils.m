@@ -15,7 +15,7 @@
  */
 
 //
-//  PXRuntimeUtils.m
+//  STKPXRuntimeUtils.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.

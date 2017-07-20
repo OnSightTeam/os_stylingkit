@@ -15,7 +15,7 @@
  */
 
 //
-//  PXStylesheet-Private.h
+//  STKPXStylesheet-Private.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 2/5/13.
@@ -23,14 +23,14 @@
 //
 
 #import "STKPXRuleSet.h"
-#import "PXStyleable.h"
+#import "STKPXStyleable.h"
 #import "STKPXKeyframe.h"
 
-@class PXMediaGroup;
-@protocol PXMediaExpression;
+@class STKPXMediaGroup;
+@protocol STKPXMediaExpression;
 
 /**
- *  A PXStylesheet typically corresponds to a single CSS file. Each stylesheet contains a list of rule sets defined
+ *  A STKPXStylesheet typically corresponds to a single CSS file. Each stylesheet contains a list of rule sets defined
  *  within it.
  */
 @interface STKPXStylesheet ()
@@ -48,7 +48,7 @@
 /**
  *  The current media query that applies to any rule sets added to this stylesheet
  */
-@property (nonatomic, strong) id<PXMediaExpression> activeMediaQuery;
+@property (nonatomic, strong) id<STKPXMediaExpression> activeMediaQuery;
 
 /**
  *  Allocate and initialize a new stylesheet using the specified source and stylesheet origin
@@ -56,7 +56,7 @@
  *  @param source The CSS source for this stylesheet
  *  @param origin The specificity origin for this stylesheet
  */
-+ (id)styleSheetFromSource:(NSString *)source withOrigin:(PXStylesheetOrigin)origin;
++ (id)styleSheetFromSource:(NSString *)source withOrigin:(STKPXStylesheetOrigin)origin;
 
 /**
  *  Allocate and initialize a new styleheet for the specified path and stylesheet origin
@@ -64,7 +64,7 @@
  *  @param filePath The string path to the stylesheet file
  *  @param origin The specificity origin for this stylesheet
  */
-+ (id)styleSheetFromFilePath:(NSString *)filePath withOrigin:(PXStylesheetOrigin)origin;
++ (id)styleSheetFromFilePath:(NSString *)filePath withOrigin:(STKPXStylesheetOrigin)origin;
 
 /**
  *  A class-level getter returning the current application-level stylesheet. This value may be nil
@@ -86,7 +86,7 @@
  *
  *  @param origin The specificity origin for this stylesheet
  */
-- (id)initWithOrigin:(PXStylesheetOrigin)origin;
+- (id)initWithOrigin:(STKPXStylesheetOrigin)origin;
 
 /**
  *  Add a new rule set to this stylesheet
@@ -117,7 +117,7 @@
  *
  *  @param element The element to match against
  */
-- (NSArray *)ruleSetsMatchingStyleable:(id<PXStyleable>)element;
+- (NSArray *)ruleSetsMatchingStyleable:(id<STKPXStyleable>)element;
 
 /**
  *  Add a keyframe animation to this stylesheet

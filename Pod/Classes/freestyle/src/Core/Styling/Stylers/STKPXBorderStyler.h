@@ -15,14 +15,14 @@
  */
 
 //
-//  PXBorderStyler.h
+//  STKPXBorderStyler.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/18/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXStylerBase.h"
+#import "STKPXStylerBase.h"
 
 /**
  *  - border: <width> || <border-style> || <paint>
@@ -56,7 +56,7 @@
  *  - border-left-style: <border-style>
  */
 
-@interface STKPXBorderStyler : PXStylerBase
+@interface STKPXBorderStyler : STKPXStylerBase
 
 + (STKPXBorderStyler *)sharedInstance;
 

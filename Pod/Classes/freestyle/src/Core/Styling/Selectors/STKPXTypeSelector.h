@@ -15,7 +15,7 @@
  */
 
 //
-//  PXTypeSelector.h
+//  STKPXTypeSelector.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,12 +24,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXStyleable.h"
-#import "PXSelector.h"
+#import "STKPXStyleable.h"
+#import "STKPXSelector.h"
 #import "STKPXSpecificity.h"
 
 /**
- *  A PXTypeSelector is reponsible for matching an element by namespace (optional) and name.
+ *  A STKPXTypeSelector is reponsible for matching an element by namespace (optional) and name.
  */
 @interface STKPXTypeSelector : NSObject <STKPXSelector>
 

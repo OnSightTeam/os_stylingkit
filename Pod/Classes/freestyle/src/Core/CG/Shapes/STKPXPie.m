@@ -15,7 +15,7 @@
  */
 
 //
-//  PXPie.m
+//  STKPXPie.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 9/5/12.
@@ -23,7 +23,7 @@
 //
 
 #import "STKPXPie.h"
-#import "PXMath.h"
+#import "STKPXMath.h"
 
 @implementation STKPXPie
 

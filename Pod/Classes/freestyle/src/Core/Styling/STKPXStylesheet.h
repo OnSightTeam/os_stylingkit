@@ -15,7 +15,7 @@
  */
 
 //
-//  PXStylesheet.h
+//  STKPXStylesheet.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 7/10/12.
@@ -24,31 +24,31 @@
 
 #import <Foundation/Foundation.h>
 
-//extern NSString *const PXStylesheetDidChangeNotification;
+//extern NSString *const STKPXStylesheetDidChangeNotification;
 
 /**
- *  A PXStylesheetOrigin enumeration captures the various stylesheet origins (application, user, and view) which are
+ *  A STKPXStylesheetOrigin enumeration captures the various stylesheet origins (application, user, and view) which are
  *  used when determining cascading and weights of declarations.
  */
 typedef enum
 {
-    PXStylesheetOriginApplication,
-    PXStylesheetOriginUser,
-    PXStylesheetOriginView,
-    PXStylesheetOriginInline
-} PXStylesheetOrigin;
+    STKPXStylesheetOriginApplication,
+    STKPXStylesheetOriginUser,
+    STKPXStylesheetOriginView,
+    STKPXStylesheetOriginInline
+} STKPXStylesheetOrigin;
 
 /**
- *  A PXStylesheet typically corresponds to a single CSS file. Each stylesheet contains a list of rule sets defined
+ *  A STKPXStylesheet typically corresponds to a single CSS file. Each stylesheet contains a list of rule sets defined
  *  within it.
  */
 @interface STKPXStylesheet : NSObject
 
 /**
- *  A PXStylesheetOrigin enumeration value indicating the origin of this stylesheet. Origin values are used in
+ *  A STKPXStylesheetOrigin enumeration value indicating the origin of this stylesheet. Origin values are used in
  *  specificity calculations.
  */
-@property (readonly, nonatomic) PXStylesheetOrigin origin;
+@property (readonly, nonatomic) STKPXStylesheetOrigin origin;
 
 /**
  *  A nonmutable array of error strings that were encountered when parsing the source of this stylesheet

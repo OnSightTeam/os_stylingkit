@@ -15,7 +15,7 @@
  */
 
 //
-//  PXRadialGradient.m
+//  STKPXRadialGradient.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,7 +24,7 @@
 //
 
 #import "STKPXRadialGradient.h"
-#import "UIColor+PXColors.h"
+#import "UIColor+STKPXColors.h"
 
 @implementation STKPXRadialGradient
 
@@ -42,7 +42,7 @@
     return self;
 }
 
-#pragma mark - PXPaint implementation
+#pragma mark - STKPXPaint implementation
 
 - (void)applyFillToPath:(CGPathRef)path withContext:(CGContextRef)context
 {
@@ -66,7 +66,7 @@
         center2 = center1;
         r = fmin(CGRectGetWidth(bounds) * 0.5f, CGRectGetHeight(bounds) * 0.5f);
     }
-    else if (self.gradientUnits == PXGradientUnitsUserSpace)
+    else if (self.gradientUnits == STKPXGradientUnitsUserSpace)
     {
         center1 = _startCenter;
         center2 = _endCenter;
@@ -105,7 +105,7 @@
     CGContextRestoreGState(context);
 }
 
-- (id<PXPaint>)lightenByPercent:(CGFloat)percent
+- (id<STKPXPaint>)lightenByPercent:(CGFloat)percent
 {
     STKPXRadialGradient *result = [self createCopyWithoutColors];
 
@@ -117,7 +117,7 @@
     return result;
 }
 
-- (id<PXPaint>)darkenByPercent:(CGFloat)percent
+- (id<STKPXPaint>)darkenByPercent:(CGFloat)percent
 {
     STKPXRadialGradient *result = [self createCopyWithoutColors];
 
@@ -138,7 +138,7 @@
     result->_endCenter = _endCenter;
     result->_radius = _radius;
 
-    // copy PXGradient properties, but not colors
+    // copy STKPXGradient properties, but not colors
     result.transform = self.transform;
     result.offsets = self.offsets.mutableCopy;
 

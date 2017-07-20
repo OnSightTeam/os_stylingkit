@@ -15,7 +15,7 @@
  */
 
 //
-//  PXViewUtils.h
+//  STKPXViewUtils.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 1/4/13.

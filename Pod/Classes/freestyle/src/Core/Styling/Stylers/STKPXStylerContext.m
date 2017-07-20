@@ -15,7 +15,7 @@
  */
 
 //
-//  PXStylerContext.m
+//  STKPXStylerContext.m
 //  Pixate
 //
 //  Modified by Anton Matosov
@@ -78,7 +78,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
         _fontStretch = @"normal";
         _fontSize = 16.0f;
         
-        _letterSpacing = [[STKPXDimension alloc] initWithNumber:0 withDimension:@"px"];
+        _letterSpacing = [[STKPXDimension alloc] initWithNumber:0 withDimension:@"STKPX"];
     }
 
     return self;
@@ -116,7 +116,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
 //    return [DEFAULT_FONT_NAME isEqualToString:_fontName] ? DEFAULT_FONT: _fontName;
 //}
 
-- (id<PXPaint>)getCombinedPaints
+- (id<STKPXPaint>)getCombinedPaints
 {
     if (_fill != nil && _imageFill != nil)
     {
@@ -165,9 +165,9 @@ static NSString *DEFAULT_FONT = @"Helvetica";
         // apply bounds
         // NOTE: this updates the bounds of the underlying geometry used to draw the background image. This does not resize
         // the styleable.
-        if ([_shape conformsToProtocol:@protocol(PXBoundable)])
+        if ([_shape conformsToProtocol:@protocol(STKPXBoundable)])
         {
-            id<PXBoundable> boundable = (id<PXBoundable>)_shape;
+            id<STKPXBoundable> boundable = (id<STKPXBoundable>)_shape;
 
             boundable.bounds = _bounds;
         }
@@ -180,7 +180,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
         {
             // NOTE: we're using top border since we set all borders the same right now
             CGFloat strokeWidth = _boxModel.borderTopWidth;
-            id<PXPaint>strokeColor = _boxModel.borderTopPaint;
+            id<STKPXPaint>strokeColor = _boxModel.borderTopPaint;
             STKPXStroke *stroke = [[STKPXStroke alloc] initWithStrokeWidth:strokeWidth];
 
             if (strokeColor)
@@ -191,9 +191,9 @@ static NSString *DEFAULT_FONT = @"Helvetica";
             self.shape.stroke = stroke;
 
             // shrink bounds by half of the stroke width
-            if ([_shape conformsToProtocol:@protocol(PXBoundable)])
+            if ([_shape conformsToProtocol:@protocol(STKPXBoundable)])
             {
-                id<PXBoundable> boundable = (id<PXBoundable>)_shape;
+                id<STKPXBoundable> boundable = (id<STKPXBoundable>)_shape;
 
                 boundable.bounds = CGRectInset(boundable.bounds, 0.5f * strokeWidth, 0.5f * strokeWidth);
             }
@@ -346,7 +346,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
 
 #pragma mark - Setters
 
-- (void)setShadow:(id<PXShadowPaint>)shadow
+- (void)setShadow:(id<STKPXShadowPaint>)shadow
 {
     _shadow = shadow;
 
@@ -372,7 +372,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
         {
             STKPXShadowGroup *shadowGroup = _shadow;
 
-            for (id<PXShadowPaint> shadowPaint in shadowGroup.shadows)
+            for (id<STKPXShadowPaint> shadowPaint in shadowGroup.shadows)
             {
                 if ([shadowPaint isKindOfClass:[STKPXShadow class]])
                 {
@@ -556,7 +556,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
         STKPXShadow *pxShadow = self.textShadow;
         NSShadow *shadow = [[NSShadow alloc] init];
         shadow.shadowColor = pxShadow.color;
-        shadow.shadowOffset = CGSizeMake(pxShadow.horizontalOffset, pxShadow.verticalOffset);
+        shadow.shadowOffset = CGSizeMake(STKPXShadow.horizontalOffset, pxShadow.verticalOffset);
         shadow.shadowBlurRadius = pxShadow.blurDistance;
         
         attributes[NSShadowAttributeName] = shadow;

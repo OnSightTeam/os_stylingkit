@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUILabel.h
+//  STKPXUILabel.h
 //  Pixate
 //
 //  Created by Paul Colton on 9/18/12.
@@ -50,24 +50,24 @@ extern NSString *const kDefaultCacheLabelText;
  *
  *  UILabel supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXTextShadowStyler
- *  - PXFontStyler
- *  - PXPaintStyler
- *  - PXTextContentStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXTextShadowStyler
+ *  - STKPXFontStyler
+ *  - STKPXPaintStyler
+ *  - STKPXTextContentStyler
  *  - text-align: left | center | right
  *  - text-transform: lowercase | uppercase | capitalize
  *  - text-overflow: clip | ellipsis | ellipsis-head | ellipsis-middle | ellipsis-tail | character-wrap | word-wrap
  *
  *  UILabel attributed-text supports the following properties:
  *
- *  - PXAttributedTextStyler 
+ *  - STKPXAttributedTextStyler 
  *
  */
 @interface STKPXUILabel : UILabel

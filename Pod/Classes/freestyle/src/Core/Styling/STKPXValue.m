@@ -15,7 +15,7 @@
  */
 
 //
-//  PXValue.m
+//  STKPXValue.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -30,7 +30,7 @@
     NSValue *value_;
 }
 
-- (instancetype)initWithBytes:(const void *)value type:(PXValueType)type
+- (instancetype)initWithBytes:(const void *)value type:(STKPXValueType)type
 {
     if (self = [super init])
     {
@@ -38,56 +38,56 @@
 
         switch (type)
         {
-            case PXValueType_CGRect:
+            case STKPXValueType_CGRect:
                 value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(CGRect)];
                 break;
 
-            case PXValueType_CGSize:
+            case STKPXValueType_CGSize:
                 value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(CGSize)];
                 break;
 
-            case PXValueType_CGFloat:
+            case STKPXValueType_CGFloat:
                 value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(CGFloat)];
                 break;
 
-            case PXValueType_CGAffineTransform:
+            case STKPXValueType_CGAffineTransform:
                 value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(CGAffineTransform)];
                 break;
 
-            case PXValueType_UIEdgeInsets:
+            case STKPXValueType_UIEdgeInsets:
                 value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(UIEdgeInsets)];
                 break;
 
-            case PXValueType_NSTextAlignment:
+            case STKPXValueType_NSTextAlignment:
                 value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(NSTextAlignment)];
                 break;
 
-            case PXValueType_NSLineBreakMode:
+            case STKPXValueType_NSLineBreakMode:
                 value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(NSLineBreakMode)];
                 break;
 
-            case PXValueType_Boolean:
+            case STKPXValueType_Boolean:
                 value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(BOOL)];
                 break;
 
-            case PXValueType_PXParseErrorDestination:
-                value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(PXParseErrorDestination)];
+            case STKPXValueType_STKPXParseErrorDestination:
+                value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(STKSTKPXParseErrorDestination)];
                 break;
 
-            case PXValueType_PXCacheStylesType:
-                value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(PXCacheStylesType)];
+            case STKPXValueType_PXCacheStylesType:
+                value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(STKPXCacheStylesType)];
                 break;
 
-            case PXValueType_UITextBorderStyle:
+            case STKPXValueType_UITextBorderStyle:
                 value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(UITextBorderStyle)];
                 break;
 
-            case PXValueType_CGColorRef:
+            case STKPXValueType_CGColorRef:
                 value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(CGColorRef)];
                 break;
 
-            case PXValueType_PXBorderStyle:
-                value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(PXBorderStyle)];
+            case STKPXValueType_PXBorderStyle:
+                value_ = [[NSValue alloc] initWithBytes:value objCType:@encode(STKPXBorderStyle)];
                 break;
 
             default:
@@ -100,19 +100,19 @@
 
 - (CGRect)CGRectValue
 {
-    return (_type == PXValueType_CGRect) ? [value_ CGRectValue] : CGRectZero;
+    return (_type == STKPXValueType_CGRect) ? [value_ CGRectValue] : CGRectZero;
 }
 
 - (CGSize)CGSizeValue
 {
-    return (_type == PXValueType_CGSize) ? [value_ CGSizeValue] : CGSizeZero;
+    return (_type == STKPXValueType_CGSize) ? [value_ CGSizeValue] : CGSizeZero;
 }
 
 - (CGFloat)CGFloatValue
 {
     CGFloat result = 0.0f;
 
-    if (_type == PXValueType_CGFloat)
+    if (_type == STKPXValueType_CGFloat)
     {
         [value_ getValue:&result];
     }
@@ -124,7 +124,7 @@
 {
     CGAffineTransform result = CGAffineTransformIdentity;
 
-    if (_type == PXValueType_CGAffineTransform)
+    if (_type == STKPXValueType_CGAffineTransform)
     {
         [value_ getValue:&result];
     }
@@ -136,7 +136,7 @@
 {
     UIEdgeInsets result = UIEdgeInsetsZero;
 
-    if (_type == PXValueType_UIEdgeInsets)
+    if (_type == STKPXValueType_UIEdgeInsets)
     {
         [value_ getValue:&result];
     }
@@ -148,7 +148,7 @@
 {
     NSTextAlignment result = NSTextAlignmentCenter;
 
-    if (_type == PXValueType_NSTextAlignment)
+    if (_type == STKPXValueType_NSTextAlignment)
     {
         [value_ getValue:&result];
     }
@@ -160,7 +160,7 @@
 {
     NSLineBreakMode result = NSLineBreakByTruncatingMiddle;
 
-    if (_type == PXValueType_NSLineBreakMode)
+    if (_type == STKPXValueType_NSLineBreakMode)
     {
         [value_ getValue:&result];
     }
@@ -172,7 +172,7 @@
 {
     BOOL result = NO;
 
-    if (_type == PXValueType_Boolean)
+    if (_type == STKPXValueType_Boolean)
     {
         [value_ getValue:&result];
     }
@@ -180,11 +180,11 @@
     return result;
 }
 
-- (PXParseErrorDestination)PXParseErrorDestinationValue
+- (STKSTKPXParseErrorDestination)STKPXParseErrorDestinationValue
 {
-    PXParseErrorDestination result = PXParseErrorDestinationNone;
+    STKPXParseErrorDestination result = STKPXParseErrorDestinationNone;
 
-    if (_type == PXValueType_PXParseErrorDestination)
+    if (_type == STKPXValueType_STKPXParseErrorDestination)
     {
         [value_ getValue:&result];
     }
@@ -192,11 +192,11 @@
     return result;
 }
 
-- (PXCacheStylesType)PXCacheStylesTypeValue
+- (STKPXCacheStylesType)STKPXCacheStylesTypeValue
 {
-    PXCacheStylesType result = PXCacheStylesTypeNone;
+    STKPXCacheStylesType result = STKPXCacheStylesTypeNone;
 
-    if (_type == PXValueType_PXCacheStylesType)
+    if (_type == STKPXValueType_PXCacheStylesType)
     {
         [value_ getValue:&result];
     }
@@ -208,7 +208,7 @@
 {
     UITextBorderStyle result = UITextBorderStyleNone;
 
-    if (_type == PXValueType_UITextBorderStyle)
+    if (_type == STKPXValueType_UITextBorderStyle)
     {
         [value_ getValue:&result];
     }
@@ -220,7 +220,7 @@
 {
     CGColorRef result;
 
-    if (_type == PXValueType_CGColorRef)
+    if (_type == STKPXValueType_CGColorRef)
     {
         [value_ getValue:&result];
     }
@@ -233,11 +233,11 @@
     return result;
 }
 
-- (PXBorderStyle)PXBorderStyleValue
+- (STKPXBorderStyle)STKPXBorderStyleValue
 {
-    PXBorderStyle result = PXBorderStyleNone;
+    STKPXBorderStyle result = STKPXBorderStyleNone;
 
-    if (_type == PXValueType_PXBorderStyle)
+    if (_type == STKPXValueType_PXBorderStyle)
     {
         [value_ getValue:&result];
     }

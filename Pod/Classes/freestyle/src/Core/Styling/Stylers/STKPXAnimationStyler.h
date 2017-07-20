@@ -15,14 +15,14 @@
  */
 
 //
-//  PXAnimationStyler.h
+//  STKPXAnimationStyler.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 3/5/13.
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
 
-#import "PXStylerBase.h"
+#import "STKPXStylerBase.h"
 
 /**
  *  - animation: <single-animation>#
@@ -35,7 +35,7 @@
  *  - animation-delay: <time>#
  *  - animation-fill-mode: <fill-mode>#
  */
-@interface STKPXAnimationStyler : PXStylerBase
+@interface STKPXAnimationStyler : STKPXStylerBase
 
 + (STKPXAnimationStyler *)sharedInstance;
 

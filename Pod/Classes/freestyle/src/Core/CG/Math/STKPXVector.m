@@ -15,7 +15,7 @@
  */
 
 //
-//  PXVector.m
+//  STKPXVector.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,7 +24,7 @@
 //
 
 #import "STKPXVector.h"
-#import "PXMath.h"
+#import "STKPXMath.h"
 
 @implementation STKPXVector
 

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUITabBar.m
+//  STKPXUITabBar.m
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -25,10 +25,10 @@
 #import "STKPXUITabBar.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
-#import "UITabBarItem+PXStyling.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
+#import "UITabBarItem+STKPXStyling.h"
 #import "STKPXUtils.h"
 
 #import "STKPXLayoutStyler.h"
@@ -182,14 +182,14 @@
     }
 }
 
-PX_WRAP_1(setBarTintColor, color);
-PX_WRAP_1(setTintColor, color);
-PX_WRAP_1(setSelectedImageTintColor, color);
-PX_WRAP_1(setBackgroundImage, image);
-PX_WRAP_1(setShadowImage, image);
-PX_WRAP_1(setSelectionIndicatorImage, image);
+STKPX_WRAP_1(setBarTintColor, color);
+STKPX_WRAP_1(setTintColor, color);
+STKPX_WRAP_1(setSelectedImageTintColor, color);
+STKPX_WRAP_1(setBackgroundImage, image);
+STKPX_WRAP_1(setShadowImage, image);
+STKPX_WRAP_1(setSelectionIndicatorImage, image);
 
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end

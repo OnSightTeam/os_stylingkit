@@ -15,18 +15,18 @@
  */
 
 //
-//  PXBarMetricsAdjustmentStyler.h
+//  STKPXBarMetricsAdjustmentStyler.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/13/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXStylerBase.h"
+#import "STKPXStylerBase.h"
 
 /**
  *  - vertical-position-adjustment: <length>
  */
-@interface STKPXBarMetricsAdjustmentStyler : PXStylerBase
+@interface STKPXBarMetricsAdjustmentStyler : STKPXStylerBase
 
 @end

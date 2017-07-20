@@ -25,7 +25,7 @@
 
 #import "NSMutableArray+StackAdditions.h"
 
-void PXForceLoadStackAdditions() {}
+void STKPXForceLoadStackAdditions() {}
 
 @implementation NSMutableArray (StackAdditions)
 

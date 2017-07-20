@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUICollectionViewDelegate.h
+//  STKPXUICollectionViewDelegate.h
 //  Pixate
 //
 //  Created by Paul Colton on 12/2/13.

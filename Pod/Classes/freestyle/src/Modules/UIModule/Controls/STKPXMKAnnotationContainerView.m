@@ -15,7 +15,7 @@
  */
 
 //
-//  PXMKAnnotationContainerView.m
+//  STKPXMKAnnotationContainerView.m
 //  Pixate
 //
 //  Created by Paul Colton on 11/29/12.
@@ -23,9 +23,9 @@
 //
 
 #import "STKPXMKAnnotationContainerView.h"
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXUtils.h"
 #import "objc.h"
 
@@ -34,11 +34,11 @@
 /* DISABLED
 + (void)initialize
 {
-    if (self != PXMKAnnotationContainerView.class)
+    if (self != STKPXMKAnnotationContainerView.class)
         return;
  
     [UIView registerDynamicSubclass:self
-                           forClass:[PXMKAnnotationContainerView targetSuperclass]
+                           forClass:[STKPXMKAnnotationContainerView targetSuperclass]
                     withElementName:@"annotation-container-view"];
 }
 

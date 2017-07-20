@@ -15,7 +15,7 @@
  */
 
 //
-//  PXDeclarationContainer.h
+//  STKPXDeclarationContainer.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 3/5/13.

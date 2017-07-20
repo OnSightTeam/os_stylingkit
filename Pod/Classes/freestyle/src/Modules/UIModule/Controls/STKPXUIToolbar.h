@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIToolbar.h
+//  STKPXUIToolbar.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -37,26 +37,26 @@
  *
  *  UIToolbar supports the following properties:
  *
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXBarShadowStyler
- *  - PXAnimationStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXBarShadowStyler
+ *  - STKPXAnimationStyler
  *  - color: <paint>
  *  - -ios-tint-color: <paint>
  *
  *  UIToolbar button-appearance supports the following properties:
  *
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXFontStyler
- *  - PXPaintStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXFontStyler
+ *  - STKPXPaintStyler
  *  - ios-tint-color: <color>
  *
  *  NOTE: For opacity, 1.0 is opaque and anything less means non-opaque

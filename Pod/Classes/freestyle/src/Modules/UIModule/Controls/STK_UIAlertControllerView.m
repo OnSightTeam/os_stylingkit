@@ -20,13 +20,13 @@
 
 
 #import "STKPXAnimationStyler.h"
-#import "UIView+PXStyling-Private.h"
+#import "UIView+STKPXStyling-Private.h"
 #import "STKPXOpacityStyler.h"
 #import "STKPXShapeStyler.h"
 #import "STKPXFillStyler.h"
 #import "STKPXBorderStyler.h"
 #import "STKPXBoxShadowStyler.h"
-#import "PXStylingMacros.h"
+#import "STKPXStylingMacros.h"
 #import "STK_UIAlertControllerView.h"
 
 @implementation STK_UIAlertControllerView
@@ -87,9 +87,9 @@
 }
 
 // Px Wrapped Only
-PX_PXWRAP_PROP(CALayer, layer);
+STKPX_PXWRAP_PROP(CALayer, layer);
 
 // Styling overrides
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end

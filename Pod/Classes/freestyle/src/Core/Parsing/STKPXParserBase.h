@@ -15,7 +15,7 @@
  */
 
 //
-//  PXParserBase.h
+//  STKPXParserBase.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 6/30/12.
@@ -23,18 +23,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXParser.h"
+#import "STKPXParser.h"
 
 /**
- *  PXParserBase is an abstract class with a collection of helper functions useful during parsing.
+ *  STKPXParserBase is an abstract class with a collection of helper functions useful during parsing.
  */
-@interface STKPXParserBase : NSObject <PXParser>
+@interface STKPXParserBase : NSObject <STKPXParser>
 {
     /**
      *  The current lexeme from the last call to advance. This value may be nil if none of the advance methods have been
      *  called or if there are no more lexemes in the scanner's lexeme stream
      */
-    @protected id<PXLexeme> currentLexeme;
+    @protected id<STKPXLexeme> currentLexeme;
 }
 
 

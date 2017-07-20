@@ -15,7 +15,7 @@
  */
 
 //
-//  PXShapeView.m
+//  STKPXShapeView.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 5/30/12.
@@ -55,7 +55,7 @@
     }
 }
 
-- (void)setDocument:(PXShapeDocument *)document
+- (void)setDocument:(STKPXShapeDocument *)document
 {
     if (_document)
     {

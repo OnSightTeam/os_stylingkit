@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUILayoutContainerView.h
+//  STKPXUILayoutContainerView.h
 //  Pixate
 //
 //  Created by Paul Colton on 2/21/13.

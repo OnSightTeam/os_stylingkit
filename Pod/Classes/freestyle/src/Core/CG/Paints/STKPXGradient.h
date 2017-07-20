@@ -15,7 +15,7 @@
  */
 
 //
-//  PXGradient.h
+//  STKPXGradient.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 6/8/12.
@@ -23,17 +23,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXPaint.h"
+#import "STKPXPaint.h"
 
 typedef enum {
-    PXGradientUnitsBoundingBox,
-    PXGradientUnitsUserSpace
-} PXGradientUnits;
+    STKPXGradientUnitsBoundingBox,
+    STKPXGradientUnitsUserSpace
+} STKPXGradientUnits;
 
 /**
  *  A common base class for linear- and radial-gradients.
  */
-@interface STKPXGradient : NSObject <PXPaint>
+@interface STKPXGradient : NSObject <STKPXPaint>
 
 /**
  *  An array of offsets, from zero to one inclusive, one for each color
@@ -50,7 +50,7 @@ typedef enum {
 /**
  *  Specify if points for the gradient are in user coordinates of if they are relative to the bounding box
  */
-@property (nonatomic) PXGradientUnits gradientUnits;
+@property (nonatomic) STKPXGradientUnits gradientUnits;
 
 /**
  *  The transform to apply before rendering this gradient

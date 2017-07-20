@@ -15,7 +15,7 @@
  */
 
 //
-//  PXTextShadowStyler.m
+//  STKPXTextShadowStyler.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 5/20/13.

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUITabBar.h
+//  STKPXUITabBar.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -37,25 +37,25 @@
  *
  *  UITabBar supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXBarShadowStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXBarShadowStyler
  *  - color: <color>
  *  - selected-color: <color>
  *  - -ios-tint-color: <paint>
- *  - PXAnimationStyler
+ *  - STKPXAnimationStyler
  *
  *  UITabBar selection supports the following properties:
  *
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *
  */
 @interface STKPXUITabBar : UITabBar

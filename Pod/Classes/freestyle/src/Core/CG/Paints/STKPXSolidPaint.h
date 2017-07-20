@@ -15,7 +15,7 @@
  */
 
 //
-//  PXSolidPaint.h
+//  STKPXSolidPaint.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,12 +24,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXPaint.h"
+#import "STKPXPaint.h"
 
 /**
- *  PXSolidPaint is used to fill a contour with a solid color
+ *  STKPXSolidPaint is used to fill a contour with a solid color
  */
-@interface STKPXSolidPaint : NSObject <PXPaint>
+@interface STKPXSolidPaint : NSObject <STKPXPaint>
 
 /**
  *  The color used when filling a specified contour

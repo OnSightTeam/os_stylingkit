@@ -15,7 +15,7 @@
  */
 
 //
-//  PXAnimationInfo.m
+//  STKPXAnimationInfo.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -41,12 +41,12 @@
     {
         _animationName = nil;
         _animationDuration = CGFLOAT_MAX;
-        _animationTimingFunction = PXAnimationTimingFunctionUndefined;
+        _animationTimingFunction = STKPXAnimationTimingFunctionUndefined;
         _animationIterationCount = NSUIntegerMax;
-        _animationDirection = PXAnimationDirectionUndefined;
-        _animationPlayState = PXAnimationPlayStateUndefined;
+        _animationDirection = STKPXAnimationDirectionUndefined;
+        _animationPlayState = STKPXAnimationPlayStateUndefined;
         _animationDelay = CGFLOAT_MAX;
-        _animationFillMode = PXAnimationFillModeUndefined;
+        _animationFillMode = STKPXAnimationFillModeUndefined;
     }
 
     return self;
@@ -61,12 +61,12 @@
     {
         _animationName = nil;
         _animationDuration = 0.0f;
-        _animationTimingFunction = PXAnimationTimingFunctionEase;
+        _animationTimingFunction = STKPXAnimationTimingFunctionEase;
         _animationIterationCount = 0;
-        _animationDirection = PXAnimationDirectionNormal;
-        _animationPlayState = PXAnimationPlayStateRunning;
+        _animationDirection = STKPXAnimationDirectionNormal;
+        _animationPlayState = STKPXAnimationPlayStateRunning;
         _animationDelay = 0.0f;
-        _animationFillMode = PXAnimationFillModeNone;
+        _animationFillMode = STKPXAnimationFillModeNone;
     }
 
     return self;
@@ -95,12 +95,12 @@
 {
     return (
             _animationDuration != CGFLOAT_MAX
-        &&  _animationTimingFunction != PXAnimationTimingFunctionUndefined
+        &&  _animationTimingFunction != STKPXAnimationTimingFunctionUndefined
         &&  _animationIterationCount != NSUIntegerMax
-        &&  _animationDirection != PXAnimationDirectionUndefined
-        &&  _animationPlayState != PXAnimationPlayStateUndefined
+        &&  _animationDirection != STKPXAnimationDirectionUndefined
+        &&  _animationPlayState != STKPXAnimationPlayStateUndefined
         &&  _animationDelay != CGFLOAT_MAX
-        &&  _animationFillMode != PXAnimationFillModeUndefined);
+        &&  _animationFillMode != STKPXAnimationFillModeUndefined);
 
 }
 
@@ -114,7 +114,7 @@
     {
         _animationDuration = info.animationDuration;
     }
-    if (_animationTimingFunction == PXAnimationTimingFunctionUndefined)
+    if (_animationTimingFunction == STKPXAnimationTimingFunctionUndefined)
     {
         _animationTimingFunction = info.animationTimingFunction;
     }
@@ -122,11 +122,11 @@
     {
         _animationIterationCount = info.animationIterationCount;
     }
-    if (_animationDirection == PXAnimationDirectionUndefined)
+    if (_animationDirection == STKPXAnimationDirectionUndefined)
     {
         _animationDirection = info.animationDirection;
     }
-    if (_animationPlayState == PXAnimationPlayStateUndefined)
+    if (_animationPlayState == STKPXAnimationPlayStateUndefined)
     {
         _animationPlayState = info.animationPlayState;
     }
@@ -134,7 +134,7 @@
     {
         _animationDelay = info.animationDelay;
     }
-    if (_animationFillMode == PXAnimationFillModeUndefined)
+    if (_animationFillMode == STKPXAnimationFillModeUndefined)
     {
         _animationFillMode = info.animationFillMode;
     }

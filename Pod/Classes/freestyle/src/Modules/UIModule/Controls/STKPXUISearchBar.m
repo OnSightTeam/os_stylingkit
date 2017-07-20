@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUISearchBar.m
+//  STKPXUISearchBar.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -25,9 +25,9 @@
 
 #import "STKPXUISearchBar.h"
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 
 #import "STKPXOpacityStyler.h"
 #import "STKPXLayoutStyler.h"
@@ -161,14 +161,14 @@
     }
 }
 
-PX_PXWRAP_1(setText, text);
+STKPX_PXWRAP_1(setText, text);
 
-PX_WRAP_1(setBarTintColor, color);
-PX_WRAP_1(setTintColor, color);
-PX_WRAP_1b(setTranslucent, flag);
-PX_WRAP_1v(setBarStyle, UIBarStyle, style);
-PX_WRAP_2v(setScopeBarButtonTitleTextAttributes, attrs, forState, UIControlState, state);
+STKPX_WRAP_1(setBarTintColor, color);
+STKPX_WRAP_1(setTintColor, color);
+STKPX_WRAP_1b(setTranslucent, flag);
+STKPX_WRAP_1v(setBarStyle, UIBarStyle, style);
+STKPX_WRAP_2v(setScopeBarButtonTitleTextAttributes, attrs, forState, UIControlState, state);
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXSSTokenType.m
+//  STKPXSSTokenType.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 6/26/12.
@@ -26,103 +26,103 @@
 
 @implementation STKPXStylesheetTokenType
 
-+ (NSString *)typeNameForInt:(PXStylesheetTokens)type
++ (NSString *)typeNameForInt:(STKPXStylesheetTokens)type
 {
     switch (type)
     {
-        case PXSS_ERROR:                            return @"ERROR";
-        case PXSS_EOF:                              return @"EOF";
+        case STKPXSS_ERROR:                            return @"ERROR";
+        case STKPXSS_EOF:                              return @"EOF";
 
-        case PXSS_WHITESPACE:                       return @"WHITESPACE";
+        case STKPXSS_WHITESPACE:                       return @"WHITESPACE";
 
-        case PXSS_NUMBER:                           return @"NUMBER";
-        case PXSS_CLASS:                            return @"CLASS";
-        case PXSS_ID:                               return @"ID";
-        case PXSS_IDENTIFIER:                       return @"IDENTIFIER";
+        case STKPXSS_NUMBER:                           return @"NUMBER";
+        case STKPXSS_CLASS:                            return @"CLASS";
+        case STKPXSS_ID:                               return @"ID";
+        case STKPXSS_IDENTIFIER:                       return @"IDENTIFIER";
 
-        case PXSS_LCURLY:                           return @"LCURLY";
-        case PXSS_RCURLY:                           return @"RCURLY";
-        case PXSS_LPAREN:                           return @"LPAREN";
-        case PXSS_RPAREN:                           return @"RPAREN";
-        case PXSS_LBRACKET:                         return @"LBRACKET";
-        case PXSS_RBRACKET:                         return @"RBRACKET";
+        case STKPXSS_LCURLY:                           return @"LCURLY";
+        case STKPXSS_RCURLY:                           return @"RCURLY";
+        case STKPXSS_LPAREN:                           return @"LPAREN";
+        case STKPXSS_RPAREN:                           return @"RPAREN";
+        case STKPXSS_LBRACKET:                         return @"LBRACKET";
+        case STKPXSS_RBRACKET:                         return @"RBRACKET";
 
-        case PXSS_SEMICOLON:                        return @"SEMICOLON";
-        case PXSS_GREATER_THAN:                     return @"GREATER_THAN";
-        case PXSS_PLUS:                             return @"PLUS";
-        case PXSS_TILDE:                            return @"TILDE";
-        case PXSS_STAR:                             return @"STAR";
-        case PXSS_EQUAL:                            return @"EQUAL";
-        case PXSS_COLON:                            return @"COLON";
-        case PXSS_COMMA:                            return @"COMMA";
-        case PXSS_PIPE:                             return @"PIPE";
-        case PXSS_SLASH:                            return @"SLASH";
+        case STKPXSS_SEMICOLON:                        return @"SEMICOLON";
+        case STKPXSS_GREATER_THAN:                     return @"GREATER_THAN";
+        case STKPXSS_PLUS:                             return @"PLUS";
+        case STKPXSS_TILDE:                            return @"TILDE";
+        case STKPXSS_STAR:                             return @"STAR";
+        case STKPXSS_EQUAL:                            return @"EQUAL";
+        case STKPXSS_COLON:                            return @"COLON";
+        case STKPXSS_COMMA:                            return @"COMMA";
+        case STKPXSS_PIPE:                             return @"PIPE";
+        case STKPXSS_SLASH:                            return @"SLASH";
 
-        case PXSS_DOUBLE_COLON:                     return @"DOUBLE_COLON";
-        case PXSS_STARTS_WITH:                      return @"STARTS_WITH";
-        case PXSS_ENDS_WITH:                        return @"ENDS_WITH";
-        case PXSS_CONTAINS:                         return @"CONTAINS";
-        case PXSS_LIST_CONTAINS:                    return @"LIST_CONTAINS";
-        case PXSS_EQUALS_WITH_HYPHEN:               return @"HYPHEN_LIST_CONTAINS";
+        case STKPXSS_DOUBLE_COLON:                     return @"DOUBLE_COLON";
+        case STKPXSS_STARTS_WITH:                      return @"STARTS_WITH";
+        case STKPXSS_ENDS_WITH:                        return @"ENDS_WITH";
+        case STKPXSS_CONTAINS:                         return @"CONTAINS";
+        case STKPXSS_LIST_CONTAINS:                    return @"LIST_CONTAINS";
+        case STKPXSS_EQUALS_WITH_HYPHEN:               return @"HYPHEN_LIST_CONTAINS";
 
-        case PXSS_STRING:                           return @"STRING";
-        case PXSS_LINEAR_GRADIENT:                  return @"LINEAR_GRADIENT";
-        case PXSS_RADIAL_GRADIENT:                  return @"RADIAL_GRADIENT";
-        case PXSS_HSL:                              return @"HSL";
-        case PXSS_HSLA:                             return @"HSLA";
-        case PXSS_HSB:                              return @"HSB";
-        case PXSS_HSBA:                             return @"HSBA";
-        case PXSS_RGB:                              return @"RGB";
-        case PXSS_RGBA:                             return @"RGBA";
-        case PXSS_HEX_COLOR:                        return @"HEX_COLOR";
-        case PXSS_URL:                              return @"URL";
-        case PXSS_NAMESPACE:                        return @"NAMESPACE";
+        case STKPXSS_STRING:                           return @"STRING";
+        case STKPXSS_LINEAR_GRADIENT:                  return @"LINEAR_GRADIENT";
+        case STKPXSS_RADIAL_GRADIENT:                  return @"RADIAL_GRADIENT";
+        case STKPXSS_HSL:                              return @"HSL";
+        case STKPXSS_HSLA:                             return @"HSLA";
+        case STKPXSS_HSB:                              return @"HSB";
+        case STKPXSS_HSBA:                             return @"HSBA";
+        case STKPXSS_RGB:                              return @"RGB";
+        case STKPXSS_RGBA:                             return @"RGBA";
+        case STKPXSS_HEX_COLOR:                        return @"HEX_COLOR";
+        case STKPXSS_URL:                              return @"URL";
+        case STKPXSS_NAMESPACE:                        return @"NAMESPACE";
 
-        case PXSS_NOT_PSEUDO_CLASS:                 return @"NOT";
-        case PXSS_LINK_PSEUDO_CLASS:                return @"PXSS_LINK_PSEUDO_CLASS";
-        case PXSS_VISITED_PSEUDO_CLASS:             return @"PXSS_VISITED_PSEUDO_CLASS";
-        case PXSS_HOVER_PSEUDO_CLASS:               return @"PXSS_HOVER_PSEUDO_CLASS";
-        case PXSS_ACTIVE_PSEUDO_CLASS:              return @"PXSS_ACTIVE_PSEUDO_CLASS";
-        case PXSS_FOCUS_PSEUDO_CLASS:               return @"PXSS_FOCUS_PSEUDO_CLASS";
-        case PXSS_TARGET_PSEUDO_CLASS:              return @"PXSS_TARGET_PSEUDO_CLASS";
-        case PXSS_LANG_PSEUDO_CLASS:                return @"PXSS_LANG_PSEUDO_CLASS";
-        case PXSS_ENABLED_PSEUDO_CLASS:             return @"PXSS_ENABLED_PSEUDO_CLASS";
-        case PXSS_CHECKED_PSEUDO_CLASS:             return @"PXSS_CHECKED_PSEUDO_CLASS";
-        case PXSS_INDETERMINATE_PSEUDO_CLASS:       return @"PXSS_INDETERMINATE_PSEUDO_CLASS";
-        case PXSS_ROOT_PSEUDO_CLASS:                return @"PXSS_ROOT_PSEUDO_CLASS";
-        case PXSS_NTH_CHILD_PSEUDO_CLASS:           return @"PXSS_NTH_CHILD_PSEUDO_CLASS";
-        case PXSS_NTH_LAST_CHILD_PSEUDO_CLASS:      return @"PXSS_NTH_LAST_CHILD_PSEUDO_CLASS";
-        case PXSS_NTH_OF_TYPE_PSEUDO_CLASS:         return @"PXSS_NTH_OF_TYPE_PSEUDO_CLASS";
-        case PXSS_NTH_LAST_OF_TYPE_PSEUDO_CLASS:    return @"PXSS_NTH_LAST_OF_TYPE_PSEUDO_CLASS";
-        case PXSS_FIRST_CHILD_PSEUDO_CLASS:         return @"PXSS_FIRST_CHILD_PSEUDO_CLASS";
-        case PXSS_LAST_CHILD_PSEUDO_CLASS:          return @"PXSS_LAST_CHILD_PSEUDO_CLASS";
-        case PXSS_FIRST_OF_TYPE_PSEUDO_CLASS:       return @"PXSS_FIRST_OF_TYPE_PSEUDO_CLASS";
-        case PXSS_LAST_OF_TYPE_PSEUDO_CLASS:        return @"PXSS_LAST_OF_TYPE_PSEUDO_CLASS";
-        case PXSS_ONLY_CHILD_PSEUDO_CLASS:          return @"PXSS_ONLY_CHILD_PSEUDO_CLASS";
-        case PXSS_ONLY_OF_TYPE_PSEUDO_CLASS:        return @"PXSS_ONLY_OF_TYPE_PSEUDO_CLASS";
-        case PXSS_EMPTY_PSEUDO_CLASS:               return @"PXSS_EMPTY_PSEUDO_CLASS";
-        case PXSS_NTH:                              return @"PXSS_NTH";
+        case STKPXSS_NOT_PSEUDO_CLASS:                 return @"NOT";
+        case STKPXSS_LINK_PSEUDO_CLASS:                return @"STKPXSS_LINK_PSEUDO_CLASS";
+        case STKPXSS_VISITED_PSEUDO_CLASS:             return @"STKPXSS_VISITED_PSEUDO_CLASS";
+        case STKPXSS_HOVER_PSEUDO_CLASS:               return @"STKPXSS_HOVER_PSEUDO_CLASS";
+        case STKPXSS_ACTIVE_PSEUDO_CLASS:              return @"STKPXSS_ACTIVE_PSEUDO_CLASS";
+        case STKPXSS_FOCUS_PSEUDO_CLASS:               return @"STKPXSS_FOCUS_PSEUDO_CLASS";
+        case STKPXSS_TARGET_PSEUDO_CLASS:              return @"STKPXSS_TARGET_PSEUDO_CLASS";
+        case STKPXSS_LANG_PSEUDO_CLASS:                return @"STKPXSS_LANG_PSEUDO_CLASS";
+        case STKPXSS_ENABLED_PSEUDO_CLASS:             return @"STKPXSS_ENABLED_PSEUDO_CLASS";
+        case STKPXSS_CHECKED_PSEUDO_CLASS:             return @"STKPXSS_CHECKED_PSEUDO_CLASS";
+        case STKPXSS_INDETERMINATE_PSEUDO_CLASS:       return @"STKPXSS_INDETERMINATE_PSEUDO_CLASS";
+        case STKPXSS_ROOT_PSEUDO_CLASS:                return @"STKPXSS_ROOT_PSEUDO_CLASS";
+        case STKPXSS_NTH_CHILD_PSEUDO_CLASS:           return @"STKPXSS_NTH_CHILD_PSEUDO_CLASS";
+        case STKPXSS_NTH_LAST_CHILD_PSEUDO_CLASS:      return @"STKPXSS_NTH_LAST_CHILD_PSEUDO_CLASS";
+        case STKPXSS_NTH_OF_TYPE_PSEUDO_CLASS:         return @"STKPXSS_NTH_OF_TYPE_PSEUDO_CLASS";
+        case STKPXSS_NTH_LAST_OF_TYPE_PSEUDO_CLASS:    return @"STKPXSS_NTH_LAST_OF_TYPE_PSEUDO_CLASS";
+        case STKPXSS_FIRST_CHILD_PSEUDO_CLASS:         return @"STKPXSS_FIRST_CHILD_PSEUDO_CLASS";
+        case STKPXSS_LAST_CHILD_PSEUDO_CLASS:          return @"STKPXSS_LAST_CHILD_PSEUDO_CLASS";
+        case STKPXSS_FIRST_OF_TYPE_PSEUDO_CLASS:       return @"STKPXSS_FIRST_OF_TYPE_PSEUDO_CLASS";
+        case STKPXSS_LAST_OF_TYPE_PSEUDO_CLASS:        return @"STKPXSS_LAST_OF_TYPE_PSEUDO_CLASS";
+        case STKPXSS_ONLY_CHILD_PSEUDO_CLASS:          return @"STKPXSS_ONLY_CHILD_PSEUDO_CLASS";
+        case STKPXSS_ONLY_OF_TYPE_PSEUDO_CLASS:        return @"STKPXSS_ONLY_OF_TYPE_PSEUDO_CLASS";
+        case STKPXSS_EMPTY_PSEUDO_CLASS:               return @"STKPXSS_EMPTY_PSEUDO_CLASS";
+        case STKPXSS_NTH:                              return @"STKPXSS_NTH";
 
-        case PXSS_FIRST_LINE_PSEUDO_ELEMENT:        return @"PXSS_FIRST_LINE_PSEUDO_ELEMENT";
-        case PXSS_FIRST_LETTER_PSEUDO_ELEMENT:      return @"PXSS_FIRST_LETTER_PSEUDO_ELEMENT";
-        case PXSS_BEFORE_PSEUDO_ELEMENT:            return @"PXSS_BEFORE_PSEUDO_ELEMENT";
-        case PXSS_AFTER_PSEUDO_ELEMENT:             return @"PXSS_AFTER_PSEUDO_ELEMENT";
+        case STKPXSS_FIRST_LINE_PSEUDO_ELEMENT:        return @"STKPXSS_FIRST_LINE_PSEUDO_ELEMENT";
+        case STKPXSS_FIRST_LETTER_PSEUDO_ELEMENT:      return @"STKPXSS_FIRST_LETTER_PSEUDO_ELEMENT";
+        case STKPXSS_BEFORE_PSEUDO_ELEMENT:            return @"STKPXSS_BEFORE_PSEUDO_ELEMENT";
+        case STKPXSS_AFTER_PSEUDO_ELEMENT:             return @"STKPXSS_AFTER_PSEUDO_ELEMENT";
 
-        case PXSS_KEYFRAMES:                        return @"KEYFRAMES";
-        case PXSS_IMPORTANT:                        return @"IMPORTANT";
-        case PXSS_IMPORT:                           return @"IMPORT";
-        case PXSS_MEDIA:                            return @"MEDIA";
-        case PXSS_FONT_FACE:                        return @"FONT_FACE";
-        case PXSS_AND:                              return @"AND";
+        case STKPXSS_KEYFRAMES:                        return @"KEYFRAMES";
+        case STKPXSS_IMPORTANT:                        return @"IMPORTANT";
+        case STKPXSS_IMPORT:                           return @"IMPORT";
+        case STKPXSS_MEDIA:                            return @"MEDIA";
+        case STKPXSS_FONT_FACE:                        return @"FONT_FACE";
+        case STKPXSS_AND:                              return @"AND";
 
-        case PXSS_EMS:                              return @"EMS";
-        case PXSS_EXS:                              return @"EXS";
-        case PXSS_LENGTH:                           return @"LENGTH";
-        case PXSS_ANGLE:                            return @"ANGLE";
-        case PXSS_TIME:                             return @"TIME";
-        case PXSS_FREQUENCY:                        return @"FREQUENCY";
-        case PXSS_DIMENSION:                        return @"DIMENSION";
-        case PXSS_PERCENTAGE:                       return @"PERCENTAGE";
+        case STKPXSS_EMS:                              return @"EMS";
+        case STKPXSS_EXS:                              return @"EXS";
+        case STKPXSS_LENGTH:                           return @"LENGTH";
+        case STKPXSS_ANGLE:                            return @"ANGLE";
+        case STKPXSS_TIME:                             return @"TIME";
+        case STKPXSS_FREQUENCY:                        return @"FREQUENCY";
+        case STKPXSS_DIMENSION:                        return @"DIMENSION";
+        case STKPXSS_PERCENTAGE:                       return @"PERCENTAGE";
 
         default:                        return @"<unknown>";
     }

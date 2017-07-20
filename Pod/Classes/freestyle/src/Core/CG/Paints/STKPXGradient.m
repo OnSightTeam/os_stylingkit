@@ -15,7 +15,7 @@
  */
 
 //
-//  PXGradient.m
+//  STKPXGradient.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,7 +24,7 @@
 //
 
 #import "STKPXGradient.h"
-#import "UIColor+PXColors.h"
+#import "UIColor+STKPXColors.h"
 
 @implementation STKPXGradient
 
@@ -43,7 +43,7 @@
         _colors = [NSMutableArray array];
         _transform = CGAffineTransformIdentity;
         _blendMode = kCGBlendModeNormal;
-        _gradientUnits = PXGradientUnitsBoundingBox;
+        _gradientUnits = STKPXGradientUnitsBoundingBox;
     }
 
     return self;
@@ -89,13 +89,13 @@
     // sub-classes need to override
 }
 
-- (id<PXPaint>)lightenByPercent:(CGFloat)percent
+- (id<STKPXPaint>)lightenByPercent:(CGFloat)percent
 {
     // sub-classes need to override
     return nil;
 }
 
-- (id<PXPaint>)darkenByPercent:(CGFloat)percent
+- (id<STKPXPaint>)darkenByPercent:(CGFloat)percent
 {
     // sub-classes need to override
     return nil;

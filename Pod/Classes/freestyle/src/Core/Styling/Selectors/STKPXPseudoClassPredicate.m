@@ -15,7 +15,7 @@
  */
 
 //
-//  PXPseudoClassPredicate.m
+//  STKPXPseudoClassPredicate.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -32,7 +32,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
 #pragma mark - Initializers
 
-- (instancetype)initWithPredicateType:(PXPseudoClassPredicateType)type
+- (instancetype)initWithPredicateType:(STKPXPseudoClassPredicateType)type
 {
     if (self = [super init])
     {
@@ -42,57 +42,57 @@ STK_DEFINE_CLASS_LOG_LEVEL
     return self;
 }
 
-#pragma mark - PXSelector Implementation
+#pragma mark - STKPXSelector Implementation
 
-- (BOOL)matches:(id<PXStyleable>)element
+- (BOOL)matches:(id<STKPXStyleable>)element
 {
     BOOL result = NO;
-    PXStyleableChildrenInfo *info = [STKPXStyleUtils childrenInfoForStyleable:element];
+    STKPXStyleableChildrenInfo *info = [STKPXStyleUtils childrenInfoForStyleable:element];
 
     switch (_predicateType)
     {
-        case PXPseudoClassPredicateRoot:
+        case STKPXPseudoClassPredicateRoot:
             // TODO: not sure how robust this test is
             result = (element.pxStyleParent == nil);
             break;
 
-        case PXPseudoClassPredicateFirstChild:
+        case STKPXPseudoClassPredicateFirstChild:
         {
             result = (info->childrenIndex == 1);
             break;
         }
 
-        case PXPseudoClassPredicateLastChild:
+        case STKPXPseudoClassPredicateLastChild:
         {
             result = (info->childrenIndex == info->childrenCount);
             break;
         }
 
-        case PXPseudoClassPredicateFirstOfType:
+        case STKPXPseudoClassPredicateFirstOfType:
         {
             result = (info->childrenOfTypeIndex == 1);
             break;
         }
 
-        case PXPseudoClassPredicateLastOfType:
+        case STKPXPseudoClassPredicateLastOfType:
         {
             result = (info->childrenOfTypeIndex == info->childrenOfTypeCount);
             break;
         }
 
-        case PXPseudoClassPredicateOnlyChild:
+        case STKPXPseudoClassPredicateOnlyChild:
         {
             result = (info->childrenCount == 1 && info->childrenIndex == 1);
             break;
         }
 
-        case PXPseudoClassPredicateOnlyOfType:
+        case STKPXPseudoClassPredicateOnlyOfType:
         {
             result = (info->childrenOfTypeCount == 1 && info->childrenOfTypeIndex == 1);
             break;
         }
 
-        case PXPseudoClassPredicateEmpty:
+        case STKPXPseudoClassPredicateEmpty:
         {
             result = ([STKPXStyleUtils childCountForStyleable:element] == 0);
             break;
@@ -103,11 +103,11 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
     if (result)
     {
-        DDLogVerbose(@"%@ matched %@", self.description, [PXStyleUtils descriptionForStyleable:element]);
+        DDLogVerbose(@"%@ matched %@", self.description, [STKPXStyleUtils descriptionForStyleable:element]);
     }
     else
     {
-        DDLogVerbose(@"%@ did not match %@", self.description, [PXStyleUtils descriptionForStyleable:element]);
+        DDLogVerbose(@"%@ did not match %@", self.description, [STKPXStyleUtils descriptionForStyleable:element]);
     }
 
     return result;
@@ -124,14 +124,14 @@ STK_DEFINE_CLASS_LOG_LEVEL
 {
     switch (_predicateType)
     {
-        case PXPseudoClassPredicateRoot: return @":root";
-        case PXPseudoClassPredicateFirstChild: return @":first-child";
-        case PXPseudoClassPredicateLastChild: return @":list-child";
-        case PXPseudoClassPredicateFirstOfType: return @":first-of-type";
-        case PXPseudoClassPredicateLastOfType: return @":last-of-type";
-        case PXPseudoClassPredicateOnlyChild: return @":only-child";
-        case PXPseudoClassPredicateOnlyOfType: return @":only-of-type";
-        case PXPseudoClassPredicateEmpty: return @":empty";
+        case STKPXPseudoClassPredicateRoot: return @":root";
+        case STKPXPseudoClassPredicateFirstChild: return @":first-child";
+        case STKPXPseudoClassPredicateLastChild: return @":list-child";
+        case STKPXPseudoClassPredicateFirstOfType: return @":first-of-type";
+        case STKPXPseudoClassPredicateLastOfType: return @":last-of-type";
+        case STKPXPseudoClassPredicateOnlyChild: return @":only-child";
+        case STKPXPseudoClassPredicateOnlyOfType: return @":only-of-type";
+        case STKPXPseudoClassPredicateEmpty: return @":empty";
         default: return @"<uknown-pseudo-class-predicate";
     }
 }

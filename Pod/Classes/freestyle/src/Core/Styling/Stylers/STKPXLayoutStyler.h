@@ -15,7 +15,7 @@
  */
 
 //
-//  PXLayoutStyler.h
+//  STKPXLayoutStyler.h
 //  Pixate
 //
 //  Created by Paul Colton on 11/15/12.
@@ -23,7 +23,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXStylerBase.h"
+#import "STKPXStylerBase.h"
 
 /**
  *  - top: <length>
@@ -34,7 +34,7 @@
  *  - position: <size>
  */
 
-@interface STKPXLayoutStyler : PXStylerBase
+@interface STKPXLayoutStyler : STKPXStylerBase
 
 + (STKPXLayoutStyler *)sharedInstance;
 

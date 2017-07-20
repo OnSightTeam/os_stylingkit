@@ -15,7 +15,7 @@
  */
 
 //
-//  PXNamedMediaExpression.m
+//  STKPXNamedMediaExpression.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -26,7 +26,7 @@
 #import "STKPXNamedMediaExpression.h"
 
 #import "STKPXDimension.h"
-#import "PXGestalt.h"
+#import "STKPXGestalt.h"
 #import <sys/utsname.h>
 #import <sys/sysctl.h>
 
@@ -173,41 +173,41 @@
             },
             
             @"device-os-version" : ^BOOL(STKPXNamedMediaExpression *expression) {
-                PXVersionType sysVersion  = PXVersionCurrentSystem();
-                PXVersionType userVersion = PXVersionFromObject(expression.value);
+                STKPXVersionType sysVersion  = STKPXVersionCurrentSystem();
+                STKPXVersionType userVersion = STKPXVersionFromObject(expression.value);
                 
-                return PXVersionMatch(userVersion, sysVersion);
+                return STKPXVersionMatch(userVersion, sysVersion);
             },
             @"min-device-os-version" : ^BOOL(STKPXNamedMediaExpression *expression) {
-                PXVersionType sysVersion = PXVersionCurrentSystem();
-                PXVersionType minVersion = PXVersionFromObject(expression.value);
+                STKPXVersionType sysVersion = STKPXVersionCurrentSystem();
+                STKPXVersionType minVersion = STKPXVersionFromObject(expression.value);
                 
-                return ( PXVersionCompare(sysVersion, minVersion) >= NSOrderedSame );
+                return ( STKPXVersionCompare(sysVersion, minVersion) >= NSOrderedSame );
             },
             @"max-device-os-version" : ^BOOL(STKPXNamedMediaExpression *expression) {
-                PXVersionType sysVersion = PXVersionCurrentSystem();
-                PXVersionType maxVersion = PXVersionFromObject(expression.value);
+                STKPXVersionType sysVersion = STKPXVersionCurrentSystem();
+                STKPXVersionType maxVersion = STKPXVersionFromObject(expression.value);
 
-                return ( PXVersionCompare(sysVersion, maxVersion) <= NSOrderedSame );
+                return ( STKPXVersionCompare(sysVersion, maxVersion) <= NSOrderedSame );
             },
             
             @"device-aspect-ratio" : ^BOOL(STKPXNamedMediaExpression *expression) {
-                PXScreenRatioType sysRatio  = PXScreenRatioCurrentSystem();
-                PXScreenRatioType userRatio = PXScreenRatioFromObject(expression.value);
+                STKPXScreenRatioType sysRatio  = STKPXScreenRatioCurrentSystem();
+                STKPXScreenRatioType userRatio = STKPXScreenRatioFromObject(expression.value);
                 
-                return (PXScreenRatioCompare(sysRatio, userRatio) == NSOrderedSame);
+                return (STKPXScreenRatioCompare(sysRatio, userRatio) == NSOrderedSame);
             },
             @"min-device-aspect-ratio" : ^BOOL(STKPXNamedMediaExpression *expression) {
-                PXScreenRatioType sysRatio  = PXScreenRatioCurrentSystem();
-                PXScreenRatioType userRatio = PXScreenRatioFromObject(expression.value);
+                STKPXScreenRatioType sysRatio  = STKPXScreenRatioCurrentSystem();
+                STKPXScreenRatioType userRatio = STKPXScreenRatioFromObject(expression.value);
                 // 4/3 (sys) > 1/1 (usr)
-                return (PXScreenRatioCompare(sysRatio, userRatio) >= NSOrderedSame);
+                return (STKPXScreenRatioCompare(sysRatio, userRatio) >= NSOrderedSame);
             },
             @"max-device-aspect-ratio" : ^BOOL(STKPXNamedMediaExpression *expression) {
-                PXScreenRatioType sysRatio  = PXScreenRatioCurrentSystem();
-                PXScreenRatioType userRatio = PXScreenRatioFromObject(expression.value);
+                STKPXScreenRatioType sysRatio  = STKPXScreenRatioCurrentSystem();
+                STKPXScreenRatioType userRatio = STKPXScreenRatioFromObject(expression.value);
                 
-                return (PXScreenRatioCompare(sysRatio, userRatio ) <= NSOrderedSame);
+                return (STKPXScreenRatioCompare(sysRatio, userRatio ) <= NSOrderedSame);
             },
 
         };
@@ -241,7 +241,7 @@
     if (!_matches) {
         // NOTE: the parser guarantees that _name is lower case
         NSDictionary *handlers = [STKPXNamedMediaExpression nameHandlers];
-        PXNamedMediaExpressionHandler handler = handlers[_name];
+        STKPXNamedMediaExpressionHandler handler = handlers[_name];
         _matches = @((handler) ? handler(self) : NO);
     }
     return _matches.boolValue;

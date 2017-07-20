@@ -15,7 +15,7 @@
  */
 
 //
-//  PXTransformParser.h
+//  STKPXTransformParser.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 7/27/12.
@@ -25,7 +25,7 @@
 #import "STKPXParserBase.h"
 
 /**
- *  PXTransformParser generates a CGAffineTransform by parsing an SVG transform value
+ *  STKPXTransformParser generates a CGAffineTransform by parsing an SVG transform value
  */
 @interface STKPXTransformParser : STKPXParserBase
 

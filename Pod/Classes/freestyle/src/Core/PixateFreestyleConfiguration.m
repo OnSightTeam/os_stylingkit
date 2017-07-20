@@ -47,14 +47,14 @@ STK_DEFINE_CLASS_LOG_LEVEL
     if (self = [super init])
     {
         // set default configuration settings here
-        _parseErrorDestination = PXParseErrorDestinationNone;
-        _cacheStylesType = PXCacheStylesTypeStyleOnce | PXCacheStylesTypeImages;
+        _parseErrorDestination = STKPXParseErrorDestinationNone;
+        _cacheStylesType = STKPXCacheStylesTypeStyleOnce | STKPXCacheStylesTypeImages;
 
         _imageCacheCount = 10;
         _imageCacheSize = 0;
         _styleCacheCount = 10;
 
-        _styleMode = PXStylingNormal;
+        _styleMode = STKPXStylingNormal;
     }
 
     return self;
@@ -84,34 +84,34 @@ STK_DEFINE_CLASS_LOG_LEVEL
 {
     switch (_parseErrorDestination)
     {
-        case PXParseErrorDestinationConsole:
+        case STKPXParseErrorDestinationConsole:
             NSLog(@"%@", message);
             break;
 
-#ifdef PX_LOGGING
-        case PXParseErrorDestination_Logger:
+#ifdef STKPX_LOGGING
+        case STKPXParseErrorDestination_Logger:
             DDLogWarn(@"%@", message);
             break;
 #endif
 
-        case PXParseErrorDestinationNone:
+        case STKPXParseErrorDestinationNone:
             break;
     }
 }
 
 - (BOOL)cacheImages
 {
-    return (_cacheStylesType & PXCacheStylesTypeImages) == PXCacheStylesTypeImages;
+    return (_cacheStylesType & STKPXCacheStylesTypeImages) == STKPXCacheStylesTypeImages;
 }
 
 - (BOOL)cacheStyles
 {
-    return (_cacheStylesType & PXCacheStylesTypeSave) == PXCacheStylesTypeSave;
+    return (_cacheStylesType & STKPXCacheStylesTypeSave) == STKPXCacheStylesTypeSave;
 }
 
 - (BOOL)preventRedundantStyling
 {
-    return (_cacheStylesType & PXCacheStylesTypeStyleOnce) == PXCacheStylesTypeStyleOnce;
+    return (_cacheStylesType & STKPXCacheStylesTypeStyleOnce) == STKPXCacheStylesTypeStyleOnce;
 }
 
 - (void)setImageCacheCount:(NSUInteger)imageCacheCount
@@ -129,7 +129,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
     [STKPXCacheManager setStyleCacheCount:styleCacheCount];
 }
 
-#pragma mark - PXStyleable
+#pragma mark - STKPXStyleable
 
 - (void)setStyleId:(NSString *)anId
 {
@@ -231,7 +231,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
               @"enabled" : ^(STKPXDeclaration* declaration, STKPXStylerContext* context) {
                   BOOL value = declaration.booleanValue;
 
-                  PixateFreestyle.configuration.styleMode = value ? PXStylingNormal : PXStylingNone;
+                  PixateFreestyle.configuration.styleMode = value ? STKPXStylingNormal : STKPXStylingNone;
               }
             }]
         ];

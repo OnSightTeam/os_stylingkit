@@ -15,7 +15,7 @@
  */
 
 //
-//  PXPath.h
+//  STKPXPath.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 5/31/12.
@@ -26,18 +26,18 @@
 #import "STKPXShape.h"
 
 /**
- *  A PXShape sub-class used to render paths
+ *  A STKPXShape sub-class used to render paths
  */
 @interface STKPXPath : STKPXShape
 
 /**
- *  Generate a new PXPath instance using the specified data
+ *  Generate a new STKPXPath instance using the specified data
  *
  *  This method parses the specifying data, generating calls to the path building methods in this class. The data is
  *  expected to be in the form as defined by the SVG 1.1 specification for the path data's d attribute.
  *
  *  @param data A string of path data
- *  @returns A newly allocated PXPath instance
+ *  @returns A newly allocated STKPXPath instance
  */
 + (STKPXPath *)createPathFromPathData:(NSString *)data;
 

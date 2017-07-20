@@ -15,7 +15,7 @@
  */
 
 //
-//  PXStroke.h
+//  STKPXStroke.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,14 +24,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXPaint.h"
-#import "PXStrokeRenderer.h"
+#import "STKPXPaint.h"
+#import "STKPXStrokeRenderer.h"
 
 /**
- *  PXStrokeType is an enumeration indicating the placement of the stroke in relation to the contour it is being applied
+ *  STKPXStrokeType is an enumeration indicating the placement of the stroke in relation to the contour it is being applied
  *  to.
  */
-typedef NS_ENUM(unsigned int, PXStrokeType)
+typedef NS_ENUM(unsigned int, STKPXStrokeType)
 {
     kStrokeTypeCenter,
     kStrokeTypeInner,
@@ -39,15 +39,15 @@ typedef NS_ENUM(unsigned int, PXStrokeType)
 };
 
 /**
- *  PXStroke is a general-purpose stroke allowing for the specification of standard stroke properties such as width,
+ *  STKPXStroke is a general-purpose stroke allowing for the specification of standard stroke properties such as width,
  *  color, joins, and caps.
  */
-@interface STKPXStroke : NSObject <PXStrokeRenderer>
+@interface STKPXStroke : NSObject <STKPXStrokeRenderer>
 
 /**
  *  An indication of how this stroke should be applied to its associated contour.
  */
-@property (nonatomic) PXStrokeType type;
+@property (nonatomic) STKPXStrokeType type;
 
 /**
  *  The width of this stroke
@@ -57,7 +57,7 @@ typedef NS_ENUM(unsigned int, PXStrokeType)
 /**
  *  The paint to apply when rendering this stroke
  */
-@property (nonatomic, strong) id<PXPaint> color;
+@property (nonatomic, strong) id<STKPXPaint> color;
 
 /**
  *  An array indicating a pattern of dashes to be applied during rendering of this stroke

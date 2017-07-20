@@ -15,7 +15,7 @@
  */
 
 //
-//  PXStylesheetParser.m
+//  STKPXStylesheetParser.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -33,7 +33,7 @@
 #import "STKPXAttributeSelectorOperator.h"
 #import "STKPXAttributeSelector.h"
 #import "NSMutableArray+StackAdditions.h"
-#import "PXCombinator.h"
+#import "STKPXCombinator.h"
 #import "STKPXAdjacentSiblingCombinator.h"
 #import "STKPXChildCombinator.h"
 #import "STKPXDescendantCombinator.h"
@@ -78,8 +78,8 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     if (!TYPE_NAME_SET)
     {
         NSMutableIndexSet *set = [NSMutableIndexSet indexSet];
-        [set addIndex:PXSS_IDENTIFIER];
-        [set addIndex:PXSS_STAR];
+        [set addIndex:STKPXSS_IDENTIFIER];
+        [set addIndex:STKPXSS_STAR];
         TYPE_NAME_SET = [[NSIndexSet alloc] initWithIndexSet:set];
     }
 
@@ -87,49 +87,49 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     {
         NSMutableIndexSet *set = [NSMutableIndexSet indexSet];
         [set addIndexes:TYPE_NAME_SET];
-        [set addIndex:PXSS_PIPE]; // namespace operator
+        [set addIndex:STKPXSS_PIPE]; // namespace operator
         TYPE_SELECTOR_SET = [[NSIndexSet alloc] initWithIndexSet:set];
     }
 
     if (!SELECTOR_EXPRESSION_SET)
     {
         NSMutableIndexSet *set = [NSMutableIndexSet indexSet];
-        [set addIndex:PXSS_ID];
-        [set addIndex:PXSS_CLASS];
-        [set addIndex:PXSS_LBRACKET];
-        [set addIndex:PXSS_COLON];
-        [set addIndex:PXSS_NOT_PSEUDO_CLASS];
-        [set addIndex:PXSS_LINK_PSEUDO_CLASS];
-        [set addIndex:PXSS_VISITED_PSEUDO_CLASS];
-        [set addIndex:PXSS_HOVER_PSEUDO_CLASS];
-        [set addIndex:PXSS_ACTIVE_PSEUDO_CLASS];
-        [set addIndex:PXSS_FOCUS_PSEUDO_CLASS];
-        [set addIndex:PXSS_TARGET_PSEUDO_CLASS];
-        [set addIndex:PXSS_LANG_PSEUDO_CLASS];
-        [set addIndex:PXSS_ENABLED_PSEUDO_CLASS];
-        [set addIndex:PXSS_CHECKED_PSEUDO_CLASS];
-        [set addIndex:PXSS_INDETERMINATE_PSEUDO_CLASS];
-        [set addIndex:PXSS_ROOT_PSEUDO_CLASS];
-        [set addIndex:PXSS_NTH_CHILD_PSEUDO_CLASS];
-        [set addIndex:PXSS_NTH_LAST_CHILD_PSEUDO_CLASS];
-        [set addIndex:PXSS_NTH_OF_TYPE_PSEUDO_CLASS];
-        [set addIndex:PXSS_NTH_LAST_OF_TYPE_PSEUDO_CLASS];
-        [set addIndex:PXSS_FIRST_CHILD_PSEUDO_CLASS];
-        [set addIndex:PXSS_LAST_CHILD_PSEUDO_CLASS];
-        [set addIndex:PXSS_FIRST_OF_TYPE_PSEUDO_CLASS];
-        [set addIndex:PXSS_LAST_OF_TYPE_PSEUDO_CLASS];
-        [set addIndex:PXSS_ONLY_CHILD_PSEUDO_CLASS];
-        [set addIndex:PXSS_ONLY_OF_TYPE_PSEUDO_CLASS];
-        [set addIndex:PXSS_EMPTY_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_ID];
+        [set addIndex:STKPXSS_CLASS];
+        [set addIndex:STKPXSS_LBRACKET];
+        [set addIndex:STKPXSS_COLON];
+        [set addIndex:STKPXSS_NOT_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_LINK_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_VISITED_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_HOVER_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_ACTIVE_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_FOCUS_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_TARGET_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_LANG_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_ENABLED_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_CHECKED_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_INDETERMINATE_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_ROOT_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_NTH_CHILD_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_NTH_LAST_CHILD_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_NTH_OF_TYPE_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_NTH_LAST_OF_TYPE_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_FIRST_CHILD_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_LAST_CHILD_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_FIRST_OF_TYPE_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_LAST_OF_TYPE_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_ONLY_CHILD_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_ONLY_OF_TYPE_PSEUDO_CLASS];
+        [set addIndex:STKPXSS_EMPTY_PSEUDO_CLASS];
         SELECTOR_EXPRESSION_SET = [[NSIndexSet alloc] initWithIndexSet:set];
     }
 
     if (!SELECTOR_OPERATOR_SET)
     {
         NSMutableIndexSet *set = [NSMutableIndexSet indexSet];
-        [set addIndex:PXSS_PLUS];
-        [set addIndex:PXSS_GREATER_THAN];
-        [set addIndex:PXSS_TILDE];
+        [set addIndex:STKPXSS_PLUS];
+        [set addIndex:STKPXSS_GREATER_THAN];
+        [set addIndex:STKPXSS_TILDE];
         SELECTOR_OPERATOR_SET = [[NSIndexSet alloc] initWithIndexSet:set];
     }
 
@@ -153,64 +153,64 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     if (!ATTRIBUTE_OPERATOR_SET)
     {
         NSMutableIndexSet *set = [NSMutableIndexSet indexSet];
-        [set addIndex:PXSS_STARTS_WITH];
-        [set addIndex:PXSS_ENDS_WITH];
-        [set addIndex:PXSS_CONTAINS];
-        [set addIndex:PXSS_EQUAL];
-        [set addIndex:PXSS_LIST_CONTAINS];
-        [set addIndex:PXSS_EQUALS_WITH_HYPHEN];
+        [set addIndex:STKPXSS_STARTS_WITH];
+        [set addIndex:STKPXSS_ENDS_WITH];
+        [set addIndex:STKPXSS_CONTAINS];
+        [set addIndex:STKPXSS_EQUAL];
+        [set addIndex:STKPXSS_LIST_CONTAINS];
+        [set addIndex:STKPXSS_EQUALS_WITH_HYPHEN];
         ATTRIBUTE_OPERATOR_SET = [[NSIndexSet alloc] initWithIndexSet:set];
     }
 
     if (!DECLARATION_DELIMITER_SET)
     {
         NSMutableIndexSet *set = [NSMutableIndexSet indexSet];
-        [set addIndex:PXSS_SEMICOLON];
-        [set addIndex:PXSS_RCURLY];
+        [set addIndex:STKPXSS_SEMICOLON];
+        [set addIndex:STKPXSS_RCURLY];
         DECLARATION_DELIMITER_SET = [[NSIndexSet alloc] initWithIndexSet:set];
     }
 
     if (!KEYFRAME_SELECTOR_SET)
     {
         NSMutableIndexSet *set = [NSMutableIndexSet indexSet];
-        [set addIndex:PXSS_IDENTIFIER];
-        [set addIndex:PXSS_PERCENTAGE];
+        [set addIndex:STKPXSS_IDENTIFIER];
+        [set addIndex:STKPXSS_PERCENTAGE];
         KEYFRAME_SELECTOR_SET = [[NSIndexSet alloc] initWithIndexSet:set];
     }
 
     if (!NAMESPACE_SET)
     {
         NSMutableIndexSet *set = [NSMutableIndexSet indexSet];
-        [set addIndex:PXSS_STRING];
-        [set addIndex:PXSS_URL];
+        [set addIndex:STKPXSS_STRING];
+        [set addIndex:STKPXSS_URL];
         NAMESPACE_SET = [[NSIndexSet alloc] initWithIndexSet:set];
     }
 
     if (!IMPORT_SET)
     {
         NSMutableIndexSet *set = [NSMutableIndexSet indexSet];
-        [set addIndex:PXSS_STRING];
-        [set addIndex:PXSS_URL];
+        [set addIndex:STKPXSS_STRING];
+        [set addIndex:STKPXSS_URL];
         IMPORT_SET = [[NSIndexSet alloc] initWithIndexSet:set];
     }
 
     if (!QUERY_VALUE_SET)
     {
         NSMutableIndexSet *set = [NSMutableIndexSet indexSet];
-        [set addIndex:PXSS_IDENTIFIER];
-        [set addIndex:PXSS_NUMBER];
-        [set addIndex:PXSS_LENGTH];
-        [set addIndex:PXSS_STRING];
+        [set addIndex:STKPXSS_IDENTIFIER];
+        [set addIndex:STKPXSS_NUMBER];
+        [set addIndex:STKPXSS_LENGTH];
+        [set addIndex:STKPXSS_STRING];
         QUERY_VALUE_SET = set;
     }
 
     if (!ARCHAIC_PSEUDO_ELEMENTS_SET)
     {
         NSMutableIndexSet *set = [NSMutableIndexSet indexSet];
-        [set addIndex:PXSS_FIRST_LINE_PSEUDO_ELEMENT];
-        [set addIndex:PXSS_FIRST_LETTER_PSEUDO_ELEMENT];
-        [set addIndex:PXSS_BEFORE_PSEUDO_ELEMENT];
-        [set addIndex:PXSS_AFTER_PSEUDO_ELEMENT];
+        [set addIndex:STKPXSS_FIRST_LINE_PSEUDO_ELEMENT];
+        [set addIndex:STKPXSS_FIRST_LETTER_PSEUDO_ELEMENT];
+        [set addIndex:STKPXSS_BEFORE_PSEUDO_ELEMENT];
+        [set addIndex:STKPXSS_AFTER_PSEUDO_ELEMENT];
         ARCHAIC_PSEUDO_ELEMENTS_SET = set;
     }
 }
@@ -232,7 +232,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
 // level 0
 
-- (STKPXStylesheet *)parse:(NSString *)source withOrigin:(PXStylesheetOrigin)origin filename:(NSString *)name
+- (STKPXStylesheet *)parse:(NSString *)source withOrigin:(STKPXStylesheetOrigin)origin filename:(NSString *)name
 {
     // add the source file name to prevent @imports from importing it as well
     [self addImportName:name];
@@ -246,7 +246,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     return result;
 }
 
-- (STKPXStylesheet *)parse:(NSString *)source withOrigin:(PXStylesheetOrigin)origin
+- (STKPXStylesheet *)parse:(NSString *)source withOrigin:(STKPXStylesheetOrigin)origin
 {
     // clear errors
     [self clearErrors];
@@ -264,23 +264,23 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         {
             switch (currentLexeme.type)
             {
-                case PXSS_IMPORT:
+                case STKPXSS_IMPORT:
                     [self parseImport];
                     break;
 
-                case PXSS_NAMESPACE:
+                case STKPXSS_NAMESPACE:
                     [self parseNamespace];
                     break;
 
-                case PXSS_KEYFRAMES:
+                case STKPXSS_KEYFRAMES:
                     [self parseKeyframes];
                     break;
 
-                case PXSS_MEDIA:
+                case STKPXSS_MEDIA:
                     [self parseMedia];
                     break;
 
-                case PXSS_FONT_FACE:
+                case STKPXSS_FONT_FACE:
                     [self parseFontFace];
                     break;
 
@@ -308,7 +308,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     [self clearErrors];
 
     // create stylesheet
-    self->currentStyleSheet_ = [[STKPXStylesheet alloc] initWithOrigin:PXStylesheetOriginInline];
+    self->currentStyleSheet_ = [[STKPXStylesheet alloc] initWithOrigin:STKPXStylesheetOriginInline];
 
     // setup lexer and prime it
     lexer_.source = css;
@@ -366,10 +366,10 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
 - (void)parseFontFace
 {
-    [self assertTypeAndAdvance:PXSS_FONT_FACE];
+    [self assertTypeAndAdvance:STKPXSS_FONT_FACE];
 
     // process declaration block
-    if ([self isType:PXSS_LCURLY])
+    if ([self isType:STKPXSS_LCURLY])
     {
         NSArray *declarations = [self parseDeclarationBlock];
 
@@ -386,14 +386,14 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
 - (void)parseImport
 {
-    [self assertTypeAndAdvance:PXSS_IMPORT];
+    [self assertTypeAndAdvance:STKPXSS_IMPORT];
     [self assertTypeInSet:IMPORT_SET];
 
     NSString *path = nil;
 
     switch (currentLexeme.type)
     {
-        case PXSS_STRING:
+        case STKPXSS_STRING:
         {
             NSString *string = currentLexeme.value;
 
@@ -405,7 +405,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             break;
         }
 
-        case PXSS_URL:
+        case STKPXSS_URL:
             path = currentLexeme.value;
             break;
     }
@@ -453,36 +453,36 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
 - (void)parseMedia
 {
-    [self assertTypeAndAdvance:PXSS_MEDIA];
+    [self assertTypeAndAdvance:STKPXSS_MEDIA];
 
     // TODO: support media types, NOT, and ONLY. Skipping for now
-    while ([self isType:PXSS_IDENTIFIER])
+    while ([self isType:STKPXSS_IDENTIFIER])
     {
         [self advance];
     }
 
     // 'and' may appear here
-    [self advanceIfIsType:PXSS_AND];
+    [self advanceIfIsType:STKPXSS_AND];
 
     // parse optional expressions
-    if ([self isType:PXSS_LPAREN])
+    if ([self isType:STKPXSS_LPAREN])
     {
         [self parseMediaExpressions];
     }
 
     // parse body
-    if ([self isType:PXSS_LCURLY])
+    if ([self isType:STKPXSS_LCURLY])
     {
         @try
         {
             [self advance];
 
-            while (currentLexeme && ![self isType:PXSS_RCURLY])
+            while (currentLexeme && ![self isType:STKPXSS_RCURLY])
             {
                 [self parseRuleSet];
             }
 
-            [self advanceIfIsType:PXSS_RCURLY withWarning:@"Expected @media body closing curly brace"];
+            [self advanceIfIsType:STKPXSS_RCURLY withWarning:@"Expected @media body closing curly brace"];
         }
         @finally
         {
@@ -510,20 +510,20 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         selectors = @[ [NSNull null] ];
 
         // advance to '{'
-        [self advanceToType:PXSS_LCURLY];
+        [self advanceToType:STKPXSS_LCURLY];
     }
 
     // here for error recovery
-    if (![self isType:PXSS_LCURLY])
+    if (![self isType:STKPXSS_LCURLY])
     {
         [self addError:@"Expected a left curly brace to begin a declaration block"];
 
         // advance to '{'
-        [self advanceToType:PXSS_LCURLY];
+        [self advanceToType:STKPXSS_LCURLY];
     }
 
     // parse declaration block
-    if ([self isType:PXSS_LCURLY])
+    if ([self isType:STKPXSS_LCURLY])
     {
         NSArray *declarations = [self parseDeclarationBlock];
 
@@ -552,15 +552,15 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 - (void)parseKeyframes
 {
     // advance over '@keyframes'
-    [self assertTypeAndAdvance:PXSS_KEYFRAMES];
+    [self assertTypeAndAdvance:STKPXSS_KEYFRAMES];
 
     // grab keyframe name
-    [self assertType:PXSS_IDENTIFIER];
+    [self assertType:STKPXSS_IDENTIFIER];
     STKPXKeyframe *keyframe = [[STKPXKeyframe alloc] initWithName:currentLexeme.value];
     [self advance];
 
     // advance over '{'
-    [self assertTypeAndAdvance:PXSS_LCURLY];
+    [self assertTypeAndAdvance:STKPXSS_LCURLY];
 
     // process each block
     while ([self isInTypeSet:KEYFRAME_SELECTOR_SET])
@@ -570,7 +570,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
         [offsets addObject:@([self parseOffset])];
 
-        while ([self isType:PXSS_COMMA])
+        while ([self isType:STKPXSS_COMMA])
         {
             // advance over ','
             [self advance];
@@ -603,7 +603,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     [currentStyleSheet_ addKeyframe:keyframe];
 
     // advance over '}'
-    [self assertTypeAndAdvance:PXSS_RCURLY];
+    [self assertTypeAndAdvance:STKPXSS_RCURLY];
 }
 
 - (CGFloat)parseOffset
@@ -614,7 +614,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
     switch (currentLexeme.type)
     {
-        case PXSS_IDENTIFIER:
+        case STKPXSS_IDENTIFIER:
             // NOTE: we only check for 'to' since 'from' and unrecognized values will use the default value of 0.0f
             if ([@"to" isEqualToString:currentLexeme.value])
             {
@@ -623,7 +623,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             [self advance];
             break;
 
-        case PXSS_PERCENTAGE:
+        case STKPXSS_PERCENTAGE:
         {
             STKPXDimension *percentage = currentLexeme.value;
             offset = percentage.number / 100.0f;
@@ -646,12 +646,12 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
 - (void)parseNamespace
 {
-    [self assertTypeAndAdvance:PXSS_NAMESPACE];
+    [self assertTypeAndAdvance:STKPXSS_NAMESPACE];
 
     NSString *identifier = nil;
     NSString *uri;
 
-    if ([self isType:PXSS_IDENTIFIER])
+    if ([self isType:STKPXSS_IDENTIFIER])
     {
         identifier = currentLexeme.value;
         [self advance];
@@ -663,7 +663,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     uri = currentLexeme.value;
 
     // trim string
-    if ([self isType:PXSS_STRING])
+    if ([self isType:STKPXSS_STRING])
     {
         uri = [uri substringWithRange:NSMakeRange(1, uri.length - 2)];
     }
@@ -673,7 +673,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     // set namespace on stylesheet
     [currentStyleSheet_ setURI:uri forNamespacePrefix:identifier];
 
-    [self assertTypeAndAdvance:PXSS_SEMICOLON];
+    [self assertTypeAndAdvance:STKPXSS_SEMICOLON];
 }
 
 // level 2
@@ -689,7 +689,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         [selectors addObject:selectorSequence];
     }
 
-    while (currentLexeme.type == PXSS_COMMA)
+    while (currentLexeme.type == STKPXSS_COMMA)
     {
         // advance over ','
         [self advance];
@@ -708,11 +708,11 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
 - (NSArray *)parseDeclarationBlock
 {
-    [self assertTypeAndAdvance:PXSS_LCURLY];
+    [self assertTypeAndAdvance:STKPXSS_LCURLY];
 
     NSArray *declarations = [self parseDeclarations];
 
-    [self assertTypeAndAdvance:PXSS_RCURLY];
+    [self assertTypeAndAdvance:STKPXSS_RCURLY];
 
     return declarations;
 }
@@ -728,7 +728,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         [expressions addObject:[self parseMediaExpression]];
 
         // and any others
-        while ([self isType:PXSS_AND])
+        while ([self isType:STKPXSS_AND])
         {
             [self advance];
 
@@ -744,7 +744,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         {
             STKPXMediaExpressionGroup *group = [[STKPXMediaExpressionGroup alloc] init];
 
-            for (id<PXMediaExpression> expression in expressions)
+            for (id<STKPXMediaExpression> expression in expressions)
             {
                 [group addExpression: expression];
             }
@@ -781,15 +781,15 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         {
             switch (operator.type)
             {
-                case PXSS_PLUS:
+                case STKPXSS_PLUS:
                     root = [[STKPXAdjacentSiblingCombinator alloc] initWithLHS:root RHS:rhs];
                     break;
 
-                case PXSS_GREATER_THAN:
+                case STKPXSS_GREATER_THAN:
                     root = [[STKPXChildCombinator alloc] initWithLHS:root RHS:rhs];
                     break;
 
-                case PXSS_TILDE:
+                case STKPXSS_TILDE:
                     root = [[STKPXSiblingCombinator alloc] initWithLHS:root RHS:rhs];
                     break;
 
@@ -806,11 +806,11 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     NSString *pseudoElement = nil;
 
     // grab possible pseudo-element in new and old formats
-    if ([self isType:PXSS_DOUBLE_COLON])
+    if ([self isType:STKPXSS_DOUBLE_COLON])
     {
         [self advance];
 
-        [self assertType:PXSS_IDENTIFIER];
+        [self assertType:STKPXSS_IDENTIFIER];
         pseudoElement = currentLexeme.value;
         [self advance];
     }
@@ -859,7 +859,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     NSMutableArray *declarations = [NSMutableArray array];
 
     // parse properties
-    while (currentLexeme && currentLexeme.type != PXSS_RCURLY)
+    while (currentLexeme && currentLexeme.type != STKPXSS_RCURLY)
     {
         @try
         {
@@ -877,29 +877,29 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
                 [self advance];
             }
 
-            [self advanceIfIsType:PXSS_SEMICOLON];
+            [self advanceIfIsType:STKPXSS_SEMICOLON];
         }
     }
 
     return declarations;
 }
 
-- (id<PXMediaExpression>)parseMediaExpression
+- (id<STKPXMediaExpression>)parseMediaExpression
 {
-    [self assertTypeAndAdvance:PXSS_LPAREN];
+    [self assertTypeAndAdvance:STKPXSS_LPAREN];
 
     // grab name
-    [self assertType:PXSS_IDENTIFIER];
+    [self assertType:STKPXSS_IDENTIFIER];
     NSString *name = [currentLexeme.value lowercaseString];
     [self advance];
 
     id value = nil;
 
     // parse optional value
-    if ([self isType:PXSS_COLON])
+    if ([self isType:STKPXSS_COLON])
     {
         // advance over ':'
-        [self assertTypeAndAdvance:PXSS_COLON];
+        [self assertTypeAndAdvance:STKPXSS_COLON];
 
         // grab value
         [self assertTypeInSet:QUERY_VALUE_SET];
@@ -912,7 +912,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             value = [value lowercaseString];
         }
         // check for possible ratio syntax
-        else if ([value isKindOfClass:[NSNumber class]] && [self isType:PXSS_SLASH]) {
+        else if ([value isKindOfClass:[NSNumber class]] && [self isType:STKPXSS_SLASH]) {
             
             NSNumber *numerator = (NSNumber *) value;
             
@@ -920,7 +920,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             [self advance];
 
             // grab denominator
-            [self assertType:PXSS_NUMBER];
+            [self assertType:STKPXSS_NUMBER];
             NSNumber *denom = currentLexeme.value;
             [self advance];
 
@@ -939,7 +939,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         }
     }
 
-    [self advanceIfIsType:PXSS_RPAREN withWarning:@"Expected closing parenthesis in media query"];
+    [self advanceIfIsType:STKPXSS_RPAREN withWarning:@"Expected closing parenthesis in media query"];
 
     // create query expression and activate it in current stylesheet
     return [[STKPXNamedMediaExpression alloc] initWithName:name value:value];
@@ -963,7 +963,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             result = [[STKPXTypeSelector alloc] init];
 
             // clear whitespace flag, so first expression will not fail in this case
-            [currentLexeme clearFlag:PXLexemeFlagFollowsWhitespace];
+            [currentLexeme clearFlag:STKPXLexemeFlagFollowsWhitespace];
         }
 
         if ([self isInTypeSet:SELECTOR_EXPRESSION_SET])
@@ -982,19 +982,19 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 - (STKPXDeclaration *)parseDeclaration
 {
     // process property name
-    [self assertType:PXSS_IDENTIFIER];
+    [self assertType:STKPXSS_IDENTIFIER];
     STKPXDeclaration *declaration = [[STKPXDeclaration alloc] initWithName:currentLexeme.value];
     [self advance];
 
     // colon
-    [self assertTypeAndAdvance:PXSS_COLON];
+    [self assertTypeAndAdvance:STKPXSS_COLON];
 
     // collect values
     NSMutableArray *lexemes = [NSMutableArray array];
 
     while (currentLexeme && ![self isInTypeSet:DECLARATION_DELIMITER_SET])
     {
-        if (currentLexeme.type == PXSS_COLON && ((STKPXStylesheetLexeme *)lexemes.lastObject).type == PXSS_IDENTIFIER)
+        if (currentLexeme.type == STKPXSS_COLON && ((STKPXStylesheetLexeme *)lexemes.lastObject).type == STKPXSS_IDENTIFIER)
         {
             // assume we've moved into a new declaration, so push last lexeme back into the lexeme stream
             STKPXStylesheetLexeme *propertyName = [lexemes pop];
@@ -1013,7 +1013,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     }
 
     // let semicolons be optional
-    [self advanceIfIsType:PXSS_SEMICOLON];
+    [self advanceIfIsType:STKPXSS_SEMICOLON];
 
     // grab original source, for error messages and hashing
     NSString *source;
@@ -1037,7 +1037,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     // check for !important
     STKPXStylesheetLexeme *lastLexeme = lexemes.lastObject;
 
-    if (lastLexeme.type == PXSS_IMPORTANT)
+    if (lastLexeme.type == STKPXSS_IMPORTANT)
     {
         // drop !important and tag declaration as important
         [lexemes removeLastObject];
@@ -1070,7 +1070,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         }
 
         // if pipe, then we had a namespace, now process type
-        if ([self isType:PXSS_PIPE])
+        if ([self isType:STKPXSS_PIPE])
         {
             namespace = name;
 
@@ -1123,11 +1123,11 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 {
     NSMutableArray *expressions = [NSMutableArray array];
 
-    while (![currentLexeme flagIsSet:PXLexemeFlagFollowsWhitespace] && [self isInTypeSet:SELECTOR_EXPRESSION_SET])
+    while (![currentLexeme flagIsSet:STKPXLexemeFlagFollowsWhitespace] && [self isInTypeSet:SELECTOR_EXPRESSION_SET])
     {
         switch (currentLexeme.type)
         {
-            case PXSS_ID:
+            case STKPXSS_ID:
             {
                 NSString *name = [(NSString *) currentLexeme.value substringFromIndex:1];
                 [expressions addObject:[[STKPXIdSelector alloc] initWithIdValue:name]];
@@ -1135,7 +1135,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
                 break;
             }
 
-            case PXSS_CLASS:
+            case STKPXSS_CLASS:
             {
                 NSString *name = [(NSString *) currentLexeme.value substringFromIndex:1];
                 [expressions addObject:[[STKPXClassSelector alloc] initWithClassName:name]];
@@ -1143,84 +1143,84 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
                 break;
             }
 
-            case PXSS_LBRACKET:
+            case STKPXSS_LBRACKET:
                 [expressions addObject:[self parseAttributeSelector]];
                 break;
 
-            case PXSS_COLON:
+            case STKPXSS_COLON:
                 [expressions addObject:[self parsePseudoClass]];
                 break;
 
-            case PXSS_NOT_PSEUDO_CLASS:
+            case STKPXSS_NOT_PSEUDO_CLASS:
                 [expressions addObject:[self parseNotSelector]];
                 break;
 
-            case PXSS_ROOT_PSEUDO_CLASS:
-                [expressions addObject:[[STKPXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateRoot]];
+            case STKPXSS_ROOT_PSEUDO_CLASS:
+                [expressions addObject:[[STKPXPseudoClassPredicate alloc] initWithPredicateType:STKPXPseudoClassPredicateRoot]];
                 [self advance];
                 break;
 
-            case PXSS_FIRST_CHILD_PSEUDO_CLASS:
-                [expressions addObject:[[STKPXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateFirstChild]];
+            case STKPXSS_FIRST_CHILD_PSEUDO_CLASS:
+                [expressions addObject:[[STKPXPseudoClassPredicate alloc] initWithPredicateType:STKPXPseudoClassPredicateFirstChild]];
                 [self advance];
                 break;
 
-            case PXSS_LAST_CHILD_PSEUDO_CLASS:
-                [expressions addObject:[[STKPXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateLastChild]];
+            case STKPXSS_LAST_CHILD_PSEUDO_CLASS:
+                [expressions addObject:[[STKPXPseudoClassPredicate alloc] initWithPredicateType:STKPXPseudoClassPredicateLastChild]];
                 [self advance];
                 break;
 
-            case PXSS_FIRST_OF_TYPE_PSEUDO_CLASS:
-                [expressions addObject:[[STKPXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateFirstOfType]];
+            case STKPXSS_FIRST_OF_TYPE_PSEUDO_CLASS:
+                [expressions addObject:[[STKPXPseudoClassPredicate alloc] initWithPredicateType:STKPXPseudoClassPredicateFirstOfType]];
                 [self advance];
                 break;
 
-            case PXSS_LAST_OF_TYPE_PSEUDO_CLASS:
-                [expressions addObject:[[STKPXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateLastOfType]];
+            case STKPXSS_LAST_OF_TYPE_PSEUDO_CLASS:
+                [expressions addObject:[[STKPXPseudoClassPredicate alloc] initWithPredicateType:STKPXPseudoClassPredicateLastOfType]];
                 [self advance];
                 break;
 
-            case PXSS_ONLY_CHILD_PSEUDO_CLASS:
-                [expressions addObject:[[STKPXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateOnlyChild]];
+            case STKPXSS_ONLY_CHILD_PSEUDO_CLASS:
+                [expressions addObject:[[STKPXPseudoClassPredicate alloc] initWithPredicateType:STKPXPseudoClassPredicateOnlyChild]];
                 [self advance];
                 break;
 
-            case PXSS_ONLY_OF_TYPE_PSEUDO_CLASS:
-                [expressions addObject:[[STKPXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateOnlyOfType]];
+            case STKPXSS_ONLY_OF_TYPE_PSEUDO_CLASS:
+                [expressions addObject:[[STKPXPseudoClassPredicate alloc] initWithPredicateType:STKPXPseudoClassPredicateOnlyOfType]];
                 [self advance];
                 break;
 
-            case PXSS_EMPTY_PSEUDO_CLASS:
-                [expressions addObject:[[STKPXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateEmpty]];
+            case STKPXSS_EMPTY_PSEUDO_CLASS:
+                [expressions addObject:[[STKPXPseudoClassPredicate alloc] initWithPredicateType:STKPXPseudoClassPredicateEmpty]];
                 [self advance];
                 break;
 
-            case PXSS_NTH_CHILD_PSEUDO_CLASS:
-            case PXSS_NTH_LAST_CHILD_PSEUDO_CLASS:
-            case PXSS_NTH_OF_TYPE_PSEUDO_CLASS:
-            case PXSS_NTH_LAST_OF_TYPE_PSEUDO_CLASS:
+            case STKPXSS_NTH_CHILD_PSEUDO_CLASS:
+            case STKPXSS_NTH_LAST_CHILD_PSEUDO_CLASS:
+            case STKPXSS_NTH_OF_TYPE_PSEUDO_CLASS:
+            case STKPXSS_NTH_LAST_OF_TYPE_PSEUDO_CLASS:
                 [expressions addObject:[self parsePseudoClassFunction]];
-                [self assertTypeAndAdvance:PXSS_RPAREN];
+                [self assertTypeAndAdvance:STKPXSS_RPAREN];
                 break;
 
             // TODO: implement
-            case PXSS_LINK_PSEUDO_CLASS:
-            case PXSS_VISITED_PSEUDO_CLASS:
-            case PXSS_HOVER_PSEUDO_CLASS:
-            case PXSS_ACTIVE_PSEUDO_CLASS:
-            case PXSS_FOCUS_PSEUDO_CLASS:
-            case PXSS_TARGET_PSEUDO_CLASS:
-            case PXSS_ENABLED_PSEUDO_CLASS:
-            case PXSS_CHECKED_PSEUDO_CLASS:
-            case PXSS_INDETERMINATE_PSEUDO_CLASS:
+            case STKPXSS_LINK_PSEUDO_CLASS:
+            case STKPXSS_VISITED_PSEUDO_CLASS:
+            case STKPXSS_HOVER_PSEUDO_CLASS:
+            case STKPXSS_ACTIVE_PSEUDO_CLASS:
+            case STKPXSS_FOCUS_PSEUDO_CLASS:
+            case STKPXSS_TARGET_PSEUDO_CLASS:
+            case STKPXSS_ENABLED_PSEUDO_CLASS:
+            case STKPXSS_CHECKED_PSEUDO_CLASS:
+            case STKPXSS_INDETERMINATE_PSEUDO_CLASS:
                 [expressions addObject:[[STKPXPseudoClassSelector alloc] initWithClassName:currentLexeme.value]];
                 [self advance];
                 break;
 
             // TODO: implement
-            case PXSS_LANG_PSEUDO_CLASS:
+            case STKPXSS_LANG_PSEUDO_CLASS:
                 [expressions addObject:[[STKPXPseudoClassSelector alloc] initWithClassName:currentLexeme.value]];
-                [self advanceToType:PXSS_RPAREN];
+                [self advanceToType:STKPXSS_RPAREN];
                 [self advance];
                 break;
 
@@ -1229,7 +1229,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         }
     }
 
-    if (expressions.count == 0 && ![currentLexeme flagIsSet:PXLexemeFlagFollowsWhitespace])
+    if (expressions.count == 0 && ![currentLexeme flagIsSet:STKPXLexemeFlagFollowsWhitespace])
     {
         [self errorWithMessage:@"Expected ID, CLASS, LBRACKET, or PseudoClass"];
     }
@@ -1243,24 +1243,24 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 {
     // initialize to something to remove analyzer warnings, but the switch below has to cover all cases to prevent a
     // bug here
-    PXPseudoClassFunctionType type = PXPseudoClassFunctionNthChild;
+    STKPXPseudoClassFunctionType type = STKPXPseudoClassFunctionNthChild;
 
     switch (currentLexeme.type)
     {
-        case PXSS_NTH_CHILD_PSEUDO_CLASS:
-            type = PXPseudoClassFunctionNthChild;
+        case STKPXSS_NTH_CHILD_PSEUDO_CLASS:
+            type = STKPXPseudoClassFunctionNthChild;
             break;
 
-        case PXSS_NTH_LAST_CHILD_PSEUDO_CLASS:
-            type = PXPseudoClassFunctionNthLastChild;
+        case STKPXSS_NTH_LAST_CHILD_PSEUDO_CLASS:
+            type = STKPXPseudoClassFunctionNthLastChild;
             break;
 
-        case PXSS_NTH_OF_TYPE_PSEUDO_CLASS:
-            type = PXPseudoClassFunctionNthOfType;
+        case STKPXSS_NTH_OF_TYPE_PSEUDO_CLASS:
+            type = STKPXPseudoClassFunctionNthOfType;
             break;
 
-        case PXSS_NTH_LAST_OF_TYPE_PSEUDO_CLASS:
-            type = PXPseudoClassFunctionNthLastOfType;
+        case STKPXSS_NTH_LAST_OF_TYPE_PSEUDO_CLASS:
+            type = STKPXPseudoClassFunctionNthLastOfType;
             break;
     }
 
@@ -1271,7 +1271,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     NSInteger remainder = 0;
 
     // parse modulus
-    if ([self isType:PXSS_NTH])
+    if ([self isType:STKPXSS_NTH])
     {
         NSString *numberString = currentLexeme.value;
         NSUInteger length = numberString.length;
@@ -1300,17 +1300,17 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
         [self advance];
 
-        if ([self isType:PXSS_PLUS])
+        if ([self isType:STKPXSS_PLUS])
         {
             [self advance];
 
             // grab remainder
-            [self assertType:PXSS_NUMBER];
+            [self assertType:STKPXSS_NUMBER];
             NSNumber *remainderNumber = currentLexeme.value;
             remainder = remainderNumber.intValue;
             [self advance];
         }
-        else if ([self isType:PXSS_NUMBER])
+        else if ([self isType:STKPXSS_NUMBER])
         {
             NSString *numberString = [lexer_.source substringWithRange:currentLexeme.range];
 
@@ -1326,7 +1326,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             }
         }
     }
-    else if ([self isType:PXSS_IDENTIFIER])
+    else if ([self isType:STKPXSS_IDENTIFIER])
     {
         NSString *stringValue = currentLexeme.value;
 
@@ -1346,7 +1346,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
         [self advance];
     }
-    else if ([self isType:PXSS_NUMBER])
+    else if ([self isType:STKPXSS_NUMBER])
     {
         modulus = 1;
         NSNumber *remainderNumber = currentLexeme.value;
@@ -1366,22 +1366,22 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 {
     id<STKPXSelector> result = nil;
 
-    [self assertTypeAndAdvance:PXSS_LBRACKET];
+    [self assertTypeAndAdvance:STKPXSS_LBRACKET];
 
     result = [self parseAttributeTypeSelector];
 
     if ([self isInTypeSet:ATTRIBUTE_OPERATOR_SET])
     {
-        PXAttributeSelectorOperatorType operatorType = kAttributeSelectorOperatorEqual; // make anaylzer happy
+        STKPXAttributeSelectorOperatorType operatorType = kAttributeSelectorOperatorEqual; // make anaylzer happy
 
         switch (currentLexeme.type)
         {
-            case PXSS_STARTS_WITH:          operatorType = kAttributeSelectorOperatorStartsWith; break;
-            case PXSS_ENDS_WITH:            operatorType = kAttributeSelectorOperatorEndsWith; break;
-            case PXSS_CONTAINS:             operatorType = kAttributeSelectorOperatorContains; break;
-            case PXSS_EQUAL:                operatorType = kAttributeSelectorOperatorEqual; break;
-            case PXSS_LIST_CONTAINS:        operatorType = kAttributeSelectorOperatorListContains; break;
-            case PXSS_EQUALS_WITH_HYPHEN:   operatorType = kAttributeSelectorOperatorEqualWithHyphen; break;
+            case STKPXSS_STARTS_WITH:          operatorType = kAttributeSelectorOperatorStartsWith; break;
+            case STKPXSS_ENDS_WITH:            operatorType = kAttributeSelectorOperatorEndsWith; break;
+            case STKPXSS_CONTAINS:             operatorType = kAttributeSelectorOperatorContains; break;
+            case STKPXSS_EQUAL:                operatorType = kAttributeSelectorOperatorEqual; break;
+            case STKPXSS_LIST_CONTAINS:        operatorType = kAttributeSelectorOperatorListContains; break;
+            case STKPXSS_EQUALS_WITH_HYPHEN:   operatorType = kAttributeSelectorOperatorEqualWithHyphen; break;
 
             default:
                 [self errorWithMessage:@"Unsupported attribute operator type"];
@@ -1390,7 +1390,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
         [self advance];
 
-        if ([self isType:PXSS_STRING])
+        if ([self isType:STKPXSS_STRING])
         {
             NSString *value = currentLexeme.value;
 
@@ -1401,7 +1401,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
             [self advance];
         }
-        else if ([self isType:PXSS_IDENTIFIER])
+        else if ([self isType:STKPXSS_IDENTIFIER])
         {
             // process string
             result = [[STKPXAttributeSelectorOperator alloc] initWithOperatorType:operatorType
@@ -1416,7 +1416,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         }
     }
 
-    [self assertTypeAndAdvance:PXSS_RBRACKET];
+    [self assertTypeAndAdvance:STKPXSS_RBRACKET];
 
     return result;
 }
@@ -1425,10 +1425,10 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 {
     id<STKPXSelector> result = nil;
 
-    [self assertType:PXSS_COLON];
+    [self assertType:STKPXSS_COLON];
     [self advance];
 
-    if ([self isType:PXSS_IDENTIFIER])
+    if ([self isType:STKPXSS_IDENTIFIER])
     {
         // process identifier
         result = [[STKPXPseudoClassSelector alloc] initWithClassName:currentLexeme.value];
@@ -1447,13 +1447,13 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 - (id<STKPXSelector>)parseNotSelector
 {
     // advance over 'not'
-    [self assertType:PXSS_NOT_PSEUDO_CLASS];
+    [self assertType:STKPXSS_NOT_PSEUDO_CLASS];
     [self advance];
 
     id<STKPXSelector> result = [[STKPXNotPseudoClass alloc] initWithExpression:[self parseNegationArgument]];
 
     // advance over ')'
-    [self assertTypeAndAdvance:PXSS_RPAREN];
+    [self assertTypeAndAdvance:STKPXSS_RPAREN];
 
     return result;
 }
@@ -1478,7 +1478,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
         }
 
         // if pipe, then we had a namespace, now process type
-        if ([self isType:PXSS_PIPE])
+        if ([self isType:STKPXSS_PIPE])
         {
             namespace = name;
 
@@ -1531,7 +1531,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
     switch (currentLexeme.type)
     {
-        case PXSS_ID:
+        case STKPXSS_ID:
         {
             NSString *name = [(NSString *) currentLexeme.value substringFromIndex:1];
             result = [[STKPXIdSelector alloc] initWithIdValue:name];
@@ -1539,7 +1539,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             break;
         }
 
-        case PXSS_CLASS:
+        case STKPXSS_CLASS:
         {
             NSString *name = [(NSString *) currentLexeme.value substringFromIndex:1];
             result = [[STKPXClassSelector alloc] initWithClassName:name];
@@ -1547,84 +1547,84 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
             break;
         }
 
-        case PXSS_LBRACKET:
+        case STKPXSS_LBRACKET:
             result = [self parseAttributeSelector];
             break;
 
-        case PXSS_COLON:
+        case STKPXSS_COLON:
             result = [self parsePseudoClass];
             break;
 
-        case PXSS_ROOT_PSEUDO_CLASS:
-            result = [[STKPXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateRoot];
+        case STKPXSS_ROOT_PSEUDO_CLASS:
+            result = [[STKPXPseudoClassPredicate alloc] initWithPredicateType:STKPXPseudoClassPredicateRoot];
             [self advance];
             break;
 
-        case PXSS_FIRST_CHILD_PSEUDO_CLASS:
-            result = [[STKPXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateFirstChild];
+        case STKPXSS_FIRST_CHILD_PSEUDO_CLASS:
+            result = [[STKPXPseudoClassPredicate alloc] initWithPredicateType:STKPXPseudoClassPredicateFirstChild];
             [self advance];
             break;
 
-        case PXSS_LAST_CHILD_PSEUDO_CLASS:
-            result = [[STKPXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateLastChild];
+        case STKPXSS_LAST_CHILD_PSEUDO_CLASS:
+            result = [[STKPXPseudoClassPredicate alloc] initWithPredicateType:STKPXPseudoClassPredicateLastChild];
             [self advance];
             break;
 
-        case PXSS_FIRST_OF_TYPE_PSEUDO_CLASS:
-            result = [[STKPXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateFirstOfType];
+        case STKPXSS_FIRST_OF_TYPE_PSEUDO_CLASS:
+            result = [[STKPXPseudoClassPredicate alloc] initWithPredicateType:STKPXPseudoClassPredicateFirstOfType];
             [self advance];
             break;
 
-        case PXSS_LAST_OF_TYPE_PSEUDO_CLASS:
-            result = [[STKPXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateLastOfType];
+        case STKPXSS_LAST_OF_TYPE_PSEUDO_CLASS:
+            result = [[STKPXPseudoClassPredicate alloc] initWithPredicateType:STKPXPseudoClassPredicateLastOfType];
             [self advance];
             break;
 
-        case PXSS_ONLY_CHILD_PSEUDO_CLASS:
-            result = [[STKPXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateOnlyChild];
+        case STKPXSS_ONLY_CHILD_PSEUDO_CLASS:
+            result = [[STKPXPseudoClassPredicate alloc] initWithPredicateType:STKPXPseudoClassPredicateOnlyChild];
             [self advance];
             break;
 
-        case PXSS_ONLY_OF_TYPE_PSEUDO_CLASS:
-            result = [[STKPXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateOnlyOfType];
+        case STKPXSS_ONLY_OF_TYPE_PSEUDO_CLASS:
+            result = [[STKPXPseudoClassPredicate alloc] initWithPredicateType:STKPXPseudoClassPredicateOnlyOfType];
             [self advance];
             break;
 
-        case PXSS_EMPTY_PSEUDO_CLASS:
-            result = [[STKPXPseudoClassPredicate alloc] initWithPredicateType:PXPseudoClassPredicateEmpty];
+        case STKPXSS_EMPTY_PSEUDO_CLASS:
+            result = [[STKPXPseudoClassPredicate alloc] initWithPredicateType:STKPXPseudoClassPredicateEmpty];
             [self advance];
             break;
 
-        case PXSS_NTH_CHILD_PSEUDO_CLASS:
-        case PXSS_NTH_LAST_CHILD_PSEUDO_CLASS:
-        case PXSS_NTH_OF_TYPE_PSEUDO_CLASS:
-        case PXSS_NTH_LAST_OF_TYPE_PSEUDO_CLASS:
+        case STKPXSS_NTH_CHILD_PSEUDO_CLASS:
+        case STKPXSS_NTH_LAST_CHILD_PSEUDO_CLASS:
+        case STKPXSS_NTH_OF_TYPE_PSEUDO_CLASS:
+        case STKPXSS_NTH_LAST_OF_TYPE_PSEUDO_CLASS:
             result = [self parsePseudoClassFunction];
-            [self assertTypeAndAdvance:PXSS_RPAREN];
+            [self assertTypeAndAdvance:STKPXSS_RPAREN];
             break;
 
             // TODO: implement
-        case PXSS_LINK_PSEUDO_CLASS:
-        case PXSS_VISITED_PSEUDO_CLASS:
-        case PXSS_HOVER_PSEUDO_CLASS:
-        case PXSS_ACTIVE_PSEUDO_CLASS:
-        case PXSS_FOCUS_PSEUDO_CLASS:
-        case PXSS_TARGET_PSEUDO_CLASS:
-        case PXSS_ENABLED_PSEUDO_CLASS:
-        case PXSS_CHECKED_PSEUDO_CLASS:
-        case PXSS_INDETERMINATE_PSEUDO_CLASS:
+        case STKPXSS_LINK_PSEUDO_CLASS:
+        case STKPXSS_VISITED_PSEUDO_CLASS:
+        case STKPXSS_HOVER_PSEUDO_CLASS:
+        case STKPXSS_ACTIVE_PSEUDO_CLASS:
+        case STKPXSS_FOCUS_PSEUDO_CLASS:
+        case STKPXSS_TARGET_PSEUDO_CLASS:
+        case STKPXSS_ENABLED_PSEUDO_CLASS:
+        case STKPXSS_CHECKED_PSEUDO_CLASS:
+        case STKPXSS_INDETERMINATE_PSEUDO_CLASS:
             result = [[STKPXPseudoClassSelector alloc] initWithClassName:currentLexeme.value];
             [self advance];
             break;
 
             // TODO: implement
-        case PXSS_LANG_PSEUDO_CLASS:
+        case STKPXSS_LANG_PSEUDO_CLASS:
             result = [[STKPXPseudoClassSelector alloc] initWithClassName:currentLexeme.value];
-            [self advanceToType:PXSS_RPAREN];
+            [self advanceToType:STKPXSS_RPAREN];
             [self advance];
             break;
 
-        case PXSS_RPAREN:
+        case STKPXSS_RPAREN:
             // empty body
             break;
 
@@ -1643,7 +1643,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
     return result;
 }
 
-#pragma mark - PXStylesheetLexerDelegate Implementation
+#pragma mark - STKPXStylesheetLexerDelegate Implementation
 
 - (void)lexerDidPopSource
 {
@@ -1716,7 +1716,7 @@ static NSIndexSet *ARCHAIC_PSEUDO_ELEMENTS_SET;
 
 - (void)addError:(NSString *)error
 {
-    NSString *offset = (currentLexeme.type != PXSS_EOF) ? [NSString stringWithFormat:@"%lu", (unsigned long) currentLexeme.range.location] : @"EOF";
+    NSString *offset = (currentLexeme.type != STKPXSS_EOF) ? [NSString stringWithFormat:@"%lu", (unsigned long) currentLexeme.range.location] : @"EOF";
 
     [self addError:error filename:[self currentFilename] offset:offset];
 }

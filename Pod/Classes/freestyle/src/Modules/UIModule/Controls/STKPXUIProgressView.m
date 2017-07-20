@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIProgressView.m
+//  STKPXUIProgressView.m
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -24,9 +24,9 @@
 
 #import "STKPXUIProgressView.h"
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 
 #import "STKPXOpacityStyler.h"
 #import "STKPXLayoutStyler.h"
@@ -139,11 +139,11 @@ static char const STYLE_CHILDREN;
     }
 }
 
-PX_WRAP_1(setProgressTintColor, color);
-PX_WRAP_1(setProgressImage, image);
-PX_WRAP_1(setTrackTintColor, color);
-PX_WRAP_1(setTrackImage, image);
+STKPX_WRAP_1(setProgressTintColor, color);
+STKPX_WRAP_1(setProgressImage, image);
+STKPX_WRAP_1(setTrackTintColor, color);
+STKPX_WRAP_1(setTrackImage, image);
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end

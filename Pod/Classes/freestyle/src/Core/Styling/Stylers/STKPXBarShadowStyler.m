@@ -15,7 +15,7 @@
  */
 
 //
-//  PXBarShadowStyler
+//  STKPXBarShadowStyler
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -28,7 +28,7 @@
 #import "STKPXRectangle.h"
 #import "STKPXStroke.h"
 #import "STKPXSolidPaint.h"
-#import "PXShadowPaint.h"
+#import "STKPXShadowPaint.h"
 #import "STKPXShadowGroup.h"
 #import <QuartzCore/QuartzCore.h>
 

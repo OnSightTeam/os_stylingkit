@@ -15,7 +15,7 @@
  */
 
 //
-//  PXNotificationManager.h
+//  STKPXNotificationManager.h
 //  Pixate
 //
 //  Created by Paul Colton on 2/28/13.

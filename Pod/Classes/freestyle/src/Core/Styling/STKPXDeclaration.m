@@ -15,7 +15,7 @@
  */
 
 //
-//  PXDeclaration.m
+//  STKPXDeclaration.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -31,7 +31,7 @@
 #import "STKPXValue.h"
 #import "STKPXStylerContext.h"
 
-#define IsNotCachedType(T) ![cache_ isKindOfClass:[STKPXValue class]] || ((STKPXValue *)cache_).type != PXValueType_##T
+#define IsNotCachedType(T) ![cache_ isKindOfClass:[STKPXValue class]] || ((STKPXValue *)cache_).type != STKPXValueType_##T
 
 @implementation STKPXDeclaration
 {
@@ -131,7 +131,7 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
         STKPXTransformParser *transformParser = [[STKPXTransformParser alloc] init];
         CGAffineTransform result = [transformParser parse:self.stringValue];
 
-        cache_ = [[STKPXValue alloc] initWithBytes:&result type:PXValueType_CGAffineTransform];
+        cache_ = [[STKPXValue alloc] initWithBytes:&result type:STKPXValueType_CGAffineTransform];
     }
 
     return ((STKPXValue *)cache_).CGAffineTransformValue;
@@ -180,7 +180,7 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
         NSString *text = self.firstWord;
         BOOL result = ([@"yes" isEqualToString:text] || [@"true" isEqualToString:text]);
 
-        cache_ = [[STKPXValue alloc] initWithBytes:&result type:PXValueType_Boolean];
+        cache_ = [[STKPXValue alloc] initWithBytes:&result type:STKPXValueType_Boolean];
     }
 
     return ((STKPXValue *) cache_).BooleanValue;
@@ -202,16 +202,16 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
     return [self.parser parseBorderRadiusList:_lexemes];
 }
 
-- (PXBorderStyle)borderStyleValue
+- (STKPXBorderStyle)borderStyleValue
 {
-    if (IsNotCachedType(PXBorderStyle))
+    if (IsNotCachedType(STKPXBorderStyle))
     {
-        PXBorderStyle style = [self.parser parseBorderStyle:_lexemes];
+        STKPXBorderStyle style = [self.parser parseBorderStyle:_lexemes];
 
-        cache_ = [[STKPXValue alloc] initWithBytes:&style type:PXValueType_PXBorderStyle];
+        cache_ = [[STKPXValue alloc] initWithBytes:&style type:STKPXValueType_PXBorderStyle];
     }
 
-    return ((STKPXValue *) cache_).PXBorderStyleValue;
+    return ((STKPXValue *) cache_).STKPXBorderStyleValue;
 }
 
 - (NSArray *)borderStyleList
@@ -220,45 +220,45 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
     return [self.parser parseBorderStyleList:_lexemes];
 }
 
-- (PXCacheStylesType)cacheStylesTypeValue
+- (STKPXCacheStylesType)cacheStylesTypeValue
 {
-    if (IsNotCachedType(PXCacheStylesType))
+    if (IsNotCachedType(STKPXCacheStylesType))
     {
-        PXCacheStylesType type = PXCacheStylesTypeNone;
+        STKPXCacheStylesType type = STKPXCacheStylesTypeNone;
         NSArray *words = self.nameListValue;
 
         for (NSString *word in words)
         {
             if ([@"none" isEqualToString:word])
             {
-                type = PXCacheStylesTypeNone;
+                type = STKPXCacheStylesTypeNone;
             }
             else if ([@"auto" isEqualToString:word])
             {
-                type |= PXCacheStylesTypeStyleOnce | PXCacheStylesTypeImages;
+                type |= STKPXCacheStylesTypeStyleOnce | STKPXCacheStylesTypeImages;
             }
             else if ([@"all" isEqualToString:word])
             {
-                type |= PXCacheStylesTypeStyleOnce | PXCacheStylesTypeImages | PXCacheStylesTypeSave;
+                type |= STKPXCacheStylesTypeStyleOnce | STKPXCacheStylesTypeImages | STKPXCacheStylesTypeSave;
             }
             else if ([@"minimize-styling" isEqualToString:word])
             {
-                type |= PXCacheStylesTypeStyleOnce;
+                type |= STKPXCacheStylesTypeStyleOnce;
             }
             else if ([@"cache-cells" isEqualToString:word])
             {
-                type |= PXCacheStylesTypeSave;
+                type |= STKPXCacheStylesTypeSave;
             }
             else if ([@"cache-images" isEqualToString:word])
             {
-                type |= PXCacheStylesTypeImages;
+                type |= STKPXCacheStylesTypeImages;
             }
         }
 
-        cache_ = [[STKPXValue alloc] initWithBytes:&type type:PXValueType_PXCacheStylesType];
+        cache_ = [[STKPXValue alloc] initWithBytes:&type type:STKPXValueType_PXCacheStylesType];
     }
 
-    return ((STKPXValue *) cache_).PXCacheStylesTypeValue;
+    return ((STKPXValue *) cache_).STKPXCacheStylesTypeValue;
 }
 
 - (UIColor *)colorValue
@@ -300,7 +300,7 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
     {
         CGFloat result = [self.parser parseFloat:_lexemes];
 
-        cache_ = [[STKPXValue alloc] initWithBytes:&result type:PXValueType_CGFloat];
+        cache_ = [[STKPXValue alloc] initWithBytes:&result type:STKPXValueType_CGFloat];
     }
 
     return ((STKPXValue *) cache_).CGFloatValue;
@@ -318,7 +318,7 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
     {
         UIEdgeInsets insets = [self.parser parseInsets:_lexemes];
 
-        cache_ = [[STKPXValue alloc] initWithBytes:&insets type:PXValueType_UIEdgeInsets];
+        cache_ = [[STKPXValue alloc] initWithBytes:&insets type:STKPXValueType_UIEdgeInsets];
     }
 
     return ((STKPXValue *)cache_).UIEdgeInsetsValue;
@@ -332,15 +332,15 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
         {
             STKPXStylesheetLexeme *lexeme = _lexemes[0];
 
-            if (lexeme.type == PXSS_LENGTH)
+            if (lexeme.type == STKPXSS_LENGTH)
             {
                 cache_ = lexeme.value;
             }
-            else if (lexeme.type == PXSS_NUMBER)
+            else if (lexeme.type == STKPXSS_NUMBER)
             {
                 NSNumber *number = lexeme.value;
 
-                cache_ = [[STKPXDimension alloc] initWithNumber:number.floatValue withDimension:@"px"];
+                cache_ = [[STKPXDimension alloc] initWithNumber:number.floatValue withDimension:@"STKPX"];
             }
             // error
         }
@@ -377,7 +377,7 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
             mode = (NSLineBreakMode) value.intValue;
         }
 
-        cache_ = [[STKPXValue alloc] initWithBytes:&mode type:PXValueType_NSLineBreakMode];
+        cache_ = [[STKPXValue alloc] initWithBytes:&mode type:STKPXValueType_NSLineBreakMode];
     }
 
     return ((STKPXValue *) cache_).NSLineBreakModeValue;
@@ -410,9 +410,9 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
     return [self.parser parsePaints:_lexemes];
 }
 
-- (id<PXPaint>)paintValue
+- (id<STKPXPaint>)paintValue
 {
-    if (cache_ != [NSNull null] && ![cache_ conformsToProtocol:@protocol(PXPaint)])
+    if (cache_ != [NSNull null] && ![cache_ conformsToProtocol:@protocol(STKPXPaint)])
     {
         cache_ = [self.parser parsePaint:_lexemes];
 
@@ -425,28 +425,28 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
     return (cache_ != [NSNull null]) ? cache_ : nil;
 }
 
-- (PXParseErrorDestination)parseErrorDestinationValue
+- (STKSTKPXParseErrorDestination)parseErrorDestinationValue
 {
-    if (IsNotCachedType(PXParseErrorDestination))
+    if (IsNotCachedType(STKSTKPXParseErrorDestination))
     {
-        PXParseErrorDestination destination = PXParseErrorDestinationNone;
+        STKPXParseErrorDestination destination = STKPXParseErrorDestinationNone;
         NSString *text = self.firstWord;
 
         if ([@"console" isEqualToString:text])
         {
-            destination = PXParseErrorDestinationConsole;
+            destination = STKPXParseErrorDestinationConsole;
         }
-#ifdef PX_LOGGING
+#ifdef STKPX_LOGGING
         else if ([@"logger" isEqualToString:text])
         {
-            destination = PXParseErrorDestination_Logger;
+            destination = STKPXParseErrorDestination_Logger;
         }
 #endif
 
-        cache_ = [[STKPXValue alloc] initWithBytes:&destination type:PXValueType_PXParseErrorDestination];
+        cache_ = [[STKPXValue alloc] initWithBytes:&destination type:STKPXValueType_STKPXParseErrorDestination];
     }
 
-    return ((STKPXValue *) cache_).PXParseErrorDestinationValue;
+    return ((STKPXValue *) cache_).STKPXParseErrorDestinationValue;
 }
 
 - (CGFloat)secondsValue
@@ -467,15 +467,15 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
     {
         CGSize result = [self.parser parseSize:_lexemes];
 
-        cache_ = [[STKPXValue alloc] initWithBytes:&result type:PXValueType_CGSize];
+        cache_ = [[STKPXValue alloc] initWithBytes:&result type:STKPXValueType_CGSize];
     }
 
     return ((STKPXValue *)cache_).CGSizeValue;
 }
 
-- (id<PXShadowPaint>)shadowValue
+- (id<STKPXShadowPaint>)shadowValue
 {
-    if (cache_ != [NSNull null] && ![cache_ conformsToProtocol:@protocol(PXShadowPaint)])
+    if (cache_ != [NSNull null] && ![cache_ conformsToProtocol:@protocol(STKPXShadowPaint)])
     {
         cache_ = [self.parser parseShadow:_lexemes];
 
@@ -496,7 +496,7 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
 
         for (STKPXStylesheetLexeme *lexeme in _lexemes)
         {
-            if (lexeme.type == PXSS_STRING)
+            if (lexeme.type == STKPXSS_STRING)
             {
                 // grab raw value
                 NSString *value = lexeme.value;
@@ -559,7 +559,7 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
             alignment = (NSTextAlignment) value.intValue;
         }
 
-        cache_ = [[STKPXValue alloc] initWithBytes:&alignment type:PXValueType_NSTextAlignment];
+        cache_ = [[STKPXValue alloc] initWithBytes:&alignment type:STKPXValueType_NSTextAlignment];
     }
 
     return ((STKPXValue *) cache_).NSTextAlignmentValue;
@@ -588,7 +588,7 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
             style = (UITextBorderStyle) value.intValue;
         }
 
-        cache_ = [[STKPXValue alloc] initWithBytes:&style type:PXValueType_UITextBorderStyle];
+        cache_ = [[STKPXValue alloc] initWithBytes:&style type:STKPXValueType_UITextBorderStyle];
     }
 
     return ((STKPXValue *) cache_).UITextBorderStyleValue;
@@ -607,14 +607,14 @@ static NSDictionary *ESCAPE_SEQUENCE_MAP;
     {
         STKPXStylesheetLexeme *lexeme = _lexemes[0];
         
-        if (lexeme.type == PXSS_LENGTH || lexeme.type == PXSS_EMS || lexeme.type == PXSS_PERCENTAGE)
+        if (lexeme.type == STKPXSS_LENGTH || lexeme.type == STKPXSS_EMS || lexeme.type == STKPXSS_PERCENTAGE)
         {
             result = lexeme.value;
         }
-        else if (lexeme.type == PXSS_NUMBER)
+        else if (lexeme.type == STKPXSS_NUMBER)
         {
             NSNumber *number = lexeme.value;
-            result = [[STKPXDimension alloc] initWithNumber:number.floatValue withDimension:@"px"];
+            result = [[STKPXDimension alloc] initWithNumber:number.floatValue withDimension:@"STKPX"];
         }
         // error
     }

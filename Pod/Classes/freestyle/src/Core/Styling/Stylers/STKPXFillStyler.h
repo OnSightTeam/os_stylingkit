@@ -15,14 +15,14 @@
  */
 
 //
-//  PXFillStyler.h
+//  STKPXFillStyler.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/18/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXStylerBase.h"
+#import "STKPXStylerBase.h"
 
 /**
  *  - background-color: <paint>
@@ -40,7 +40,7 @@
  *  - background-left-padding: <length>
  */
 
-@interface STKPXFillStyler : PXStylerBase
+@interface STKPXFillStyler : STKPXStylerBase
 
 + (STKPXFillStyler *)sharedInstance;
 

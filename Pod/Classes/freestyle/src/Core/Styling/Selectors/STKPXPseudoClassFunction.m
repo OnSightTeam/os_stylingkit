@@ -15,7 +15,7 @@
  */
 
 //
-//  PXPseudoClassFunction.m
+//  STKPXPseudoClassFunction.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -25,7 +25,7 @@
 
 #import "STKPXPseudoClassFunction.h"
 #import "STKPXStyleUtils.h"
-#import "PXLog.h"
+#import "STKPXLog.h"
 
 @implementation STKPXPseudoClassFunction
 
@@ -33,7 +33,7 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
 #pragma mark - Initializers
 
-- (instancetype)initWithFunctionType:(PXPseudoClassFunctionType)type modulus:(NSInteger)modulus remainder:(NSInteger)remainder
+- (instancetype)initWithFunctionType:(STKPXPseudoClassFunctionType)type modulus:(NSInteger)modulus remainder:(NSInteger)remainder
 {
     if (self = [super init])
     {
@@ -45,22 +45,22 @@ STK_DEFINE_CLASS_LOG_LEVEL
     return self;
 }
 
-#pragma mark - PXSelector Implementation
+#pragma mark - STKPXSelector Implementation
 
-- (BOOL)matches:(id<PXStyleable>)element
+- (BOOL)matches:(id<STKPXStyleable>)element
 {
     BOOL result = NO;
-    PXStyleableChildrenInfo *info = [STKPXStyleUtils childrenInfoForStyleable:element];
+    STKPXStyleableChildrenInfo *info = [STKPXStyleUtils childrenInfoForStyleable:element];
 
     if (_modulus != 0 || _remainder != 0)
     {
         switch (_functionType)
         {
-            case PXPseudoClassFunctionNthLastChild:
+            case STKPXPseudoClassFunctionNthLastChild:
                 info->childrenIndex = info->childrenCount - info->childrenIndex + 1;
                 // fall through
 
-            case PXPseudoClassFunctionNthChild:
+            case STKPXPseudoClassFunctionNthChild:
             {
                 if (_modulus == 1)
                 {
@@ -79,11 +79,11 @@ STK_DEFINE_CLASS_LOG_LEVEL
                 break;
             }
 
-            case PXPseudoClassFunctionNthLastOfType:
+            case STKPXPseudoClassFunctionNthLastOfType:
                 info->childrenOfTypeIndex = info->childrenOfTypeCount - info->childrenOfTypeIndex + 1;
                 // fall through
 
-            case PXPseudoClassFunctionNthOfType:
+            case STKPXPseudoClassFunctionNthOfType:
             {
                 if (_modulus == 1)
                 {
@@ -108,11 +108,11 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
     if (result)
     {
-        DDLogVerbose(@"%@ matched %@", self.description, [PXStyleUtils descriptionForStyleable:element]);
+        DDLogVerbose(@"%@ matched %@", self.description, [STKPXStyleUtils descriptionForStyleable:element]);
     }
     else
     {
-        DDLogVerbose(@"%@ did not match %@", self.description, [PXStyleUtils descriptionForStyleable:element]);
+        DDLogVerbose(@"%@ did not match %@", self.description, [STKPXStyleUtils descriptionForStyleable:element]);
     }
 
     return result;
@@ -131,19 +131,19 @@ STK_DEFINE_CLASS_LOG_LEVEL
 
     switch (_functionType)
     {
-        case PXPseudoClassFunctionNthChild:
+        case STKPXPseudoClassFunctionNthChild:
             [parts addObject:@":nth-child("];
             break;
 
-        case PXPseudoClassFunctionNthLastChild:
+        case STKPXPseudoClassFunctionNthLastChild:
             [parts addObject:@":nth-last-child("];
             break;
 
-        case PXPseudoClassFunctionNthOfType:
+        case STKPXPseudoClassFunctionNthOfType:
             [parts addObject:@":nth-of-type("];
             break;
 
-        case PXPseudoClassFunctionNthLastOfType:
+        case STKPXPseudoClassFunctionNthLastOfType:
             [parts addObject:@":nth-last-of-type("];
             break;
     }

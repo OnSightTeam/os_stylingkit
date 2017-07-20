@@ -15,7 +15,7 @@
  */
 
 //
-//  PXPaintGroup.h
+//  STKPXPaintGroup.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,14 +24,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXPaint.h"
+#import "STKPXPaint.h"
 
 /**
- *  A PXPaintGroup allows a collection of PXPaints to be treated as a single fill. This can reduce the number of
+ *  A STKPXPaintGroup allows a collection of STKPXPaints to be treated as a single fill. This can reduce the number of
  *  contours required when filling the same region. This class is particularly useful when overlapping fills use alpha
  *  and/or blend modes
  */
-@interface STKPXPaintGroup : NSObject <PXPaint>
+@interface STKPXPaintGroup : NSObject <STKPXPaint>
 
 @property (nonatomic, readonly) NSArray *paints;
 
@@ -45,6 +45,6 @@
  *
  *  @param paint The paint to add
  */
-- (void)addPaint:(id<PXPaint>)paint;
+- (void)addPaint:(id<STKPXPaint>)paint;
 
 @end

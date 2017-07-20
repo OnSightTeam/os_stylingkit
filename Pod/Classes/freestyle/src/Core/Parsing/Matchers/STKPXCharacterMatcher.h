@@ -15,7 +15,7 @@
  */
 
 //
-//  PXCharacterToken.h
+//  STKPXCharacterToken.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 6/23/12.
@@ -23,9 +23,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXLexemeCreator.h"
+#import "STKPXLexemeCreator.h"
 
-@interface STKPXCharacterMatcher : NSObject <PXLexemeCreator>
+@interface STKPXCharacterMatcher : NSObject <STKPXLexemeCreator>
 
 - (id)initWithCharactersInString:(NSString *)characters withTypes:(NSArray *)types;
 

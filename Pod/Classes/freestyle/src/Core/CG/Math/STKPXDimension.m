@@ -15,7 +15,7 @@
  */
 
 //
-//  PXDimension.m
+//  STKPXDimension.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,7 +24,7 @@
 //
 
 #import "STKPXDimension.h"
-#import "PXMath.h"
+#import "STKPXMath.h"
 
 @implementation STKPXDimension
 
@@ -38,7 +38,7 @@ static NSDictionary *dimensionMap;
 {
     dimensionMap = @{@"em": @(kDimensionTypeEms),
                     @"ex": @(kDimensionTypeExs),
-                    @"px": @(kDimensionTypePixels),
+                    @"STKPX": @(kDimensionTypePixels),
                     @"dpx": @(kDimensionTypeDevicePixels),
                     @"cm": @(kDimensionTypeCentimeters),
                     @"mm": @(kDimensionTypeMillimeters),

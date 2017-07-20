@@ -15,7 +15,7 @@
  */
 
 //
-//  PXViewUtils.m
+//  STKPXViewUtils.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 1/4/13.
@@ -26,7 +26,7 @@
 
 #import "STKPXViewUtils.h"
 #import "STKPXSourceWriter.h"
-#import "PXStyleable.h"
+#import "STKPXStyleable.h"
 #import "NSMutableArray+QueueAdditions.h"
 
 @implementation STKPXViewUtils
@@ -126,9 +126,9 @@
     [self emitAttributeName:@"ptr" value:[NSString stringWithFormat:@"0x%lX", (long) view] withSourceWriter:writer];
 
     // emit id and class
-    if ([view conformsToProtocol:@protocol(PXStyleable)])
+    if ([view conformsToProtocol:@protocol(STKPXStyleable)])
     {
-        id<PXStyleable> styleable = (id<PXStyleable>) view;
+        id<STKPXStyleable> styleable = (id<STKPXStyleable>) view;
 
         if (styleable.styleId)
         {

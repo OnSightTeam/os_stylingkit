@@ -15,7 +15,7 @@
  */
 
 //
-//  PXMediaGroup.h
+//  STKPXMediaGroup.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 1/9/13.
@@ -23,22 +23,22 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXMediaExpression.h"
+#import "STKPXMediaExpression.h"
 #import "STKPXStylesheet.h"
 #import "STKPXRuleSet.h"
 
-@interface STKPXMediaGroup : NSObject <PXMediaExpression>
+@interface STKPXMediaGroup : NSObject <STKPXMediaExpression>
 
 /**
- *  A PXStylesheetOrigin enumeration value indicating the origin of this stylesheet. Origin values are used in
+ *  A STKPXStylesheetOrigin enumeration value indicating the origin of this stylesheet. Origin values are used in
  *  specificity calculations.
  */
-@property (readonly, nonatomic) PXStylesheetOrigin origin;
+@property (readonly, nonatomic) STKPXStylesheetOrigin origin;
 
 /**
  *  The media query associated with this grouping of rule sets
  */
-@property (readonly, nonatomic) id<PXMediaExpression> query;
+@property (readonly, nonatomic) id<STKPXMediaExpression> query;
 
 /**
  *  A nonmutable array of rule sets that are contained within this stylesheet
@@ -51,7 +51,7 @@
  *  @param query The media query for this group
  *  @param origin The stylesheet origin for this group
  */
-- (id)initWithQuery:(id<PXMediaExpression>)query origin:(PXStylesheetOrigin)origin;
+- (id)initWithQuery:(id<STKPXMediaExpression>)query origin:(STKPXStylesheetOrigin)origin;
 
 /**
  *  Add a new rule set to this stylesheet
@@ -65,6 +65,6 @@
  *
  *  @param styleable The element to match
  */
-- (NSArray *)ruleSetsForStyleable:(id<PXStyleable>)styleable;
+- (NSArray *)ruleSetsForStyleable:(id<STKPXStyleable>)styleable;
 
 @end

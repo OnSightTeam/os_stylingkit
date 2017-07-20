@@ -15,7 +15,7 @@
  */
 
 //
-//  PXLayoutStyler.m
+//  STKPXLayoutStyler.m
 //  Pixate
 //
 //  Created by Paul Colton on 11/15/12.
@@ -113,7 +113,7 @@
 
 - (void)applyStylesWithContext:(STKPXStylerContext *)context
 {
-    id<PXStyleable> styleable = context.styleable;
+    id<STKPXStyleable> styleable = context.styleable;
 
     //NSLog(@"IS_TITANIUM_CLASS: %@ %@", [styleable description], [self isTitaniumClass:(UIView *)styleable]? @"YES" : @"NO");
     
@@ -132,7 +132,7 @@
 //            //NSLog(@"SUPERVIEW: %@", view);
 //        }
 //        
-        if ([view respondsToSelector:NSSelectorFromString(@"px_setLayoutInfo:transform:")])
+        if ([view respondsToSelector:NSSelectorFromString(@"STKPX_setLayoutInfo:transform:")])
         {
             CGRect frame = CGRectMake(context.left, context.top, context.width, context.height);
             NSValue *frameValue = [NSValue valueWithCGRect:frame];
@@ -140,7 +140,7 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            [view performSelector:NSSelectorFromString(@"px_setLayoutInfo:transform:") withObject:frameValue withObject:transformValue];
+            [view performSelector:NSSelectorFromString(@"STKPX_setLayoutInfo:transform:") withObject:frameValue withObject:transformValue];
 #pragma clang diagnostic popk
         }
     }

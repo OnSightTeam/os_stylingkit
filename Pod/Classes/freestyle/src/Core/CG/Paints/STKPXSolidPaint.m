@@ -15,7 +15,7 @@
  */
 
 //
-//  PXSolidPaint.m
+//  STKPXSolidPaint.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,7 +24,7 @@
 //
 
 #import "STKPXSolidPaint.h"
-#import "UIColor+PXColors.h"
+#import "UIColor+STKPXColors.h"
 
 @implementation STKPXSolidPaint
 
@@ -83,7 +83,7 @@
     return result;
 }
 
-#pragma mark - PXPaint implementation
+#pragma mark - STKPXPaint implementation
 
 - (void)applyFillToPath:(CGPathRef)path withContext:(CGContextRef)context
 {
@@ -97,12 +97,12 @@
     CGContextFillPath(context);
 }
 
-- (id<PXPaint>)lightenByPercent:(CGFloat)percent
+- (id<STKPXPaint>)lightenByPercent:(CGFloat)percent
 {
     return [[STKPXSolidPaint alloc] initWithColor:[_color lightenByPercent:percent]];
 }
 
-- (id<PXPaint>)darkenByPercent:(CGFloat)percent
+- (id<STKPXPaint>)darkenByPercent:(CGFloat)percent
 {
     return [[STKPXSolidPaint alloc] initWithColor:[_color darkenByPercent:percent]];
 }

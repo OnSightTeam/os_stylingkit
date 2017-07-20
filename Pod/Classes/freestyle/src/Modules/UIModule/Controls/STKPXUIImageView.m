@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIImageView.m
+//  STKPXUIImageView.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -25,9 +25,9 @@
 
 #import "STKPXUIImageView.h"
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 
 #import "STKPXOpacityStyler.h"
 #import "STKPXFillStyler.h"
@@ -168,9 +168,9 @@ static NSDictionary *PSEUDOCLASS_MAP;
     // TODO: support animated images
 }
 
-PX_WRAP_1(setImage, image);
-PX_WRAP_1(setHighlightedImage, image);
+STKPX_WRAP_1(setImage, image);
+STKPX_WRAP_1(setHighlightedImage, image);
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end

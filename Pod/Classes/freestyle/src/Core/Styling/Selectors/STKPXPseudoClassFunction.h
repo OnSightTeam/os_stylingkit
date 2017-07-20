@@ -15,36 +15,36 @@
  */
 
 //
-//  PXPseudoClassFunction.h
+//  STKPXPseudoClassFunction.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 11/27/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXSelector.h"
+#import "STKPXSelector.h"
 
 /**
- *  The PXPseudoClassFunctionType enumeration specifies what nth-child function should be applied
+ *  The STKPXPseudoClassFunctionType enumeration specifies what nth-child function should be applied
  */
 typedef enum
 {
-    PXPseudoClassFunctionNthChild,
-    PXPseudoClassFunctionNthLastChild,
-    PXPseudoClassFunctionNthOfType,
-    PXPseudoClassFunctionNthLastOfType
-} PXPseudoClassFunctionType;
+    STKPXPseudoClassFunctionNthChild,
+    STKPXPseudoClassFunctionNthLastChild,
+    STKPXPseudoClassFunctionNthOfType,
+    STKPXPseudoClassFunctionNthLastOfType
+} STKPXPseudoClassFunctionType;
 
 /**
- *  A PXPseudoClassFunction is used to select styleables based on their positions or pattern of positions from the start
+ *  A STKPXPseudoClassFunction is used to select styleables based on their positions or pattern of positions from the start
  *  or end of their list of siblings
  */
-@interface STKPXPseudoClassFunction : NSObject <STKPXSelector>
+@interface STKSTKPXPseudoClassFunction : NSObject <STKPXSelector>
 
 /**
  *  Returns the type of nth-child operation that this selector will perform during matching
  */
-@property (nonatomic, readonly) PXPseudoClassFunctionType functionType;
+@property (nonatomic, readonly) STKPXPseudoClassFunctionType functionType;
 
 /**
  *  In the expression 'an + b', the modulus corresponds to the 'n' value
@@ -57,12 +57,12 @@ typedef enum
 @property (nonatomic, readonly) NSInteger remainder;
 
 /**
- *  Initialize a newly allocation PXPseudoClassFunction
+ *  Initialize a newly allocation STKPXPseudoClassFunction
  *
  *  @param type The nth-child operator type
  *  @param modulus The modulus of the nth-child operation
  *  @param remainder The remainder of the nth-child operation
  */
-- (id)initWithFunctionType:(PXPseudoClassFunctionType)type modulus:(NSInteger)modulus remainder:(NSInteger)remainder;
+- (id)initWithFunctionType:(STKPXPseudoClassFunctionType)type modulus:(NSInteger)modulus remainder:(NSInteger)remainder;
 
 @end

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXRuleSet.m
+//  STKPXRuleSet.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -27,7 +27,7 @@
 #import "STKPXSourceWriter.h"
 #import "STKPXShapeView.h"
 #import "STKPXFontRegistry.h"
-#import "PXCombinator.h"
+#import "STKPXCombinator.h"
 
 @implementation STKPXRuleSet
 {
@@ -118,7 +118,7 @@
             {
                 id<STKPXCombinator> combinator = candidate;
 
-                // NOTE: PXStylesheetParser grows expressions down and to the left. This guarantees that the top-most nodes
+                // NOTE: STKPXStylesheetParser grows expressions down and to the left. This guarantees that the top-most nodes
                 // RHS will be a type selector, and will be the last in the expression
                 result = combinator.rhs;
             }
@@ -149,7 +149,7 @@
     }
 }
 
-- (BOOL)matches:(id<PXStyleable>)element
+- (BOOL)matches:(id<STKPXStyleable>)element
 {
     BOOL result = NO;
 

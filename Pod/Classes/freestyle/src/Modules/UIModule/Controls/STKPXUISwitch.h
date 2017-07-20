@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUISwitch.h
+//  STKPXUISwitch.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -38,31 +38,31 @@
  *
  *  UISwitch supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *  - color: <color>
  *  - off-color: <color>    // iOS 6.x only
  *  - -ios-tint-color: <color>
- *  - PXAnimationStyler
+ *  - STKPXAnimationStyler
  *
  *  UISwitch on supports the following properties:
  *
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *
  *  UISwitch off supports the following properties:
  *
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *
  *  UISwitch thumb supports the following properties:
  *

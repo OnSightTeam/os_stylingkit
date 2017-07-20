@@ -15,7 +15,7 @@
  */
 
 //
-//  PXInsetStyler.m
+//  STKPXInsetStyler.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -34,7 +34,7 @@
     NSString *_leftName;
 }
 
-- (instancetype)initWithBaseName:(NSString *)baseName completionBlock:(PXStylerCompletionBlock)block
+- (instancetype)initWithBaseName:(NSString *)baseName completionBlock:(STKPXStylerCompletionBlock)block
 {
     if (self = [super initWithCompletionBlock:block])
     {

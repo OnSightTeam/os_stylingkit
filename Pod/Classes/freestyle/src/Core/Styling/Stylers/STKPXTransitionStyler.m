@@ -15,7 +15,7 @@
  */
 
 //
-//  PXTransitionStyler.m
+//  STKPXTransitionStyler.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -69,7 +69,7 @@
                      STKPXAnimationInfo *info = [self transitionInfoAtIndex:i context:context];
                      NSNumber *value = timingFunctions[i];
 
-                     info.animationTimingFunction = (PXAnimationTimingFunction) value.intValue;
+                     info.animationTimingFunction = (STKPXAnimationTimingFunction) value.intValue;
                  }
              },
              @"transition-delay" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {

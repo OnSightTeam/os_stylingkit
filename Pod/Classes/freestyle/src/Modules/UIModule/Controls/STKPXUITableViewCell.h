@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUITableViewCell.h
+//  STKPXUITableViewCell.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -44,28 +44,28 @@
  *
  *  content-view supports the following properties:
  *
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXAnimationStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXAnimationStyler
  *
  *  text-label supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXFontStyler
- *  - PXPaintStyler
- *  - PXTextContentStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXFontStyler
+ *  - STKPXPaintStyler
+ *  - STKPXTextContentStyler
  *  - text-align: left | center | right
  *  - text-transform: lowercase | uppercase | capitalize
  *  - text-overflow: clip | ellipsis | ellipsis-head | ellipsis-middle | ellipsis-tail | character-wrap | word-wrap
- *  - PXAnimationStyler
+ *  - STKPXAnimationStyler
  *
  *  text-label supports the following children:
  *
@@ -73,19 +73,19 @@
  *
  *  detail-text-label supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXFontStyler
- *  - PXPaintStyler
- *  - PXTextContentStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXFontStyler
+ *  - STKPXPaintStyler
+ *  - STKPXTextContentStyler
  *  - text-align: left | center | right
  *  - text-transform: lowercase | uppercase | capitalize
  *  - text-overflow: clip | ellipsis | ellipsis-head | ellipsis-middle | ellipsis-tail | character-wrap | word-wrap
- *  - PXAnimationStyler
+ *  - STKPXAnimationStyler
  *
  *  detail-text-label supports the following children:
  *
@@ -93,15 +93,15 @@
  *
  *  UITableViewCell supports the following properties:
  *
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *
  *  The attributed-text child supports the following properties:
  *
- *  - PXAttributedTextStyler
+ *  - STKPXAttributedTextStyler
  *
  */
 

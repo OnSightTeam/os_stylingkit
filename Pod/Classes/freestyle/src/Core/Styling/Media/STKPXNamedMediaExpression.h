@@ -15,7 +15,7 @@
  */
 
 //
-//  PXNamedMediaExpression.h
+//  STKPXNamedMediaExpression.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 1/10/13.
@@ -23,11 +23,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXMediaExpression.h"
+#import "STKPXMediaExpression.h"
 
-typedef BOOL(^PXNamedMediaExpressionHandler)(id<PXMediaExpression> expression);
+typedef BOOL(^STKPXNamedMediaExpressionHandler)(id<STKPXMediaExpression> expression);
 
-@interface STKPXNamedMediaExpression : NSObject <PXMediaExpression>
+@interface STKPXNamedMediaExpression : NSObject <STKPXMediaExpression>
 
 @property (nonatomic, readonly, strong) NSString *name;
 @property (nonatomic, readonly, strong) id value;

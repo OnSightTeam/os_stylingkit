@@ -15,7 +15,7 @@
  */
 
 //
-//  PXForceLoadControls.m
+//  STKPXForceLoadControls.m
 //  Pixate
 //
 //  Created by Paul Colton on 12/10/13.

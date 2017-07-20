@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUITableViewHeaderFooterView.h
+//  STKPXUITableViewHeaderFooterView.h
 //  Pixate
 //
 //  Created by Paul Colton on 11/1/12.
@@ -37,37 +37,37 @@
  *
  *  background-view supports the following properties:
  *
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *
  *  textLabel supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXFontStyler
- *  - PXPaintStyler
- *  - PXTextContentStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXFontStyler
+ *  - STKPXPaintStyler
+ *  - STKPXTextContentStyler
  *  - text-align: left | center | right
  *  - text-transform: lowercase | uppercase | capitalize
  *  - text-overflow: clip | ellipsis | ellipsis-head | ellipsis-middle | ellipsis-tail | character-wrap | word-wrap
- *  - PXAnimationStyler
- *  - attributed-text-label: <PXAttributedTextStyler>
+ *  - STKPXAnimationStyler
+ *  - attributed-text-label: <STKPXAttributedTextStyler>
  *
  *  UITableViewHeaderFooterView supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXTransformStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *  - -ios-tint-color: <paint>
  */
 

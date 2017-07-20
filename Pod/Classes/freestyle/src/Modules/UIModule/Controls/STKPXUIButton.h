@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIButton.h
+//  STKPXUIButton.h
 //  Pixate
 //
 //  Created by Paul Colton on 9/13/12.
@@ -44,16 +44,16 @@
  *
  *  UIButton supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXTextShadowStyler
- *  - PXFontStyler
- *  - PXPaintStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXTextShadowStyler
+ *  - STKPXFontStyler
+ *  - STKPXPaintStyler
  *  - content-edge-inset: <inset>
  *  - content-edge-top-inset: <length>
  *  - content-edge-right-inset: <length>
@@ -69,21 +69,21 @@
  *  - image-edge-right-inset: <length>
  *  - image-edge-bottom-inset: <length>
  *  - image-edge-left-inset: <length>
- *  - PXTextContentStyler
+ *  - STKPXTextContentStyler
  *  - text-transform: lowercase | uppercase | capitalize
  *  - text-overflow: clip | ellipsis | ellipsis-head | ellipsis-middle | ellipsis-tail | character-wrap | word-wrap
- *  - PXAnimationStyler
+ *  - STKPXAnimationStyler
  *
  *  UIButton icon supports the following properties:
  *
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
  *
  *  UIButton attributed-text supports the following properties:
  *  
- *  - PXAttributedTextStyler
+ *  - STKPXAttributedTextStyler
  *
  */
 @interface STKPXUIButton : UIButton

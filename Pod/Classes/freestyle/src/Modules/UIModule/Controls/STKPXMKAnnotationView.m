@@ -15,7 +15,7 @@
  */
 
 //
-//  PXAnnotationView.m
+//  STKPXAnnotationView.m
 //  Pixate
 //
 //  Created by Paul Colton on 11/29/12.
@@ -23,9 +23,9 @@
 //
 
 #import "STKPXMKAnnotationView.h"
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "objc.h"
 
 #import "STKPXOpacityStyler.h"
@@ -103,9 +103,9 @@
     }
 }
 
-PX_WRAP_1(setImage, image);
+STKPX_WRAP_1(setImage, image);
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end
 

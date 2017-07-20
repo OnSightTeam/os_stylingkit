@@ -28,7 +28,7 @@
 
 #import "STKPXStylesheet.h"
 #import "STKPXStylesheet-Private.h"
-#import "UIView+PXStyling.h"
+#import "UIView+STKPXStyling.h"
 #import "STKPXStylesheetParser.h"
 #import "STKPXStyleUtils.h"
 #import "PixateFreestyleConfiguration.h"
@@ -92,10 +92,10 @@ STK_DEFINE_CLASS_LOG_LEVEL;
             NSDictionary *infoDictionary = [NSBundle mainBundle].infoDictionary;
 
             // Check for Titanium mode
-            if(infoDictionary && infoDictionary[@"PXTitanium"])
+            if(infoDictionary && infoDictionary[@"STKPXTitanium"])
             {
                 [PixateFreestyle sharedInstance].titaniumMode =
-                    [infoDictionary[@"PXTitanium"] boolValue];
+                    [infoDictionary[@"STKPXTitanium"] boolValue];
             }
 
             getMonthDayYear([PixateFreestyle sharedInstance].buildDate, &month, &day, &year);
@@ -166,7 +166,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     [[PixateFreestyle sharedInstance] internalSetRefreshStylesWithOrientationChange:value];
 }
 
-+ (NSArray *)selectFromStyleable:(id<PXStyleable>)styleable usingSelector:(NSString *)source
++ (NSArray *)selectFromStyleable:(id<STKPXStyleable>)styleable usingSelector:(NSString *)source
 {
     STKPXStylesheetParser *parser = [[STKPXStylesheetParser alloc] init];
     id<STKPXSelector> selector = [parser parseSelectorString:source];
@@ -176,7 +176,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     {
         result = [NSMutableArray array];
 
-        [STKPXStyleUtils enumerateStyleableAndDescendants:styleable usingBlock:^(id<PXStyleable> obj, BOOL *stop, BOOL *stopDescending) {
+        [STKPXStyleUtils enumerateStyleableAndDescendants:styleable usingBlock:^(id<STKPXStyleable> obj, BOOL *stop, BOOL *stopDescending) {
             if ([selector matches:obj])
             {
                 [result addObject:obj];
@@ -187,7 +187,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     return result;
 }
 
-+ (NSString *)matchingRuleSetsForStyleable:(id<PXStyleable>)styleable
++ (NSString *)matchingRuleSetsForStyleable:(id<STKPXStyleable>)styleable
 {
     NSArray *ruleSets = [STKPXStyleUtils matchingRuleSetsForStyleable:styleable];
     NSMutableArray *stringValues = [NSMutableArray arrayWithCapacity:ruleSets.count];
@@ -200,7 +200,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     return [stringValues componentsJoinedByString:@"\n"];
 }
 
-+ (NSString *)matchingDeclarationsForStyleable:(id<PXStyleable>)styleable
++ (NSString *)matchingDeclarationsForStyleable:(id<STKPXStyleable>)styleable
 {
     NSArray *ruleSets = [STKPXStyleUtils matchingRuleSetsForStyleable:styleable];
     STKPXRuleSet *mergedRuleSet = [STKPXRuleSet ruleSetWithMergedRuleSets:ruleSets];
@@ -214,12 +214,12 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     return [declarationStrings componentsJoinedByString:@"\n"];
 }
 
-+ (instancetype)styleSheetFromFilePath:(NSString *)filePath withOrigin:(PXStylesheetOrigin)origin
++ (instancetype)styleSheetFromFilePath:(NSString *)filePath withOrigin:(STKPXStylesheetOrigin)origin
 {
     return [STKPXStylesheet styleSheetFromFilePath:filePath withOrigin:origin];
 }
 
-+ (instancetype)styleSheetFromSource:(NSString *)source withOrigin:(PXStylesheetOrigin)origin
++ (instancetype)styleSheetFromSource:(NSString *)source withOrigin:(STKPXStylesheetOrigin)origin
 {
     return [STKPXStylesheet styleSheetFromSource:source withOrigin:origin];
 }
@@ -266,22 +266,22 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     }];
 }
 
-+ (void)updateStyles:(id<PXStyleable>)styleable
++ (void)updateStyles:(id<STKPXStyleable>)styleable
 {
     [styleable updateStyles];
 }
 
-+ (void)updateStylesNonRecursively:(id<PXStyleable>)styleable
++ (void)updateStylesNonRecursively:(id<STKPXStyleable>)styleable
 {
     [styleable updateStylesNonRecursively];
 }
 
-+ (void)updateStylesAsync:(id<PXStyleable>)styleable
++ (void)updateStylesAsync:(id<STKPXStyleable>)styleable
 {
     [styleable updateStylesAsync];
 }
 
-+ (void)updateStylesNonRecursivelyAsync:(id<PXStyleable>)styleable
++ (void)updateStylesNonRecursivelyAsync:(id<STKPXStyleable>)styleable
 {
     [styleable updateStylesNonRecursivelyAsync];
 }
@@ -344,8 +344,8 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     [STKPXStylesheet clearCache];
 
     UIWindow* keyWindow = [UIApplication sharedApplication].keyWindow;
-    if (keyWindow.styleMode != PXStylingNormal)
-        keyWindow.styleMode = PXStylingNormal;
+    if (keyWindow.styleMode != STKPXStylingNormal)
+        keyWindow.styleMode = STKPXStylingNormal;
     [keyWindow updateStyles];
 }
 

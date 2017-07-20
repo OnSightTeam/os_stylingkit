@@ -15,7 +15,7 @@
  */
 
 //
-//  PXValueParser.h
+//  STKPXValueParser.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 9/3/12.
@@ -23,13 +23,13 @@
 //
 
 #import "STKPXParserBase.h"
-#import "PXPaint.h"
-#import "PXShadowPaint.h"
+#import "STKPXPaint.h"
+#import "STKPXShadowPaint.h"
 #import "STKPXOffsets.h"
 #import "STKPXBorderInfo.h"
 
 /**
- *  PXValueParser is responsible for converting a list of lexemes into a concrete type. Since it is possible that the
+ *  STKPXValueParser is responsible for converting a list of lexemes into a concrete type. Since it is possible that the
  *  same sequence of tokens may represent different concrete values, it is up to the caller to designate which type is
  *  expected from the lexeme sequence.
  */
@@ -99,7 +99,7 @@
 /**
  *  Convert the lexeme array to a border style
  */
-- (PXBorderStyle)parseBorderStyle:(NSArray *)lexemes;
+- (STKPXBorderStyle)parseBorderStyle:(NSArray *)lexemes;
 
 /**
  *  Convert the lexeme array to a list of border styles
@@ -139,7 +139,7 @@
  *
  *  @param lexemes An array of lexemes to convert
  */
-- (id<PXPaint>)parsePaint:(NSArray *)lexemes;
+- (id<STKPXPaint>)parsePaint:(NSArray *)lexemes;
 
 /**
  *  Convert the lexeme array to a list of paints, one for each side.
@@ -158,7 +158,7 @@
  *
  *  @param lexemes An array of lexemes to convert
  */
-- (id<PXShadowPaint>)parseShadow:(NSArray *)lexemes;
+- (id<STKPXShadowPaint>)parseShadow:(NSArray *)lexemes;
 
 /**
  *  Convert the lexeme array to a size
@@ -189,7 +189,7 @@
 - (UIEdgeInsets)parseInsets:(NSArray *)lexemes;
 
 /**
- *  Convert the lexeme array to a PXOffsets
+ *  Convert the lexeme array to a STKPXOffsets
  *
  *  @param lexemes An array of lexemes to convert
  */

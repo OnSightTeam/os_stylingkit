@@ -15,7 +15,7 @@
  */
 
 //
-//  PXTextContentStyler.m
+//  STKPXTextContentStyler.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 1/8/13.

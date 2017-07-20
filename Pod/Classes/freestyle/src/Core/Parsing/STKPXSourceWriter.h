@@ -15,7 +15,7 @@
  */
 
 //
-//  PXSourceWriter.h
+//  STKPXSourceWriter.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 6/26/12.

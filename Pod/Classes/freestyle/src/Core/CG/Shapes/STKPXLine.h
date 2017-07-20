@@ -15,7 +15,7 @@
  */
 
 //
-//  PXLine.h
+//  STKPXLine.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 6/6/12.
@@ -25,7 +25,7 @@
 #import "STKPXShape.h"
 
 /**
- *  A PXShape sub-class used to render lines
+ *  A STKPXShape sub-class used to render lines
  */
 @interface STKPXLine : STKPXShape
 

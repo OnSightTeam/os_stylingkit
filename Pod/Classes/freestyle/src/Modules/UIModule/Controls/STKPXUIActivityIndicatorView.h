@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIActivityIndicatorView.h
+//  STKPXUIActivityIndicatorView.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -32,14 +32,14 @@
  *
  *  UIActivityIndicatorView supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXOpacityStyler
- *  - PXLayoutStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXAnimationStyler
+ *  - STKPXTransformStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXAnimationStyler
  *  - style: large | small | small-gray
  *  - color: <color>
  *

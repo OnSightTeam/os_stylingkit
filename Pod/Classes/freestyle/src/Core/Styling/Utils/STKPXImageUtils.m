@@ -15,7 +15,7 @@
  */
 
 //
-//  PXImageUtils.m
+//  STKPXImageUtils.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/14/12.

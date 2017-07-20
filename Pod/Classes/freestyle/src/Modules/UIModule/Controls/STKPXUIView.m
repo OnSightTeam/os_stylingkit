@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIView.m
+//  STKPXUIView.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -26,12 +26,12 @@
 #import "STKPXUIView.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXStyleUtils.h"
-#import "NSMutableDictionary+PXObject.h"
-#import "NSDictionary+PXObject.h"
+#import "NSMutableDictionary+STKPXObject.h"
+#import "NSDictionary+STKPXObject.h"
 #import "STKPXVirtualStyleableControl.h"
 
 #import "STKPXOpacityStyler.h"
@@ -149,13 +149,13 @@ static const char STYLE_CHILDREN;
 }
 
 // Px Wrapped Only
-PX_PXWRAP_PROP(CALayer, layer);
+STKPX_PXWRAP_PROP(CALayer, layer);
 
 // Ti Wrapped
-PX_WRAP_1(setBackgroundColor, color);
-PX_WRAP_1(setTintColor, color);
+STKPX_WRAP_1(setBackgroundColor, color);
+STKPX_WRAP_1(setTintColor, color);
 
 // Styling
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end

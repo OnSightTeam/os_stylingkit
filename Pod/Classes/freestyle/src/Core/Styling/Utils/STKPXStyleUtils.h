@@ -15,7 +15,7 @@
  */
 
 //
-//  PXStyleUtils.h
+//  STKPXStyleUtils.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 11/27/12.
@@ -23,38 +23,38 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXStyleable.h"
+#import "STKPXStyleable.h"
 
 typedef struct {
     NSInteger childrenCount;
     NSInteger childrenIndex;
     NSInteger childrenOfTypeCount;
     NSInteger childrenOfTypeIndex;
-} PXStyleableChildrenInfo;
+} STKPXStyleableChildrenInfo;
 
 @interface STKPXStyleUtils : NSObject
 
-+ (NSArray *)elementChildrenOfStyleable:(id<PXStyleable>)styleable;
++ (NSArray *)elementChildrenOfStyleable:(id<STKPXStyleable>)styleable;
 
-+ (NSInteger)childCountForStyleable:(id<PXStyleable>)styleable;
-+ (PXStyleableChildrenInfo *)childrenInfoForStyleable:(id<PXStyleable>)styleable;
++ (NSInteger)childCountForStyleable:(id<STKPXStyleable>)styleable;
++ (STKPXStyleableChildrenInfo *)childrenInfoForStyleable:(id<STKPXStyleable>)styleable;
 
-+ (NSString *)descriptionForStyleable:(id<PXStyleable>)styleable;
-+ (NSString *)selectorFromStyleable:(id<PXStyleable>)styleable;
-+ (NSString *)styleKeyFromStyleable:(id<PXStyleable>)styleable;
++ (NSString *)descriptionForStyleable:(id<STKPXStyleable>)styleable;
++ (NSString *)selectorFromStyleable:(id<STKPXStyleable>)styleable;
++ (NSString *)styleKeyFromStyleable:(id<STKPXStyleable>)styleable;
 
-+ (void)enumerateStyleableAndDescendants:(id<PXStyleable>)styleable usingBlock:(void (^)(id obj, BOOL *stop, BOOL *stopDescending))block;
-+ (void)enumerateStyleableDescendants:(id<PXStyleable>)styleable usingBlock:(void (^)(id obj, BOOL *stop, BOOL *stopDescending))block;
++ (void)enumerateStyleableAndDescendants:(id<STKPXStyleable>)styleable usingBlock:(void (^)(id obj, BOOL *stop, BOOL *stopDescending))block;
++ (void)enumerateStyleableDescendants:(id<STKPXStyleable>)styleable usingBlock:(void (^)(id obj, BOOL *stop, BOOL *stopDescending))block;
 
-+ (NSDictionary *)viewStylerPropertyMapForStyleable:(id<PXStyleable>)styleable;
-+ (NSMutableArray *)matchingRuleSetsForStyleable:(id<PXStyleable>)styleable;
-+ (NSArray *)filterRuleSets:(NSArray *)ruleSets forStyleable:(id<PXStyleable>)styleable byState:(NSString *)stateName;
++ (NSDictionary *)viewStylerPropertyMapForStyleable:(id<STKPXStyleable>)styleable;
++ (NSMutableArray *)matchingRuleSetsForStyleable:(id<STKPXStyleable>)styleable;
++ (NSArray *)filterRuleSets:(NSArray *)ruleSets forStyleable:(id<STKPXStyleable>)styleable byState:(NSString *)stateName;
 + (NSArray *)filterRuleSets:(NSArray *)ruleSets byPseudoElement:(NSString *)pseudoElement;
 
-+ (BOOL)stylesOfStyleable:(id<PXStyleable>)styleable matchDeclarations:(NSArray *)declarations state:(NSString *)state;
-+ (void)invalidateStyleable:(id<PXStyleable>)styleable;
-+ (void)invalidateStyleableAndDescendants:(id<PXStyleable>)styleable;
-+ (NSUInteger)hashValueForStyleable:(id<PXStyleable>)styleable state:(NSString *)state;
++ (BOOL)stylesOfStyleable:(id<STKPXStyleable>)styleable matchDeclarations:(NSArray *)declarations state:(NSString *)state;
++ (void)invalidateStyleable:(id<STKPXStyleable>)styleable;
++ (void)invalidateStyleableAndDescendants:(id<STKPXStyleable>)styleable;
++ (NSUInteger)hashValueForStyleable:(id<STKPXStyleable>)styleable state:(NSString *)state;
 
 + (void)setItemIndex:(NSIndexPath *)index forObject:(NSObject *)object;
 + (NSIndexPath *)itemIndexForObject:(NSObject *)object;
@@ -67,7 +67,7 @@ typedef struct {
  *
  *  @param styleable The styleable to update
  */
-+ (void)updateStyleForStyleable:(id<PXStyleable>)styleable;
++ (void)updateStyleForStyleable:(id<STKPXStyleable>)styleable;
 
 /**
  *  Force an update of the specified styleable. If the recurse flag is true, all descendants of the styleable will be
@@ -76,7 +76,7 @@ typedef struct {
  *  @param styleable The styleable to update
  *  @param recurse A boolean indicating if descendants should be updated as well
  */
-+ (void)updateStylesForStyleable:(id<PXStyleable>)styleable andDescendants:(BOOL)recurse;
++ (void)updateStylesForStyleable:(id<STKPXStyleable>)styleable andDescendants:(BOOL)recurse;
 
 /**
  * Waits until a new cell is positioned in a tableview or collectionview before updating.

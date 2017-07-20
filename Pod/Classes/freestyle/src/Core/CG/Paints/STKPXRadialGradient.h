@@ -15,7 +15,7 @@
  */
 
 //
-//  PXRadialGradient.h
+//  STKPXRadialGradient.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 6/8/12.
@@ -23,10 +23,10 @@
 //
 
 #import "STKPXGradient.h"
-#import "PXPaint.h"
+#import "STKPXPaint.h"
 
 /**
- *  PXRadialGradient is an implementation of a radial gradient. Radial gradients are specified by a starting and ending
+ *  STKPXRadialGradient is an implementation of a radial gradient. Radial gradients are specified by a starting and ending
  *  center point along with a radius
  */
 @interface STKPXRadialGradient : STKPXGradient

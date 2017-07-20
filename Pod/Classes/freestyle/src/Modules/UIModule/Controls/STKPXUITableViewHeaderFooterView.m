@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUITableViewHeaderFooterView.m
+//  STKPXUITableViewHeaderFooterView.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -26,9 +26,9 @@
 #import "STKPXUITableViewHeaderFooterView.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 #import "STKPXVirtualStyleableControl.h"
 #import "STKPXStyleUtils.h"
 
@@ -333,8 +333,8 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
 // Wrappers
 //
 
-PX_WRAP_PROP(UIView, contentView);
-PX_WRAP_1(setBackgroundView, view);
-PX_WRAP_1(setBackgroundColor, color);
+STKPX_WRAP_PROP(UIView, contentView);
+STKPX_WRAP_1(setBackgroundView, view);
+STKPX_WRAP_1(setBackgroundColor, color);
 
 @end

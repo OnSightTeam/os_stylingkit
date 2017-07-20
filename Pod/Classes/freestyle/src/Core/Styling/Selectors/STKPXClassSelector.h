@@ -15,7 +15,7 @@
  */
 
 //
-//  PXClassSelector.h
+//  STKPXClassSelector.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 9/1/12.
@@ -23,10 +23,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXSelector.h"
+#import "STKPXSelector.h"
 
 /**
- *  A PXClassExpression determines if an element has a class atribute and if that value contains a specific class name
+ *  A STKPXClassExpression determines if an element has a class atribute and if that value contains a specific class name
  */
 @interface STKPXClassSelector : NSObject <STKPXSelector>
 

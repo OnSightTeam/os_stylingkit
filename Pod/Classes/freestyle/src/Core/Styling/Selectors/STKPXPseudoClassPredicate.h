@@ -15,32 +15,32 @@
  */
 
 //
-//  PXPseudoClassPredicate.h
+//  STKPXPseudoClassPredicate.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 11/26/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "PXSelector.h"
+#import "STKPXSelector.h"
 
 /**
- *  The PXPseudoClassPredicateType enumeration specifies what test should be performed during a match operation
+ *  The STKPXPseudoClassPredicateType enumeration specifies what test should be performed during a match operation
  */
 typedef enum
 {
-    PXPseudoClassPredicateRoot,
-    PXPseudoClassPredicateFirstChild,
-    PXPseudoClassPredicateLastChild,
-    PXPseudoClassPredicateFirstOfType,
-    PXPseudoClassPredicateLastOfType,
-    PXPseudoClassPredicateOnlyChild,
-    PXPseudoClassPredicateOnlyOfType,
-    PXPseudoClassPredicateEmpty
-} PXPseudoClassPredicateType;
+    STKPXPseudoClassPredicateRoot,
+    STKPXPseudoClassPredicateFirstChild,
+    STKPXPseudoClassPredicateLastChild,
+    STKPXPseudoClassPredicateFirstOfType,
+    STKPXPseudoClassPredicateLastOfType,
+    STKPXPseudoClassPredicateOnlyChild,
+    STKPXPseudoClassPredicateOnlyOfType,
+    STKPXPseudoClassPredicateEmpty
+} STKPXPseudoClassPredicateType;
 
 /**
- *  A PXPseudoClassPredicate is a selector that asks a true or false question of the styleable attempting to be matched.
+ *  A STKPXPseudoClassPredicate is a selector that asks a true or false question of the styleable attempting to be matched.
  *  These questions, or predicates, determine position of the element among its siblings, whether this is the root
  *  view, or if it has no children
  */
@@ -49,13 +49,13 @@ typedef enum
 /**
  *  This indicates what type of predicate will be performed during a match operation
  */
-@property (nonatomic, readonly) PXPseudoClassPredicateType predicateType;
+@property (nonatomic, readonly) STKPXPseudoClassPredicateType predicateType;
 
 /**
  *  Initialize a newly allocated instance, setting its operation type
  *
  *  @param type The predicate type
  */
-- (id)initWithPredicateType:(PXPseudoClassPredicateType)type;
+- (id)initWithPredicateType:(STKPXPseudoClassPredicateType)type;
 
 @end

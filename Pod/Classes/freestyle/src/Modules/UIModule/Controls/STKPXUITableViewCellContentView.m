@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUITableViewCellContentView.m
+//  STKPXUITableViewCellContentView.m
 //  Pixate
 //
 //  Created by Paul Colton on 11/4/12.
@@ -23,8 +23,8 @@
 //
 
 #import "STKPXUITableViewCellContentView.h"
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
 #import "STKPXUtils.h"
 #import "objc.h"
 #import "STKPXViewUtils.h"
@@ -34,11 +34,11 @@
 /* DISABLED
 + (void)initialize
 {
-    if (self != PXUITableViewCellContentView.class)
+    if (self != STKPXUITableViewCellContentView.class)
         return;
  
     [UIView registerDynamicSubclass:self
-                     forClass:[PXUITableViewCellContentView targetSuperclass]
+                     forClass:[STKPXUITableViewCellContentView targetSuperclass]
                     withElementName:@"table-view-cell-content"];
 }
 
@@ -47,7 +47,7 @@
 	static Class targetSuperclass = nil;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		targetSuperclass = [PXUtils isIOS6OrGreater] ?
+		targetSuperclass = [STKPXUtils isIOS6OrGreater] ?
             NSClassFromString([[self description] substringFromIndex:2]) : nil;
 	});
 	return targetSuperclass;

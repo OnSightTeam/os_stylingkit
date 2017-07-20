@@ -15,7 +15,7 @@
  */
 
 //
-//  PXMPVolumeView.m
+//  STKPXMPVolumeView.m
 //  Pixate
 //
 //  Created by Paul Colton on 12/12/12.
@@ -23,9 +23,9 @@
 //
 
 #import "STKPXMPVolumeView.h"
-#import "UIView+PXStyling.h"
-#import "UIView+PXStyling-Private.h"
-#import "PXStylingMacros.h"
+#import "UIView+STKPXStyling.h"
+#import "UIView+STKPXStyling-Private.h"
+#import "STKPXStylingMacros.h"
 
 #import "STKPXOpacityStyler.h"
 #import "STKPXLayoutStyler.h"
@@ -83,6 +83,6 @@
     return map;
 }
 
-PX_LAYOUT_SUBVIEWS_OVERRIDE
+STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 
 @end

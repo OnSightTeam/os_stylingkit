@@ -15,7 +15,7 @@
  */
 
 //
-//  PXFontRegistry.h
+//  STKPXFontRegistry.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 9/21/12.
@@ -23,9 +23,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
- *  PXFontRegistry is a singleton reponsible for mapping a font family, style, and weight to a specific instance of a
+ *  STKPXFontRegistry is a singleton reponsible for mapping a font family, style, and weight to a specific instance of a
  *  UIFont. Fallback mechnanisms are used when a specific configuration is not available. All lookups are cached, so
  *  future lookups are quite fast.
  */

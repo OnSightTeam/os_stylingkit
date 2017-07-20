@@ -15,7 +15,7 @@
  */
 
 //
-//  PXTransformParser.m
+//  STKPXTransformParser.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -26,7 +26,7 @@
 #import "STKPXTransformParser.h"
 #import "STKPXTransformLexer.h"
 #import "STKPXTransformTokenType.h"
-#import "PXMath.h"
+#import "STKPXMath.h"
 #import "STKPXDimension.h"
 
 @implementation STKPXTransformParser
@@ -46,38 +46,38 @@ static NSIndexSet *PERCENTAGE_SET;
     if (!TRANSFORM_KEYWORD_SET)
     {
         NSMutableIndexSet *set = [[NSMutableIndexSet alloc] init];
-        [set addIndex:PXTransformToken_TRANSLATE];
-        [set addIndex:PXTransformToken_TRANSLATEX];
-        [set addIndex:PXTransformToken_TRANSLATEY];
-        [set addIndex:PXTransformToken_SCALE];
-        [set addIndex:PXTransformToken_SCALEX];
-        [set addIndex:PXTransformToken_SCALEY];
-        [set addIndex:PXTransformToken_SKEW];
-        [set addIndex:PXTransformToken_SKEWX];
-        [set addIndex:PXTransformToken_SKEWY];
-        [set addIndex:PXTransformToken_ROTATE];
-        [set addIndex:PXTransformToken_MATRIX];
+        [set addIndex:STKPXTransformToken_TRANSLATE];
+        [set addIndex:STKPXTransformToken_TRANSLATEX];
+        [set addIndex:STKPXTransformToken_TRANSLATEY];
+        [set addIndex:STKPXTransformToken_SCALE];
+        [set addIndex:STKPXTransformToken_SCALEX];
+        [set addIndex:STKPXTransformToken_SCALEY];
+        [set addIndex:STKPXTransformToken_SKEW];
+        [set addIndex:STKPXTransformToken_SKEWX];
+        [set addIndex:STKPXTransformToken_SKEWY];
+        [set addIndex:STKPXTransformToken_ROTATE];
+        [set addIndex:STKPXTransformToken_MATRIX];
         TRANSFORM_KEYWORD_SET = set;
     }
     if (!ANGLE_SET)
     {
         NSMutableIndexSet *set = [[NSMutableIndexSet alloc] init];
-        [set addIndex:PXTransformToken_NUMBER];
-        [set addIndex:PXTransformToken_ANGLE];
+        [set addIndex:STKPXTransformToken_NUMBER];
+        [set addIndex:STKPXTransformToken_ANGLE];
         ANGLE_SET = set;
     }
     if (!LENGTH_SET)
     {
         NSMutableIndexSet *set = [[NSMutableIndexSet alloc] init];
-        [set addIndex:PXTransformToken_NUMBER];
-        [set addIndex:PXTransformToken_LENGTH];
+        [set addIndex:STKPXTransformToken_NUMBER];
+        [set addIndex:STKPXTransformToken_LENGTH];
         LENGTH_SET = set;
     }
     if (!PERCENTAGE_SET)
     {
         NSMutableIndexSet *set = [[NSMutableIndexSet alloc] init];
-        [set addIndex:PXTransformToken_NUMBER];
-        [set addIndex:PXTransformToken_PERCENTAGE];
+        [set addIndex:STKPXTransformToken_NUMBER];
+        [set addIndex:STKPXTransformToken_PERCENTAGE];
         PERCENTAGE_SET = set;
     }
 }
@@ -133,51 +133,51 @@ static NSIndexSet *PERCENTAGE_SET;
     [self advance];
 
     // advance over '('
-    [self assertTypeAndAdvance:PXTransformToken_LPAREN];
+    [self assertTypeAndAdvance:STKPXTransformToken_LPAREN];
 
     switch (transformType.type)
     {
-        case PXTransformToken_TRANSLATE:
+        case STKPXTransformToken_TRANSLATE:
             result = [self parseTranslate];
             break;
 
-        case PXTransformToken_TRANSLATEX:
+        case STKPXTransformToken_TRANSLATEX:
             result = [self parseTranslateX];
             break;
 
-        case PXTransformToken_TRANSLATEY:
+        case STKPXTransformToken_TRANSLATEY:
             result = [self parseTranslateY];
             break;
 
-        case PXTransformToken_SCALE:
+        case STKPXTransformToken_SCALE:
             result = [self parseScale];
             break;
 
-        case PXTransformToken_SCALEX:
+        case STKPXTransformToken_SCALEX:
             result = [self parseScaleX];
             break;
 
-        case PXTransformToken_SCALEY:
+        case STKPXTransformToken_SCALEY:
             result = [self parseScaleY];
             break;
 
-        case PXTransformToken_SKEW:
+        case STKPXTransformToken_SKEW:
             result = [self parseSkew];
             break;
 
-        case PXTransformToken_SKEWX:
+        case STKPXTransformToken_SKEWX:
             result = [self parseSkewX];
             break;
 
-        case PXTransformToken_SKEWY:
+        case STKPXTransformToken_SKEWY:
             result = [self parseSkewY];
             break;
 
-        case PXTransformToken_ROTATE:
+        case STKPXTransformToken_ROTATE:
             result = [self parseRotate];
             break;
 
-        case PXTransformToken_MATRIX:
+        case STKPXTransformToken_MATRIX:
             result = [self parseMatrix];
             break;
 
@@ -189,7 +189,7 @@ static NSIndexSet *PERCENTAGE_SET;
     }
 
     // advance over ')'
-    [self advanceIfIsType:PXTransformToken_RPAREN];
+    [self advanceIfIsType:STKPXTransformToken_RPAREN];
 
     return result;
 }
@@ -228,7 +228,7 @@ static NSIndexSet *PERCENTAGE_SET;
 - (CGAffineTransform)parseScale
 {
     CGFloat sx = self.floatValue;
-    CGFloat sy = ([self isType:PXTransformToken_NUMBER]) ? self.floatValue : sx;
+    CGFloat sy = ([self isType:STKPXTransformToken_NUMBER]) ? self.floatValue : sx;
 
     return CGAffineTransformMakeScale(sx, sy);
 }
@@ -313,7 +313,7 @@ static NSIndexSet *PERCENTAGE_SET;
     {
         switch (currentLexeme.type)
         {
-            case PXTransformToken_NUMBER:
+            case STKPXTransformToken_NUMBER:
             {
                 NSNumber *number = currentLexeme.value;
 
@@ -321,7 +321,7 @@ static NSIndexSet *PERCENTAGE_SET;
                 break;
             }
 
-            case PXTransformToken_ANGLE:
+            case STKPXTransformToken_ANGLE:
             {
                 STKPXDimension *angle = currentLexeme.value;
 
@@ -338,7 +338,7 @@ static NSIndexSet *PERCENTAGE_SET;
         }
 
         [self advance];
-        [self advanceIfIsType:PXTransformToken_COMMA];
+        [self advanceIfIsType:STKPXTransformToken_COMMA];
     }
 
     return result;
@@ -348,14 +348,14 @@ static NSIndexSet *PERCENTAGE_SET;
 {
     CGFloat result = 0.0f;
 
-    if ([self isType:PXTransformToken_NUMBER])
+    if ([self isType:STKPXTransformToken_NUMBER])
     {
         NSNumber *number = currentLexeme.value;
 
         result = number.floatValue;
 
         [self advance];
-        [self advanceIfIsType:PXTransformToken_COMMA];
+        [self advanceIfIsType:STKPXTransformToken_COMMA];
     }
     else
     {
@@ -373,7 +373,7 @@ static NSIndexSet *PERCENTAGE_SET;
     {
         switch (currentLexeme.type)
         {
-            case PXTransformToken_NUMBER:
+            case STKPXTransformToken_NUMBER:
             {
                 NSNumber *number = currentLexeme.value;
 
@@ -381,7 +381,7 @@ static NSIndexSet *PERCENTAGE_SET;
                 break;
             }
 
-            case PXTransformToken_LENGTH:
+            case STKPXTransformToken_LENGTH:
             {
                 STKPXDimension *length = currentLexeme.value;
 
@@ -398,7 +398,7 @@ static NSIndexSet *PERCENTAGE_SET;
         }
 
         [self advance];
-        [self advanceIfIsType:PXTransformToken_COMMA];
+        [self advanceIfIsType:STKPXTransformToken_COMMA];
     }
     else
     {
@@ -416,7 +416,7 @@ static NSIndexSet *PERCENTAGE_SET;
     {
         switch (currentLexeme.type)
         {
-            case PXTransformToken_PERCENTAGE:
+            case STKPXTransformToken_PERCENTAGE:
             {
                 STKPXDimension *percentage = currentLexeme.value;
 
@@ -424,7 +424,7 @@ static NSIndexSet *PERCENTAGE_SET;
                 break;
             }
 
-            case PXTransformToken_NUMBER:
+            case STKPXTransformToken_NUMBER:
             {
                 NSNumber *number = currentLexeme.value;
 
@@ -441,7 +441,7 @@ static NSIndexSet *PERCENTAGE_SET;
         }
 
         [self advance];
-        [self advanceIfIsType:PXTransformToken_COMMA];
+        [self advanceIfIsType:STKPXTransformToken_COMMA];
     }
     else
     {

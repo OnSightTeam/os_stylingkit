@@ -15,7 +15,7 @@
  */
 
 //
-//  PXPseudoClassSelector.h
+//  STKPXPseudoClassSelector.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 9/1/12.
@@ -23,10 +23,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXSelector.h"
+#import "STKPXSelector.h"
 
 /**
- *  A PXPseudoClassExpression is used to represent a specific state of an element, for purposes of styling.
+ *  A STKPXPseudoClassExpression is used to represent a specific state of an element, for purposes of styling.
  */
 @interface STKPXPseudoClassSelector : NSObject <STKPXSelector>
 

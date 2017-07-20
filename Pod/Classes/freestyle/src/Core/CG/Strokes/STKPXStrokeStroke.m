@@ -15,7 +15,7 @@
  */
 
 //
-//  PXStrokeStroke.m
+//  STKPXStrokeStroke.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 9/4/12.
@@ -27,7 +27,7 @@
 
 @implementation STKPXStrokeStroke
 
-#pragma mark - PXStrokeRenderer Implementation
+#pragma mark - STKPXStrokeRenderer Implementation
 
 - (void)applyStrokeToPath:(CGPathRef)path withContext:(CGContextRef)context
 {

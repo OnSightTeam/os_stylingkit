@@ -15,7 +15,7 @@
  */
 
 //
-//  PXTransformTokenType.m
+//  STKPXTransformTokenType.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 7/27/12.
@@ -26,40 +26,40 @@
 
 @implementation STKPXTransformTokenType
 
-+ (NSString *)typeNameForInt:(PXTransformTokens)type
++ (NSString *)typeNameForInt:(STKPXTransformTokens)type
 {
     switch (type)
     {
-        case PXTransformToken_ERROR:        return @"ERROR";
-        case PXTransformToken_EOF:          return @"EOF";
+        case STKPXTransformToken_ERROR:        return @"ERROR";
+        case STKPXTransformToken_EOF:          return @"EOF";
 
-        case PXTransformToken_WHITESPACE:   return @"WHITESPACE";
+        case STKPXTransformToken_WHITESPACE:   return @"WHITESPACE";
 
-        case PXTransformToken_EMS:          return @"EMS";
-        case PXTransformToken_EXS:          return @"EXS";
-        case PXTransformToken_LENGTH:       return @"LENGTH";
-        case PXTransformToken_ANGLE:        return @"ANGLE";
-        case PXTransformToken_TIME:         return @"TIME";
-        case PXTransformToken_FREQUENCY:    return @"FREQUENCY";
-        case PXTransformToken_PERCENTAGE:   return @"PERCENTAGE";
-        case PXTransformToken_DIMENSION:    return @"DIMENSION";
-        case PXTransformToken_NUMBER:       return @"NUMBER";
+        case STKPXTransformToken_EMS:          return @"EMS";
+        case STKPXTransformToken_EXS:          return @"EXS";
+        case STKPXTransformToken_LENGTH:       return @"LENGTH";
+        case STKPXTransformToken_ANGLE:        return @"ANGLE";
+        case STKPXTransformToken_TIME:         return @"TIME";
+        case STKPXTransformToken_FREQUENCY:    return @"FREQUENCY";
+        case STKPXTransformToken_PERCENTAGE:   return @"PERCENTAGE";
+        case STKPXTransformToken_DIMENSION:    return @"DIMENSION";
+        case STKPXTransformToken_NUMBER:       return @"NUMBER";
 
-        case PXTransformToken_LPAREN:       return @"LPAREN";
-        case PXTransformToken_RPAREN:       return @"RPAREN";
-        case PXTransformToken_COMMA:        return @"COMMA";
+        case STKPXTransformToken_LPAREN:       return @"LPAREN";
+        case STKPXTransformToken_RPAREN:       return @"RPAREN";
+        case STKPXTransformToken_COMMA:        return @"COMMA";
 
-        case PXTransformToken_TRANSLATE:    return @"TRANSLATE";
-        case PXTransformToken_TRANSLATEX:   return @"TRANSLATEX";
-        case PXTransformToken_TRANSLATEY:   return @"TRANSLATEY";
-        case PXTransformToken_SCALE:        return @"SCALE";
-        case PXTransformToken_SCALEX:       return @"SCALEX";
-        case PXTransformToken_SCALEY:       return @"SCALEY";
-        case PXTransformToken_SKEW:         return @"SKEW";
-        case PXTransformToken_SKEWX:        return @"SKEWX";
-        case PXTransformToken_SKEWY:        return @"SKEWY";
-        case PXTransformToken_ROTATE:       return @"ROTATE";
-        case PXTransformToken_MATRIX:       return @"MATRIX";
+        case STKPXTransformToken_TRANSLATE:    return @"TRANSLATE";
+        case STKPXTransformToken_TRANSLATEX:   return @"TRANSLATEX";
+        case STKPXTransformToken_TRANSLATEY:   return @"TRANSLATEY";
+        case STKPXTransformToken_SCALE:        return @"SCALE";
+        case STKPXTransformToken_SCALEX:       return @"SCALEX";
+        case STKPXTransformToken_SCALEY:       return @"SCALEY";
+        case STKPXTransformToken_SKEW:         return @"SKEW";
+        case STKPXTransformToken_SKEWX:        return @"SKEWX";
+        case STKPXTransformToken_SKEWY:        return @"SKEWY";
+        case STKPXTransformToken_ROTATE:       return @"ROTATE";
+        case STKPXTransformToken_MATRIX:       return @"MATRIX";
 
         default:                        return @"<unknown>";
     }

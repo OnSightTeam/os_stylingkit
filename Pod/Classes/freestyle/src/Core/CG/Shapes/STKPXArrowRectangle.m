@@ -15,7 +15,7 @@
  */
 
 //
-//  PXArrowRectangle.m
+//  STKPXArrowRectangle.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -24,18 +24,18 @@
 //
 
 #import "STKPXArrowRectangle.h"
-#import "PXEllipticalArc.h"
+#import "STKPXEllipticalArc.h"
 
 @implementation STKPXArrowRectangle
 
 #pragma mark - Initializers
 
-- (instancetype)initWithDirection:(PXArrowRectangleDirection)direction
+- (instancetype)initWithDirection:(STKPXArrowRectangleDirection)direction
 {
     return [self initWithRect:CGRectZero direction:direction];
 }
 
-- (instancetype)initWithRect:(CGRect)bounds direction:(PXArrowRectangleDirection)direction
+- (instancetype)initWithRect:(CGRect)bounds direction:(STKPXArrowRectangleDirection)direction
 {
     if (self = [super initWithRect:bounds])
     {
@@ -65,7 +65,7 @@
         // create path
         CGMutablePathRef path = CGPathCreateMutable();
 
-        if (_direction == PXArrowRectangleDirectionLeft)
+        if (_direction == STKPXArrowRectangleDirectionLeft)
         {
             CGFloat arrowRightX = MIN(right, left + arrowWidth);
 
@@ -115,7 +115,7 @@
         // create path
         CGMutablePathRef path = CGPathCreateMutable();
 
-        if (_direction == PXArrowRectangleDirectionLeft)
+        if (_direction == STKPXArrowRectangleDirectionLeft)
         {
             CGFloat arrowRightX = MIN(right, left + arrowWidth);
 

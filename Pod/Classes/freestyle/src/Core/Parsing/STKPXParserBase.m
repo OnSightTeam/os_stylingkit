@@ -15,7 +15,7 @@
  */
 
 //
-//  PXParserBase.m
+//  STKPXParserBase.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -75,7 +75,7 @@
     errors = nil;
 }
 
-- (id<PXLexeme>)advance
+- (id<STKPXLexeme>)advance
 {
     // TODO: generalize so descendants don't have to override this method
     return currentLexeme = nil;
@@ -117,7 +117,7 @@
     }
 }
 
-- (id<PXLexeme>)assertTypeAndAdvance:(int)type
+- (id<STKPXLexeme>)assertTypeAndAdvance:(int)type
 {
     [self assertType:type];
 

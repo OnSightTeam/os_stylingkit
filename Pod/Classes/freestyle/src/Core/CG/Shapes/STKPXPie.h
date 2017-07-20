@@ -15,7 +15,7 @@
  */
 
 //
-//  PXPie.h
+//  STKPXPie.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 9/5/12.
@@ -26,7 +26,7 @@
 #import "STKPXArc.h"
 
 /**
- *  A PXArc subclass used to render pie graphs
+ *  A STKPXArc subclass used to render pie graphs
  */
 @interface STKPXPie : STKPXArc
 

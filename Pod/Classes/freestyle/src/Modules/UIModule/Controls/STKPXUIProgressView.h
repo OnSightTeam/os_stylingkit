@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUIProgressView.h
+//  STKPXUIProgressView.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -36,19 +36,19 @@
  *
  *  UIProgessView supports the following properties:
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXAnimationStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXAnimationStyler
  *
  *  UIProgessView track supports the following properties:
  *
- *  - PXFillStyler
- *  - PXBorderStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
  *
  */
 @interface STKPXUIProgressView : UIProgressView

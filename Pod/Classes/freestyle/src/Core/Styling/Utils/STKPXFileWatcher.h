@@ -15,7 +15,7 @@
  */
 
 //
-//  PXFileWatcher
+//  STKPXFileWatcher
 //  Pixate
 //
 //  Created by Paul Colton on 9/27/12.
@@ -25,12 +25,12 @@
 #import <Foundation/Foundation.h>
 
 /**
- *  PXFileWatcher can be used to monitor changes to a file in the file system.
+ *  STKPXFileWatcher can be used to monitor changes to a file in the file system.
  */
 @interface STKPXFileWatcher : NSObject
 
 /**
- *  The singleton instance of PXFileWatcher
+ *  The singleton instance of STKPXFileWatcher
  */
 + (STKPXFileWatcher *)sharedInstance;
 

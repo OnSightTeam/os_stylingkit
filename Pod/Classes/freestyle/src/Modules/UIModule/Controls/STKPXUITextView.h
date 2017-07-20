@@ -15,7 +15,7 @@
  */
 
 //
-//  PXUITextView.h
+//  STKPXUITextView.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 10/10/12.
@@ -36,25 +36,25 @@
  *
  *  UITextView supports the following properties
  *
- *  - PXTransformStyler
- *  - PXLayoutStyler
- *  - PXOpacityStyler
- *  - PXShapeStyler
- *  - PXFillStyler
- *  - PXBorderStyler
- *  - PXBoxShadowStyler
- *  - PXFontStyler
- *  - PXColorStyler
- *  - PXTextContentStyler
+ *  - STKPXTransformStyler
+ *  - STKPXLayoutStyler
+ *  - STKPXOpacityStyler
+ *  - STKPXShapeStyler
+ *  - STKPXFillStyler
+ *  - STKPXBorderStyler
+ *  - STKPXBoxShadowStyler
+ *  - STKPXFontStyler
+ *  - STKPXColorStyler
+ *  - STKPXTextContentStyler
  *  - text-align: left | center | right
  *  - content-offset: <size>
  *  - content-size: <size>
  *  - content-inset: <insets>
- *  - PXAnimationStyler
+ *  - STKPXAnimationStyler
  *
  *  UITextView attributed-text supports the following properties:
  *
- *  - PXAttributedTextStyler
+ *  - STKPXAttributedTextStyler
  *
  */
 

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXBarMetricsAdjustmentStyler.m
+//  STKPXBarMetricsAdjustmentStyler.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/13/12.

@@ -15,7 +15,7 @@
  */
 
 //
-//  PXMediaExpressionGroup.m
+//  STKPXMediaExpressionGroup.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 1/10/13.
@@ -31,7 +31,7 @@
 
 #pragma mark - Methods
 
-- (void)addExpression:(id<PXMediaExpression>)expression
+- (void)addExpression:(id<STKPXMediaExpression>)expression
 {
     if (expression)
     {
@@ -51,7 +51,7 @@
 
 - (void)clearCache
 {
-    for (id<PXMediaExpression> expression in _expressions)
+    for (id<STKPXMediaExpression> expression in _expressions)
         [expression clearCache];
 }
 
@@ -59,7 +59,7 @@
 {
     BOOL result = YES;
 
-    for (id<PXMediaExpression> expression in _expressions)
+    for (id<STKPXMediaExpression> expression in _expressions)
     {
         if (![expression matches])
         {
@@ -82,7 +82,7 @@
 {
     NSMutableArray *parts = [NSMutableArray array];
 
-    for (id<PXMediaExpression> expression in _expressions)
+    for (id<STKPXMediaExpression> expression in _expressions)
     {
         [parts addObject:expression.description];
     }

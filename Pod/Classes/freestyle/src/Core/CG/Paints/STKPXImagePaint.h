@@ -15,7 +15,7 @@
  */
 
 //
-//  PXImagePaint.h
+//  STKPXImagePaint.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 3/27/13.
@@ -23,20 +23,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXPaint.h"
+#import "STKPXPaint.h"
 
 typedef enum {
-    PXImageRepeatTypeRepeat,
-    PXImageRepeatTypeSpace,
-    PXImageRepeatTypeRound,
-    PXImageRepeatTypeNoRepeat
-} PXImageRepeatType;
+    STKPXImageRepeatTypeRepeat,
+    STKPXImageRepeatTypeSpace,
+    STKPXImageRepeatTypeRound,
+    STKPXImageRepeatTypeNoRepeat
+} STKPXImageRepeatType;
 
-@interface STKPXImagePaint : NSObject <PXPaint>
+@interface STKPXImagePaint : NSObject <STKPXPaint>
 
 @property (nonatomic) NSURL *imageURL;
-//@property (nonatomic) PXImageRepeatType repeatX;
-//@property (nonatomic) PXImageRepeatType repeatY;
+//@property (nonatomic) STKPXImageRepeatType repeatX;
+//@property (nonatomic) STKPXImageRepeatType repeatY;
 
 - (id)initWithURL:(NSURL *)url;
 

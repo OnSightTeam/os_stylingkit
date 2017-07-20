@@ -15,7 +15,7 @@
  */
 
 //
-//  PXTransformLexer.h
+//  STKPXTransformLexer.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -27,7 +27,7 @@
 #import "STKPXStylesheetLexeme.h"
 
 /**
- *  The PXTransformLexer is reponsible for converting a string into a stream of tokens needed to parse SVG transform
+ *  The STKPXTransformLexer is reponsible for converting a string into a stream of tokens needed to parse SVG transform
  *  values.
  */
 @interface STKPXTransformLexer : NSObject

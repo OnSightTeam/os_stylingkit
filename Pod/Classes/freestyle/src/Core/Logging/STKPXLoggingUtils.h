@@ -15,7 +15,7 @@
  */
 
 //
-//  PXLoggingUtils.h
+//  STKPXLoggingUtils.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/4/12.
@@ -23,9 +23,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PXLog.h"
+#import "STKPXLog.h"
 
-@protocol PXLoggingDelegate <NSObject>
+@protocol STKPXLoggingDelegate <NSObject>
 - (void)logEntry:(NSString *)logItem atLogLevel:(DDLogLevel)logLevel;
 @end
 
@@ -35,6 +35,6 @@
 + (void)enablePrettyLogFormatting;
 + (void)enableLoggingToDirectoryPath:(NSString *)path;
 + (void)setGlobalLoggingLevel:(DDLogLevel)logLevel;
-+ (void)addLoggingDelegate:(id <PXLoggingDelegate>)delegate;
++ (void)addLoggingDelegate:(id <STKPXLoggingDelegate>)delegate;
 
 @end
