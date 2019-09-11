@@ -47,7 +47,7 @@ void* callSuper0(id self, Class superClass, SEL _cmd)
 	struct objc_super super;
 	super.receiver = (__bridge void *)self;
 	super.class = superClass != NULL ? superClass : class_getSuperclass(object_getClass(self));
-	return objc_msgSendSuper(&super, preprocessSEL(_cmd));
+	return ((id (*)(id, SEL))objc_msgSendSuper)(&super, preprocessSEL(_cmd));
 }
 
 void* callSuper1(id self, Class superClass, SEL _cmd, id arg1)
