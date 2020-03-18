@@ -54,7 +54,7 @@
 #import "STKPXUITextView.h"
 #import "STKPXUIToolbar.h"
 #import "STKPXUIView.h"
-#import "STKPXUIWebView.h"
+#import "STKPXWKWebView.h"
 #import "STKPXUIWindow.h"
 #import "STK_UIAlertControllerView.h"
 
@@ -92,7 +92,7 @@
     [STKPXUITextView class];
     [STKPXUIToolbar class];
     [STKPXUIView class];
-    [STKPXUIWebView class];
+    [STKPXWKWebView class];
     [STKPXUIWindow class];
     [STK_UIAlertControllerView class];
 }

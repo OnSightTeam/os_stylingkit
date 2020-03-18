@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXUIWebView.h
+//  STKPXWKWebView.h
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
@@ -23,14 +23,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
 /**
  *
- *  UIWebView supports the following element name:
+ *  WKWebView supports the following element name:
  *
  *  - web-view
  *
- *  UIWebView supports the following properties:
+ *  WKWebView supports the following properties:
  *
  *  - STKPXTransformStyler
  *  - STKPXLayoutStyler
@@ -38,6 +39,6 @@
  *  - STKPXAnimationStyler
  *
  */
-@interface STKPXUIWebView : UIWebView
+@interface STKPXWKWebView : WKWebView
 
 @end

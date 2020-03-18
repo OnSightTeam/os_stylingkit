@@ -15,14 +15,14 @@
  */
 
 //
-//  STKPXUIWebView.m
+//  STKPXWKWebView.m
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXUIWebView.h"
+#import "STKPXWKWebView.h"
 
 #import "UIView+STKPXStyling.h"
 #import "UIView+STKPXStyling-Private.h"
@@ -33,11 +33,11 @@
 #import "STKPXTransformStyler.h"
 #import "STKPXAnimationStyler.h"
 
-@implementation STKPXUIWebView
+@implementation STKPXWKWebView
 
 + (void)initialize
 {
-    if (self != STKPXUIWebView.class)
+    if (self != STKPXWKWebView.class)
         return;
     
     [UIView registerDynamicSubclass:self withElementName:@"web-view"];
