@@ -72,11 +72,11 @@ static const char STYLE_CHILDREN;
         
         attributedText.viewStylers = @[
                                        
-                                       [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(STKPXVirtualStyleableControl *styleable, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
+                                       [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable> styleable, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
                                            
                                            NSMutableDictionary *dict = [context attributedTextAttributes:weakSelf withDefaultText:weakSelf.text andColor:weakSelf.textColor];
                                            
-                                           NSMutableAttributedString *attrString = nil;                                           
+                                           NSMutableAttributedString *attrString = nil;
                                            if(context.transformedText)
                                            {
                                                attrString = [[NSMutableAttributedString alloc] initWithString:context.transformedText attributes:dict];
@@ -97,7 +97,7 @@ static const char STYLE_CHILDREN;
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-	static dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
         stylers = @[
@@ -110,16 +110,16 @@ static const char STYLE_CHILDREN;
             STKPXBorderStyler.sharedInstance,
             STKPXBoxShadowStyler.sharedInstance,
 
-            [[STKPXFontStyler alloc] initWithCompletionBlock:^(STKPXUITextView *view, STKPXFontStyler *styler, STKPXStylerContext *context) {
-                [view px_setFont: context.font];
+            [[STKPXFontStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable> view, STKPXFontStyler *styler, STKPXStylerContext *context) {
+                [(STKPXUITextView *)view px_setFont: context.font];
             }],
 
-            [[STKPXColorStyler alloc] initWithCompletionBlock:^(STKPXUITextView *view, STKPXColorStyler *styler, STKPXStylerContext *context) {
-                [view px_setTextColor: (UIColor *) [context propertyValueForName:@"color"]];
+            [[STKPXColorStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable> view, STKPXColorStyler *styler, STKPXStylerContext *context) {
+                [(STKPXUITextView *)view px_setTextColor: (UIColor *) [context propertyValueForName:@"color"]];
             }],
 
-            [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(STKPXUITextView *view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
-                [view px_setText: context.text];
+            [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable> view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
+                [(STKPXUITextView *)view px_setText: context.text];
             }],
 
             [[STKPXGenericStyler alloc] initWithHandlers: @{
@@ -152,7 +152,7 @@ static const char STYLE_CHILDREN;
         ];
     });
 
-	return stylers;
+    return stylers;
 }
 
 - (NSDictionary *)viewStylersByProperty

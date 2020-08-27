@@ -207,7 +207,7 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
         attributedTextLabel.defaultPseudoClass = @"normal";
         
         attributedTextLabel.viewStylers = @[
-            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(STKPXVirtualStyleableControl *styleable, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
+            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable> styleable, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
 
                 UILabel *view = weakSelf.textLabel;
                 UIControlState state = ([context stateFromStateNameMap:LABEL_PSEUDOCLASS_MAP]);
@@ -252,15 +252,15 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-	static dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
         
         stylers = @[
             STKPXTransformStyler.sharedInstance,
 
-            [[STKPXOpacityStyler alloc] initWithCompletionBlock:^(STKPXUITableViewHeaderFooterView *view, STKPXOpacityStyler *styler, STKPXStylerContext *context) {
-                view.px_contentView.alpha = context.opacity;
+            [[STKPXOpacityStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXOpacityStyler *styler, STKPXStylerContext *context) {
+                ((STKPXUITableViewHeaderFooterView *)view).px_contentView.alpha = context.opacity;
             }],
 
             STKPXShapeStyler.sharedInstance,
@@ -274,7 +274,7 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
         ];
     });
 
-	return stylers;
+    return stylers;
 }
 
 - (NSDictionary *)viewStylersByProperty

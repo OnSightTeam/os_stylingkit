@@ -329,7 +329,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-	static dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
         stylers = @[
@@ -339,36 +339,36 @@ static NSDictionary *PSEUDOCLASS_MAP;
                     STKPXBorderStyler.sharedInstance,
                     STKPXBoxShadowStyler.sharedInstance,
 
-                    [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(UINavigationItem *item, id<STKPXStyler> styler, STKPXStylerContext *context) {
-                        item.title = context.text;
+                    [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable> item, id<STKPXStyler> styler, STKPXStylerContext *context) {
+                        ((UINavigationItem*)item).title = context.text;
                     }],
 
                     [[STKPXGenericStyler alloc] initWithHandlers: @{
                          @"text-transform" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
                             [context setPropertyValue:declaration.stringValue forName:@"transform"];
                          },
-                         } completionBlock:^(UINavigationItem *item, id<STKPXStyler> styler, STKPXStylerContext *context) {
+                         } completionBlock:^(id<STKPXStyleable> item, id<STKPXStyler> styler, STKPXStylerContext *context) {
                              
                              NSString *transform = [context propertyValueForName:@"transform"];
-                             NSString *value = item.title;
+                             NSString *value = ((UINavigationItem*)item).title;
                              
                              if ([@"uppercase" isEqualToString:transform])
                              {
-                                 item.title = value.uppercaseString;
+                                 ((UINavigationItem*)item).title = value.uppercaseString;
                              }
                              else if ([@"lowercase" isEqualToString:transform])
                              {
-                                 item.title = value.lowercaseString;
+                                 ((UINavigationItem*)item).title = value.lowercaseString;
                              }
                              else if ([@"capitalize" isEqualToString:transform])
                              {
-                                 item.title = value.capitalizedString;
+                                 ((UINavigationItem*)item).title = value.capitalizedString;
                              }
                          }],
         ];
     });
     
-	return stylers;
+    return stylers;
 }
 
 - (void)updateStyleWithRuleSet:(STKPXRuleSet *)ruleSet context:(STKPXStylerContext *)context

@@ -112,7 +112,7 @@ static char const STYLE_CHILDREN;
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-	static dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
         stylers = @[
@@ -125,9 +125,9 @@ static char const STYLE_CHILDREN;
             STKPXBorderStyler.sharedInstance,
             STKPXBoxShadowStyler.sharedInstance,
 
-            [[STKPXTextShadowStyler alloc] initWithCompletionBlock:^(STKPXUISegmentedControl *view, STKPXTextShadowStyler *styler, STKPXStylerContext *context) {
+            [[STKPXTextShadowStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXTextShadowStyler *styler, STKPXStylerContext *context) {
                 STKPXShadow *shadow = context.textShadow;
-                NSMutableDictionary *currentTextAttributes = [NSMutableDictionary dictionaryWithDictionary:[view titleTextAttributesForState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]]];
+                NSMutableDictionary *currentTextAttributes = [NSMutableDictionary dictionaryWithDictionary:[(STKPXUISegmentedControl *)view titleTextAttributesForState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]]];
 
                 NSShadow *nsShadow = [[NSShadow alloc] init];
                 
@@ -137,31 +137,31 @@ static char const STYLE_CHILDREN;
                 
                 currentTextAttributes[NSShadowAttributeName] = nsShadow;
 
-                [view px_setTitleTextAttributes:currentTextAttributes forState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]];
+                [(STKPXUISegmentedControl *)view px_setTitleTextAttributes:currentTextAttributes forState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]];
             }],
 
-            [[STKPXFontStyler alloc] initWithCompletionBlock:^(STKPXUISegmentedControl *view, STKPXFontStyler *styler, STKPXStylerContext *context) {
+            [[STKPXFontStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXFontStyler *styler, STKPXStylerContext *context) {
 
                 NSMutableDictionary *currentTextAttributes = [NSMutableDictionary
-                                                              dictionaryWithDictionary:[view titleTextAttributesForState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]]];
+                                                              dictionaryWithDictionary:[(STKPXUISegmentedControl *)view titleTextAttributesForState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]]];
 
                 currentTextAttributes[NSFontAttributeName] = context.font;
 
-                [view px_setTitleTextAttributes:currentTextAttributes
+                [(STKPXUISegmentedControl *)view px_setTitleTextAttributes:currentTextAttributes
                                        forState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]];
             }],
 
-            [[STKPXPaintStyler alloc] initWithCompletionBlock:^(STKPXUISegmentedControl *view, STKPXPaintStyler *styler, STKPXStylerContext *context) {
+            [[STKPXPaintStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXPaintStyler *styler, STKPXStylerContext *context) {
 
                 NSMutableDictionary *currentTextAttributes = [NSMutableDictionary
-                                                              dictionaryWithDictionary:[view titleTextAttributesForState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]]];
+                                                              dictionaryWithDictionary:[(STKPXUISegmentedControl *)view titleTextAttributesForState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]]];
                 UIColor *color = (UIColor *)[context propertyValueForName:@"color"];
 
                 if(color)
                 {
                     currentTextAttributes[NSForegroundColorAttributeName] = color;
 
-                    [view px_setTitleTextAttributes:currentTextAttributes
+                    [(STKPXUISegmentedControl *)view px_setTitleTextAttributes:currentTextAttributes
                                            forState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]];
                 }
                 
@@ -169,7 +169,7 @@ static char const STYLE_CHILDREN;
                 color = (UIColor *)[context propertyValueForName:@"-ios-tint-color"];
                 if(color)
                 {
-                    [view px_setTintColor:color];
+                    [(STKPXUISegmentedControl *)view px_setTintColor:color];
                 }
             }],
 
@@ -177,7 +177,7 @@ static char const STYLE_CHILDREN;
         ];
     });
 
-	return stylers;
+    return stylers;
 }
 
 - (NSDictionary *)viewStylersByProperty

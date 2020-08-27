@@ -88,7 +88,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-	static dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
         stylers = @[
@@ -98,25 +98,25 @@ static NSDictionary *PSEUDOCLASS_MAP;
             STKPXBorderStyler.sharedInstance,
             STKPXBoxShadowStyler.sharedInstance,
 
-            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(UIBarButtonItem *view, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
-                
+            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock: ^(id<STKPXStyleable> view, id<STKPXStyler> styler, STKPXStylerContext *context) {
+  
                 UIControlState state = ([context stateFromStateNameMap:PSEUDOCLASS_MAP]) ? [context stateFromStateNameMap:PSEUDOCLASS_MAP] : UIControlStateNormal;
                 
-                NSDictionary *attribs = [view titleTextAttributesForState:state];
+                NSDictionary *attribs = [(UIBarButtonItem*)view titleTextAttributesForState:state];
                 
                 NSDictionary *mergedAttribs = [context mergeTextAttributes:attribs];
                 
-                [view setTitleTextAttributes:mergedAttribs
-                                    forState:state];
+                [(UIBarButtonItem*)view setTitleTextAttributes:mergedAttribs
+                                                      forState:state];
             }],
             
-            [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(UIBarButtonItem *view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
-                view.title = context.text;
+            [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable> view, id<STKPXStyler> styler, STKPXStylerContext *context) {
+                ((UIBarButtonItem*)view).title = context.text;
             }],
         ];
     });
 
-	return stylers;
+    return stylers;
 }
 
 - (void)updateStyleWithRuleSet:(STKPXRuleSet *)ruleSet context:(STKPXStylerContext *)context

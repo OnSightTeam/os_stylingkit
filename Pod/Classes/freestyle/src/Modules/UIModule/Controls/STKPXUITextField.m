@@ -192,7 +192,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
         }];
         
         placeholder.viewStylers = @[
-             [[STKPXTextShadowStyler alloc] initWithCompletionBlock:^(STKPXUITextField *view, STKPXTextShadowStyler *styler, STKPXStylerContext *context) {
+             [[STKPXTextShadowStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable> view, STKPXTextShadowStyler *styler, STKPXStylerContext *context) {
                  STKPXShadow *shadow = context.textShadow;
                  
                  // Get attributes from context, if any
@@ -212,7 +212,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
                  currentTextAttributes[NSShadowAttributeName] = nsShadow;
              }],
              
-             [[STKPXFontStyler alloc] initWithCompletionBlock:^(STKPXUITextField *view, STKPXFontStyler *styler, STKPXStylerContext *context) {
+             [[STKPXFontStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXFontStyler *styler, STKPXStylerContext *context) {
                  
                  // Get attributes from context, if any
                  NSMutableDictionary *currentTextAttributes = [context propertyValueForName:@"text-attributes"];
@@ -226,7 +226,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
                  
              }],
              
-             [[STKPXPaintStyler alloc] initWithCompletionBlock:^(STKPXUITextField *view, STKPXPaintStyler *styler, STKPXStylerContext *context) {
+             [[STKPXPaintStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXPaintStyler *styler, STKPXStylerContext *context) {
                  
                  // Get attributes from context, if any
                  NSMutableDictionary *currentTextAttributes = [context propertyValueForName:@"text-attributes"];
@@ -244,7 +244,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
                  }
              }],
              
-             [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(STKPXUITextField *view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
+             [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
 
                  [context setPropertyValue:context.text forName:@"text-value"];
              }],
@@ -263,11 +263,11 @@ static NSDictionary *PSEUDOCLASS_MAP;
         
         attributedText.viewStylers =
         @[
-          [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(STKPXVirtualStyleableControl *styleable, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
+          [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>styleable, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
               
               NSMutableDictionary *dict = [context attributedTextAttributes:weakSelf
                                                             withDefaultText:weakSelf.text
-                                                                   andColor:weakSelf.textColor];              
+                                                                   andColor:weakSelf.textColor];
               
               NSMutableAttributedString *attrString = nil;
               if(context.transformedText)
@@ -291,7 +291,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-	static dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
         stylers = @[
@@ -304,27 +304,27 @@ static NSDictionary *PSEUDOCLASS_MAP;
             STKPXBorderStyler.sharedInstance,
             STKPXBoxShadowStyler.sharedInstance,
 
-            [[STKPXFontStyler alloc] initWithCompletionBlock:^(STKPXUITextField *view, STKPXFontStyler *styler, STKPXStylerContext *context) {
+            [[STKPXFontStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXFontStyler *styler, STKPXStylerContext *context) {
                 UIFont *font = context.font;
 
                 if (font)
                 {
-                    [view px_setFont: font];
+                    [(STKPXUITextField *)view px_setFont: font];
                 }
 
             }],
 
-            [[STKPXColorStyler alloc] initWithCompletionBlock:^(STKPXUITextField *view, STKPXColorStyler *styler, STKPXStylerContext *context) {
+            [[STKPXColorStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXColorStyler *styler, STKPXStylerContext *context) {
                 UIColor *color = (UIColor *) [context propertyValueForName:@"color"];
                 
                 if(color)
                 {
-                    [view px_setTextColor: color];
+                    [(STKPXUITextField *)view px_setTextColor: color];
                 }
             }],
 
-            [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(STKPXUITextField *view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
-                [view px_setText: context.text];
+            [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
+                [(STKPXUITextField *)view px_setText: context.text];
             }],
 
             [[STKPXGenericStyler alloc] initWithHandlers: @{
@@ -377,7 +377,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
         ];
     });
 
-	return stylers;
+    return stylers;
 }
 
 - (NSDictionary *)viewStylersByProperty
@@ -471,9 +471,9 @@ STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 - (CGRect)textRectForBounds:(CGRect)bounds
 {
     Class _superClass = self.pxClass;
-	struct objc_super mysuper;
-	mysuper.receiver = self;
-	mysuper.super_class = _superClass;
+    struct objc_super mysuper;
+    mysuper.receiver = self;
+    mysuper.super_class = _superClass;
 
     CGRect result = ((CGRect(*)(struct objc_super*, SEL, CGRect))objc_msgSendSuper_stret)(&mysuper, @selector(textRectForBounds:), bounds);
 
@@ -489,9 +489,9 @@ STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 - (CGRect)editingRectForBounds:(CGRect)bounds
 {
     Class _superClass = self.pxClass;
-	struct objc_super mysuper;
-	mysuper.receiver = self;
-	mysuper.super_class = _superClass;
+    struct objc_super mysuper;
+    mysuper.receiver = self;
+    mysuper.super_class = _superClass;
     
     CGRect result = ((CGRect(*)(struct objc_super*, SEL, CGRect))objc_msgSendSuper_stret)(&mysuper, @selector(editingRectForBounds:), bounds);
 

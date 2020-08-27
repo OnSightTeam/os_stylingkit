@@ -127,7 +127,7 @@ static const char STYLE_CHILDREN;
         
         attributedText.viewStylers =
         @[
-            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(STKPXVirtualStyleableControl *styleable, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
+            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>styleable, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
 
                 UIControlState state = ([context stateFromStateNameMap:PSEUDOCLASS_MAP]);
                 
@@ -141,7 +141,7 @@ static const char STYLE_CHILDREN;
                                                                      andColor:stateColor];
                
                 
-               NSMutableAttributedString *attrString = nil;               
+               NSMutableAttributedString *attrString = nil;
                if(context.transformedText)
                {
                    attrString = [[NSMutableAttributedString alloc] initWithString:context.transformedText attributes:dict];
@@ -176,7 +176,7 @@ static const char STYLE_CHILDREN;
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-	static dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
         stylers = @[
@@ -189,13 +189,13 @@ static const char STYLE_CHILDREN;
             STKPXBorderStyler.sharedInstance,
             STKPXBoxShadowStyler.sharedInstance,
 
-            [[STKPXTextShadowStyler alloc] initWithCompletionBlock:^(STKPXUIButton *view, STKPXTextShadowStyler *styler, STKPXStylerContext *context) {
+            [[STKPXTextShadowStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXTextShadowStyler *styler, STKPXStylerContext *context) {
                 STKPXShadow *shadow = context.textShadow;
 
                 if (shadow)
                 {
-                    [view px_setTitleShadowColor: shadow.color forState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]];
-                    view.px_titleLabel.shadowOffset = CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset);
+                    [(STKPXUIButton *)view px_setTitleShadowColor: shadow.color forState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]];
+                    ((STKPXUIButton *)view).px_titleLabel.shadowOffset = CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset);
 
                     /*
                     NSMutableDictionary *attrs = [[NSMutableDictionary alloc] init];
@@ -215,36 +215,36 @@ static const char STYLE_CHILDREN;
                 }
             }],
 
-            [[STKPXFontStyler alloc] initWithCompletionBlock:^(STKPXUIButton *view, STKPXFontStyler *styler, STKPXStylerContext *context) {
-                view.px_titleLabel.font = context.font;
+            [[STKPXFontStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXFontStyler *styler, STKPXStylerContext *context) {
+                ((STKPXUIButton *)view).px_titleLabel.font = context.font;
             }],
 
-            [[STKPXPaintStyler alloc] initWithCompletionBlock:^(STKPXUIButton *view, STKPXPaintStyler *styler, STKPXStylerContext *context) {
+            [[STKPXPaintStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXPaintStyler *styler, STKPXStylerContext *context) {
                 UIColor *color = (UIColor *)[context propertyValueForName:@"color"];
                 if(color)
                 {
-                    [view px_setTitleColor:color forState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]];
+                    [(STKPXUIButton *)view px_setTitleColor:color forState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]];
                 }
                 
                 color = (UIColor *)[context propertyValueForName:@"-ios-tint-color"];
                 if(color)
                 {
-                    [view px_setTintColor:color];
+                    [(STKPXUIButton *)view px_setTintColor:color];
                 }
             }],
 
-            [[STKPXInsetStyler alloc] initWithBaseName:@"content-edge" completionBlock:^(STKPXUIButton *view, STKPXInsetStyler *styler, STKPXStylerContext *context) {
-                [view px_setContentEdgeInsets:styler.insets];
+            [[STKPXInsetStyler alloc] initWithBaseName:@"content-edge" completionBlock:^(id<STKPXStyleable>view, STKPXInsetStyler *styler, STKPXStylerContext *context) {
+                [(STKPXUIButton *)view px_setContentEdgeInsets:styler.insets];
             }],
-            [[STKPXInsetStyler alloc] initWithBaseName:@"title-edge" completionBlock:^(STKPXUIButton *view, STKPXInsetStyler *styler, STKPXStylerContext *context) {
-                [view px_setTitleEdgeInsets:styler.insets];
+            [[STKPXInsetStyler alloc] initWithBaseName:@"title-edge" completionBlock:^(id<STKPXStyleable> view, STKPXInsetStyler *styler, STKPXStylerContext *context) {
+                [(STKPXUIButton *)view px_setTitleEdgeInsets:styler.insets];
             }],
-            [[STKPXInsetStyler alloc] initWithBaseName:@"image-edge" completionBlock:^(STKPXUIButton *view, STKPXInsetStyler *styler, STKPXStylerContext *context) {
-                [view px_setImageEdgeInsets:styler.insets];
+            [[STKPXInsetStyler alloc] initWithBaseName:@"image-edge" completionBlock:^(id<STKPXStyleable>view, STKPXInsetStyler *styler, STKPXStylerContext *context) {
+                [(STKPXUIButton *)view px_setImageEdgeInsets:styler.insets];
             }],
 
-            [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(STKPXUIButton *view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
-                [view px_setTitle:context.text forState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]];
+            [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
+                [(STKPXUIButton *)view px_setTitle:context.text forState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]];
             }],
 
             [[STKPXGenericStyler alloc] initWithHandlers: @{
@@ -265,7 +265,7 @@ static const char STYLE_CHILDREN;
         ];
     });
 
-	return stylers;
+    return stylers;
 }
 
 - (NSDictionary *)viewStylersByProperty

@@ -128,14 +128,14 @@ static const char STYLE_CHILDREN;
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-	static dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
         stylers = @[
             STKPXTransformStyler.sharedInstance,
 
-            [[STKPXOpacityStyler alloc] initWithCompletionBlock:^(STKPXUICollectionViewCell *view, STKPXOpacityStyler *styler, STKPXStylerContext *context) {
-                view.px_contentView.alpha = context.opacity;
+            [[STKPXOpacityStyler alloc] initWithCompletionBlock: ^(id<STKPXStyleable> view, STKPXOpacityStyler *styler, STKPXStylerContext *context) {
+                ((STKPXUICollectionViewCell*)view).px_contentView.alpha = context.opacity;
             }],
 
             STKPXShapeStyler.sharedInstance,
@@ -147,7 +147,7 @@ static const char STYLE_CHILDREN;
         ];
     });
 
-	return stylers;
+    return stylers;
 }
 
 - (NSDictionary *)viewStylersByProperty

@@ -100,7 +100,7 @@ NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
         
         attributedText.viewStylers = @[
                                        
-            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(STKPXVirtualStyleableControl *styleable, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
+            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>styleable, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
                 
                 UIControlState state = ([context stateFromStateNameMap:PSEUDOCLASS_MAP]) ?
                     [context stateFromStateNameMap:PSEUDOCLASS_MAP] : UIControlStateNormal;
@@ -110,7 +110,7 @@ NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
                 
                 NSMutableDictionary *dict = [context attributedTextAttributes:weakSelf withDefaultText:text andColor:stateColor];
                  
-                 NSMutableAttributedString *attrString = nil; 
+                 NSMutableAttributedString *attrString = nil;
                 
                  if(context.transformedText)
                  {
@@ -170,7 +170,7 @@ NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-	static dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
         stylers = @[
@@ -184,35 +184,35 @@ NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
 
             STKPXBoxShadowStyler.sharedInstance,
 
-            [[STKPXTextShadowStyler alloc] initWithCompletionBlock:^(STKPXUILabel *view, STKPXTextShadowStyler *styler, STKPXStylerContext *context) {
+            [[STKPXTextShadowStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXTextShadowStyler *styler, STKPXStylerContext *context) {
                 STKPXShadow *shadow = context.textShadow;
 
-                [view px_setShadowColor: shadow.color];
-                [view px_setShadowOffset: CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset)];
+                [(STKPXUILabel *)view px_setShadowColor: shadow.color];
+                [(STKPXUILabel *)view px_setShadowOffset: CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset)];
             }],
             
-            [[STKPXFontStyler alloc] initWithCompletionBlock:^(STKPXUILabel *view, STKPXFontStyler *styler, STKPXStylerContext *context) {
-                [view px_setFont:context.font];
+            [[STKPXFontStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXFontStyler *styler, STKPXStylerContext *context) {
+                [(STKPXUILabel *)view px_setFont:context.font];
             }],
             
-            [[STKPXPaintStyler alloc] initWithCompletionBlock:^(STKPXUILabel *view, STKPXPaintStyler *styler, STKPXStylerContext *context) {
+            [[STKPXPaintStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXPaintStyler *styler, STKPXStylerContext *context) {
                 UIColor *color = (UIColor *)[context propertyValueForName:@"color"];
                 
                 if(color)
                 {
                     if([context stateFromStateNameMap:PSEUDOCLASS_MAP] == UIControlStateHighlighted)
                     {
-                        [view px_setHighlightedTextColor:color];
+                        [(STKPXUILabel *)view px_setHighlightedTextColor:color];
                     }
                     else
                     {
-                        [view px_setTextColor:color];
+                        [(STKPXUILabel *)view px_setTextColor:color];
                     }
                 }
             }],
             
-            [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(STKPXUILabel *view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
-                [view px_setText:context.text];
+            [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
+                [(STKPXUILabel *)view px_setText:context.text];
             }],
                 
             [[STKPXGenericStyler alloc] initWithHandlers: @{
@@ -236,7 +236,7 @@ NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
         ];
     });
 
-	return stylers;
+    return stylers;
 }
 
 - (NSDictionary *)viewStylersByProperty

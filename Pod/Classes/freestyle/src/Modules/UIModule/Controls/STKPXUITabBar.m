@@ -96,7 +96,7 @@
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-	static dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
         stylers = @[
@@ -110,18 +110,18 @@
             STKPXBoxShadowStyler.sharedInstance,
 
             // shadow-* image properties
-            [[STKPXBarShadowStyler alloc] initWithCompletionBlock:^(STKPXUITabBar *view, STKPXBarShadowStyler *styler, STKPXStylerContext *context) {
+            [[STKPXBarShadowStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXBarShadowStyler *styler, STKPXStylerContext *context) {
                 // iOS 6.x property
                 if ([STKPXUtils isIOS6OrGreater])
                 {
                     if (context.shadowImage)
                     {
-                        [view px_setShadowImage:context.shadowImage];
+                        [(STKPXUITabBar *)view px_setShadowImage:context.shadowImage];
                     }
                     else
                     {
                         // 'fill' with a clear pixel
-                        [view px_setShadowImage:STKPXImageUtils.clearPixel];
+                        [(STKPXUITabBar *)view px_setShadowImage:STKPXImageUtils.clearPixel];
                     }
                 }
             }],
@@ -148,7 +148,7 @@
         ];
     });
 
-	return stylers;
+    return stylers;
 }
 
 - (NSDictionary *)viewStylersByProperty

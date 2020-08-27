@@ -46,7 +46,7 @@
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-	static dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
         stylers = @[
@@ -54,7 +54,7 @@
             STKPXOpacityStyler.sharedInstance,
 
             
-            [[STKPXPaintStyler alloc] initWithCompletionBlock:^(STKPXUIRefreshControl *view, STKPXPaintStyler *styler, STKPXStylerContext *context) {
+            [[STKPXPaintStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXPaintStyler *styler, STKPXStylerContext *context) {
                 
                 UIColor *color = (UIColor *)[context propertyValueForName:@"color"];
                 
@@ -65,7 +65,7 @@
                 
                 if(color)
                 {
-                    [view px_setTintColor:color];
+                    [(STKPXUIRefreshControl *)view px_setTintColor:color];
                 }
             }],
             
@@ -73,7 +73,7 @@
         ];
     });
 
-	return stylers;
+    return stylers;
 }
 
 - (NSDictionary *)viewStylersByProperty

@@ -144,7 +144,7 @@ static char const STYLE_CHILDREN;
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-	static dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
         stylers = @[
@@ -152,7 +152,7 @@ static char const STYLE_CHILDREN;
             STKPXLayoutStyler.sharedInstance,
             STKPXOpacityStyler.sharedInstance,
 
-            [[STKPXPaintStyler alloc] initWithCompletionBlock:^(STKPXUIStepper *view, STKPXPaintStyler *styler, STKPXStylerContext *context) {
+            [[STKPXPaintStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXPaintStyler *styler, STKPXStylerContext *context) {
                 
                 if ([STKPXUtils isIOS6OrGreater])
                 {
@@ -165,7 +165,7 @@ static char const STYLE_CHILDREN;
                     
                     if(color)
                     {
-                        [view px_setTintColor:color];
+                        [(STKPXUIStepper *)view px_setTintColor:color];
                     }
                 }
             }],
@@ -179,7 +179,7 @@ static char const STYLE_CHILDREN;
         ];
     });
 
-	return stylers;
+    return stylers;
 }
 
 - (NSDictionary *)viewStylersByProperty

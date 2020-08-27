@@ -53,23 +53,23 @@
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-	static dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
         stylers = @[
             STKPXTransformStyler.sharedInstance,
             STKPXLayoutStyler.sharedInstance,
 
-            [[STKPXOpacityStyler alloc] initWithCompletionBlock:^(STKPXUISearchBar *view, STKPXOpacityStyler *styler, STKPXStylerContext *context) {
-                [view px_setTranslucent:(context.opacity < 1.0) ? YES : NO];
+            [[STKPXOpacityStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXOpacityStyler *styler, STKPXStylerContext *context) {
+                [(STKPXUISearchBar *)view px_setTranslucent:(context.opacity < 1.0) ? YES : NO];
             }],
 
             STKPXFillStyler.sharedInstance,
             STKPXBoxShadowStyler.sharedInstance,
 
-            [[STKPXTextShadowStyler alloc] initWithCompletionBlock:^(STKPXUISearchBar *view, STKPXTextShadowStyler *styler, STKPXStylerContext *context) {
+            [[STKPXTextShadowStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXTextShadowStyler *styler, STKPXStylerContext *context) {
                 STKPXShadow *shadow = context.textShadow;
-                NSMutableDictionary *currentTextAttributes = [NSMutableDictionary dictionaryWithDictionary:[view scopeBarButtonTitleTextAttributesForState:UIControlStateNormal]];
+                NSMutableDictionary *currentTextAttributes = [NSMutableDictionary dictionaryWithDictionary:[(STKPXUISearchBar *)view scopeBarButtonTitleTextAttributesForState:UIControlStateNormal]];
 
                 NSShadow *nsShadow = [[NSShadow alloc] init];
                 
@@ -79,11 +79,11 @@
                 
                 currentTextAttributes[NSShadowAttributeName] = nsShadow;
 
-                [view px_setScopeBarButtonTitleTextAttributes:currentTextAttributes forState:UIControlStateNormal];
+                [(STKPXUISearchBar *)view px_setScopeBarButtonTitleTextAttributes:currentTextAttributes forState:UIControlStateNormal];
             }],
 
-            [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(STKPXUISearchBar *view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
-                [view px_setText: context.text];
+            [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
+                [(STKPXUISearchBar *)view px_setText: context.text];
             }],
 
             [[STKPXGenericStyler alloc] initWithHandlers: @{
@@ -119,7 +119,7 @@
         ];
     });
 
-	return stylers;
+    return stylers;
 }
 
 - (NSDictionary *)viewStylersByProperty

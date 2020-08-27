@@ -125,14 +125,14 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-	static dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
         stylers = @[
             STKPXLayoutStyler.sharedInstance,
 
-            [[STKPXOpacityStyler alloc] initWithCompletionBlock:^(STKPXUIToolbar *view, STKPXOpacityStyler *styler, STKPXStylerContext *context) {
-                [view px_setTranslucent: (context.opacity < 1.0) ? YES : NO];
+            [[STKPXOpacityStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable> view, STKPXOpacityStyler *styler, STKPXStylerContext *context) {
+                [(STKPXUIToolbar*) view px_setTranslucent: (context.opacity < 1.0) ? YES : NO];
             }],
 
             STKPXShapeStyler.sharedInstance,
@@ -141,18 +141,18 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
             STKPXBoxShadowStyler.sharedInstance,
 
             // shadow-* image properties
-            [[STKPXBarShadowStyler alloc] initWithCompletionBlock:^(STKPXUIToolbar *view, STKPXBarShadowStyler *styler, STKPXStylerContext *context) {
+            [[STKPXBarShadowStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable> view, STKPXBarShadowStyler *styler, STKPXStylerContext *context) {
                 // iOS 6.x property
                 if ([STKPXUtils isIOS6OrGreater])
                 {
                     if (context.shadowImage)
                     {
-                        [view px_setShadowImage:context.shadowImage forToolbarPosition:UIToolbarPositionAny];
+                        [(STKPXUIToolbar*)view px_setShadowImage:context.shadowImage forToolbarPosition:UIToolbarPositionAny];
                     }
                     else
                     {
                         // 'fill' with a clear pixel
-                        [view px_setShadowImage:STKPXImageUtils.clearPixel forToolbarPosition:UIToolbarPositionAny];
+                        [(STKPXUIToolbar*)view px_setShadowImage:STKPXImageUtils.clearPixel forToolbarPosition:UIToolbarPositionAny];
                     }
                 }
                 
@@ -177,7 +177,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
         ];
     });
 
-	return stylers;
+    return stylers;
 }
 
 - (NSDictionary *)viewStylersByProperty

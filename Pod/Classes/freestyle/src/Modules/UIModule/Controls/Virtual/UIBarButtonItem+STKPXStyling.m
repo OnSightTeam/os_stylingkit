@@ -187,7 +187,7 @@ void STKPXForceLoadUIBarButtonItemPXStyling() {}
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-	static dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
         stylers = @[
@@ -197,20 +197,20 @@ void STKPXForceLoadUIBarButtonItemPXStyling() {}
             STKPXShapeStyler.sharedInstance,
             STKPXBoxShadowStyler.sharedInstance,
 
-            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(UIBarButtonItem *view, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
+            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
                 
                 UIControlState state = ([context stateFromStateNameMap:BUTTONS_PSEUDOCLASS_MAP]) ? [context stateFromStateNameMap:BUTTONS_PSEUDOCLASS_MAP] : UIControlStateNormal;
                 
-                NSDictionary *attribs = [view titleTextAttributesForState:state];
+                NSDictionary *attribs = [(UIBarButtonItem*)view titleTextAttributesForState:state];
                 
                 NSDictionary *mergedAttribs = [context mergeTextAttributes:attribs];
                 
-                [view setTitleTextAttributes:mergedAttribs
+                [(UIBarButtonItem*)view setTitleTextAttributes:mergedAttribs
                                     forState:state];
             }],
             
-            [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(UIBarButtonItem *view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
-                view.title = context.text;
+            [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable> view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
+                ((UIBarButtonItem*)view).title = context.text;
             }],
             
 
@@ -220,7 +220,7 @@ void STKPXForceLoadUIBarButtonItemPXStyling() {}
         ];
     });
 
-	return stylers;
+    return stylers;
 }
 
 - (void)updateStyleWithRuleSet:(STKPXRuleSet *)ruleSet context:(STKPXStylerContext *)context
@@ -262,21 +262,21 @@ void STKPXForceLoadUIBarButtonItemPXStyling() {}
     
 + (STKPXStylerCompletionBlock) FontStylerCompletionBlock:(UIBarButtonItem *)target
 {
-    return ^(UIBarButtonItem *styleable, STKPXOpacityStyler *styler, STKPXStylerContext *context)
+    return ^(id<STKPXStyleable> styleable, STKPXOpacityStyler *styler, STKPXStylerContext *context)
     {
         NSDictionary *attributes = [context propertyValueForName:[NSString stringWithFormat:@"textAttributes-%@", context.activeStateName]];
         NSMutableDictionary *currentTextAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
         currentTextAttributes[NSFontAttributeName] = context.font;
         [context setPropertyValue:currentTextAttributes forName:[NSString stringWithFormat:@"textAttributes-%@", context.activeStateName]];
         
-        [(target == nil ? styleable : target) setTitleTextAttributes:currentTextAttributes
+        [(target == nil ? (UIBarButtonItem*)styleable : target) setTitleTextAttributes:currentTextAttributes
                                  forState:[context stateFromStateNameMap:BUTTONS_PSEUDOCLASS_MAP]];
     };
 }
     
 + (STKPXStylerCompletionBlock) STKPXPaintStylerCompletionBlock:(UIBarButtonItem *)target
 {
-    return ^(UIBarButtonItem *styleable, STKPXOpacityStyler *styler, STKPXStylerContext *context)
+    return ^(id<STKPXStyleable> styleable, STKPXOpacityStyler *styler, STKPXStylerContext *context)
     {
         
         NSDictionary *attributes = [context propertyValueForName:[NSString stringWithFormat:@"textAttributes-%@", context.activeStateName]];
@@ -286,7 +286,7 @@ void STKPXForceLoadUIBarButtonItemPXStyling() {}
         {
             currentTextAttributes[NSForegroundColorAttributeName] = color;
             [context setPropertyValue:currentTextAttributes forName:[NSString stringWithFormat:@"textAttributes-%@", context.activeStateName]];
-            [(target == nil ? styleable : target) setTitleTextAttributes:currentTextAttributes
+            [(target == nil ? (UIBarButtonItem*)styleable : target) setTitleTextAttributes:currentTextAttributes
                                      forState:[context stateFromStateNameMap:BUTTONS_PSEUDOCLASS_MAP]];
         }
     };

@@ -355,7 +355,7 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
         attributedTextLabel.supportedPseudoClasses = PSEUDOCLASS_MAP.allKeys;
         
         attributedTextLabel.viewStylers = @[
-            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(STKPXVirtualStyleableControl *styleable, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
+            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>styleable, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
                 
                 UILabel *view = weakSelf.textLabel;
                 UIControlState state = ([context stateFromStateNameMap:PSEUDOCLASS_MAP]);
@@ -400,7 +400,7 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
         attributedDetailTextLabel.supportedPseudoClasses = PSEUDOCLASS_MAP.allKeys;
         
         attributedDetailTextLabel.viewStylers = @[
-            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(STKPXVirtualStyleableControl *styleable, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
+            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>styleable, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
                 
                 UILabel *view = weakSelf.detailTextLabel;
                 UIControlState state = ([context stateFromStateNameMap:PSEUDOCLASS_MAP]);
@@ -479,14 +479,14 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-	static dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
         stylers = @[
             STKPXTransformStyler.sharedInstance,
             
-            [[STKPXOpacityStyler alloc] initWithCompletionBlock:^(STKPXUITableViewCell *view, STKPXOpacityStyler *styler, STKPXStylerContext *context) {
-                view.px_contentView.alpha = context.opacity;
+            [[STKPXOpacityStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXOpacityStyler *styler, STKPXStylerContext *context) {
+                ((STKPXUITableViewCell*)view).px_contentView.alpha = context.opacity;
             }],
             
             STKPXShapeStyler.sharedInstance,
@@ -498,7 +498,7 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
         ];
     });
     
-	return stylers;
+    return stylers;
 }
 
 - (NSDictionary *)viewStylersByProperty
