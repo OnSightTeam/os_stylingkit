@@ -15,7 +15,7 @@
  */
 
 //
-//  UIBarItem+STKPXStyling.m
+//  UIBarItem+PXStyling.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,12 +23,12 @@
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
 
-#import "UIBarItem+STKPXStyling.h"
+#import "UIBarItem+PXStyling.h"
 #import <objc/runtime.h>
-#import "STKPXStylingMacros.h"
-#import "STKPXStyleUtils.h"
-#import "STKPXUtils.h"
-#import "STKPXVirtualStyleableControl.h"
+#import "PXStylingMacros.h"
+#import "PXStyleUtils.h"
+#import "PXUtils.h"
+#import "PXVirtualStyleableControl.h"
 
 static const char STYLE_CLASS_KEY;
 static const char STYLE_CLASSES_KEY;
@@ -41,9 +41,9 @@ static const char STYLE_FRAME_KEY;
 static const char STYLE_MODE_KEY;
 static const char STYLE_ELEMENT_NAME;
 
-void STKPXForceLoadUIBarItemPXStyling() {}
+void PXForceLoadUIBarItemPXStyling() {}
 
-@implementation UIBarItem (STKPXStyling)
+@implementation UIBarItem (PXStyling)
 
 @dynamic pxStyleElementName;
 @dynamic pxStyleParent;
@@ -55,7 +55,7 @@ void STKPXForceLoadUIBarItemPXStyling() {}
         return;
     
     // Set default styling mode to 'normal' (i.e. stylable)
-    [UIBarItem appearance].styleMode = STKPXStylingNormal;
+    [UIBarItem appearance].styleMode = PXStylingNormal;
 }
 
 - (NSString *)styleClass
@@ -83,7 +83,7 @@ void STKPXForceLoadUIBarItemPXStyling() {}
     return objc_getAssociatedObject(self, &STYLE_CSS_KEY);
 }
 
-- (STKPXStylingMode)styleMode
+- (PXStylingMode)styleMode
 {
     NSNumber *modeVal = objc_getAssociatedObject(self, &STYLE_MODE_KEY);
     
@@ -92,7 +92,7 @@ void STKPXForceLoadUIBarItemPXStyling() {}
         return modeVal.intValue;
     }
     
-    return STKPXStylingNormal; //STKPXStylingUndefined;
+    return PXStylingNormal; //PXStylingUndefined;
 }
 
 - (void)setStyleElementName:(NSString *)elementName
@@ -112,7 +112,7 @@ void STKPXForceLoadUIBarItemPXStyling() {}
 
 - (NSString *)styleKey
 {
-    return [STKPXStyleUtils styleKeyFromStyleable:self];
+    return [PXStyleUtils styleKeyFromStyleable:self];
 }
 
 - (CGRect)bounds
@@ -179,7 +179,7 @@ void STKPXForceLoadUIBarItemPXStyling() {}
     [self updateStylesNonRecursively];
 }
 
-- (void)setStyleMode:(STKPXStylingMode) mode
+- (void)setStyleMode:(PXStylingMode) mode
 {
     //
     // Set the styling mode value on the object
@@ -236,7 +236,7 @@ void STKPXForceLoadUIBarItemPXStyling() {}
     static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
-        map = [STKPXStyleUtils viewStylerPropertyMapForStyleable:self];
+        map = [PXStyleUtils viewStylerPropertyMapForStyleable:self];
     });
 
     return map;

@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXSVGLoader.m
+//  PXSVGLoader.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,30 +23,30 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXSVGLoader.h"
-#import "STKPXTransformParser.h"
-#import "STKPXValueParser.h"
-#import "STKPXGraphics.h"
-#import "NSScanner+STKPXFloat.h"
+#import "PXSVGLoader.h"
+#import "PXTransformParser.h"
+#import "PXValueParser.h"
+#import "PXGraphics.h"
+#import "NSScanner+PXFloat.h"
 #import "PixateFreestyle.h"
 
-@implementation STKPXSVGLoader
+@implementation PXSVGLoader
 {
-    STKPXShapeDocument *document;
-    STKPXShapeGroup *result;
+    PXShapeDocument *document;
+    PXShapeGroup *result;
     NSMutableArray *stack;
     NSMutableDictionary *startHandlers, *endHandlers;
-    STKPXGradient *currentGradient;
+    PXGradient *currentGradient;
     NSMutableDictionary *gradients;
     NSDictionary *alignTypes;
-#ifdef STKPXTEXT_SUPPORT
-    STKPXText *currentTextElement;
+#ifdef PXTEXT_SUPPORT
+    PXText *currentTextElement;
 #endif
 }
 
 static Class loaderClass;
-static STKPXTransformParser *TRANSFORM_PARSER;
-static STKPXValueParser *VALUE_PARSER;
+static PXTransformParser *TRANSFORM_PARSER;
+static PXValueParser *VALUE_PARSER;
 
 #pragma mark - Static methods
 
@@ -54,11 +54,11 @@ static STKPXValueParser *VALUE_PARSER;
 {
     if (TRANSFORM_PARSER == nil)
     {
-        TRANSFORM_PARSER = [[STKPXTransformParser alloc] init];
+        TRANSFORM_PARSER = [[PXTransformParser alloc] init];
     }
     if (VALUE_PARSER == nil)
     {
-        VALUE_PARSER = [[STKPXValueParser alloc] init];
+        VALUE_PARSER = [[PXValueParser alloc] init];
     }
 }
 
@@ -72,48 +72,77 @@ static STKPXValueParser *VALUE_PARSER;
     loaderClass = class;
 }
 
+
++ (NSCache *)prv_cache
+{
+    static NSCache *shapeCache;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        shapeCache = [[NSCache alloc] init];
+        shapeCache.name = @"StylingKit Shape Cache";
+
+        shapeCache.countLimit = PixateFreestyle.configuration.imageCacheCount;
+    });
+    return shapeCache;
+}
+
 #pragma mark - Static Methods
 
-+ (STKPXShapeDocument *) loadFromURL:(NSURL *)URL
++ (PXShapeDocument *) loadFromURL:(NSURL *)URL
 {
+    id cacheKey = URL.absoluteURL;
+    PXShapeDocument *document = [[self prv_cache] objectForKey:cacheKey];
+    if (document == nil)
+    {
+        document = [self prv_loadDocumentFromURL:URL];
+
+        [[self prv_cache] setObject:document
+                             forKey:cacheKey];
+    }
+
+    return document;
+}
+
++ (PXShapeDocument*)prv_loadDocumentFromURL:(NSURL*)URL
+{
+    PXShapeDocument *document;
     NSData *data = [NSData dataWithContentsOfURL:URL];
 
     // create and init NSXMLParser object
     NSXMLParser *nsXmlParser = [[NSXMLParser alloc] initWithData:data];
-    
+
     // create and init our delegate
-    Class loader = (loaderClass) ? loaderClass : [STKPXSVGLoader class];
-    STKPXSVGLoader *parser = [[loader alloc] init];
-    
+    Class loader = (loaderClass) ? loaderClass : [PXSVGLoader class];
+    PXSVGLoader *parser = [[loader alloc] init];
+
     // save reference to URL for errors
     parser.URL = URL;
-    
+
     // set delegate
     nsXmlParser.delegate = parser;
-    
+
     // parsing...
     BOOL success = [nsXmlParser parse];
-    
+
     // test the result
     if (!success)
     {
-        //        [parser logErrorMessageWithFormat:@"Error parsing document: %@", URL];
+        [parser logErrorMessageWithFormat:@"Error parsing SVG document from URL: %@", URL];
     }
-    
-    STKPXShapeDocument *document = parser->document;
+
+    document = parser->document;
     document.shape = parser->result;
-    
     return document;
 }
 
-+ (STKPXShapeDocument *) loadFromData:(NSData *)data
++ (PXShapeDocument *) loadFromData:(NSData *)data
 {
     // create and init NSXMLParser object
     NSXMLParser *nsXmlParser = [[NSXMLParser alloc] initWithData:data];
 
     // create and init our delegate
-    Class loader = (loaderClass) ? loaderClass : [STKPXSVGLoader class];
-    STKPXSVGLoader *parser = [[loader alloc] init];
+    Class loader = (loaderClass) ? loaderClass : [PXSVGLoader class];
+    PXSVGLoader *parser = [[loader alloc] init];
 
     // set delegate
     nsXmlParser.delegate = parser;
@@ -124,10 +153,10 @@ static STKPXValueParser *VALUE_PARSER;
     // test the result
     if (!success)
     {
-//        [parser logErrorMessageWithFormat:@"Error parsing document: %@", URL];
+        [parser logErrorMessageWithFormat:@"Error parsing SVG document from data"];
     }
 
-    STKPXShapeDocument *document = parser->document;
+    PXShapeDocument *document = parser->document;
     document.shape = parser->result;
 
     return document;
@@ -141,7 +170,7 @@ static STKPXValueParser *VALUE_PARSER;
 
     if (self)
     {
-        document = [[STKPXShapeDocument alloc] init];
+        document = [[PXShapeDocument alloc] init];
         stack = [[NSMutableArray alloc] init];
         currentGradient = nil;
         gradients = [NSMutableDictionary dictionary];
@@ -297,7 +326,7 @@ didStartElement:(NSString *)elementName
 
 - (void)startSVGElement:(NSDictionary *)attributeDict
 {
-    STKPXShapeGroup *newGroup = [[STKPXShapeGroup alloc] init];
+    PXShapeGroup *newGroup = [[PXShapeGroup alloc] init];
 
     // see if we have a viewBox
     CGFloat x = 0.0;
@@ -339,7 +368,7 @@ didStartElement:(NSString *)elementName
 - (void)startGElement:(NSDictionary *)attributeDict
 {
     // create nested group
-    STKPXShapeGroup *newGroup = [[STKPXShapeGroup alloc] init];
+    PXShapeGroup *newGroup = [[PXShapeGroup alloc] init];
 
     // TODO: set all inherited properties
     newGroup.opacity = [self opacityFromString:attributeDict[@"opacity"]];
@@ -372,7 +401,7 @@ didStartElement:(NSString *)elementName
 
     if (d)
     {
-        STKPXPath *path = [STKPXPath createPathFromPathData:d];
+        STKPath *path = [STKPath createPathFromPathData:d];
 
         [self applyStyles:attributeDict forShape:path];
         [self addShape:path];
@@ -389,7 +418,7 @@ didStartElement:(NSString *)elementName
     CGFloat rx = [self numberFromString:attributeDict[@"rx"]];
     CGFloat ry = [self numberFromString:attributeDict[@"ry"]];
 
-    STKPXRectangle *rectangle = [[STKPXRectangle alloc] initWithRect:CGRectMake(x, y, width, height)];
+    PXRectangle *rectangle = [[PXRectangle alloc] initWithRect:CGRectMake(x, y, width, height)];
     rectangle.cornerRadii = CGSizeMake(rx, ry);
 
     [self applyStyles:attributeDict forShape:rectangle];
@@ -403,7 +432,7 @@ didStartElement:(NSString *)elementName
     CGFloat x2 = [self numberFromString:attributeDict[@"x2"]];
     CGFloat y2 = [self numberFromString:attributeDict[@"y2"]];
 
-    STKPXLine *line = [[STKPXLine alloc] initX1:x1 y1:y1 x2:x2 y2:y2];
+    PXLine *line = [[PXLine alloc] initX1:x1 y1:y1 x2:x2 y2:y2];
 
     [self applyStyles:attributeDict forShape:line];
     [self addShape:line];
@@ -415,7 +444,7 @@ didStartElement:(NSString *)elementName
     CGFloat cy = [self numberFromString:attributeDict[@"cy"]];
     CGFloat r = [self numberFromString:attributeDict[@"r"]];
 
-    STKPXCircle *circle = [[STKPXCircle alloc] initCenter:CGPointMake(cx, cy) radius:r];
+    PXCircle *circle = [[PXCircle alloc] initCenter:CGPointMake(cx, cy) radius:r];
 
     [self applyStyles:attributeDict forShape:circle];
     [self addShape:circle];
@@ -428,7 +457,7 @@ didStartElement:(NSString *)elementName
     CGFloat rx = [self numberFromString:attributeDict[@"rx"]];
     CGFloat ry = [self numberFromString:attributeDict[@"ry"]];
 
-    STKPXEllipse *ellipse = [[STKPXEllipse alloc] initCenter:CGPointMake(cx, cy) radiusX:rx radiusY:ry];
+    PXEllipse *ellipse = [[PXEllipse alloc] initCenter:CGPointMake(cx, cy) radiusX:rx radiusY:ry];
 
     [self applyStyles:attributeDict forShape:ellipse];
     [self addShape:ellipse];
@@ -447,19 +476,19 @@ didStartElement:(NSString *)elementName
         NSString *gradientUnits = attributeDict[@"gradientUnits"];
         CGAffineTransform transform = [self transformFromString:attributeDict[@"gradientTransform"]];
 
-        STKPXLinearGradient *gradient = [[STKPXLinearGradient alloc] init];
+        PXLinearGradient *gradient = [[PXLinearGradient alloc] init];
         gradient.p1 = CGPointMake(x1, y1);
         gradient.p2 = CGPointMake(x2, y2);
         gradient.transform = transform;
 
         if ([@"userSpaceOnUse" isEqualToString:gradientUnits])
         {
-            gradient.gradientUnits = STKPXGradientUnitsUserSpace;
+            gradient.gradientUnits = PXGradientUnitsUserSpace;
         }
         else
         {
             // assume all non-valid values in addition to "objectBoundingBox" mean bounding box
-            gradient.gradientUnits = STKPXGradientUnitsBoundingBox;
+            gradient.gradientUnits = PXGradientUnitsBoundingBox;
         }
 
         currentGradient = gradient;
@@ -485,19 +514,19 @@ didStartElement:(NSString *)elementName
         NSString *gradientUnits = attributeDict[@"gradientUnits"];
         CGAffineTransform transform = [self transformFromString:attributeDict[@"gradientTransform"]];
 
-        STKPXRadialGradient *gradient = [[STKPXRadialGradient alloc] init];
+        PXRadialGradient *gradient = [[PXRadialGradient alloc] init];
         gradient.endCenter = CGPointMake(cx, cy);
         gradient.radius = radius;
         gradient.transform = transform;
 
         if ([@"userSpaceOnUse" isEqualToString:gradientUnits])
         {
-            gradient.gradientUnits = STKPXGradientUnitsUserSpace;
+            gradient.gradientUnits = PXGradientUnitsUserSpace;
         }
         else
         {
             // assume all non-valid values in addition to "objectBoundingBox" mean bounding box
-            gradient.gradientUnits = STKPXGradientUnitsBoundingBox;
+            gradient.gradientUnits = PXGradientUnitsBoundingBox;
         }
 
         if (fxString && fyString)
@@ -528,7 +557,7 @@ didStartElement:(NSString *)elementName
         if (stopColorString)
         {
             NSString *stopOpacityString = attributeDict[@"stop-opacity"];
-            UIColor *stopColor = [VALUE_PARSER parseColor:[STKPXValueParser lexemesForSource:stopColorString]];
+            UIColor *stopColor = [VALUE_PARSER parseColor:[PXValueParser lexemesForSource:stopColorString]];
 
             if (stopOpacityString != nil && stopColor != nil)
             {
@@ -550,7 +579,7 @@ didStartElement:(NSString *)elementName
 
 - (void)startPolygonElement:(NSDictionary *)attributeDict
 {
-    STKPXPolygon *polygon = [self makePolygon:attributeDict[@"points"]];
+    PXPolygon *polygon = [self makePolygon:attributeDict[@"points"]];
 
     polygon.closed = YES;
 
@@ -560,7 +589,7 @@ didStartElement:(NSString *)elementName
 
 - (void)startPolylineElement:(NSDictionary *)attributeDict
 {
-    STKPXPolygon *polygon = [self makePolygon:attributeDict[@"points"]];
+    PXPolygon *polygon = [self makePolygon:attributeDict[@"points"]];
 
     polygon.closed = NO;
 
@@ -570,11 +599,11 @@ didStartElement:(NSString *)elementName
 
 - (void)startTextElement:(NSDictionary *)attributeDict
 {
-#ifdef STKPXTEXT_SUPPORT
+#ifdef PXTEXT_SUPPORT
     CGFloat x = [self numberFromString:[attributeDict objectForKey:@"x"]];
     CGFloat y = [self numberFromString:[attributeDict objectForKey:@"y"]];
 
-    STKPXText *text = [[STKPXText alloc] init];
+    PXText *text = [[PXText alloc] init];
 
     text.origin = CGPointMake(x, y);
 
@@ -593,7 +622,7 @@ didStartElement:(NSString *)elementName
     CGFloat startAngle = [self numberFromString:attributeDict[@"start-angle"]];
     CGFloat endAngle = [self numberFromString:attributeDict[@"end-angle"]];
 
-    STKPXArc *arc = [[STKPXArc alloc] init];
+    PXArc *arc = [[PXArc alloc] init];
     arc.center = CGPointMake(cx, cy);
     arc.radius = r;
     arc.startingAngle = startAngle;
@@ -611,7 +640,7 @@ didStartElement:(NSString *)elementName
     CGFloat startAngle = [self numberFromString:attributeDict[@"start-angle"]];
     CGFloat endAngle = [self numberFromString:attributeDict[@"end-angle"]];
 
-    STKPXPie *pie = [[STKPXPie alloc] init];
+    PXPie *pie = [[PXPie alloc] init];
     pie.center = CGPointMake(cx, cy);
     pie.radius = r;
     pie.startingAngle = startAngle;
@@ -646,7 +675,7 @@ didStartElement:(NSString *)elementName
 
 - (void)endTextElement
 {
-#ifdef STKPXTEXT_SUPPORT
+#ifdef PXTEXT_SUPPORT
     // TODO: grab accumulated text and assigned to text element
     currentTextElement.text = @"Professional!";
     currentTextElement = nil;
@@ -655,14 +684,14 @@ didStartElement:(NSString *)elementName
 
 #pragma mark - Supporting Methods
 
-- (void) addShape:(STKPXShape *)shape
+- (void) addShape:(STKShape *)shape
 {
-    STKPXShapeGroup *group = stack.lastObject;
+    PXShapeGroup *group = stack.lastObject;
 
     [group addShape:shape];
 }
 
-- (void)applyStyles:(NSDictionary *)attributeDict forShape:(STKPXShape *)shape
+- (void)applyStyles:(NSDictionary *)attributeDict forShape:(STKShape *)shape
 {
     NSString *strokeDashArray = attributeDict[@"stroke-dasharray"];
     NSString *fillColor = attributeDict[@"fill"];
@@ -678,7 +707,7 @@ didStartElement:(NSString *)elementName
     shape.fill = [self paintFromString:fillColor withOpacityString:attributeDict[@"fill-opacity"]];
 
     // stroke
-    STKPXStroke *stroke = [[STKPXStroke alloc] init];
+    PXStroke *stroke = [[PXStroke alloc] init];
 
     NSString *strokeType = attributeDict[@"stroke-type"];
 
@@ -732,7 +761,7 @@ didStartElement:(NSString *)elementName
     shape.transform = [self transformFromString:attributeDict[@"transform"]];
 }
 
-- (void)applyViewport:(NSDictionary *)attributeDict forGroup:(STKPXShapeGroup *)group
+- (void)applyViewport:(NSDictionary *)attributeDict forGroup:(PXShapeGroup *)group
 {
     NSString *par = attributeDict[@"preserveAspectRatio"];
 
@@ -844,7 +873,7 @@ didStartElement:(NSString *)elementName
     return (opacityValue) ? opacityValue.floatValue : 1.0;
 }
 
-- (STKPXPolygon *)makePolygon:(NSString *)pointString
+- (PXPolygon *)makePolygon:(NSString *)pointString
 {
     NSMutableArray *coords = [self numberArrayFromString:pointString];
     NSUInteger length = coords.count;
@@ -861,12 +890,12 @@ didStartElement:(NSString *)elementName
         [points addObject:[NSValue valueWithCGPoint:CGPointMake(x, y)]];
     }
 
-    return [[STKPXPolygon alloc] initWithPoints:points];
+    return [[PXPolygon alloc] initWithPoints:points];
 }
 
-- (id<STKPXPaint>)paintFromString:(NSString *)attributeValue withOpacityString:(NSString *)opacityValue
+- (id<PXPaint>)paintFromString:(NSString *)attributeValue withOpacityString:(NSString *)opacityValue
 {
-    id<STKPXPaint> paint = nil;
+    id<PXPaint> paint = nil;
 
     if (attributeValue)
     {
@@ -874,13 +903,13 @@ didStartElement:(NSString *)elementName
 
         if ([attributeValue isEqualToString:@"none"])
         {
-            paint = [[STKPXSolidPaint alloc] initWithColor:[UIColor clearColor]];
+            paint = [[PXSolidPaint alloc] initWithColor:[UIColor clearColor]];
         }
         else if ([attributeValue hasPrefix:@"#"])
         {
             UIColor *color = [UIColor colorWithHexString:attributeValue withAlpha:alpha];
 
-            paint = [[STKPXSolidPaint alloc] initWithColor:color];
+            paint = [[PXSolidPaint alloc] initWithColor:color];
         }
         else if ([attributeValue hasPrefix:@"url(#"])
         {
@@ -893,14 +922,14 @@ didStartElement:(NSString *)elementName
         }
         else
         {
-            paint = [VALUE_PARSER parsePaint:[STKPXValueParser lexemesForSource:attributeValue]];
+            paint = [VALUE_PARSER parsePaint:[PXValueParser lexemesForSource:attributeValue]];
 
             /*
             UIColor *color = [UIColor colorFromName:attributeValue];
 
             if (color)
             {
-                paint = [[STKPXSolidPaint alloc] initWithColor:color];
+                paint = [[PXSolidPaint alloc] initWithColor:color];
             }
             */
         }
@@ -915,7 +944,7 @@ didStartElement:(NSString *)elementName
 
     if (attributeValue)
     {
-        if ([attributeValue hasSuffix:@"STKPX"])
+        if ([attributeValue hasSuffix:@"px"])
         {
             number = [attributeValue substringToIndex:attributeValue.length - 2].floatValue;
         }

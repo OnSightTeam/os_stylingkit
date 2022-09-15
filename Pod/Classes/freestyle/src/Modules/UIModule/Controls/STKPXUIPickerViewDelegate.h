@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXUIPickerViewDelegate.h
+//  PXUIPickerViewDelegate.h
 //  Pixate
 //
 //  Created by Paul Colton on 12/18/13.
@@ -24,7 +24,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface STKPXUIPickerViewDelegate : NSObject //<UIPickerViewDelegate, UIPickerViewDataSource>
+@interface PXUIPickerViewDelegate : NSObject ///<, UIPickerViewDataSource>
 
 
 @end

@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXStyleInfo.m
+//  PXStyleInfo.m
 //  Pixate
 //
 //  Modified by Anton Matosov
@@ -23,17 +23,17 @@
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXStyleInfo.h"
-#import "STKPXDeclaration.h"
+#import "PXStyleInfo.h"
+#import "PXDeclaration.h"
 
-#import "STKPXStyleUtils.h"
-#import "STKPXRuleSet.h"
-#import "STKPXTypeSelector.h"
-#import "STKPXStyler.h"
-#import "NSObject+STKPXStyling.h"
-#import "STKPXPseudoClassFunction.h"
+#import "PXStyleUtils.h"
+#import "PXRuleSet.h"
+#import "PXTypeSelector.h"
+#import "PXStyler.h"
+#import "NSObject+PXStyling.h"
+#import "PXPseudoClassFunction.h"
 
-@implementation STKPXStyleInfo
+@implementation PXStyleInfo
 {
     NSMutableDictionary *declarationsByState_;
     NSMutableDictionary *stylersByState_;
@@ -43,18 +43,18 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 
 #pragma mark - Static Methods
 
-+ (STKPXStyleInfo *)styleInfoForStyleable:(id<STKPXStyleable>)styleable
++ (PXStyleInfo *)styleInfoForStyleable:(id<PXStyleable>)styleable
 {
     return [self styleInfoForStyleable:styleable checkPseudoClassFunction:nil];
 }
 
-+ (STKPXStyleInfo *)styleInfoForStyleable:(id<STKPXStyleable>)styleable checkPseudoClassFunction:(NSNumber**)checkPseudoClassFunction
++ (PXStyleInfo *)styleInfoForStyleable:(id<PXStyleable>)styleable checkPseudoClassFunction:(NSNumber**)checkPseudoClassFunction
 {
-    STKPXStyleInfo *result = [[STKPXStyleInfo alloc] initWithStyleKey:styleable.styleKey];
+    PXStyleInfo *result = [[PXStyleInfo alloc] initWithStyleKey:styleable.styleKey];
     result.changeable = styleable.styleChangeable;
     
     // find all rule sets that apply to this styleable
-    NSMutableArray *ruleSets = [STKPXStyleUtils matchingRuleSetsForStyleable:styleable];
+    NSMutableArray *ruleSets = [PXStyleUtils matchingRuleSetsForStyleable:styleable];
 
     if (ruleSets.count > 0)
     {
@@ -70,11 +70,11 @@ STK_DEFINE_CLASS_LOG_LEVEL;
         //     {
         //         if (pseudoElement.length > 0)
         //         {
-        //             NSArray *ruleSetsForPseudoElement = [STKPXStyleUtils filterRuleSets:ruleSets byPseudoElement:pseudoElement];
+        //             NSArray *ruleSetsForPseudoElement = [PXStyleUtils filterRuleSets:ruleSets byPseudoElement:pseudoElement];
 
         //             if (ruleSetsForPseudoElement.count > 0)
         //             {
-        //                 id<STKPXStyleable> pseudoElementStyleable = [styleable styleableForPseudoElement:pseudoElement];
+        //                 id<PXStyleable> pseudoElementStyleable = [styleable styleableForPseudoElement:pseudoElement];
 
         //                 if (pseudoElementStyleable != nil)
         //                 {
@@ -88,9 +88,9 @@ STK_DEFINE_CLASS_LOG_LEVEL;
         // remove pseudo-element rule sets
         NSMutableArray *toRemove = [[NSMutableArray alloc] init];
 
-        for (STKPXRuleSet *ruleSet in ruleSets)
+        for (PXRuleSet *ruleSet in ruleSets)
         {
-            STKPXTypeSelector *selector = ruleSet.targetTypeSelector;
+            PXTypeSelector *selector = ruleSet.targetTypeSelector;
 
             if (selector.pseudoElement.length > 0)
             {
@@ -99,8 +99,8 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 
             if (checkPseudoClassFunction) {
                 if (!(*checkPseudoClassFunction).boolValue) {
-                    for (id<STKPXSelector> attribute in selector.attributeExpressions) {
-                        if ([attribute isKindOfClass:STKPXPseudoClassFunction.class]) {
+                    for (id<PXSelector> attribute in selector.attributeExpressions) {
+                        if ([attribute isKindOfClass:PXPseudoClassFunction.class]) {
                             *checkPseudoClassFunction = @YES;
                             break;
                         }
@@ -126,7 +126,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
             for (NSString *pseudoClass in pseudoClasses)
             {
                 // filter the list of rule sets to only those that specify the current state
-                NSArray *ruleSetsForState = [STKPXStyleUtils filterRuleSets:ruleSets forStyleable:styleable byState:pseudoClass];
+                NSArray *ruleSetsForState = [PXStyleUtils filterRuleSets:ruleSets forStyleable:styleable byState:pseudoClass];
 
                 if (ruleSetsForState.count > 0)
                 {
@@ -143,13 +143,13 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     return (result.states.count > 0) ? result : nil;
 }
 
-+ (void)setStyleInfo:(STKPXStyleInfo *)styleInfo
++ (void)setStyleInfo:(PXStyleInfo *)styleInfo
         withRuleSets:(NSArray *)ruleSets
-           styleable:(id<STKPXStyleable>)styleable
+           styleable:(id<PXStyleable>)styleable
            stateName:(NSString *)stateName
 {
     // merge all rule sets into a single rule set based on origin and weight/specificity
-    STKPXRuleSet *mergedRuleSet = [STKPXRuleSet ruleSetWithMergedRuleSets:ruleSets];
+    PXRuleSet *mergedRuleSet = [PXRuleSet ruleSetWithMergedRuleSets:ruleSets];
 
     NSArray *stylers = ([styleable respondsToSelector:@selector(viewStylers)])
         ? ((NSObject *)styleable).viewStylers
@@ -165,9 +165,9 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     NSMutableArray *activeDeclarations = [[NSMutableArray alloc] init];
     // NSMutableArray *inactiveDeclarations = [[NSMutableArray alloc] init];
 
-    for (STKPXDeclaration *declaration in mergedRuleSet.declarations)
+    for (PXDeclaration *declaration in mergedRuleSet.declarations)
     {
-        id<STKPXStyler> styler = stylersByProperty[declaration.name];
+        id<PXStyler> styler = stylersByProperty[declaration.name];
 
         if (styler)
         {
@@ -247,12 +247,12 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     return (stylersByState_ != nil) ? stylersByState_[stateName] : nil;
 }
 
-- (void)applyToStyleable:(id<STKPXStyleable>)styleable
+- (void)applyToStyleable:(id<PXStyleable>)styleable
 {
     // abort application of style info if the styleable's style key does not match the info's style key
     if ([self.styleKey isEqualToString:styleable.styleKey] == NO)
     {
-        DDLogError(@"StyleKey mismatch ('%@' != '%@'). Aborted applyStyleInfo for %@", self.styleKey, styleable.styleKey, [STKPXStyleUtils descriptionForStyleable:styleable]);
+        DDLogError(@"StyleKey mismatch ('%@' != '%@'). Aborted applyStyleInfo for %@", self.styleKey, styleable.styleKey, [PXStyleUtils descriptionForStyleable:styleable]);
         return;
     }
 
@@ -269,7 +269,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
         if ([styleable respondsToSelector:@selector(canStylePseudoClass:)]
             && ![styleable canStylePseudoClass:stateName])
         {
-            //NSLog(@"skipping state '%@' for styleable: %@", stateName, [STKPXStyleUtils descriptionForStyleable:styleable]);
+            //NSLog(@"skipping state '%@' for styleable: %@", stateName, [PXStyleUtils descriptionForStyleable:styleable]);
 
             // styleable says we can't style this pseudoclass right now, so skip it
             continue;
@@ -279,31 +279,31 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 
         if (self.forceInvalidation)
         {
-            [STKPXStyleUtils invalidateStyleable:styleable];
+            [PXStyleUtils invalidateStyleable:styleable];
         }
 
-        if (![STKPXStyleUtils stylesOfStyleable:styleable
+        if (![PXStyleUtils stylesOfStyleable:styleable
                            matchDeclarations:activeDeclarations
                                        state:stateName])
         {
             NSSet *activeStylers = [self stylersForState:stateName];
 
             // create context and store styleable and state name there
-            STKPXStylerContext *context = [[STKPXStylerContext alloc] init];
+            PXStylerContext *context = [[PXStylerContext alloc] init];
 
             context.styleable = styleable;
             context.activeStateName = stateName;
-            context.styleHash = [STKPXStyleUtils hashValueForStyleable:styleable state:stateName];
+            context.styleHash = [PXStyleUtils hashValueForStyleable:styleable state:stateName];
 
             // process declarations in styler order
-            for (id<STKPXStyler> currentStyler in stylers)
+            for (id<PXStyler> currentStyler in stylers)
             {
                 if ([activeStylers containsObject:NSStringFromClass(currentStyler.class)])
                 {
                     // process the declarations, in order
-                    for (STKPXDeclaration *declaration in activeDeclarations)
+                    for (PXDeclaration *declaration in activeDeclarations)
                     {
-                        id<STKPXStyler> styler = stylersByProperty[declaration.name];
+                        id<PXStyler> styler = stylersByProperty[declaration.name];
 
                         if (styler == currentStyler)
                         {
@@ -319,9 +319,9 @@ STK_DEFINE_CLASS_LOG_LEVEL;
             // see if there's a catch-all 'updateStyleWithRuleSet:context:' method to call
             if ([styleable respondsToSelector:@selector(updateStyleWithRuleSet:context:)])
             {
-                STKPXRuleSet *ruleSet = [[STKPXRuleSet alloc] init];
+                PXRuleSet *ruleSet = [[PXRuleSet alloc] init];
 
-                for (STKPXDeclaration *declaration in activeDeclarations)
+                for (PXDeclaration *declaration in activeDeclarations)
                 {
                     [ruleSet addDeclaration:declaration];
                 }
@@ -332,7 +332,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
             // If the frame of the view has potentially changed, let's recompute the style hash
             if([context propertyValueForName:@"frame"])
             {
-                [STKPXStyleUtils stylesOfStyleable:styleable matchDeclarations:activeDeclarations state:stateName];
+                [PXStyleUtils stylesOfStyleable:styleable matchDeclarations:activeDeclarations state:stateName];
             }
         }
     }
@@ -352,7 +352,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
         [parts addObject:[NSString stringWithFormat:@"%@ {", stateName]];
 
         // emit declaration
-        for (STKPXDeclaration *declaration in declarationsByState_[state])
+        for (PXDeclaration *declaration in declarationsByState_[state])
         {
             [parts addObject:[NSString stringWithFormat:@"  %@", declaration.description]];
         }

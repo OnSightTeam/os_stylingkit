@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		20483569DCCAB782A08CEF95 /* Pods_StylingKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551E75E1291E8AA5651AAED8 /* Pods_StylingKit_Tests.framework */; };
+		446C77921E8A4F4400FDA381 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 446C77901E8A4EE500FDA381 /* PhotosUI.framework */; };
 		49522144CF91AE2A8BF12A9F /* Pods_StylingKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 027F65B2586CA1CEC9CC4F6A /* Pods_StylingKit_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -531,7 +532,6 @@
 		A0942B43DCCEE3D2E4CEFFA0 /* css3-modsel-70-result.xml in Resources */ = {isa = PBXBuildFile; fileRef = A0942B10883CA87081814E56 /* css3-modsel-70-result.xml */; };
 		A0942B4626E90825CD8292E8 /* css3-modsel-6-result.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09429C3CF163195C9DA53D0 /* css3-modsel-6-result.xml */; };
 		A0942B50C772258A333237A3 /* css3-modsel-14b-result.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09422ECDE8BB595CA549848 /* css3-modsel-14b-result.xml */; };
-		A0942B544C9B6ADC77B39C7C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A094205724A10B3D8F5AC0BB /* InfoPlist.strings */; };
 		A0942B55023713D529177590 /* css3-modsel-123b.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09424EC726D40E3651D1616 /* css3-modsel-123b.xml */; };
 		A0942B56453BF501EA1DAAEB /* css3-modsel-179.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09427CA5586DCDF9658AC39 /* css3-modsel-179.xml */; };
 		A0942B5A775D177C6D912B00 /* css3-modsel-116.xml in Resources */ = {isa = PBXBuildFile; fileRef = A09424BF373BA85DE48D3B58 /* css3-modsel-116.xml */; };
@@ -798,6 +798,7 @@
 		027F65B2586CA1CEC9CC4F6A /* Pods_StylingKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StylingKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1806D9D1E38A901C7596A444 /* StylingKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = StylingKit.podspec; path = ../StylingKit.podspec; sourceTree = "<group>"; };
 		272601728768574EF245BB76 /* Pods-StylingKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StylingKit_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StylingKit_Tests/Pods-StylingKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		446C77901E8A4EE500FDA381 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
 		551E75E1291E8AA5651AAED8 /* Pods_StylingKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StylingKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* StylingKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StylingKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -920,7 +921,6 @@
 		A09421D8B5F1C96E406CE762 /* css3-modsel-8-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-8-result.xml"; sourceTree = "<group>"; };
 		A09421DBCB597143957CCFA1 /* css3-modsel-15b.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-15b.xml"; sourceTree = "<group>"; };
 		A09421EC19AAD04B51A3DDC7 /* css3-modsel-179a-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-179a-result.xml"; sourceTree = "<group>"; };
-		A09421ED73F755D5F4F32297 /* tester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tester.m; sourceTree = "<group>"; };
 		A09421EE89EE3D03FFC253A5 /* relativeHorizontalLineCommand.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; path = relativeHorizontalLineCommand.svg; sourceTree = "<group>"; };
 		A09421FB381CC659629C19B0 /* css3-modsel-184a-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-184a-result.xml"; sourceTree = "<group>"; };
 		A09421FC305CF112B2D72F41 /* css3-modsel-177b-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-177b-result.xml"; sourceTree = "<group>"; };
@@ -1345,7 +1345,6 @@
 		A0942B3B15EA4C8FD2E4CC6B /* css3-modsel-94-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-94-result.xml"; sourceTree = "<group>"; };
 		A0942B41ADD325572CBFC4CC /* css3-modsel-24.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-24.xml"; sourceTree = "<group>"; };
 		A0942B45B7C274D709B65A74 /* radial-gradient.svg */ = {isa = PBXFileReference; lastKnownFileType = file.svg; path = "radial-gradient.svg"; sourceTree = "<group>"; };
-		A0942B5120C249B6B9771ED9 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		A0942B53F2CC0A804ACE8A72 /* css3-modsel-44c-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-44c-result.xml"; sourceTree = "<group>"; };
 		A0942B5428294AA6AAA43F00 /* StyleableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyleableView.h; sourceTree = "<group>"; };
 		A0942B55F94357010DEC6212 /* css3-modsel-182-result.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "css3-modsel-182-result.xml"; sourceTree = "<group>"; };
@@ -1600,6 +1599,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				446C77921E8A4F4400FDA381 /* PhotosUI.framework in Frameworks */,
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
@@ -1656,6 +1656,7 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				446C77901E8A4EE500FDA381 /* PhotosUI.framework */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
@@ -1865,14 +1866,6 @@
 				A0942573EE92192AE0E53358 /* clipping-path2.svg */,
 			);
 			path = "Clipping-Paths";
-			sourceTree = "<group>";
-		};
-		A0942894D67743B460668B9B /* en.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				A094205724A10B3D8F5AC0BB /* InfoPlist.strings */,
-			);
-			path = en.lproj;
 			sourceTree = "<group>";
 		};
 		A09428F04151749E688E027D /* Rendering */ = {
@@ -2271,19 +2264,9 @@
 			children = (
 				A0942C3C3D28A3F66BE602F0 /* CG */,
 				A0942F2B8CF681473CB4F745 /* Styling */,
-				A0942894D67743B460668B9B /* en.lproj */,
-				A0942BD741BD05DF7A7B873E /* MAFuture */,
 				A094228BD4A02F6E17EB5C75 /* Resources */,
 			);
 			path = freestyle;
-			sourceTree = "<group>";
-		};
-		A0942BD741BD05DF7A7B873E /* MAFuture */ = {
-			isa = PBXGroup;
-			children = (
-				A09421ED73F755D5F4F32297 /* tester.m */,
-			);
-			path = MAFuture;
 			sourceTree = "<group>";
 		};
 		A0942C3C3D28A3F66BE602F0 /* CG */ = {
@@ -2732,7 +2715,7 @@
 						DevelopmentTeam = KGGP62Z8AS;
 					};
 					6003F5AD195388D20070C39A = {
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0830;
 					};
 				};
 			};
@@ -2773,7 +2756,6 @@
 			files = (
 				7CF7A4CC1C3A772E00B3BD16 /* solid-image-stroke.png in Resources */,
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
-				A0942B544C9B6ADC77B39C7C /* InfoPlist.strings in Resources */,
 				A0942F7C51E739438D0E1B79 /* text.svg in Resources */,
 				A0942EDF4B236F744D7DAB3F /* arcCommand.svg in Resources */,
 				A0942FC37FAE06A036C16523 /* lineCommand.svg in Resources */,
@@ -3515,13 +3497,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StylingKit_Example-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2573242C92A84D1245863F3E /* [CP] Check Pods Manifest.lock */ = {
@@ -3530,13 +3515,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StylingKit_Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4EC068E13687E192179B3FA0 /* [CP] Copy Pods Resources */ = {
@@ -3560,9 +3548,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-StylingKit_Example/Pods-StylingKit_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/GCDWebServer/GCDWebServer.framework",
+				"${BUILT_PRODUCTS_DIR}/StylingKit/StylingKit.framework",
+				"${BUILT_PRODUCTS_DIR}/StylingKitThemes/StylingKitThemes.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GCDWebServer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StylingKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StylingKitThemes.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3590,9 +3587,24 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-StylingKit_Tests/Pods-StylingKit_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/GCDWebServer/GCDWebServer.framework",
+				"${BUILT_PRODUCTS_DIR}/StylingKit/StylingKit.framework",
+				"${BUILT_PRODUCTS_DIR}/StylingKitThemes/StylingKitThemes.framework",
+				"${BUILT_PRODUCTS_DIR}/Expecta/Expecta.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
+				"${BUILT_PRODUCTS_DIR}/Kiwi/Kiwi.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GCDWebServer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StylingKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StylingKitThemes.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Expecta.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kiwi.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3670,14 +3682,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				6003F5B9195388D20070C39A /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		A094205724A10B3D8F5AC0BB /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A0942B5120C249B6B9771ED9 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -3806,7 +3810,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 272601728768574EF245BB76 /* Pods-StylingKit_Tests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -3825,7 +3828,7 @@
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -3834,7 +3837,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECD13B24D860D00D33DD4BBE /* Pods-StylingKit_Tests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -3849,7 +3851,7 @@
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;

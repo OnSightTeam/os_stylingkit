@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXUICollectionViewDelegate.h
+//  PXUICollectionViewDelegate.h
 //  Pixate
 //
 //  Created by Paul Colton on 12/2/13.
@@ -30,7 +30,7 @@
 @property(nonatomic) CGSize size;
 @end
 
-@interface STKPXUICollectionViewDelegate : NSObject<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface PXUICollectionViewDelegate : NSObject<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property(nonatomic, strong) CGSizeWithFlag* itemSize;
 @property(weak, nonatomic) UICollectionView* collectionView;

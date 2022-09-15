@@ -32,6 +32,8 @@
 
 STK_DEFINE_CLASS_LOG_LEVEL;
 
+STK_DEFINE_CLASS_LOG_LEVEL;
+
 static NSMutableDictionary *REGISTRY;
 static NSMutableSet *LOADED_FONTS;
 

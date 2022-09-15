@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXUICollectionViewDelegate.m
+//  PXUICollectionViewDelegate.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,14 +23,14 @@
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXUICollectionViewDelegate.h"
-#import "STKPXProxy.h"
-#import "STKPXStyleUtils.h"
+#import "PXUICollectionViewDelegate.h"
+#import "PXProxy.h"
+#import "PXStyleUtils.h"
 
-#import "UIView+STKPXStyling.h"
-#import "UIView+STKPXStyling-Private.h"
-#import "STKPXStylingMacros.h"
-#import "STKPXUICollectionViewCell.h"
+#import "UIView+PXStyling.h"
+#import "UIView+PXStyling-Private.h"
+#import "PXStylingMacros.h"
+#import "PXUICollectionViewCell.h"
 #import "UICollectionViewCell+STKStyling.h"
 
 @implementation CGSizeWithFlag
@@ -53,7 +53,7 @@
 @end
 
 
-@implementation STKPXUICollectionViewDelegate
+@implementation PXUICollectionViewDelegate
 
 - (instancetype)init
 {
@@ -69,7 +69,7 @@
 /// This is required protocol method, so keep it as simple forward
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [((STKPXProxy *)collectionView.dataSource).baseObject collectionView:collectionView numberOfItemsInSection:section];
+    return [((PXProxy *)collectionView.dataSource).baseObject collectionView:collectionView numberOfItemsInSection:section];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -78,7 +78,7 @@
     id baseObject = collectionView.dataSource;
     if([baseObject isProxy])
     {
-        baseObject = ((STKPXProxy *)baseObject).baseObject;
+        baseObject = ((PXProxy *)baseObject).baseObject;
     }
     
     // Make sure the base object has implemented the call
@@ -97,12 +97,12 @@
 
     cell.pxStyleParent = collectionView;
 
-    [STKPXStyleUtils setItemIndex:indexPath forObject:cell];
+    [PXStyleUtils setItemIndex:indexPath forObject:cell];
 
     // This will call update styles if styling is still enabled
-    cell.styleMode = STKPXStylingNormal;
+    cell.styleMode = PXStylingNormal;
 
-    [STKPXStyleUtils setItemIndex:nil forObject:cell];
+    [PXStyleUtils setItemIndex:nil forObject:cell];
     
     return cell;
 }
@@ -120,7 +120,7 @@
 
     if([baseObject isProxy])
     {
-        baseObject = ((STKPXProxy *) collectionView.delegate).baseObject;
+        baseObject = ((PXProxy *) collectionView.delegate).baseObject;
     }
 
     // See if the base object implemented this call and if so, get the output
@@ -149,7 +149,7 @@
         id baseObject = self.collectionView.delegate;
         if ([baseObject isProxy])
         {
-            baseObject = ((STKPXProxy*)baseObject).baseObject;
+            baseObject = ((PXProxy*)baseObject).baseObject;
         }
         if (![baseObject respondsToSelector:@selector(collectionView:layout:sizeForItemAtIndexPath:)])
         {

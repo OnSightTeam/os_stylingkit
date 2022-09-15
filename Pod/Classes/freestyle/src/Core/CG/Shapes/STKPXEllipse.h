@@ -15,20 +15,20 @@
  */
 
 //
-//  STKPXEllipse.h
+//  PXEllipse.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 6/6/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXShape.h"
-#import "STKPXBoundable.h"
+#import "STKShape.h"
+#import "PXBoundable.h"
 
 /**
- *  A STKPXShape sub-class used to render ellipses
+ *  A PXShape sub-class used to render ellipses
  */
-@interface STKPXEllipse : STKPXShape <STKPXBoundable>
+@interface PXEllipse : STKShape <PXBoundable>
 
 /**
  *  A point indicating the location of the center of this ellipse.

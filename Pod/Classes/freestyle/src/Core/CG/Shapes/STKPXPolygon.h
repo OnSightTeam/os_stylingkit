@@ -15,19 +15,19 @@
  */
 
 //
-//  STKPXPolygon.h
+//  PXPolygon.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 6/9/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXShape.h"
+#import "STKShape.h"
 
 /**
- *  A STKPXShape sub-class used to render open and closed polygons
+ *  A PXShape sub-class used to render open and closed polygons
  */
-@interface STKPXPolygon : STKPXShape
+@interface PXPolygon : STKShape
 
 /**
  *  A flag indicating whether this polygon should be closed or not

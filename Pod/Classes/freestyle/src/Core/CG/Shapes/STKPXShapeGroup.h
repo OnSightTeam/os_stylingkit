@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXShapeGroup.h
+//  PXShapeGroup.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 6/1/12.
@@ -23,8 +23,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "STKPXShape.h"
-#import "STKPXRenderable.h"
+#import "STKShape.h"
+#import "PXRenderable.h"
 
 typedef enum {
     kAlignViewPortNone,
@@ -45,9 +45,9 @@ typedef enum {
 } CropType;
 
 /**
- *  A STKPXShape sub-class used to render collections of shapes
+ *  A PXShape sub-class used to render collections of shapes
  */
-@interface STKPXShapeGroup : STKPXShape
+@interface PXShapeGroup : STKShape
 
 /**
  *  The width of this shape group.
@@ -96,14 +96,14 @@ typedef enum {
  *
  *  @param shape The shape to add
  */
-- (void)addShape:(id<STKPXRenderable>)shape;
+- (void)addShape:(id<PXRenderable>)shape;
 
 /**
  *  Removes the specified shape from the shape group
  *
  *  @param shape The shape to remove
  */
-- (void)removeShape:(id<STKPXRenderable>)shape;
+- (void)removeShape:(id<PXRenderable>)shape;
 
 /**
  *  Returns the shape at the specified index.
@@ -111,8 +111,8 @@ typedef enum {
  *  Nil is returned for index values that are out of range
  *
  *  @param index The index of the shape to return
- *  @returns A STKPXRenderable to nil
+ *  @returns A PXRenderable to nil
  */
-- (id<STKPXRenderable>)shapeAtIndex:(NSUInteger)index;
+- (id<PXRenderable>)shapeAtIndex:(NSUInteger)index;
 
 @end

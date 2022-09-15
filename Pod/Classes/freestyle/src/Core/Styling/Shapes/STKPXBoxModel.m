@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXBoxModel.m
+//  PXBoxModel.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,20 +23,20 @@
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXBoxModel.h"
-#import "STKPXPath.h"
-#import "STKPXStroke.h"
+#import "PXBoxModel.h"
+#import "STKPath.h"
+#import "PXStroke.h"
 
-@implementation STKPXBoxModel
+@implementation PXBoxModel
 {
-    STKPXBorderInfo *borderTop_;
-    STKPXBorderInfo *borderRight_;
-    STKPXBorderInfo *borderBottom_;
-    STKPXBorderInfo *borderLeft_;
-    STKPXPath *borderPathTop_;
-    STKPXPath *borderPathRight_;
-    STKPXPath *borderPathBottom_;
-    STKPXPath *borderPathLeft_;
+    PXBorderInfo *borderTop_;
+    PXBorderInfo *borderRight_;
+    PXBorderInfo *borderBottom_;
+    PXBorderInfo *borderLeft_;
+    STKPath *borderPathTop_;
+    STKPath *borderPathRight_;
+    STKPath *borderPathBottom_;
+    STKPath *borderPathLeft_;
 }
 
 @synthesize bounds = _bounds;
@@ -54,10 +54,10 @@
     if (self = [super init])
     {
         _bounds = bounds;
-        borderTop_ = [[STKPXBorderInfo alloc] init];
-        borderRight_ = [[STKPXBorderInfo alloc] init];
-        borderBottom_ = [[STKPXBorderInfo alloc] init];
-        borderLeft_ = [[STKPXBorderInfo alloc] init];
+        borderTop_ = [[PXBorderInfo alloc] init];
+        borderRight_ = [[PXBorderInfo alloc] init];
+        borderBottom_ = [[PXBorderInfo alloc] init];
+        borderLeft_ = [[PXBorderInfo alloc] init];
     }
 
     return self;
@@ -65,12 +65,12 @@
 
 #pragma mark - Getters
 
-- (id<STKPXPaint>)borderTopPaint
+- (id<PXPaint>)borderTopPaint
 {
     return borderTop_.paint;
 }
 
-- (STKPXBorderStyle)borderTopStyle
+- (PXBorderStyle)borderTopStyle
 {
     return borderTop_.style;
 }
@@ -80,12 +80,12 @@
     return borderTop_.width;
 }
 
-- (id<STKPXPaint>)borderRightPaint
+- (id<PXPaint>)borderRightPaint
 {
     return borderRight_.paint;
 }
 
-- (STKPXBorderStyle)borderRightStyle
+- (PXBorderStyle)borderRightStyle
 {
     return borderRight_.style;
 }
@@ -95,12 +95,12 @@
     return borderRight_.width;
 }
 
-- (id<STKPXPaint>)borderBottomPaint
+- (id<PXPaint>)borderBottomPaint
 {
     return borderBottom_.paint;
 }
 
-- (STKPXBorderStyle)borderBottomStyle
+- (PXBorderStyle)borderBottomStyle
 {
     return borderBottom_.style;
 }
@@ -110,12 +110,12 @@
     return borderBottom_.width;
 }
 
-- (id<STKPXPaint>)borderLeftPaint
+- (id<PXPaint>)borderLeftPaint
 {
     return borderLeft_.paint;
 }
 
-- (STKPXBorderStyle)borderLeftStyle
+- (PXBorderStyle)borderLeftStyle
 {
     return borderLeft_.style;
 }
@@ -172,13 +172,13 @@
 
 #pragma mark - Setters
 
-- (void)setBorderTopPaint:(id<STKPXPaint>)borderTopPaint
+- (void)setBorderTopPaint:(id<PXPaint>)borderTopPaint
 {
     borderTop_.paint = borderTopPaint;
     [self clearPath];
 }
 
-- (void)setBorderTopStyle:(STKPXBorderStyle)borderTopStyle
+- (void)setBorderTopStyle:(PXBorderStyle)borderTopStyle
 {
     borderTop_.style = borderTopStyle;
     [self clearPath];
@@ -190,13 +190,13 @@
     [self clearPath];
 }
 
-- (void)setBorderRightPaint:(id<STKPXPaint>)borderRightPaint
+- (void)setBorderRightPaint:(id<PXPaint>)borderRightPaint
 {
     borderRight_.paint = borderRightPaint;
     [self clearPath];
 }
 
-- (void)setBorderRightStyle:(STKPXBorderStyle)borderRightStyle
+- (void)setBorderRightStyle:(PXBorderStyle)borderRightStyle
 {
     borderRight_.style = borderRightStyle;
     [self clearPath];
@@ -208,13 +208,13 @@
     [self clearPath];
 }
 
-- (void)setBorderBottomPaint:(id<STKPXPaint>)borderBottomPaint
+- (void)setBorderBottomPaint:(id<PXPaint>)borderBottomPaint
 {
     borderBottom_.paint = borderBottomPaint;
     [self clearPath];
 }
 
-- (void)setBorderBottomStyle:(STKPXBorderStyle)borderBottomStyle
+- (void)setBorderBottomStyle:(PXBorderStyle)borderBottomStyle
 {
     borderBottom_.style = borderBottomStyle;
     [self clearPath];
@@ -226,13 +226,13 @@
     [self clearPath];
 }
 
-- (void)setBorderLeftPaint:(id<STKPXPaint>)borderLeftPaint
+- (void)setBorderLeftPaint:(id<PXPaint>)borderLeftPaint
 {
     borderLeft_.paint = borderLeftPaint;
     [self clearPath];
 }
 
-- (void)setBorderLeftStyle:(STKPXBorderStyle)borderLeftStyle
+- (void)setBorderLeftStyle:(PXBorderStyle)borderLeftStyle
 {
     borderLeft_.style = borderLeftStyle;
     [self clearPath];
@@ -244,35 +244,35 @@
     [self clearPath];
 }
 
-- (void)setBorderTopPaint:(id<STKPXPaint>)paint width:(CGFloat)width style:(STKPXBorderStyle)style
+- (void)setBorderTopPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style
 {
     self.borderTopPaint = paint;
     self.borderTopWidth = width;
     self.borderTopStyle = style;
 }
 
-- (void)setBorderRightPaint:(id<STKPXPaint>)paint width:(CGFloat)width style:(STKPXBorderStyle)style
+- (void)setBorderRightPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style
 {
     self.borderRightPaint = paint;
     self.borderRightWidth = width;
     self.borderRightStyle = style;
 }
 
-- (void)setBorderBottomPaint:(id<STKPXPaint>)paint width:(CGFloat)width style:(STKPXBorderStyle)style
+- (void)setBorderBottomPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style
 {
     self.borderBottomPaint = paint;
     self.borderBottomWidth = width;
     self.borderBottomStyle = style;
 }
 
-- (void)setBorderLeftPaint:(id<STKPXPaint>)paint width:(CGFloat)width style:(STKPXBorderStyle)style
+- (void)setBorderLeftPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style
 {
     self.borderLeftPaint = paint;
     self.borderLeftWidth = width;
     self.borderLeftStyle = style;
 }
 
-- (void)setBorderPaint:(id<STKPXPaint>)paint
+- (void)setBorderPaint:(id<PXPaint>)paint
 {
     self.borderTopPaint = paint;
     self.borderRightPaint = paint;
@@ -288,7 +288,7 @@
     self.borderLeftWidth = width;
 }
 
-- (void)setBorderStyle:(STKPXBorderStyle)style
+- (void)setBorderStyle:(PXBorderStyle)style
 {
     self.borderTopStyle = style;
     self.borderRightStyle = style;
@@ -296,7 +296,7 @@
     self.borderLeftStyle = style;
 }
 
-- (void)setBorderPaint:(id<STKPXPaint>)paint width:(CGFloat)width style:(STKPXBorderStyle)style
+- (void)setBorderPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style
 {
     [self setBorderTopPaint:paint width:width style:style];
     [self setBorderRightPaint:paint width:width style:style];
@@ -387,11 +387,11 @@
     // top
     if (borderTop_.hasContent)
     {
-        borderPathTop_ = [[STKPXPath alloc] init];
+        borderPathTop_ = [[STKPath alloc] init];
 
         switch (borderTop_.style)
         {
-            case STKPXBorderStyleSolid:
+            case PXBorderStyleSolid:
                 [borderPathTop_ moveToX:borderLeft y:borderTop];
                 [borderPathTop_ lineToX:borderRight y:borderTop];
                 [borderPathTop_ lineToX:contentRight y:contentTop];
@@ -400,7 +400,7 @@
                 borderPathTop_.fill = borderTop_.paint;
                 break;
 
-            case STKPXBorderStyleDashed:
+            case PXBorderStyleDashed:
             {
                 CGFloat y = (borderTop + contentTop) * 0.5f;
                 CGFloat width = borderTop_.width;
@@ -408,14 +408,14 @@
                 [borderPathTop_ moveToX:borderLeft y:y];
                 [borderPathTop_ lineToX:borderRight y:y];
 
-                STKPXStroke *stroke = [[STKPXStroke alloc] initWithStrokeWidth:width];
+                PXStroke *stroke = [[PXStroke alloc] initWithStrokeWidth:width];
                 stroke.color = borderTop_.paint;
                 stroke.dashArray = [self dashArrayFromLength:borderRight - borderLeft width:2.0f * width];
                 borderPathTop_.stroke = stroke;
                 break;
             }
 
-            case STKPXBorderStyleDotted:
+            case PXBorderStyleDotted:
             {
                 CGFloat y = (borderTop + contentTop) * 0.5f;
                 CGFloat width = borderTop_.width;
@@ -423,26 +423,26 @@
                 [borderPathTop_ moveToX:borderLeft y:y];
                 [borderPathTop_ lineToX:borderRight y:y];
 
-                STKPXStroke *stroke = [[STKPXStroke alloc] initWithStrokeWidth:width];
+                PXStroke *stroke = [[PXStroke alloc] initWithStrokeWidth:width];
                 stroke.color = borderTop_.paint;
                 stroke.dashArray = [self dashArrayFromLength:borderRight - borderLeft width:width];
                 borderPathTop_.stroke = stroke;
                 break;
             }
 
-            case STKPXBorderStyleDouble:
+            case PXBorderStyleDouble:
                 // TODO:
                 break;
 
-            case STKPXBorderStyleGroove:
-            case STKPXBorderStyleInset:
-            case STKPXBorderStyleOutset:
-            case STKPXBorderStyleRidge:
+            case PXBorderStyleGroove:
+            case PXBorderStyleInset:
+            case PXBorderStyleOutset:
+            case PXBorderStyleRidge:
                 break;
 
             // NOTE: We should never hit these cases
-            case STKPXBorderStyleNone:
-            case STKPXBorderStyleHidden:
+            case PXBorderStyleNone:
+            case PXBorderStyleHidden:
             default:
                 break;
         }
@@ -451,11 +451,11 @@
     // right
     if (borderRight_.hasContent)
     {
-        borderPathRight_ = [[STKPXPath alloc] init];
+        borderPathRight_ = [[STKPath alloc] init];
 
         switch (borderRight_.style)
         {
-            case STKPXBorderStyleSolid:
+            case PXBorderStyleSolid:
                 [borderPathRight_ moveToX:borderRight y:borderTop];
                 [borderPathRight_ lineToX:borderRight y:borderBottom];
                 [borderPathRight_ lineToX:contentRight y:contentBottom];
@@ -464,7 +464,7 @@
                 borderPathRight_.fill = borderRight_.paint;
                 break;
 
-            case STKPXBorderStyleDashed:
+            case PXBorderStyleDashed:
             {
                 CGFloat x = (borderRight + contentRight) * 0.5f;
                 CGFloat width = borderRight_.width;
@@ -472,14 +472,14 @@
                 [borderPathRight_ moveToX:x y:borderTop];
                 [borderPathRight_ lineToX:x y:borderBottom];
 
-                STKPXStroke *stroke = [[STKPXStroke alloc] initWithStrokeWidth:width];
+                PXStroke *stroke = [[PXStroke alloc] initWithStrokeWidth:width];
                 stroke.color = borderRight_.paint;
                 stroke.dashArray = [self dashArrayFromLength:borderBottom - borderTop width:2.0f * width];
                 borderPathRight_.stroke = stroke;
                 break;
             }
 
-            case STKPXBorderStyleDotted:
+            case PXBorderStyleDotted:
             {
                 CGFloat x = (borderRight + contentRight) * 0.5f;
                 CGFloat width = borderRight_.width;
@@ -487,23 +487,23 @@
                 [borderPathRight_ moveToX:x y:borderTop];
                 [borderPathRight_ lineToX:x y:borderBottom];
 
-                STKPXStroke *stroke = [[STKPXStroke alloc] initWithStrokeWidth:width];
+                PXStroke *stroke = [[PXStroke alloc] initWithStrokeWidth:width];
                 stroke.color = borderRight_.paint;
                 stroke.dashArray = [self dashArrayFromLength:borderBottom - borderTop width:width];
                 borderPathRight_.stroke = stroke;
                 break;
             }
 
-            case STKPXBorderStyleDouble:
-            case STKPXBorderStyleGroove:
-            case STKPXBorderStyleInset:
-            case STKPXBorderStyleOutset:
-            case STKPXBorderStyleRidge:
+            case PXBorderStyleDouble:
+            case PXBorderStyleGroove:
+            case PXBorderStyleInset:
+            case PXBorderStyleOutset:
+            case PXBorderStyleRidge:
                 break;
 
             // NOTE: We should never hit these cases
-            case STKPXBorderStyleNone:
-            case STKPXBorderStyleHidden:
+            case PXBorderStyleNone:
+            case PXBorderStyleHidden:
             default:
                 break;
         }
@@ -512,11 +512,11 @@
     // bottom
     if (borderBottom_.hasContent)
     {
-        borderPathBottom_ = [[STKPXPath alloc] init];
+        borderPathBottom_ = [[STKPath alloc] init];
 
         switch (borderBottom_.style)
         {
-            case STKPXBorderStyleSolid:
+            case PXBorderStyleSolid:
                 [borderPathBottom_ moveToX:contentRight y:contentBottom];
                 [borderPathBottom_ lineToX:borderRight y:borderBottom];
                 [borderPathBottom_ lineToX:borderLeft y:borderBottom];
@@ -525,7 +525,7 @@
                 borderPathBottom_.fill = borderBottom_.paint;
                 break;
 
-            case STKPXBorderStyleDashed:
+            case PXBorderStyleDashed:
             {
                 CGFloat y = (borderBottom + contentBottom) * 0.5f;
                 CGFloat width = borderBottom_.width;
@@ -533,14 +533,14 @@
                 [borderPathBottom_ moveToX:borderLeft y:y];
                 [borderPathBottom_ lineToX:borderRight y:y];
 
-                STKPXStroke *stroke = [[STKPXStroke alloc] initWithStrokeWidth:width];
+                PXStroke *stroke = [[PXStroke alloc] initWithStrokeWidth:width];
                 stroke.color = borderBottom_.paint;
                 stroke.dashArray = [self dashArrayFromLength:borderRight - borderLeft width:2.0f * width];
                 borderPathBottom_.stroke = stroke;
                 break;
             }
 
-            case STKPXBorderStyleDotted:
+            case PXBorderStyleDotted:
             {
                 CGFloat y = (borderBottom + contentBottom) * 0.5f;
                 CGFloat width = borderBottom_.width;
@@ -548,23 +548,23 @@
                 [borderPathBottom_ moveToX:borderLeft y:y];
                 [borderPathBottom_ lineToX:borderRight y:y];
 
-                STKPXStroke *stroke = [[STKPXStroke alloc] initWithStrokeWidth:width];
+                PXStroke *stroke = [[PXStroke alloc] initWithStrokeWidth:width];
                 stroke.color = borderBottom_.paint;
                 stroke.dashArray = [self dashArrayFromLength:borderRight - borderLeft width:width];
                 borderPathBottom_.stroke = stroke;
                 break;
             }
 
-            case STKPXBorderStyleDouble:
-            case STKPXBorderStyleGroove:
-            case STKPXBorderStyleInset:
-            case STKPXBorderStyleOutset:
-            case STKPXBorderStyleRidge:
+            case PXBorderStyleDouble:
+            case PXBorderStyleGroove:
+            case PXBorderStyleInset:
+            case PXBorderStyleOutset:
+            case PXBorderStyleRidge:
                 break;
 
             // NOTE: We should never hit these cases
-            case STKPXBorderStyleNone:
-            case STKPXBorderStyleHidden:
+            case PXBorderStyleNone:
+            case PXBorderStyleHidden:
             default:
                 break;
         }
@@ -573,11 +573,11 @@
     // left
     if (borderLeft_.hasContent)
     {
-        borderPathLeft_ = [[STKPXPath alloc] init];
+        borderPathLeft_ = [[STKPath alloc] init];
 
         switch (borderLeft_.style)
         {
-            case STKPXBorderStyleSolid:
+            case PXBorderStyleSolid:
                 [borderPathLeft_ moveToX:contentLeft y:contentTop];
                 [borderPathLeft_ lineToX:contentLeft y:contentBottom];
                 [borderPathLeft_ lineToX:borderLeft y:borderBottom];
@@ -586,7 +586,7 @@
                 borderPathLeft_.fill = borderLeft_.paint;
                 break;
 
-            case STKPXBorderStyleDashed:
+            case PXBorderStyleDashed:
             {
                 CGFloat x = (borderLeft + contentLeft) * 0.5f;
                 CGFloat width = borderLeft_.width;
@@ -594,14 +594,14 @@
                 [borderPathLeft_ moveToX:x y:borderTop];
                 [borderPathLeft_ lineToX:x y:borderBottom];
 
-                STKPXStroke *stroke = [[STKPXStroke alloc] initWithStrokeWidth:width];
+                PXStroke *stroke = [[PXStroke alloc] initWithStrokeWidth:width];
                 stroke.color = borderLeft_.paint;
                 stroke.dashArray = [self dashArrayFromLength:borderBottom - borderTop width:2.0f * width];
                 borderPathLeft_.stroke = stroke;
                 break;
             }
 
-            case STKPXBorderStyleDotted:
+            case PXBorderStyleDotted:
             {
                 CGFloat x = (borderLeft + contentLeft) * 0.5f;
                 CGFloat width = borderLeft_.width;
@@ -609,23 +609,23 @@
                 [borderPathLeft_ moveToX:x y:borderTop];
                 [borderPathLeft_ lineToX:x y:borderBottom];
 
-                STKPXStroke *stroke = [[STKPXStroke alloc] initWithStrokeWidth:width];
+                PXStroke *stroke = [[PXStroke alloc] initWithStrokeWidth:width];
                 stroke.color = borderLeft_.paint;
                 stroke.dashArray = [self dashArrayFromLength:borderBottom - borderTop width:width];
                 borderPathLeft_.stroke = stroke;
                 break;
             }
 
-            case STKPXBorderStyleDouble:
-            case STKPXBorderStyleGroove:
-            case STKPXBorderStyleInset:
-            case STKPXBorderStyleOutset:
-            case STKPXBorderStyleRidge:
+            case PXBorderStyleDouble:
+            case PXBorderStyleGroove:
+            case PXBorderStyleInset:
+            case PXBorderStyleOutset:
+            case PXBorderStyleRidge:
                 break;
 
             // NOTE: We should never hit these cases
-            case STKPXBorderStyleNone:
-            case STKPXBorderStyleHidden:
+            case PXBorderStyleNone:
+            case PXBorderStyleHidden:
             default:
                 break;
         }

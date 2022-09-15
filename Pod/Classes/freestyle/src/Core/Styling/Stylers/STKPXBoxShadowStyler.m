@@ -15,64 +15,57 @@
  */
 
 //
-//  STKPXBoxShadowStyler.m
+//  PXOpacityStyler.m
 //  Pixate
 //
-//  Created by Kevin Lindsey on 12/18/12.
+//  Created by Paul Colton on 10/9/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXBoxShadowStyler.h"
+#import "PXOpacityStyler.h"
 
-@implementation STKPXBoxShadowStyler
+@implementation PXOpacityStyler
 
 #pragma mark - Static Methods
 
-+ (STKPXBoxShadowStyler *)sharedInstance
++ (PXOpacityStyler *)sharedInstance
 {
-	static __strong STKPXBoxShadowStyler *sharedInstance = nil;
-	static dispatch_once_t onceToken;
+    static __strong PXOpacityStyler *sharedInstance = nil;
+    static dispatch_once_t onceToken;
 
-	dispatch_once(&onceToken, ^{
-		sharedInstance = [[STKPXBoxShadowStyler alloc] init];
-	});
+    dispatch_once(&onceToken, ^
+    {
+        sharedInstance = [[PXOpacityStyler alloc]
+            initWithCompletionBlock:^(id <PXStyleable> view, PXOpacityStyler *styler, PXStylerContext *context)
+            {
+                if ([view isKindOfClass:NSClassFromString(@"UIView")])
+                {
+                    ((UIView *)view).alpha = context.opacity;
+                }
+            }];
+    });
 
-	return sharedInstance;
+    return sharedInstance;
 }
 
-#pragma mark - Overrides
+#pragma mark - Methods
 
 - (NSDictionary *)declarationHandlers
 {
     static __strong NSDictionary *handlers = nil;
     static dispatch_once_t onceToken;
 
-    dispatch_once(&onceToken, ^{
+    dispatch_once(&onceToken, ^
+    {
         handlers = @{
-            @"box-shadow" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                context.shadow = declaration.shadowValue;
+            @"opacity" : ^(PXDeclaration *declaration, PXStylerContext *context)
+            {
+                context.opacity = declaration.floatValue;
             }
         };
     });
 
     return handlers;
-}
-
-- (void)applyStylesWithContext:(STKPXStylerContext *)context
-{
-    if (self.completionBlock)
-    {
-        [super applyStylesWithContext:context];
-    }
-    else
-    {
-        id<STKPXStyleable> styleable = context.styleable;
-
-        if ([styleable isKindOfClass:[UIView class]])
-        {
-            [context applyOuterShadowToLayer:((UIView *)styleable).layer];
-        }
-    }
 }
 
 @end

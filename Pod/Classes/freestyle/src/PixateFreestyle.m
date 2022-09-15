@@ -51,6 +51,16 @@ static void getMonthDayYear(NSDate *date, NSInteger *month_p, NSInteger *day_p, 
     *year_p  = components.year;
 }
 
+static void getMonthDayYear(NSDate *date, NSInteger *month_p, NSInteger *day_p, NSInteger *year_p)
+{
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
+
+    *month_p = components.month;
+    *day_p   = components.day;
+    *year_p  = components.year;
+}
+
 @implementation PixateFreestyle
 {
     BOOL _refreshStylesWithOrientationChange;
@@ -96,6 +106,41 @@ STK_DEFINE_CLASS_LOG_LEVEL;
             {
                 [PixateFreestyle sharedInstance].titaniumMode =
                     [infoDictionary[@"STKPXTitanium"] boolValue];
+            }
+
+            getMonthDayYear([PixateFreestyle sharedInstance].buildDate, &month, &day, &year);
+
+            // Print build info
+            DDLogVerbose(@"Pixate Freestyle v%@ (API %d) %@- Build %ld/%02ld/%02ld",
+                [PixateFreestyle sharedInstance].version,
+                [PixateFreestyle sharedInstance].apiVersion,
+                [PixateFreestyle sharedInstance].titaniumMode ? @"Titanium " : @"",
+                (long) year, (long) month, (long) day);
+
+
+        });
+}
+
++ (void)initialize
+{
+    [super initialize];
+
+    //
+    // Print version info on first run (and check for Titanium mode)
+    //
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken,
+        ^{
+            NSInteger month, day, year;
+
+            // Get main info dictionary that keeps plist properties
+            NSDictionary *infoDictionary = [NSBundle mainBundle].infoDictionary;
+
+            // Check for Titanium mode
+            if(infoDictionary && infoDictionary[@"PXTitanium"])
+            {
+                [PixateFreestyle sharedInstance].titaniumMode =
+                    [infoDictionary[@"PXTitanium"] boolValue];
             }
 
             getMonthDayYear([PixateFreestyle sharedInstance].buildDate, &month, &day, &year);

@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXImagePaint.m
+//  PXImagePaint.m
 //  Pixate
 //
 //  Modified by Anton Matosov
@@ -23,10 +23,10 @@
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXImagePaint.h"
-#import "STKPXShapeView.h"
+#import "PXImagePaint.h"
+#import "STKShapeView.h"
 
-@implementation STKPXImagePaint
+@implementation PXImagePaint
 
 @synthesize blendMode = _blendMode;
 
@@ -71,7 +71,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
         // create image
         if ([self hasSVGImageURL])
         {
-            STKPXShapeView *shapeView = [[STKPXShapeView alloc] initWithFrame:bounds];
+            STKShapeView *shapeView = [[STKShapeView alloc] initWithFrame:bounds];
 
             [shapeView loadSceneFromURL:_imageURL];
             image = shapeView.renderToImage;
@@ -123,7 +123,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     return image;
 }
 
-#pragma mark - STKPXPaint Implementation
+#pragma mark - PXPaint Implementation
 
 - (void)applyFillToPath:(CGPathRef)path withContext:(CGContextRef)context
 {
@@ -145,13 +145,13 @@ STK_DEFINE_CLASS_LOG_LEVEL;
     }
 }
 
-- (id<STKPXPaint>)lightenByPercent:(CGFloat)percent
+- (id<PXPaint>)lightenByPercent:(CGFloat)percent
 {
     // TODO:
     return self;
 }
 
-- (id<STKPXPaint>)darkenByPercent:(CGFloat)percent
+- (id<PXPaint>)darkenByPercent:(CGFloat)percent
 {
     // TODO:
     return self;

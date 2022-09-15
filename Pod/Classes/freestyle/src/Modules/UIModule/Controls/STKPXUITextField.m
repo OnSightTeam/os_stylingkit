@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXUITextField.m
+//  PXUITextField.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,33 +23,33 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXUITextField.h"
+#import "PXUITextField.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "UIView+STKPXStyling.h"
-#import "UIView+STKPXStyling-Private.h"
-#import "STKPXStylingMacros.h"
-#import "STKPXStyleUtils.h"
-#import "STKPXTransitionRuleSetInfo.h"
-#import "STKPXNotificationManager.h"
+#import "UIView+PXStyling.h"
+#import "UIView+PXStyling-Private.h"
+#import "PXStylingMacros.h"
+#import "PXStyleUtils.h"
+#import "PXTransitionRuleSetInfo.h"
+#import "PXNotificationManager.h"
 
-#import "STKPXOpacityStyler.h"
-#import "STKPXFontStyler.h"
-#import "STKPXColorStyler.h"
-#import "STKPXLayoutStyler.h"
-#import "STKPXTransformStyler.h"
-#import "STKPXShapeStyler.h"
-#import "STKPXFillStyler.h"
-#import "STKPXBorderStyler.h"
-#import "STKPXBoxShadowStyler.h"
-#import "STKPXTextContentStyler.h"
-#import "STKPXGenericStyler.h"
-#import "STKPXAnimationStyler.h"
-#import "STKPXStyleInfo.h"
-#import "STKPXTextShadowStyler.h"
-#import "STKPXPaintStyler.h"
-#import "STKPXVirtualStyleableControl.h"
-#import "STKPXAttributedTextStyler.h"
+#import "PXOpacityStyler.h"
+#import "PXFontStyler.h"
+#import "PXColorStyler.h"
+#import "PXLayoutStyler.h"
+#import "PXTransformStyler.h"
+#import "PXShapeStyler.h"
+#import "PXFillStyler.h"
+#import "PXBorderStyler.h"
+#import "PXBoxShadowStyler.h"
+#import "PXTextContentStyler.h"
+#import "PXGenericStyler.h"
+#import "PXAnimationStyler.h"
+#import "PXStyleInfo.h"
+#import "PXTextShadowStyler.h"
+#import "PXPaintStyler.h"
+#import "PXVirtualStyleableControl.h"
+#import "PXAttributedTextStyler.h"
 
 // if on ARM64, then we can't/don't need to use 'objc_msgSendSuper_stret'
 #if defined(__arm64__)
@@ -59,13 +59,13 @@
 static const char STYLE_CHILDREN;
 static const char STATE_KEY;
 
-// Private STKPX_PositionCursorDelegate class
-@interface STKPX_PositionCursorDelegate : NSObject <CAAnimationDelegate>
+// Private PX_PositionCursorDelegate class
+@interface PX_PositionCursorDelegate : NSObject <CAAnimationDelegate>
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype) initWithTextField:(UITextField *)textField NS_DESIGNATED_INITIALIZER;
 @end
 
-@implementation STKPX_PositionCursorDelegate
+@implementation PX_PositionCursorDelegate
 {
     UITextField *textField_;
 }
@@ -89,17 +89,17 @@ static const char STATE_KEY;
     textField_.selectedTextRange = currentPos;
 }
 @end
-// End STKPX_PositionCursorDelegate Private class
+// End PX_PositionCursorDelegate Private class
 
 static char PADDING;
 
-@implementation STKPXUITextField
+@implementation PXUITextField
 
 static NSDictionary *PSEUDOCLASS_MAP;
 
 + (void)initialize
 {
-    if (self != STKPXUITextField.class)
+    if (self != PXUITextField.class)
         return;
     
     [UIView registerDynamicSubclass:self withElementName:@"text-field"];
@@ -129,20 +129,20 @@ static NSDictionary *PSEUDOCLASS_MAP;
 
 - (void)registerNotifications
 {
-    __weak STKPXUITextField *weakSelf = self;
+    __weak PXUITextField *weakSelf = self;
 
-    [STKPXNotificationManager.sharedInstance registerObserver:self forNotification:UITextFieldTextDidBeginEditingNotification withBlock:^{
+    [PXNotificationManager.sharedInstance registerObserver:self forNotification:UITextFieldTextDidBeginEditingNotification withBlock:^{
         [weakSelf px_TransitionTextField:weakSelf forState:@"highlighted"];
     }];
-    [STKPXNotificationManager.sharedInstance registerObserver:self forNotification:UITextFieldTextDidEndEditingNotification withBlock:^{
+    [PXNotificationManager.sharedInstance registerObserver:self forNotification:UITextFieldTextDidEndEditingNotification withBlock:^{
         [weakSelf px_TransitionTextField:weakSelf forState:@"normal"];
     }];
 }
 
 - (void)dealloc
 {
-    [STKPXNotificationManager.sharedInstance unregisterObserver:self forNotification:UITextFieldTextDidBeginEditingNotification];
-    [STKPXNotificationManager.sharedInstance unregisterObserver:self forNotification:UITextFieldTextDidEndEditingNotification];
+    [PXNotificationManager.sharedInstance unregisterObserver:self forNotification:UITextFieldTextDidBeginEditingNotification];
+    [PXNotificationManager.sharedInstance unregisterObserver:self forNotification:UITextFieldTextDidEndEditingNotification];
 }
 
 - (void)setPxState:(NSString *)stateName
@@ -163,10 +163,10 @@ static NSDictionary *PSEUDOCLASS_MAP;
 {
     if (!objc_getAssociatedObject(self, &STYLE_CHILDREN))
     {
-        __weak STKPXUITextField *weakSelf = self;
+        __weak PXUITextField *weakSelf = self;
         
         // placeholder
-        STKPXVirtualStyleableControl *placeholder = [[STKPXVirtualStyleableControl alloc] initWithParent:self elementName:@"placeholder" viewStyleUpdaterBlock:^(STKPXRuleSet *ruleSet, STKPXStylerContext *context) {
+        PXVirtualStyleableControl *placeholder = [[PXVirtualStyleableControl alloc] initWithParent:self elementName:@"placeholder" viewStyleUpdaterBlock:^(PXRuleSet *ruleSet, PXStylerContext *context) {
 
             // Style placeholder
             NSMutableDictionary *currentPlaceholderTextAttributes = [context propertyValueForName:@"text-attributes"];
@@ -192,8 +192,8 @@ static NSDictionary *PSEUDOCLASS_MAP;
         }];
         
         placeholder.viewStylers = @[
-             [[STKPXTextShadowStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable> view, STKPXTextShadowStyler *styler, STKPXStylerContext *context) {
-                 STKPXShadow *shadow = context.textShadow;
+             [[PXTextShadowStyler alloc] initWithCompletionBlock:^(PXUITextField *view, PXTextShadowStyler *styler, PXStylerContext *context) {
+                 PXShadow *shadow = context.textShadow;
                  
                  // Get attributes from context, if any
                  NSMutableDictionary *currentTextAttributes = [context propertyValueForName:@"text-attributes"];
@@ -212,7 +212,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
                  currentTextAttributes[NSShadowAttributeName] = nsShadow;
              }],
              
-             [[STKPXFontStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXFontStyler *styler, STKPXStylerContext *context) {
+             [[PXFontStyler alloc] initWithCompletionBlock:^(PXUITextField *view, PXFontStyler *styler, PXStylerContext *context) {
                  
                  // Get attributes from context, if any
                  NSMutableDictionary *currentTextAttributes = [context propertyValueForName:@"text-attributes"];
@@ -226,7 +226,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
                  
              }],
              
-             [[STKPXPaintStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXPaintStyler *styler, STKPXStylerContext *context) {
+             [[PXPaintStyler alloc] initWithCompletionBlock:^(PXUITextField *view, PXPaintStyler *styler, PXStylerContext *context) {
                  
                  // Get attributes from context, if any
                  NSMutableDictionary *currentTextAttributes = [context propertyValueForName:@"text-attributes"];
@@ -244,7 +244,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
                  }
              }],
              
-             [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
+             [[PXTextContentStyler alloc] initWithCompletionBlock:^(PXUITextField *view, PXTextContentStyler *styler, PXStylerContext *context) {
 
                  [context setPropertyValue:context.text forName:@"text-value"];
              }],
@@ -254,20 +254,20 @@ static NSDictionary *PSEUDOCLASS_MAP;
         //
         // attributed text child
         //
-        STKPXVirtualStyleableControl *attributedText =
-        [[STKPXVirtualStyleableControl alloc] initWithParent:self
+        PXVirtualStyleableControl *attributedText =
+        [[PXVirtualStyleableControl alloc] initWithParent:self
                                               elementName:@"attributed-text"
-                                    viewStyleUpdaterBlock:^(STKPXRuleSet *ruleSet, STKPXStylerContext *context) {
+                                    viewStyleUpdaterBlock:^(PXRuleSet *ruleSet, PXStylerContext *context) {
                                         // nothing for now
                                     }];
         
         attributedText.viewStylers =
         @[
-          [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>styleable, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
+          [[PXAttributedTextStyler alloc] initWithCompletionBlock:^(PXVirtualStyleableControl *styleable, PXAttributedTextStyler *styler, PXStylerContext *context) {
               
               NSMutableDictionary *dict = [context attributedTextAttributes:weakSelf
                                                             withDefaultText:weakSelf.text
-                                                                   andColor:weakSelf.textColor];
+                                                                   andColor:weakSelf.textColor];              
               
               NSMutableAttributedString *attrString = nil;
               if(context.transformedText)
@@ -291,93 +291,93 @@ static NSDictionary *PSEUDOCLASS_MAP;
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-    static dispatch_once_t onceToken;
+	static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
         stylers = @[
-            STKPXTransformStyler.sharedInstance,
-            STKPXLayoutStyler.sharedInstance,
-            STKPXOpacityStyler.sharedInstance,
+            PXTransformStyler.sharedInstance,
+            PXLayoutStyler.sharedInstance,
+            PXOpacityStyler.sharedInstance,
 
-            STKPXShapeStyler.sharedInstance,
-            STKPXFillStyler.sharedInstance,
-            STKPXBorderStyler.sharedInstance,
-            STKPXBoxShadowStyler.sharedInstance,
+            PXShapeStyler.sharedInstance,
+            PXFillStyler.sharedInstance,
+            PXBorderStyler.sharedInstance,
+            PXBoxShadowStyler.sharedInstance,
 
-            [[STKPXFontStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXFontStyler *styler, STKPXStylerContext *context) {
+            [[PXFontStyler alloc] initWithCompletionBlock:^(PXUITextField *view, PXFontStyler *styler, PXStylerContext *context) {
                 UIFont *font = context.font;
 
                 if (font)
                 {
-                    [(STKPXUITextField *)view px_setFont: font];
+                    [view px_setFont: font];
                 }
 
             }],
 
-            [[STKPXColorStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXColorStyler *styler, STKPXStylerContext *context) {
+            [[PXColorStyler alloc] initWithCompletionBlock:^(PXUITextField *view, PXColorStyler *styler, PXStylerContext *context) {
                 UIColor *color = (UIColor *) [context propertyValueForName:@"color"];
                 
                 if(color)
                 {
-                    [(STKPXUITextField *)view px_setTextColor: color];
+                    [view px_setTextColor: color];
                 }
             }],
 
-            [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
-                [(STKPXUITextField *)view px_setText: context.text];
+            [[PXTextContentStyler alloc] initWithCompletionBlock:^(PXUITextField *view, PXTextContentStyler *styler, PXStylerContext *context) {
+                [view px_setText: context.text];
             }],
 
-            [[STKPXGenericStyler alloc] initWithHandlers: @{
-             @"text-align" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                STKPXUITextField *view = (STKPXUITextField *)context.styleable;
+            [[PXGenericStyler alloc] initWithHandlers: @{
+             @"text-align" : ^(PXDeclaration *declaration, PXStylerContext *context) {
+                PXUITextField *view = (PXUITextField *)context.styleable;
 
                 [view px_setTextAlignment: declaration.textAlignmentValue];
              },
-             @"-ios-border-style" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                STKPXUITextField *view = (STKPXUITextField *)context.styleable;
+             @"-ios-border-style" : ^(PXDeclaration *declaration, PXStylerContext *context) {
+                PXUITextField *view = (PXUITextField *)context.styleable;
 
                 [view px_setBorderStyle:declaration.textBorderStyleValue];
             },
-             @"padding" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                STKPXUITextField *view = (STKPXUITextField *)context.styleable;
+             @"padding" : ^(PXDeclaration *declaration, PXStylerContext *context) {
+                PXUITextField *view = (PXUITextField *)context.styleable;
 
                 view.padding = declaration.offsetsValue;
             },
-             @"padding-top" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                STKPXUITextField *view = (STKPXUITextField *)context.styleable;
-                STKPXOffsets *padding = view.padding;
+             @"padding-top" : ^(PXDeclaration *declaration, PXStylerContext *context) {
+                PXUITextField *view = (PXUITextField *)context.styleable;
+                PXOffsets *padding = view.padding;
                 CGFloat value = declaration.floatValue;
 
-                view.padding = [[STKPXOffsets alloc] initWithTop:value right:padding.right bottom:padding.bottom left:padding.left];
+                view.padding = [[PXOffsets alloc] initWithTop:value right:padding.right bottom:padding.bottom left:padding.left];
             },
-             @"padding-right" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                STKPXUITextField *view = (STKPXUITextField *)context.styleable;
-                STKPXOffsets *padding = view.padding;
+             @"padding-right" : ^(PXDeclaration *declaration, PXStylerContext *context) {
+                PXUITextField *view = (PXUITextField *)context.styleable;
+                PXOffsets *padding = view.padding;
                 CGFloat value = declaration.floatValue;
 
-                view.padding = [[STKPXOffsets alloc] initWithTop:padding.top right:value bottom:padding.bottom left:padding.left];
+                view.padding = [[PXOffsets alloc] initWithTop:padding.top right:value bottom:padding.bottom left:padding.left];
             },
-             @"padding-bottom" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                STKPXUITextField *view = (STKPXUITextField *)context.styleable;
-                STKPXOffsets *padding = view.padding;
+             @"padding-bottom" : ^(PXDeclaration *declaration, PXStylerContext *context) {
+                PXUITextField *view = (PXUITextField *)context.styleable;
+                PXOffsets *padding = view.padding;
                 CGFloat value = declaration.floatValue;
 
-                view.padding = [[STKPXOffsets alloc] initWithTop:padding.top right:padding.right bottom:value left:padding.left];
+                view.padding = [[PXOffsets alloc] initWithTop:padding.top right:padding.right bottom:value left:padding.left];
             },
-             @"padding-left" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                STKPXUITextField *view = (STKPXUITextField *)context.styleable;
-                STKPXOffsets *padding = view.padding;
+             @"padding-left" : ^(PXDeclaration *declaration, PXStylerContext *context) {
+                PXUITextField *view = (PXUITextField *)context.styleable;
+                PXOffsets *padding = view.padding;
                 CGFloat value = declaration.floatValue;
 
-                view.padding = [[STKPXOffsets alloc] initWithTop:padding.top right:padding.right bottom:padding.bottom left:value];
+                view.padding = [[PXOffsets alloc] initWithTop:padding.top right:padding.right bottom:padding.bottom left:value];
             },
             }],
 
-            STKPXAnimationStyler.sharedInstance,
+            PXAnimationStyler.sharedInstance,
         ];
     });
 
-    return stylers;
+	return stylers;
 }
 
 - (NSDictionary *)viewStylersByProperty
@@ -386,13 +386,13 @@ static NSDictionary *PSEUDOCLASS_MAP;
     static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
-        map = [STKPXStyleUtils viewStylerPropertyMapForStyleable:self];
+        map = [PXStyleUtils viewStylerPropertyMapForStyleable:self];
     });
 
     return map;
 }
 
-- (void)updateStyleWithRuleSet:(STKPXRuleSet *)ruleSet context:(STKPXStylerContext *)context
+- (void)updateStyleWithRuleSet:(PXRuleSet *)ruleSet context:(PXStylerContext *)context
 {
     if (context.usesColorOnly)
     {
@@ -408,28 +408,28 @@ static NSDictionary *PSEUDOCLASS_MAP;
 // Wrappers
 //
 
-STKPX_PXWRAP_1(setText, text);
-STKPX_PXWRAP_1(setPlaceholder, text);
-STKPX_PXWRAP_1(setAttributedText, text);
-STKPX_PXWRAP_1(setAttributedPlaceholder, text);
+PX_PXWRAP_1(setText, text);
+PX_PXWRAP_1(setPlaceholder, text);
+PX_PXWRAP_1(setAttributedText, text);
+PX_PXWRAP_1(setAttributedPlaceholder, text);
 
-STKPX_WRAP_1(setTextColor, color);
-STKPX_WRAP_1(setFont, font);
-STKPX_WRAP_1(setBackgroundColor, color);
+PX_WRAP_1(setTextColor, color);
+PX_WRAP_1(setFont, font);
+PX_WRAP_1(setBackgroundColor, color);
 
-STKPX_WRAP_1v(setTextAlignment, NSTextAlignment, alignment);
-STKPX_WRAP_1v(setBorderStyle, UITextBorderStyle, style);
+PX_WRAP_1v(setTextAlignment, NSTextAlignment, alignment);
+PX_WRAP_1v(setBorderStyle, UITextBorderStyle, style);
 
 #pragma mark - Getters
 
-- (STKPXOffsets *)padding
+- (PXOffsets *)padding
 {
     return objc_getAssociatedObject(self, &PADDING);
 }
 
 #pragma mark - Setters
 
-- (void)setPadding:(STKPXOffsets *)padding
+- (void)setPadding:(PXOffsets *)padding
 {
     objc_setAssociatedObject(self, &PADDING, padding, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
@@ -438,46 +438,46 @@ STKPX_WRAP_1v(setBorderStyle, UITextBorderStyle, style);
 // Overrides
 //
 
-STKPX_LAYOUT_SUBVIEWS_OVERRIDE
+PX_LAYOUT_SUBVIEWS_OVERRIDE
 
 -(void)setText:(NSString *)text
 {
     callSuper1(SUPER_PREFIX, @selector(setText:), text);
-    [STKPXStyleUtils invalidateStyleableAndDescendants:self];
+    [PXStyleUtils invalidateStyleableAndDescendants:self];
     [self updateStylesNonRecursively];
 }
 
 -(void)setAttributedText:(NSAttributedString *)attributedText
 {
     callSuper1(SUPER_PREFIX, @selector(setAttributedText:), attributedText);
-    [STKPXStyleUtils invalidateStyleableAndDescendants:self];
+    [PXStyleUtils invalidateStyleableAndDescendants:self];
     [self updateStylesNonRecursively];
 }
 
 -(void)setPlaceholder:(NSString *)placeholder
 {
     callSuper1(SUPER_PREFIX, @selector(setPlaceholder:), placeholder);
-    [STKPXStyleUtils invalidateStyleableAndDescendants:self];
+    [PXStyleUtils invalidateStyleableAndDescendants:self];
     [self updateStylesNonRecursively];
 }
 
 -(void)setAttributedPlaceholder:(NSAttributedString *)attributedPlaceholder
 {
     callSuper1(SUPER_PREFIX, @selector(setAttributedPlaceholder:), attributedPlaceholder);
-    [STKPXStyleUtils invalidateStyleableAndDescendants:self];
+    [PXStyleUtils invalidateStyleableAndDescendants:self];
     [self updateStylesNonRecursively];
 }
 
 - (CGRect)textRectForBounds:(CGRect)bounds
 {
     Class _superClass = self.pxClass;
-    struct objc_super mysuper;
-    mysuper.receiver = self;
-    mysuper.super_class = _superClass;
+	struct objc_super mysuper;
+	mysuper.receiver = self;
+	mysuper.super_class = _superClass;
 
     CGRect result = ((CGRect(*)(struct objc_super*, SEL, CGRect))objc_msgSendSuper_stret)(&mysuper, @selector(textRectForBounds:), bounds);
 
-    STKPXOffsets *padding = self.padding;
+    PXOffsets *padding = self.padding;
     result.origin.x = result.origin.x + padding.left;
     result.origin.y = result.origin.y + padding.top;
     result.size.width = result.size.width - (padding.left + padding.right);
@@ -489,13 +489,13 @@ STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 - (CGRect)editingRectForBounds:(CGRect)bounds
 {
     Class _superClass = self.pxClass;
-    struct objc_super mysuper;
-    mysuper.receiver = self;
-    mysuper.super_class = _superClass;
+	struct objc_super mysuper;
+	mysuper.receiver = self;
+	mysuper.super_class = _superClass;
     
     CGRect result = ((CGRect(*)(struct objc_super*, SEL, CGRect))objc_msgSendSuper_stret)(&mysuper, @selector(editingRectForBounds:), bounds);
 
-    STKPXOffsets *padding = self.padding;
+    PXOffsets *padding = self.padding;
     result.origin.x = result.origin.x + padding.left;
     result.origin.y = result.origin.y + padding.top;
     result.size.width = result.size.width - (padding.left + padding.right);
@@ -510,20 +510,20 @@ STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 {
     [self setPxState:stateName];
 
-    STKPXTransitionRuleSetInfo *ruleSetInfo = [[STKPXTransitionRuleSetInfo alloc] initWithStyleable:textField
+    PXTransitionRuleSetInfo *ruleSetInfo = [[PXTransitionRuleSetInfo alloc] initWithStyleable:textField
                                                                              withStateName:stateName];
 
     if (ruleSetInfo.nonAnimatingRuleSets.count > 0)
     {
-        STKPXStyleInfo *styleInfo = [[STKPXStyleInfo alloc] initWithStyleKey:textField.styleKey];
-        [STKPXStyleInfo setStyleInfo:styleInfo withRuleSets:ruleSetInfo.nonAnimatingRuleSets styleable:textField stateName:stateName];
+        PXStyleInfo *styleInfo = [[PXStyleInfo alloc] initWithStyleKey:textField.styleKey];
+        [PXStyleInfo setStyleInfo:styleInfo withRuleSets:ruleSetInfo.nonAnimatingRuleSets styleable:textField stateName:stateName];
         styleInfo.forceInvalidation = YES;
         [styleInfo applyToStyleable:textField];
     }
 
     if (ruleSetInfo.animatingRuleSets.count > 0)
     {
-        STKPXAnimationInfo *info = (ruleSetInfo.transitions.count > 0) ? (ruleSetInfo.transitions)[0] : nil;
+        PXAnimationInfo *info = (ruleSetInfo.transitions.count > 0) ? (ruleSetInfo.transitions)[0] : nil;
 
         if (info != nil)
         {
@@ -534,13 +534,13 @@ STKPX_LAYOUT_SUBVIEWS_OVERRIDE
             trans.type = kCATransitionFade;
             trans.subtype = kCATransitionFromTop;
             trans.removedOnCompletion = YES;
-            trans.delegate = [[STKPX_PositionCursorDelegate alloc] initWithTextField:textField];
+            trans.delegate = [[PX_PositionCursorDelegate alloc] initWithTextField:textField];
 
             [textField.layer removeAllAnimations];
             [textField.layer addAnimation:trans forKey:@"transition"];
 
-            STKPXStyleInfo *styleInfo = [[STKPXStyleInfo alloc] initWithStyleKey:textField.styleKey];
-            [STKPXStyleInfo setStyleInfo:styleInfo withRuleSets:ruleSetInfo.ruleSetsForState styleable:textField stateName:stateName];
+            PXStyleInfo *styleInfo = [[PXStyleInfo alloc] initWithStyleKey:textField.styleKey];
+            [PXStyleInfo setStyleInfo:styleInfo withRuleSets:ruleSetInfo.ruleSetsForState styleable:textField stateName:stateName];
             [styleInfo applyToStyleable:textField];
         }
     }

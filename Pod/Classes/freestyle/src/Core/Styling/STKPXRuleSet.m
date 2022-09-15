@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXRuleSet.m
+//  PXRuleSet.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,13 +23,13 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXRuleSet.h"
-#import "STKPXSourceWriter.h"
-#import "STKPXShapeView.h"
-#import "STKPXFontRegistry.h"
-#import "STKPXCombinator.h"
+#import "PXRuleSet.h"
+#import "PXSourceWriter.h"
+#import "STKShapeView.h"
+#import "PXFontRegistry.h"
+#import "PXCombinator.h"
 
-@implementation STKPXRuleSet
+@implementation PXRuleSet
 {
     NSMutableArray *selectors;
 }
@@ -38,33 +38,33 @@
 
 + (instancetype)ruleSetWithMergedRuleSets:(NSArray *)ruleSets
 {
-    STKPXRuleSet *result = [[STKPXRuleSet alloc] init];
+    PXRuleSet *result = [[PXRuleSet alloc] init];
 
     if (ruleSets.count > 0)
     {
         // order rules by specificity
         NSArray *sortedRuleSets =
-            [ruleSets sortedArrayUsingComparator:^NSComparisonResult(STKPXRuleSet *a, STKPXRuleSet *b)
+            [ruleSets sortedArrayUsingComparator:^NSComparisonResult(PXRuleSet *a, PXRuleSet *b)
              {
                  return [a.specificity compareSpecificity:b.specificity];
              }];
 
-        for (STKPXRuleSet *ruleSet in [sortedRuleSets reverseObjectEnumerator])
+        for (PXRuleSet *ruleSet in [sortedRuleSets reverseObjectEnumerator])
         {
             // add selectors
-            for (id<STKPXSelector> selector in ruleSet.selectors)
+            for (id<PXSelector> selector in ruleSet.selectors)
             {
                 [result addSelector:selector];
             }
 
             // add declarations
-            for (STKPXDeclaration *declaration in ruleSet.declarations)
+            for (PXDeclaration *declaration in ruleSet.declarations)
             {
                 if ([result hasDeclarationForName:declaration.name])
                 {
                     if (declaration.important)
                     {
-                        STKPXDeclaration *addedDeclaration = [result declarationForName:declaration.name];
+                        PXDeclaration *addedDeclaration = [result declarationForName:declaration.name];
 
                         if (addedDeclaration.important == NO)
                         {
@@ -91,7 +91,7 @@
 {
     if (self = [super init])
     {
-        _specificity = [[STKPXSpecificity alloc] init];
+        _specificity = [[PXSpecificity alloc] init];
     }
 
     return self;
@@ -104,9 +104,9 @@
     return selectors;
 }
 
-- (STKPXTypeSelector *)targetTypeSelector
+- (PXTypeSelector *)targetTypeSelector
 {
-    STKPXTypeSelector *result = nil;
+    PXTypeSelector *result = nil;
 
     if (selectors.count > 0)
     {
@@ -114,15 +114,15 @@
 
         if (candidate)
         {
-            if ([candidate conformsToProtocol:@protocol(STKPXCombinator)])
+            if ([candidate conformsToProtocol:@protocol(PXCombinator)])
             {
-                id<STKPXCombinator> combinator = candidate;
+                id<PXCombinator> combinator = candidate;
 
-                // NOTE: STKPXStylesheetParser grows expressions down and to the left. This guarantees that the top-most nodes
+                // NOTE: PXStylesheetParser grows expressions down and to the left. This guarantees that the top-most nodes
                 // RHS will be a type selector, and will be the last in the expression
                 result = combinator.rhs;
             }
-            else if ([candidate isKindOfClass:[STKPXTypeSelector class]])
+            else if ([candidate isKindOfClass:[PXTypeSelector class]])
             {
                 result = candidate;
             }
@@ -134,7 +134,7 @@
 
 #pragma mark - Methods
 
-- (void)addSelector:(id<STKPXSelector>)selector
+- (void)addSelector:(id<PXSelector>)selector
 {
     if (selector)
     {
@@ -149,7 +149,7 @@
     }
 }
 
-- (BOOL)matches:(id<STKPXStyleable>)element
+- (BOOL)matches:(id<PXStyleable>)element
 {
     BOOL result = NO;
 
@@ -157,7 +157,7 @@
     {
         result = YES;
 
-        for (STKPXTypeSelector *selector in selectors)
+        for (PXTypeSelector *selector in selectors)
         {
             if (![selector matches:element])
             {
@@ -179,7 +179,7 @@
 
 - (NSString *)description
 {
-    STKPXSourceWriter *writer = [[STKPXSourceWriter alloc] init];
+    PXSourceWriter *writer = [[PXSourceWriter alloc] init];
 
     if (selectors)
     {
@@ -196,7 +196,7 @@
     [writer print:@"// specificity = "];
     [writer printWithNewLine:_specificity.description];
 
-    for (STKPXDeclaration *declaration in self.declarations)
+    for (PXDeclaration *declaration in self.declarations)
     {
         [writer printIndent];
         [writer printWithNewLine:declaration.description];

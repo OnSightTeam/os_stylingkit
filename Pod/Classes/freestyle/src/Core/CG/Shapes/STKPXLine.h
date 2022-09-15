@@ -15,19 +15,19 @@
  */
 
 //
-//  STKPXLine.h
+//  PXLine.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 6/6/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXShape.h"
+#import "STKShape.h"
 
 /**
- *  A STKPXShape sub-class used to render lines
+ *  A PXShape sub-class used to render lines
  */
-@interface STKPXLine : STKPXShape
+@interface PXLine : STKShape
 
 /**
  *  A point indicating the location of the start of this line.

@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXVirtualControlBase.m
+//  PXVirtualControlBase.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,17 +23,17 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXVirtualStyleableControl.h"
-#import "STKPXStyleUtils.h"
+#import "PXVirtualStyleableControl.h"
+#import "PXStyleUtils.h"
 
-@implementation STKPXVirtualStyleableControl
+@implementation PXVirtualStyleableControl
 {
-    STKPXViewStyleUpdaterBlock _block;
+    PXViewStyleUpdaterBlock _block;
     NSString *_styleClass;
     NSSet *_styleClasses;
 }
 
-// synthesize properties coming from STKPXStyleable protocol
+// synthesize properties coming from PXStyleable protocol
 
 @synthesize styleId;
 @synthesize styleCSS;
@@ -51,12 +51,12 @@
     return [self initWithParent:nil elementName:@"" viewStyleUpdaterBlock:nil];
 }
 
-- (instancetype)initWithParent:(id<STKPXStyleable>)parent elementName:(NSString *)elementName
+- (instancetype)initWithParent:(id<PXStyleable>)parent elementName:(NSString *)elementName
 {
     return [self initWithParent:parent elementName:elementName viewStyleUpdaterBlock:nil];
 }
 
-- (instancetype)initWithParent:(id<STKPXStyleable>)parent elementName:(NSString *)elementName viewStyleUpdaterBlock:(STKPXViewStyleUpdaterBlock)block
+- (instancetype)initWithParent:(id<PXStyleable>)parent elementName:(NSString *)elementName viewStyleUpdaterBlock:(PXViewStyleUpdaterBlock)block
 {
     if (self = [super init])
     {
@@ -65,7 +65,7 @@
         _block = block;
         _bounds = CGRectZero;
         _frame = CGRectZero;
-        _styleMode = STKPXStylingNormal;
+        _styleMode = PXStylingNormal;
     }
 
     return self;
@@ -82,7 +82,7 @@
 {
     if(CGRectEqualToRect(_bounds, CGRectZero))
     {
-        return ((id<STKPXStyleable>)_parent).bounds;
+        return ((id<PXStyleable>)_parent).bounds;
     }
     else
     {
@@ -94,7 +94,7 @@
 {
     if(CGRectEqualToRect(_frame, CGRectZero))
     {
-        return ((id<STKPXStyleable>)_parent).frame;
+        return ((id<PXStyleable>)_parent).frame;
     }
     else
     {
@@ -104,14 +104,14 @@
 
 - (NSString *)styleKey
 {
-    return [STKPXStyleUtils styleKeyFromStyleable:self];
+    return [PXStyleUtils styleKeyFromStyleable:self];
 }
 
 - (NSDictionary *)viewStylersByProperty
 {
     // Cannot cache this since virtual-styleable-controls wraps different types. We would get only one
     // cache but it would apply to all types, which is incorrect
-    return [STKPXStyleUtils viewStylerPropertyMapForStyleable:self];
+    return [PXStyleUtils viewStylerPropertyMapForStyleable:self];
 }
 
 #pragma mark - Properties
@@ -134,7 +134,7 @@
 
 #pragma mark - Overrides
 
-- (void)updateStyleWithRuleSet:(STKPXRuleSet *)ruleSet context:(STKPXStylerContext *)context
+- (void)updateStyleWithRuleSet:(PXRuleSet *)ruleSet context:(PXStylerContext *)context
 {
     if (_block)
     {

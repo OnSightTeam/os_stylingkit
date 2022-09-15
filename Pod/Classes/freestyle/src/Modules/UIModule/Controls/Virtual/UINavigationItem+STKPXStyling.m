@@ -15,7 +15,7 @@
  */
 
 //
-//  UINavigationItem+STKPXStyling.m
+//  UINavigationItem+PXStyling.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,26 +23,26 @@
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
 
-#import "UINavigationItem+STKPXStyling.h"
+#import "UINavigationItem+PXStyling.h"
 #import <objc/runtime.h>
-#import "STKPXStylingMacros.h"
-#import "STKPXStyleUtils.h"
-#import "STKPXUtils.h"
-#import "STKPXVirtualStyleableControl.h"
-#import "STKPXGenericStyler.h"
-#import "STKPXTextContentStyler.h"
-#import "STKPXTransformStyler.h"
-#import "STKPXOpacityStyler.h"
-#import "STKPXFontStyler.h"
-#import "STKPXPaintStyler.h"
-#import "STKPXLayoutStyler.h"
-#import "STKPXShapeStyler.h"
-#import "STKPXFillStyler.h"
-#import "STKPXBorderStyler.h"
-#import "STKPXBoxShadowStyler.h"
-#import "STKPXBarShadowStyler.h"
-#import "STKPXAnimationStyler.h"
-#import "STKPXTextShadowStyler.h"
+#import "PXStylingMacros.h"
+#import "PXStyleUtils.h"
+#import "PXUtils.h"
+#import "PXVirtualStyleableControl.h"
+#import "PXGenericStyler.h"
+#import "PXTextContentStyler.h"
+#import "PXTransformStyler.h"
+#import "PXOpacityStyler.h"
+#import "PXFontStyler.h"
+#import "PXPaintStyler.h"
+#import "PXLayoutStyler.h"
+#import "PXShapeStyler.h"
+#import "PXFillStyler.h"
+#import "PXBorderStyler.h"
+#import "PXBoxShadowStyler.h"
+#import "PXBarShadowStyler.h"
+#import "PXAnimationStyler.h"
+#import "PXTextShadowStyler.h"
 
 static const char STYLE_CLASS_KEY;
 static const char STYLE_CLASSES_KEY;
@@ -57,9 +57,9 @@ static const char STYLE_ELEMENT_NAME;
 static const char STYLE_CHILDREN;
 
 
-void STKPXForceLoadUINavigationItemPXStyling() {}
+void PXForceLoadUINavigationItemPXStyling() {}
 
-@implementation UINavigationItem (STKPXStyling)
+@implementation UINavigationItem (PXStyling)
 
 - (NSString *)styleClass
 {
@@ -86,7 +86,7 @@ void STKPXForceLoadUINavigationItemPXStyling() {}
     return objc_getAssociatedObject(self, &STYLE_CSS_KEY);
 }
 
-- (STKPXStylingMode)styleMode
+- (PXStylingMode)styleMode
 {
     NSNumber *modeVal = objc_getAssociatedObject(self, &STYLE_MODE_KEY);
     
@@ -95,7 +95,7 @@ void STKPXForceLoadUINavigationItemPXStyling() {}
         return modeVal.intValue;
     }
     
-    return STKPXStylingNormal; //STKPXStylingUndefined;
+    return PXStylingNormal; //PXStylingUndefined;
 }
 
 - (void)setStyleElementName:(NSString *)elementName
@@ -115,7 +115,7 @@ void STKPXForceLoadUINavigationItemPXStyling() {}
 
 - (NSString *)styleKey
 {
-    return [STKPXStyleUtils styleKeyFromStyleable:self];
+    return [PXStyleUtils styleKeyFromStyleable:self];
 }
 
 - (CGRect)bounds
@@ -182,7 +182,7 @@ void STKPXForceLoadUINavigationItemPXStyling() {}
     [self updateStylesNonRecursively];
 }
 
-- (void)setStyleMode:(STKPXStylingMode) mode
+- (void)setStyleMode:(PXStylingMode) mode
 {
     //
     // Set the styling mode value on the object
@@ -239,7 +239,7 @@ void STKPXForceLoadUINavigationItemPXStyling() {}
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
-        map = [STKPXStyleUtils viewStylerPropertyMapForStyleable:self];
+        map = [PXStyleUtils viewStylerPropertyMapForStyleable:self];
     });
     
     return map;
@@ -329,49 +329,49 @@ static NSDictionary *PSEUDOCLASS_MAP;
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-    static dispatch_once_t onceToken;
+	static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
         stylers = @[
                     
-                    STKPXOpacityStyler.sharedInstance,
-                    STKPXFillStyler.sharedInstance,
-                    STKPXBorderStyler.sharedInstance,
-                    STKPXBoxShadowStyler.sharedInstance,
+                    PXOpacityStyler.sharedInstance,
+                    PXFillStyler.sharedInstance,
+                    PXBorderStyler.sharedInstance,
+                    PXBoxShadowStyler.sharedInstance,
 
-                    [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable> item, id<STKPXStyler> styler, STKPXStylerContext *context) {
-                        ((UINavigationItem*)item).title = context.text;
+                    [[PXTextContentStyler alloc] initWithCompletionBlock:^(UINavigationItem *item, id<PXStyler> styler, PXStylerContext *context) {
+                        item.title = context.text;
                     }],
 
-                    [[STKPXGenericStyler alloc] initWithHandlers: @{
-                         @"text-transform" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+                    [[PXGenericStyler alloc] initWithHandlers: @{
+                         @"text-transform" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                             [context setPropertyValue:declaration.stringValue forName:@"transform"];
                          },
-                         } completionBlock:^(id<STKPXStyleable> item, id<STKPXStyler> styler, STKPXStylerContext *context) {
+                         } completionBlock:^(UINavigationItem *item, id<PXStyler> styler, PXStylerContext *context) {
                              
                              NSString *transform = [context propertyValueForName:@"transform"];
-                             NSString *value = ((UINavigationItem*)item).title;
+                             NSString *value = item.title;
                              
                              if ([@"uppercase" isEqualToString:transform])
                              {
-                                 ((UINavigationItem*)item).title = value.uppercaseString;
+                                 item.title = value.uppercaseString;
                              }
                              else if ([@"lowercase" isEqualToString:transform])
                              {
-                                 ((UINavigationItem*)item).title = value.lowercaseString;
+                                 item.title = value.lowercaseString;
                              }
                              else if ([@"capitalize" isEqualToString:transform])
                              {
-                                 ((UINavigationItem*)item).title = value.capitalizedString;
+                                 item.title = value.capitalizedString;
                              }
                          }],
         ];
     });
     
-    return stylers;
+	return stylers;
 }
 
-- (void)updateStyleWithRuleSet:(STKPXRuleSet *)ruleSet context:(STKPXStylerContext *)context
+- (void)updateStyleWithRuleSet:(PXRuleSet *)ruleSet context:(PXStylerContext *)context
 {
     if (context.usesImage)
     {

@@ -15,8 +15,8 @@
  */
 
 //
-//  UIView+STKPXStyling.h
-//  STKPXButtonDemo
+//  UIView+PXStyling.h
+//  PXButtonDemo
 //
 //  Created by Kevin Lindsey on 8/22/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
@@ -46,20 +46,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "STKPXStyleable.h"
+#import "PXStyleable.h"
 
-@interface UIView (STKPXStyling) <STKPXStyleable>
+@interface UIView (PXStyling) <PXStyleable>
 
 @property (nonatomic, copy) IBInspectable NSString *styleId;
 @property (nonatomic, copy) IBInspectable NSString *styleClass;
 @property (nonatomic, copy) IBInspectable NSString *styleCSS;
-@property (nonatomic) STKPXStylingMode styleMode UI_APPEARANCE_SELECTOR;
+@property (nonatomic) PXStylingMode styleMode UI_APPEARANCE_SELECTOR;
 
 - (void)addStyleClass:(NSString *)styleClass;
 - (void)removeStyleClass:(NSString *)styleClass;
 - (void)styleClassed:(NSString *)styleClass enabled:(bool)enabled;
 
 - (void)stkUpdateStylesFromLayoutSubviewsRecursively:(BOOL)recursively;
-+ (void)updateStyles:(id<STKPXStyleable>)styleable recursively:(bool)recurse;
++ (void)updateStyles:(id<PXStyleable>)styleable recursively:(bool)recurse;
 
 @end

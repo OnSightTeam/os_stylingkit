@@ -15,44 +15,44 @@
  */
 
 //
-//  STKPXUIToolbar.m
+//  PXUIToolbar.m
 //  Pixate
 //
 //  Created by Paul Colton on 10/11/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXUIToolbar.h"
+#import "PXUIToolbar.h"
 
-#import "UIView+STKPXStyling.h"
-#import "UIView+STKPXStyling-Private.h"
-#import "STKPXStylingMacros.h"
-#import "STKPXVirtualStyleableControl.h"
-#import "UIBarButtonItem+STKPXStyling.h"
-#import "UIBarButtonItem+STKPXStyling-Private.h"
-#import "STKPXUtils.h"
+#import "UIView+PXStyling.h"
+#import "UIView+PXStyling-Private.h"
+#import "PXStylingMacros.h"
+#import "PXVirtualStyleableControl.h"
+#import "UIBarButtonItem+PXStyling.h"
+#import "UIBarButtonItem+PXStyling-Private.h"
+#import "PXUtils.h"
 
-#import "STKPXOpacityStyler.h"
-#import "STKPXLayoutStyler.h"
-#import "STKPXShapeStyler.h"
-#import "STKPXFillStyler.h"
-#import "STKPXBorderStyler.h"
-#import "STKPXBoxShadowStyler.h"
-#import "STKPXBarShadowStyler.h"
-#import "STKPXAnimationStyler.h"
-#import "STKPXGenericStyler.h"
-#import "STKPXImageUtils.h"
-#import "STKPXFontStyler.h"
-#import "STKPXPaintStyler.h"
+#import "PXOpacityStyler.h"
+#import "PXLayoutStyler.h"
+#import "PXShapeStyler.h"
+#import "PXFillStyler.h"
+#import "PXBorderStyler.h"
+#import "PXBoxShadowStyler.h"
+#import "PXBarShadowStyler.h"
+#import "PXAnimationStyler.h"
+#import "PXGenericStyler.h"
+#import "PXImageUtils.h"
+#import "PXFontStyler.h"
+#import "PXPaintStyler.h"
 
 static const char STYLE_CHILDREN;
 static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
 
-@implementation STKPXUIToolbar
+@implementation PXUIToolbar
 
 + (void)initialize
 {
-    if (self != STKPXUIToolbar.class)
+    if (self != PXUIToolbar.class)
         return;
     
     [UIView registerDynamicSubclass:self withElementName:@"toolbar"];
@@ -76,9 +76,9 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
         // button-appearance
         //
         
-        STKPXVirtualStyleableControl *barButtons =
-        [[STKPXVirtualStyleableControl alloc] initWithParent:self elementName:@"button-appearance"
-                                    viewStyleUpdaterBlock:^(STKPXRuleSet *ruleSet, STKPXStylerContext *context)
+        PXVirtualStyleableControl *barButtons =
+        [[PXVirtualStyleableControl alloc] initWithParent:self elementName:@"button-appearance"
+                                    viewStyleUpdaterBlock:^(PXRuleSet *ruleSet, PXStylerContext *context)
          {
              [UIBarButtonItem UpdateStyleWithRuleSetHandler:ruleSet
                                                     context:context
@@ -89,17 +89,17 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
         barButtons.defaultPseudoClass = @"normal";
         
         barButtons.viewStylers = @[
-                                   STKPXOpacityStyler.sharedInstance,
-                                   STKPXFillStyler.sharedInstance,
-                                   STKPXBorderStyler.sharedInstance,
-                                   STKPXShapeStyler.sharedInstance,
-                                   STKPXBoxShadowStyler.sharedInstance,
+                                   PXOpacityStyler.sharedInstance,
+                                   PXFillStyler.sharedInstance,
+                                   PXBorderStyler.sharedInstance,
+                                   PXShapeStyler.sharedInstance,
+                                   PXBoxShadowStyler.sharedInstance,
                                    
-                                   [[STKPXFontStyler alloc] initWithCompletionBlock:[UIBarButtonItem FontStylerCompletionBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]],
+                                   [[PXFontStyler alloc] initWithCompletionBlock:[UIBarButtonItem FontStylerCompletionBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]],
                                    
-                                   [[STKPXPaintStyler alloc] initWithCompletionBlock:[UIBarButtonItem STKPXPaintStylerCompletionBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]],
+                                   [[PXPaintStyler alloc] initWithCompletionBlock:[UIBarButtonItem PXPaintStylerCompletionBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]],
                                    
-                                   [[STKPXGenericStyler alloc] initWithHandlers: @{
+                                   [[PXGenericStyler alloc] initWithHandlers: @{
                                         @"-ios-tint-color" : [UIBarButtonItem TintColorDeclarationHandlerBlock:[UIBarButtonItem appearanceWhenContainedIn:[self class], nil]]
                                         }],
                                    ];
@@ -125,50 +125,50 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-    static dispatch_once_t onceToken;
+	static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
         stylers = @[
-            STKPXLayoutStyler.sharedInstance,
+            PXLayoutStyler.sharedInstance,
 
-            [[STKPXOpacityStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable> view, STKPXOpacityStyler *styler, STKPXStylerContext *context) {
-                [(STKPXUIToolbar*) view px_setTranslucent: (context.opacity < 1.0) ? YES : NO];
+            [[PXOpacityStyler alloc] initWithCompletionBlock:^(PXUIToolbar *view, PXOpacityStyler *styler, PXStylerContext *context) {
+                [view px_setTranslucent: (context.opacity < 1.0) ? YES : NO];
             }],
 
-            STKPXShapeStyler.sharedInstance,
-            STKPXFillStyler.sharedInstance,
-            STKPXBorderStyler.sharedInstance,
-            STKPXBoxShadowStyler.sharedInstance,
+            PXShapeStyler.sharedInstance,
+            PXFillStyler.sharedInstance,
+            PXBorderStyler.sharedInstance,
+            PXBoxShadowStyler.sharedInstance,
 
             // shadow-* image properties
-            [[STKPXBarShadowStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable> view, STKPXBarShadowStyler *styler, STKPXStylerContext *context) {
+            [[PXBarShadowStyler alloc] initWithCompletionBlock:^(PXUIToolbar *view, PXBarShadowStyler *styler, PXStylerContext *context) {
                 // iOS 6.x property
-                if ([STKPXUtils isIOS6OrGreater])
+                if ([PXUtils isIOS6OrGreater])
                 {
                     if (context.shadowImage)
                     {
-                        [(STKPXUIToolbar*)view px_setShadowImage:context.shadowImage forToolbarPosition:UIToolbarPositionAny];
+                        [view px_setShadowImage:context.shadowImage forToolbarPosition:UIToolbarPositionAny];
                     }
                     else
                     {
                         // 'fill' with a clear pixel
-                        [(STKPXUIToolbar*)view px_setShadowImage:STKPXImageUtils.clearPixel forToolbarPosition:UIToolbarPositionAny];
+                        [view px_setShadowImage:PXImageUtils.clearPixel forToolbarPosition:UIToolbarPositionAny];
                     }
                 }
                 
             }],
 
-            STKPXAnimationStyler.sharedInstance,
+            PXAnimationStyler.sharedInstance,
             
-            [[STKPXGenericStyler alloc] initWithHandlers: @{
-              @"-ios-tint-color" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                STKPXUIToolbar *view = (STKPXUIToolbar *)context.styleable;
+            [[PXGenericStyler alloc] initWithHandlers: @{
+              @"-ios-tint-color" : ^(PXDeclaration *declaration, PXStylerContext *context) {
+                PXUIToolbar *view = (PXUIToolbar *)context.styleable;
                 UIColor *color = declaration.colorValue;
                 [view px_setTintColor:color];
             },
                                                          
-                 @"color" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
-                    STKPXUIToolbar *view = (STKPXUIToolbar *)context.styleable;
+                 @"color" : ^(PXDeclaration *declaration, PXStylerContext *context) {
+                    PXUIToolbar *view = (PXUIToolbar *)context.styleable;
                     UIColor *color = declaration.colorValue;
                     [view px_setTintColor:color];
                 },
@@ -177,7 +177,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
         ];
     });
 
-    return stylers;
+	return stylers;
 }
 
 - (NSDictionary *)viewStylersByProperty
@@ -186,17 +186,17 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
     static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
-        map = [STKPXStyleUtils viewStylerPropertyMapForStyleable:self];
+        map = [PXStyleUtils viewStylerPropertyMapForStyleable:self];
     });
 
     return map;
 }
 
-- (void)updateStyleWithRuleSet:(STKPXRuleSet *)ruleSet context:(STKPXStylerContext *)context
+- (void)updateStyleWithRuleSet:(PXRuleSet *)ruleSet context:(PXStylerContext *)context
 {
     if (context.color)
     {
-        if([STKPXUtils isIOS7OrGreater])
+        if([PXUtils isIOS7OrGreater])
         {
             [self px_setBarTintColor: context.color];
         }
@@ -220,13 +220,13 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
     
 }
 
-STKPX_LAYOUT_SUBVIEWS_OVERRIDE
+PX_LAYOUT_SUBVIEWS_OVERRIDE
 
-STKPX_WRAP_1(setTintColor, color);
-STKPX_WRAP_1(setBarTintColor, color);
-STKPX_WRAP_1(setBackgroundColor, color);
-STKPX_WRAP_1b(setTranslucent, flag);
-STKPX_WRAP_2v(setShadowImage, image, forToolbarPosition, UIToolbarPosition, position);
-STKPX_WRAP_3v(setBackgroundImage, image, forToolbarPosition, UIToolbarPosition, position, barMetrics, UIBarMetrics, metrics);
+PX_WRAP_1(setTintColor, color);
+PX_WRAP_1(setBarTintColor, color);
+PX_WRAP_1(setBackgroundColor, color);
+PX_WRAP_1b(setTranslucent, flag);
+PX_WRAP_2v(setShadowImage, image, forToolbarPosition, UIToolbarPosition, position);
+PX_WRAP_3v(setBackgroundImage, image, forToolbarPosition, UIToolbarPosition, position, barMetrics, UIBarMetrics, metrics);
 
 @end

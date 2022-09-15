@@ -16,8 +16,8 @@
  */
 
 //
-//  UIView+STKPXStyling.m
-//  STKPXButtonDemo
+//  UIView+PXStyling.m
+//  PXButtonDemo
 //
 //  Modified by Anton Matosov
 //  Created by Kevin Lindsey on 8/22/12.
@@ -26,22 +26,22 @@
 
 #import "PixateFreestyle.h"
 #import <objc/runtime.h>
-#import "UIView+STKPXStyling.h"
-#import "NSObject+STKPXSubclass.h"
-#import "STKPXLoggingUtils.h"
-#import "STKPXStyleUtils.h"
+#import "UIView+PXStyling.h"
+#import "NSObject+PXSubclass.h"
+#import "PXLoggingUtils.h"
+#import "PXStyleUtils.h"
 #import "PixateFreestyle-Private.h"
 #import "PixateFreestyle.h"
-#import "STKPXStylesheet-Private.h"
-#import "NSDictionary+STKPXCSSEncoding.h"
-#import "STKPXRuntimeUtils.h"
-#import "STKPXUtils.h"
+#import "PXStylesheet-Private.h"
+#import "NSDictionary+PXCSSEncoding.h"
+#import "PXRuntimeUtils.h"
+#import "PXUtils.h"
 #import "NSMutableArray+QueueAdditions.h"
-#import "NSObject+STKPXClass.h"
-#import "NSObject+STKPXStyling.h"
-#import "STKPXStylingMacros.h"
-#import "UIView+STKPXStyling-Private.h"
-#import "NSObject+STKPXSwizzle.h"
+#import "NSObject+PXClass.h"
+#import "NSObject+PXStyling.h"
+#import "PXStylingMacros.h"
+#import "UIView+PXStyling-Private.h"
+#import "NSObject+PXSwizzle.h"
 #import "STK_UIAlertControllerView.h"
 
 static const char STYLE_ELEMENT_NAME_KEY;
@@ -56,9 +56,9 @@ static const char KVC_SET;
 
 static Class SubclassForViewWithClass(UIView *view, Class viewClass);
 
-void STKPXForceLoadUIViewPXStyling() {}
+void PXForceLoadUIViewPXStyling() {}
 
-@implementation UIView (STKPXStyling)
+@implementation UIView (PXStyling)
 
 @dynamic bounds;
 @dynamic frame;
@@ -150,12 +150,12 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
     
     @autoreleasepool
     {
-#ifdef STKPX_LOGGING
+#ifdef PX_LOGGING
         // turn on logging
-        [STKPXLoggingUtils enableLogging];
+        [PXLoggingUtils enableLogging];
 
         // set logging level for all classes
-        //[STKPXLoggingUtils setGlobalLoggingLevel:LOG_LEVEL_VERBOSE];
+        //[PXLoggingUtils setGlobalLoggingLevel:LOG_LEVEL_VERBOSE];
 #endif
 
         [self swizzleMethod:@selector(initWithFrame:) withMethod:@selector(stk_initWithFrame:)];
@@ -245,7 +245,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 + (BOOL)subclassIfNeeded:(Class)superClass object:(NSObject *)object
 {
-    if(![object respondsToSelector:@selector(STKPXClass)])
+    if(![object respondsToSelector:@selector(pxClass)])
     {
         [superClass subclassInstance:object];
         return YES;
@@ -256,19 +256,19 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 #pragma mark - Styling methods for appearance api
 
-- (STKPXStylingMode)styleMode
+- (PXStylingMode)styleMode
 {
     NSNumber *modeVal = objc_getAssociatedObject(self, &STYLE_MODE_KEY);
 
     if(modeVal)
     {
-        return (STKPXStylingMode)modeVal.intValue;
+        return (PXStylingMode)modeVal.intValue;
     }
 
-    return STKPXStylingUndefined;
+    return PXStylingUndefined;
 }
 
-- (void)setStyleMode:(STKPXStylingMode) mode
+- (void)setStyleMode:(PXStylingMode) mode
 {
     objc_setAssociatedObject(self, &STYLE_MODE_KEY, @(mode), OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
@@ -350,7 +350,7 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 - (NSString *)styleKey
 {
-    return [STKPXStyleUtils styleKeyFromStyleable:self];
+    return [PXStyleUtils styleKeyFromStyleable:self];
 }
 
 - (void)setStyleClass:(NSString *)aClass
@@ -393,10 +393,10 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 //
 //	if (aClass.length)
 //    {
-////        self.styleMode = STKPXStylingNormal;
+////        self.styleMode = PXStylingNormal;
 //	}
 //
-////    [[STKPXStyleController sharedInstance] setViewNeedsStyle:self];
+////    [[PXStyleController sharedInstance] setViewNeedsStyle:self];
 }
 
 - (void)setStyleId:(NSString *)anId
@@ -411,10 +411,10 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
     if (anId.length)
     {
-        self.styleMode = STKPXStylingNormal;
+        self.styleMode = PXStylingNormal;
 	}
 
-//    [[STKPXStyleController sharedInstance] setViewNeedsStyle:self];
+//    [[PXStyleController sharedInstance] setViewNeedsStyle:self];
 }
 
 - (void)setStyleChangeable:(BOOL)changeable
@@ -431,10 +431,10 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
     if (css.length)
     {
-        self.styleMode = STKPXStylingNormal;
+        self.styleMode = PXStylingNormal;
 	}
 
-//    [[STKPXStyleController sharedInstance] setViewNeedsStyle:self];
+//    [[PXStyleController sharedInstance] setViewNeedsStyle:self];
 }
 
 - (NSString *)attributeValueForName:(NSString *)name withNamespace:(NSString *)namespace
@@ -459,9 +459,9 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 #pragma mark - Static Styling Method
 
-+ (void)updateStyles:(id<STKPXStyleable>)styleable recursively:(bool)recurse
++ (void)updateStyles:(id<PXStyleable>)styleable recursively:(bool)recurse
 {
-    if (styleable.styleMode != STKPXStylingNone)
+    if (styleable.styleMode != PXStylingNone)
     {
         // If not recursive, style virtual children only (not subviews)
         if(!recurse)
@@ -470,29 +470,29 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
         }
         
         // Style the styleable and optionally ALL the children (including virtual children)
-        [STKPXStyleUtils updateStylesForStyleable:styleable
+        [PXStyleUtils updateStylesForStyleable:styleable
                                 andDescendants:recurse];
     }
 }
 
-+ (void)prv_updateStylesForVirtualChildrenOfStylable:(id <STKPXStyleable>)styleable
++ (void)prv_updateStylesForVirtualChildrenOfStylable:(id <PXStyleable>)styleable
 {
-    for (id<STKPXStyleable> child in styleable.pxStyleChildren)
+    for (id<PXStyleable> child in styleable.pxStyleChildren)
     {
-        if (child.styleMode == STKPXStylingNormal
-            && [child conformsToProtocol:@protocol(STKPXVirtualControl)])
+        if (child.styleMode == PXStylingNormal
+            && [child conformsToProtocol:@protocol(PXVirtualControl)])
         {
-            [STKPXStyleUtils enumerateStyleableDescendants:child
-                                             usingBlock:^(id <STKPXStyleable> childStyleable, BOOL *stop, BOOL *stopDescending)
+            [PXStyleUtils enumerateStyleableDescendants:child
+                                             usingBlock:^(id <PXStyleable> childStyleable, BOOL *stop, BOOL *stopDescending)
                                              {
-                                                 if (childStyleable.styleMode == STKPXStylingNormal
-                                                     && [childStyleable conformsToProtocol:@protocol(STKPXVirtualControl)])
+                                                 if (childStyleable.styleMode == PXStylingNormal
+                                                     && [childStyleable conformsToProtocol:@protocol(PXVirtualControl)])
                                                  {
-                                                     [STKPXStyleUtils updateStyleForStyleable:childStyleable];
+                                                     [PXStyleUtils updateStyleForStyleable:childStyleable];
                                                  }
                                              }];
 
-            [STKPXStyleUtils updateStyleForStyleable:child];
+            [PXStyleUtils updateStyleForStyleable:child];
         }
     }
 }
@@ -624,12 +624,12 @@ static Class SubclassForViewWithClass(UIView *view, Class viewClass)
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
-	if ([view respondsToSelector:@selector(STKPXClass)])
+	if ([view respondsToSelector:@selector(pxClass)])
     {
         return nil;
 	}
 
-    if (class_getInstanceMethod(viewClass, @selector(STKPXClass)) != NULL)
+    if (class_getInstanceMethod(viewClass, @selector(pxClass)) != NULL)
     {
         return nil;
     }

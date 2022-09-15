@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXUITableViewCell.m
+//  PXUITableViewCell.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,40 +23,40 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXUITableViewCell.h"
+#import "PXUITableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "UIView+STKPXStyling.h"
-#import "UIView+STKPXStyling-Private.h"
-#import "STKPXStylingMacros.h"
-#import "STKPXOpacityStyler.h"
-#import "STKPXTransformStyler.h"
-#import "STKPXVirtualStyleableControl.h"
-#import "STKPXStyleUtils.h"
-#import "STKPXRuntimeUtils.h"
-#import "STKPXClassUtils.h"
-#import "STKPXUtils.h"
+#import "UIView+PXStyling.h"
+#import "UIView+PXStyling-Private.h"
+#import "PXStylingMacros.h"
+#import "PXOpacityStyler.h"
+#import "PXTransformStyler.h"
+#import "PXVirtualStyleableControl.h"
+#import "PXStyleUtils.h"
+#import "PXRuntimeUtils.h"
+#import "PXClassUtils.h"
+#import "PXUtils.h"
 
-#import "STKPXShapeStyler.h"
-#import "STKPXFillStyler.h"
-#import "STKPXBorderStyler.h"
-#import "STKPXBoxShadowStyler.h"
-#import "STKPXLayoutStyler.h"
-#import "STKPXAnimationStyler.h"
+#import "PXShapeStyler.h"
+#import "PXFillStyler.h"
+#import "PXBorderStyler.h"
+#import "PXBoxShadowStyler.h"
+#import "PXLayoutStyler.h"
+#import "PXAnimationStyler.h"
 
-#import "STKPXFontStyler.h"
-#import "STKPXPaintStyler.h"
-#import "STKPXDeclaration.h"
-#import "STKPXRuleSet.h"
-#import "STKPXLayoutStyler.h"
-#import "STKPXTransformStyler.h"
-#import "STKPXTextContentStyler.h"
-#import "STKPXGenericStyler.h"
-#import "STKPXAttributedTextStyler.h"
+#import "PXFontStyler.h"
+#import "PXPaintStyler.h"
+#import "PXDeclaration.h"
+#import "PXRuleSet.h"
+#import "PXLayoutStyler.h"
+#import "PXTransformStyler.h"
+#import "PXTextContentStyler.h"
+#import "PXGenericStyler.h"
+#import "PXAttributedTextStyler.h"
 
 
-#import "NSObject+STKPXSubclass.h"
-#import "STKPXUILabel.h"
+#import "NSObject+PXSubclass.h"
+#import "STKUILabel.h"
 
 static NSDictionary *PSEUDOCLASS_MAP;
 static NSDictionary *LABEL_PSEUDOCLASS_MAP;
@@ -67,14 +67,14 @@ static const char CELL_BACKGROUND_SET;
 static const char TEXT_LABEL_BACKGROUND_SET;
 static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
 
-@interface STKPXUIImageViewWrapper_UITableViewCell : UIImageView @end
-@implementation STKPXUIImageViewWrapper_UITableViewCell @end
+@interface PXUIImageViewWrapper_UITableViewCell : UIImageView @end
+@implementation PXUIImageViewWrapper_UITableViewCell @end
 
-@implementation STKPXUITableViewCell
+@implementation PXUITableViewCell
 
 + (void)initialize
 {
-    if (self != STKPXUITableViewCell.class)
+    if (self != PXUITableViewCell.class)
         return;
     
     [UIView registerDynamicSubclass:self withElementName:@"table-view-cell"];
@@ -97,18 +97,18 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
 - (NSArray *)pxStyleChildren
 {
     NSArray *styleChildren;
-    STKPXVirtualStyleableControl *contentView;
-    STKPXVirtualStyleableControl *textLabel;
-    STKPXVirtualStyleableControl *detailTextLabel;
+    PXVirtualStyleableControl *contentView;
+    PXVirtualStyleableControl *textLabel;
+    PXVirtualStyleableControl *detailTextLabel;
     
     if (!objc_getAssociatedObject(self, &STYLE_CHILDREN))
     {
-        __weak STKPXUITableViewCell *weakSelf = self;
+        __weak PXUITableViewCell *weakSelf = self;
 
         //
         // content-view
         //
-        contentView = [[STKPXVirtualStyleableControl alloc] initWithParent:self elementName:@"content-view" viewStyleUpdaterBlock:^(STKPXRuleSet *ruleSet, STKPXStylerContext *context) {
+        contentView = [[PXVirtualStyleableControl alloc] initWithParent:self elementName:@"content-view" viewStyleUpdaterBlock:^(PXRuleSet *ruleSet, PXStylerContext *context) {
             
             if (context.usesColorOnly)
             {
@@ -122,22 +122,22 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
         }];
 
         contentView.viewStylers = @[
-                                    STKPXOpacityStyler.sharedInstance,
-                                    STKPXShapeStyler.sharedInstance,
-                                    STKPXFillStyler.sharedInstance,
-                                    STKPXBorderStyler.sharedInstance,
-                                    STKPXBoxShadowStyler.sharedInstance,
+                                    PXOpacityStyler.sharedInstance,
+                                    PXShapeStyler.sharedInstance,
+                                    PXFillStyler.sharedInstance,
+                                    PXBorderStyler.sharedInstance,
+                                    PXBoxShadowStyler.sharedInstance,
                                     ];
 
         
         //
         // textLabel
         //
-        textLabel = [[STKPXVirtualStyleableControl alloc] initWithParent:self elementName:@"text-label" viewStyleUpdaterBlock:^(STKPXRuleSet *ruleSet, STKPXStylerContext *context) {
+        textLabel = [[PXVirtualStyleableControl alloc] initWithParent:self elementName:@"text-label" viewStyleUpdaterBlock:^(PXRuleSet *ruleSet, PXStylerContext *context) {
             
             if (context.usesColorOnly)
             {
-                if ([STKPXUtils isIOS7OrGreater] == NO)
+                if ([PXUtils isIOS7OrGreater] == NO)
                 {
                     objc_setAssociatedObject(weakSelf, &TEXT_LABEL_BACKGROUND_SET, context.color, OBJC_ASSOCIATION_COPY_NONATOMIC);
                 }
@@ -148,7 +148,7 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
             {
                 UIColor *color = [UIColor colorWithPatternImage:context.backgroundImage];
                 
-                if ([STKPXUtils isIOS7OrGreater] == NO)
+                if ([PXUtils isIOS7OrGreater] == NO)
                 {
                     objc_setAssociatedObject(weakSelf, &TEXT_LABEL_BACKGROUND_SET, color, OBJC_ASSOCIATION_COPY_NONATOMIC);
                 }
@@ -163,21 +163,21 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
         
         textLabel.viewStylers = @[
                                   
-              STKPXTransformStyler.sharedInstance,
-              STKPXLayoutStyler.sharedInstance,
-              STKPXOpacityStyler.sharedInstance,
+              PXTransformStyler.sharedInstance,
+              PXLayoutStyler.sharedInstance,
+              PXOpacityStyler.sharedInstance,
               
-              STKPXShapeStyler.sharedInstance,
-              STKPXFillStyler.sharedInstance,
-              STKPXBorderStyler.sharedInstance,
+              PXShapeStyler.sharedInstance,
+              PXFillStyler.sharedInstance,
+              PXBorderStyler.sharedInstance,
               
-              [[STKPXBoxShadowStyler alloc] initWithCompletionBlock:^(id control, STKPXBoxShadowStyler *styler, STKPXStylerContext *context) {
-                  STKPXShadowGroup *group = context.outerShadow;
+              [[PXBoxShadowStyler alloc] initWithCompletionBlock:^(id control, PXBoxShadowStyler *styler, PXStylerContext *context) {
+                  PXShadowGroup *group = context.outerShadow;
                   UILabel *view = weakSelf.textLabel;
                   
                   if (group.shadows.count > 0)
                   {
-                      STKPXShadow *shadow = group.shadows[0];
+                      PXShadow *shadow = group.shadows[0];
                       
                       view.shadowColor = shadow.color;
                       view.shadowOffset = CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset);
@@ -189,12 +189,12 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
                   }
               }],
               
-              [[STKPXFontStyler alloc] initWithCompletionBlock:^(id control, STKPXFontStyler *styler, STKPXStylerContext *context) {
+              [[PXFontStyler alloc] initWithCompletionBlock:^(id control, PXFontStyler *styler, PXStylerContext *context) {
                   UILabel *view = weakSelf.textLabel;
                   view.font = context.font;
               }],
               
-              [[STKPXPaintStyler alloc] initWithCompletionBlock:^(id control, STKPXPaintStyler *styler, STKPXStylerContext *context) {
+              [[PXPaintStyler alloc] initWithCompletionBlock:^(id control, PXPaintStyler *styler, PXStylerContext *context) {
                   UIColor *color = (UIColor *)[context propertyValueForName:@"color"];
                   UILabel *view = weakSelf.textLabel;
 
@@ -211,39 +211,39 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
                   }
               }],
               
-              [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(id control, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
+              [[PXTextContentStyler alloc] initWithCompletionBlock:^(id control, PXTextContentStyler *styler, PXStylerContext *context) {
                   UILabel *view = weakSelf.textLabel;
                   view.text = context.text;
               }],
               
-              [[STKPXGenericStyler alloc] initWithHandlers: @{
+              [[PXGenericStyler alloc] initWithHandlers: @{
                
-               @"text-align" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+               @"text-align" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                   UILabel *view = weakSelf.textLabel;
                   view.textAlignment = declaration.textAlignmentValue;
               },
-               @"text-transform" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+               @"text-transform" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                   UILabel *view = weakSelf.textLabel;
                   view.text = [declaration transformString:view.text];
               },
-               @"text-overflow" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+               @"text-overflow" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                   UILabel *view = weakSelf.textLabel;
                   view.lineBreakMode = declaration.lineBreakModeValue;
               }
                }],
-              STKPXAnimationStyler.sharedInstance
+              PXAnimationStyler.sharedInstance
         ];
 
 
         //
         // detailTextLabel
         //
-        detailTextLabel = [[STKPXVirtualStyleableControl alloc] initWithParent:self elementName:@"detail-text-label" viewStyleUpdaterBlock:^(STKPXRuleSet *ruleSet, STKPXStylerContext *context) {
+        detailTextLabel = [[PXVirtualStyleableControl alloc] initWithParent:self elementName:@"detail-text-label" viewStyleUpdaterBlock:^(PXRuleSet *ruleSet, PXStylerContext *context) {
             
             if (context.usesColorOnly)
             {
                 
-                if ([STKPXUtils isIOS7OrGreater] == NO)
+                if ([PXUtils isIOS7OrGreater] == NO)
                 {
                     objc_setAssociatedObject(weakSelf, &DETAIL_TEXT_LABEL_BACKGROUND_SET, context.color, OBJC_ASSOCIATION_COPY_NONATOMIC);
                 }
@@ -255,7 +255,7 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
             {
                 UIColor *color = [UIColor colorWithPatternImage:context.backgroundImage];
                 
-                if ([STKPXUtils isIOS7OrGreater] == NO)
+                if ([PXUtils isIOS7OrGreater] == NO)
                 {
                     objc_setAssociatedObject(weakSelf, &DETAIL_TEXT_LABEL_BACKGROUND_SET, color, OBJC_ASSOCIATION_COPY_NONATOMIC);
                 }
@@ -269,21 +269,21 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
 
         detailTextLabel.viewStylers = @[
                                   
-              STKPXTransformStyler.sharedInstance,
-              STKPXLayoutStyler.sharedInstance,
-              STKPXOpacityStyler.sharedInstance,
+              PXTransformStyler.sharedInstance,
+              PXLayoutStyler.sharedInstance,
+              PXOpacityStyler.sharedInstance,
               
-              STKPXShapeStyler.sharedInstance,
-              STKPXFillStyler.sharedInstance,
-              STKPXBorderStyler.sharedInstance,
+              PXShapeStyler.sharedInstance,
+              PXFillStyler.sharedInstance,
+              PXBorderStyler.sharedInstance,
               
-              [[STKPXBoxShadowStyler alloc] initWithCompletionBlock:^(id control, STKPXBoxShadowStyler *styler, STKPXStylerContext *context) {
-                  STKPXShadowGroup *group = context.outerShadow;
+              [[PXBoxShadowStyler alloc] initWithCompletionBlock:^(id control, PXBoxShadowStyler *styler, PXStylerContext *context) {
+                  PXShadowGroup *group = context.outerShadow;
                   UILabel *view = weakSelf.detailTextLabel;
                   
                   if (group.shadows.count > 0)
                   {
-                      STKPXShadow *shadow = group.shadows[0];
+                      PXShadow *shadow = group.shadows[0];
                       
                       view.shadowColor = shadow.color;
                       view.shadowOffset = CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset);
@@ -295,12 +295,12 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
                   }
               }],
               
-              [[STKPXFontStyler alloc] initWithCompletionBlock:^(id control, STKPXFontStyler *styler, STKPXStylerContext *context) {
+              [[PXFontStyler alloc] initWithCompletionBlock:^(id control, PXFontStyler *styler, PXStylerContext *context) {
                   UILabel *view = weakSelf.detailTextLabel;
                   view.font = context.font;
               }],
               
-              [[STKPXPaintStyler alloc] initWithCompletionBlock:^(id control, STKPXPaintStyler *styler, STKPXStylerContext *context) {
+              [[PXPaintStyler alloc] initWithCompletionBlock:^(id control, PXPaintStyler *styler, PXStylerContext *context) {
                   UIColor *color = (UIColor *)[context propertyValueForName:@"color"];
                   UILabel *view = weakSelf.detailTextLabel;
                   
@@ -318,36 +318,36 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
                   
               }],
               
-              [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(id control, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
+              [[PXTextContentStyler alloc] initWithCompletionBlock:^(id control, PXTextContentStyler *styler, PXStylerContext *context) {
                   UILabel *view = weakSelf.detailTextLabel;
                   view.text = context.text;
               }],
               
-              [[STKPXGenericStyler alloc] initWithHandlers: @{
+              [[PXGenericStyler alloc] initWithHandlers: @{
                
-               @"text-align" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+               @"text-align" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                   UILabel *view = weakSelf.detailTextLabel;
                   view.textAlignment = declaration.textAlignmentValue;
               },
-               @"text-transform" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+               @"text-transform" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                   UILabel *view = weakSelf.detailTextLabel;
                   view.text = [declaration transformString:view.text];
               },
-               @"text-overflow" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+               @"text-overflow" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                   UILabel *view = weakSelf.detailTextLabel;
                   view.lineBreakMode = declaration.lineBreakModeValue;
               }
                }],
-              STKPXAnimationStyler.sharedInstance
+              PXAnimationStyler.sharedInstance
         ];
         
         
         // attributed text
         
-        STKPXVirtualStyleableControl *attributedTextLabel =
-        [[STKPXVirtualStyleableControl alloc] initWithParent:textLabel
+        PXVirtualStyleableControl *attributedTextLabel =
+        [[PXVirtualStyleableControl alloc] initWithParent:textLabel
                                               elementName:@"attributed-text"
-                                    viewStyleUpdaterBlock:^(STKPXRuleSet *ruleSet, STKPXStylerContext *context) {
+                                    viewStyleUpdaterBlock:^(PXRuleSet *ruleSet, PXStylerContext *context) {
                                         // nothing for now
                                     }];
         
@@ -355,7 +355,7 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
         attributedTextLabel.supportedPseudoClasses = PSEUDOCLASS_MAP.allKeys;
         
         attributedTextLabel.viewStylers = @[
-            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>styleable, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
+            [[PXAttributedTextStyler alloc] initWithCompletionBlock:^(PXVirtualStyleableControl *styleable, PXAttributedTextStyler *styler, PXStylerContext *context) {
                 
                 UILabel *view = weakSelf.textLabel;
                 UIControlState state = ([context stateFromStateNameMap:PSEUDOCLASS_MAP]);
@@ -389,10 +389,10 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
         
         
         // attributed detail text
-        STKPXVirtualStyleableControl *attributedDetailTextLabel =
-        [[STKPXVirtualStyleableControl alloc] initWithParent:detailTextLabel
+        PXVirtualStyleableControl *attributedDetailTextLabel =
+        [[PXVirtualStyleableControl alloc] initWithParent:detailTextLabel
                                               elementName:@"attributed-text"
-                                    viewStyleUpdaterBlock:^(STKPXRuleSet *ruleSet, STKPXStylerContext *context) {
+                                    viewStyleUpdaterBlock:^(PXRuleSet *ruleSet, PXStylerContext *context) {
                                         // nothing for now
                                     }];
         
@@ -400,7 +400,7 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
         attributedDetailTextLabel.supportedPseudoClasses = PSEUDOCLASS_MAP.allKeys;
         
         attributedDetailTextLabel.viewStylers = @[
-            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>styleable, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
+            [[PXAttributedTextStyler alloc] initWithCompletionBlock:^(PXVirtualStyleableControl *styleable, PXAttributedTextStyler *styler, PXStylerContext *context) {
                 
                 UILabel *view = weakSelf.detailTextLabel;
                 UIControlState state = ([context stateFromStateNameMap:PSEUDOCLASS_MAP]);
@@ -445,7 +445,7 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
         styleChildren = objc_getAssociatedObject(self, &STYLE_CHILDREN);
         if(styleChildren)
         {
-            for (STKPXVirtualStyleableControl *item in styleChildren) {
+            for (PXVirtualStyleableControl *item in styleChildren) {
                 if([item.pxStyleElementName isEqualToString:@"content-view"])
                 {
                     contentView = item;
@@ -479,26 +479,26 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-    static dispatch_once_t onceToken;
+	static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
         stylers = @[
-            STKPXTransformStyler.sharedInstance,
+            PXTransformStyler.sharedInstance,
             
-            [[STKPXOpacityStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXOpacityStyler *styler, STKPXStylerContext *context) {
-                ((STKPXUITableViewCell*)view).px_contentView.alpha = context.opacity;
+            [[PXOpacityStyler alloc] initWithCompletionBlock:^(PXUITableViewCell *view, PXOpacityStyler *styler, PXStylerContext *context) {
+                view.px_contentView.alpha = context.opacity;
             }],
             
-            STKPXShapeStyler.sharedInstance,
-            STKPXFillStyler.sharedInstance,
-            STKPXBorderStyler.sharedInstance,
-            STKPXBoxShadowStyler.sharedInstance,
+            PXShapeStyler.sharedInstance,
+            PXFillStyler.sharedInstance,
+            PXBorderStyler.sharedInstance,
+            PXBoxShadowStyler.sharedInstance,
 
-            STKPXAnimationStyler.sharedInstance,
+            PXAnimationStyler.sharedInstance,
         ];
     });
     
-    return stylers;
+	return stylers;
 }
 
 - (NSDictionary *)viewStylersByProperty
@@ -507,13 +507,13 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
     static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
-        map = [STKPXStyleUtils viewStylerPropertyMapForStyleable:self];
+        map = [PXStyleUtils viewStylerPropertyMapForStyleable:self];
     });
 
     return map;
 }
 
-- (void)updateStyleWithRuleSet:(STKPXRuleSet *)ruleSet context:(STKPXStylerContext *)context
+- (void)updateStyleWithRuleSet:(PXRuleSet *)ruleSet context:(PXStylerContext *)context
 {
 //    NSLog(@"updateStyleWithRuleSet %@", self);
     
@@ -535,7 +535,7 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
             {
                 [self px_setBackgroundView: nil];
                 [self px_setBackgroundColor: [UIColor clearColor]];
-                if ([STKPXUtils isIOS7OrGreater] == NO)
+                if ([PXUtils isIOS7OrGreater] == NO)
                 {
                     objc_setAssociatedObject(self, &CELL_BACKGROUND_SET, nil, OBJC_ASSOCIATION_COPY_NONATOMIC);
                 }
@@ -543,7 +543,7 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
             else
             {
                 [self px_setBackgroundColor: context.color];
-                if ([STKPXUtils isIOS7OrGreater] == NO)
+                if ([PXUtils isIOS7OrGreater] == NO)
                 {
                     objc_setAssociatedObject(self, &CELL_BACKGROUND_SET, context.color, OBJC_ASSOCIATION_COPY_NONATOMIC);
                 }
@@ -553,25 +553,25 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
         {
             [self px_setBackgroundColor: [UIColor clearColor]];
             
-            if([self.px_backgroundView isKindOfClass:[STKPXUIImageViewWrapper_UITableViewCell class]] == NO)
+            if([self.px_backgroundView isKindOfClass:[PXUIImageViewWrapper_UITableViewCell class]] == NO)
             {
-                [self px_setBackgroundView: [[STKPXUIImageViewWrapper_UITableViewCell alloc] initWithImage:context.backgroundImage]];
+                [self px_setBackgroundView: [[PXUIImageViewWrapper_UITableViewCell alloc] initWithImage:context.backgroundImage]];
 
                 if([parent isKindOfClass:[UITableView class]] && parent.style == UITableViewStyleGrouped)
                 {
                     // This _shouldn't_ cause a recursive loop as we only ever do it on first
-                    // creation of the STKPXViewWrapper for the background view. Subsequent stylings
+                    // creation of the PXViewWrapper for the background view. Subsequent stylings
                     // should use the cached version and therefore not reach this call.
                     [self setNeedsLayout];
                 }
             }
             else
             {
-                STKPXUIImageViewWrapper_UITableViewCell *view = (STKPXUIImageViewWrapper_UITableViewCell *) self.backgroundView;
+                PXUIImageViewWrapper_UITableViewCell *view = (PXUIImageViewWrapper_UITableViewCell *) self.backgroundView;
                 view.image = context.backgroundImage;
             }
             
-            if ([STKPXUtils isIOS7OrGreater] == NO)
+            if ([PXUtils isIOS7OrGreater] == NO)
             {
                 objc_setAssociatedObject(self, &CELL_BACKGROUND_SET, [UIColor clearColor], OBJC_ASSOCIATION_COPY_NONATOMIC);
             }
@@ -586,13 +586,13 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
         }
         else
         {
-            if([self.px_selectedBackgroundView isKindOfClass:[STKPXUIImageViewWrapper_UITableViewCell class]] == NO)
+            if([self.px_selectedBackgroundView isKindOfClass:[PXUIImageViewWrapper_UITableViewCell class]] == NO)
             {
-                [self px_setSelectedBackgroundView: [[STKPXUIImageViewWrapper_UITableViewCell alloc] initWithImage:context.backgroundImage]];
+                [self px_setSelectedBackgroundView: [[PXUIImageViewWrapper_UITableViewCell alloc] initWithImage:context.backgroundImage]];
             }
             else
             {
-                STKPXUIImageViewWrapper_UITableViewCell *view = (STKPXUIImageViewWrapper_UITableViewCell *) self.px_selectedBackgroundView;
+                PXUIImageViewWrapper_UITableViewCell *view = (PXUIImageViewWrapper_UITableViewCell *) self.px_selectedBackgroundView;
                 view.image = context.backgroundImage;
             }
         }
@@ -605,13 +605,13 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
         }
         else
         {
-            if([self.px_multipleSelectionBackgroundView isKindOfClass:[STKPXUIImageViewWrapper_UITableViewCell class]] == NO)
+            if([self.px_multipleSelectionBackgroundView isKindOfClass:[PXUIImageViewWrapper_UITableViewCell class]] == NO)
             {
                 [self px_setMultipleSelectionBackgroundView: [[UIImageView alloc] initWithImage:context.backgroundImage]];
             }
             else
             {
-                STKPXUIImageViewWrapper_UITableViewCell *view = (STKPXUIImageViewWrapper_UITableViewCell *) self.px_multipleSelectionBackgroundView;
+                PXUIImageViewWrapper_UITableViewCell *view = (PXUIImageViewWrapper_UITableViewCell *) self.px_multipleSelectionBackgroundView;
                 view.image = context.backgroundImage;
             }
         }
@@ -626,22 +626,22 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
 - (void)prepareForReuse
 {
     callSuper0(SUPER_PREFIX, @selector(prepareForReuse));
-    [STKPXStyleUtils invalidateStyleableAndDescendants:self];
+    [PXStyleUtils invalidateStyleableAndDescendants:self];
 }
 
 //
 // Weappers
 //
 
-STKPX_WRAP_PROP(UIView, contentView);
-STKPX_WRAP_PROP(UIView, backgroundView);
-STKPX_WRAP_PROP(UIView, selectedBackgroundView);
-STKPX_WRAP_PROP(UIView, multipleSelectionBackgroundView);
+PX_WRAP_PROP(UIView, contentView);
+PX_WRAP_PROP(UIView, backgroundView);
+PX_WRAP_PROP(UIView, selectedBackgroundView);
+PX_WRAP_PROP(UIView, multipleSelectionBackgroundView);
 
-STKPX_WRAP_1(setBackgroundColor, color);
-STKPX_WRAP_1(setBackgroundView, view);
-STKPX_WRAP_1(setSelectedBackgroundView, view);
-STKPX_WRAP_1(setMultipleSelectionBackgroundView, view);
+PX_WRAP_1(setBackgroundColor, color);
+PX_WRAP_1(setBackgroundView, view);
+PX_WRAP_1(setSelectedBackgroundView, view);
+PX_WRAP_1(setMultipleSelectionBackgroundView, view);
 
 
 - (id)pxStyleParent

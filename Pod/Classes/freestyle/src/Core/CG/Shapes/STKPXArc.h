@@ -15,19 +15,19 @@
  */
 
 //
-//  STKPXArc.h
+//  PXArc.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 9/4/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXShape.h"
+#import "STKShape.h"
 
 /**
- *  A STKPXShape subclass used to render arcs
+ *  A PXShape subclass used to render arcs
  */
-@interface STKPXArc : STKPXShape
+@interface PXArc : STKShape
 
 /**
  *  A point indicating the location of the center of this arc.

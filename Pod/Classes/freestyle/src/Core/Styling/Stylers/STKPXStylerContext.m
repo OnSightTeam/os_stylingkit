@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXStylerContext.m
+//  PXStylerContext.m
 //  Pixate
 //
 //  Modified by Anton Matosov
@@ -25,25 +25,25 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#import "STKPXStylerContext.h"
-#import "STKPXRectangle.h"
-#import "STKPXShadow.h"
-#import "STKPXShadowGroup.h"
-#import "STKPXStroke.h"
-#import "STKPXShapeView.h"
-#import "STKPXSolidPaint.h"
-#import "STKPXFontRegistry.h"
-#import "STKPXImagePaint.h"
-#import "STKPXPaintGroup.h"
+#import "PXStylerContext.h"
+#import "PXRectangle.h"
+#import "PXShadow.h"
+#import "PXShadowGroup.h"
+#import "PXStroke.h"
+#import "STKShapeView.h"
+#import "PXSolidPaint.h"
+#import "PXFontRegistry.h"
+#import "PXImagePaint.h"
+#import "PXPaintGroup.h"
 #import "PixateFreestyle.h"
-#import "STKPXCacheManager.h"
-#import "STKPXDeclaration.h"
+#import "PXCacheManager.h"
+#import "PXDeclaration.h"
 #import <CoreText/CoreText.h>
 
 static NSString *DEFAULT_FONT_NAME = @"DEFAULT";
 static NSString *DEFAULT_FONT = @"Helvetica";
 
-@implementation STKPXStylerContext
+@implementation PXStylerContext
 {
     NSMutableDictionary *properties_;
 }
@@ -54,14 +54,14 @@ static NSString *DEFAULT_FONT = @"Helvetica";
 {
     if (self = [super init])
     {
-        _shape = [[STKPXRectangle alloc] init];
+        _shape = [[PXRectangle alloc] init];
 
         _top = MAXFLOAT;
         _left = MAXFLOAT;
         _width = 0.0f;
         _height = 0.0f;
 
-        _boxModel = [[STKPXBoxModel alloc] init];
+        _boxModel = [[PXBoxModel alloc] init];
         /*
         _borderRadius = nil;
         _strokeWidth = 0.0f;
@@ -78,7 +78,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
         _fontStretch = @"normal";
         _fontSize = 16.0f;
         
-        _letterSpacing = [[STKPXDimension alloc] initWithNumber:0 withDimension:@"STKPX"];
+        _letterSpacing = [[PXDimension alloc] initWithNumber:0 withDimension:@"px"];
     }
 
     return self;
@@ -116,11 +116,11 @@ static NSString *DEFAULT_FONT = @"Helvetica";
 //    return [DEFAULT_FONT_NAME isEqualToString:_fontName] ? DEFAULT_FONT: _fontName;
 //}
 
-- (id<STKPXPaint>)getCombinedPaints
+- (id<PXPaint>)getCombinedPaints
 {
     if (_fill != nil && _imageFill != nil)
     {
-        STKPXPaintGroup *group = [[STKPXPaintGroup alloc] init];
+        PXPaintGroup *group = [[PXPaintGroup alloc] init];
 
         [group addPaint:_fill];
         [group addPaint:_imageFill];
@@ -142,7 +142,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
 - (UIImage *)backgroundImage
 {
     NSNumber *hashKey = @(self.styleHash);
-    UIImage *result = [STKPXCacheManager imageForKey:hashKey];
+    UIImage *result = [PXCacheManager imageForKey:hashKey];
 
     if (result == nil)
     {
@@ -165,9 +165,9 @@ static NSString *DEFAULT_FONT = @"Helvetica";
         // apply bounds
         // NOTE: this updates the bounds of the underlying geometry used to draw the background image. This does not resize
         // the styleable.
-        if ([_shape conformsToProtocol:@protocol(STKPXBoundable)])
+        if ([_shape conformsToProtocol:@protocol(PXBoundable)])
         {
-            id<STKPXBoundable> boundable = (id<STKPXBoundable>)_shape;
+            id<PXBoundable> boundable = (id<PXBoundable>)_shape;
 
             boundable.bounds = _bounds;
         }
@@ -180,8 +180,8 @@ static NSString *DEFAULT_FONT = @"Helvetica";
         {
             // NOTE: we're using top border since we set all borders the same right now
             CGFloat strokeWidth = _boxModel.borderTopWidth;
-            id<STKPXPaint>strokeColor = _boxModel.borderTopPaint;
-            STKPXStroke *stroke = [[STKPXStroke alloc] initWithStrokeWidth:strokeWidth];
+            id<PXPaint>strokeColor = _boxModel.borderTopPaint;
+            PXStroke *stroke = [[PXStroke alloc] initWithStrokeWidth:strokeWidth];
 
             if (strokeColor)
             {
@@ -191,18 +191,18 @@ static NSString *DEFAULT_FONT = @"Helvetica";
             self.shape.stroke = stroke;
 
             // shrink bounds by half of the stroke width
-            if ([_shape conformsToProtocol:@protocol(STKPXBoundable)])
+            if ([_shape conformsToProtocol:@protocol(PXBoundable)])
             {
-                id<STKPXBoundable> boundable = (id<STKPXBoundable>)_shape;
+                id<PXBoundable> boundable = (id<PXBoundable>)_shape;
 
                 boundable.bounds = CGRectInset(boundable.bounds, 0.5f * strokeWidth, 0.5f * strokeWidth);
             }
         }
 
         // set corner radius
-        if ([self.shape isKindOfClass:[STKPXRectangle class]])
+        if ([self.shape isKindOfClass:[PXRectangle class]])
         {
-            STKPXRectangle *rect = (STKPXRectangle *)self.shape;
+            PXRectangle *rect = (PXRectangle *)self.shape;
 
             rect.radiusTopLeft = _boxModel.radiusTopLeft;
             rect.radiusTopRight = _boxModel.radiusTopRight;
@@ -244,7 +244,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
             // estimate cost as number of pixels times 4 bytes per pixel. This is probably lower than actual
             NSUInteger cost = result.size.width * result.size.height * 4;
 
-            [STKPXCacheManager setImage:result forKey:hashKey cost:cost];
+            [PXCacheManager setImage:result forKey:hashKey cost:cost];
         }
     }
 
@@ -270,7 +270,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
     if (self.fontName)
     {
         {
-            result = [STKPXFontRegistry fontWithFamily:self.fontName
+            result = [PXFontRegistry fontWithFamily:self.fontName
                                         fontStretch:self.fontStretch
                                          fontWeight:self.fontWeight
                                           fontStyle:self.fontStyle
@@ -327,7 +327,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
 {
     if (_outerShadow.shadows.count > 0)
     {
-        STKPXShadow *shadow = _outerShadow.shadows[0];
+        PXShadow *shadow = _outerShadow.shadows[0];
 
         layer.shadowColor = shadow.color.CGColor;
         layer.shadowOpacity = 1.0f;
@@ -346,18 +346,18 @@ static NSString *DEFAULT_FONT = @"Helvetica";
 
 #pragma mark - Setters
 
-- (void)setShadow:(id<STKPXShadowPaint>)shadow
+- (void)setShadow:(id<PXShadowPaint>)shadow
 {
     _shadow = shadow;
 
     if (_shadow)
     {
-        _innerShadow = [[STKPXShadowGroup alloc] init];
-        _outerShadow = [[STKPXShadowGroup alloc] init];
+        _innerShadow = [[PXShadowGroup alloc] init];
+        _outerShadow = [[PXShadowGroup alloc] init];
 
-        if ([_shadow isKindOfClass:[STKPXShadow class]])
+        if ([_shadow isKindOfClass:[PXShadow class]])
         {
-            STKPXShadow *shadow = _shadow;
+            PXShadow *shadow = _shadow;
 
             if (shadow.inset)
             {
@@ -368,15 +368,15 @@ static NSString *DEFAULT_FONT = @"Helvetica";
                 [_outerShadow addShadowPaint:shadow];
             }
         }
-        else if ([_shadow isKindOfClass:[STKPXShadowGroup class]])
+        else if ([_shadow isKindOfClass:[PXShadowGroup class]])
         {
-            STKPXShadowGroup *shadowGroup = _shadow;
+            PXShadowGroup *shadowGroup = _shadow;
 
-            for (id<STKPXShadowPaint> shadowPaint in shadowGroup.shadows)
+            for (id<PXShadowPaint> shadowPaint in shadowGroup.shadows)
             {
-                if ([shadowPaint isKindOfClass:[STKPXShadow class]])
+                if ([shadowPaint isKindOfClass:[PXShadow class]])
                 {
-                    STKPXShadow *shadow = shadowPaint;
+                    PXShadow *shadow = shadowPaint;
 
                     if (shadow.inset)
                     {
@@ -404,7 +404,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
     // self.color is non-nil if we have a fill that is a solid paint, only
     if (self.color)
     {
-        BOOL isRectangle = (!_shape || ([_shape class] == [STKPXRectangle class]));
+        BOOL isRectangle = (!_shape || ([_shape class] == [PXRectangle class]));
 
         result =
                 isRectangle
@@ -419,9 +419,9 @@ static NSString *DEFAULT_FONT = @"Helvetica";
 
 - (UIColor *)color
 {
-    if ([_fill isKindOfClass:[STKPXSolidPaint class]])
+    if ([_fill isKindOfClass:[PXSolidPaint class]])
     {
-        return ((STKPXSolidPaint *)_fill).color;
+        return ((PXSolidPaint *)_fill).color;
     }
     else
     {
@@ -431,7 +431,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
 
 - (BOOL)usesImage
 {
-    BOOL isRectangle = (!_shape || ([_shape class] == [STKPXRectangle class]));
+    BOOL isRectangle = (!_shape || ([_shape class] == [PXRectangle class]));
 
     return (
             _imageFill != nil               // we have an image reference, which requires rendering
@@ -464,7 +464,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
     return result;
 }
 
-+ (NSNumber *)kernPointsFrom:(STKPXDimension *)dimension usingFont:(UIFont *)font
++ (NSNumber *)kernPointsFrom:(PXDimension *)dimension usingFont:(UIFont *)font
 {
     NSNumber *result = @0.0;
     if(dimension)
@@ -513,7 +513,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
     NSMutableDictionary *attributes = [[NSMutableDictionary alloc] initWithDictionary:originalAttributes];
     attributes[NSFontAttributeName] = self.font;
 
-    NSNumber *kern = [STKPXStylerContext kernPointsFrom:self.letterSpacing usingFont:self.font];
+    NSNumber *kern = [PXStylerContext kernPointsFrom:self.letterSpacing usingFont:self.font];
     attributes[NSKernAttributeName] = kern;
     
     if([self propertyValueForName:@"color"] )
@@ -521,10 +521,10 @@ static NSString *DEFAULT_FONT = @"Helvetica";
         attributes[NSForegroundColorAttributeName] = (UIColor *)[self propertyValueForName:@"color"];
     }
     
-    [STKPXStylerContext addDecoration:self.textDecoration toAttributes:attributes];
+    [PXStylerContext addDecoration:self.textDecoration toAttributes:attributes];
     if(self.text)
     {
-        self.transformedText = [STKPXStylerContext transformString:self.text usingAttribute:self.textTransform];
+        self.transformedText = [PXStylerContext transformString:self.text usingAttribute:self.textTransform];
     }
     return attributes.copy;
 }
@@ -542,7 +542,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
         font = self.font;
     }
 
-    NSNumber *kern = [STKPXStylerContext kernPointsFrom:self.letterSpacing usingFont:font];
+    NSNumber *kern = [PXStylerContext kernPointsFrom:self.letterSpacing usingFont:font];
     id color = [self propertyValueForName:@"color"] ? (UIColor *)[self propertyValueForName:@"color"] : defaultColor;
     
     NSMutableDictionary *attributes = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -553,7 +553,7 @@ static NSString *DEFAULT_FONT = @"Helvetica";
     
     if(self.textShadow)
     {
-        STKPXShadow *pxShadow = self.textShadow;
+        PXShadow *pxShadow = self.textShadow;
         NSShadow *shadow = [[NSShadow alloc] init];
         shadow.shadowColor = pxShadow.color;
         shadow.shadowOffset = CGSizeMake(pxShadow.horizontalOffset, pxShadow.verticalOffset);
@@ -562,13 +562,13 @@ static NSString *DEFAULT_FONT = @"Helvetica";
         attributes[NSShadowAttributeName] = shadow;
     }
 
-    [STKPXStylerContext addDecoration:self.textDecoration toAttributes:attributes];
+    [PXStylerContext addDecoration:self.textDecoration toAttributes:attributes];
     
     NSString *text = self.text ? self.text : defaultText;
     
     if(text) // convert to uppercase etc
     {
-        text = [STKPXStylerContext transformString:text usingAttribute:self.textTransform];
+        text = [PXStylerContext transformString:text usingAttribute:self.textTransform];
         self.transformedText = text;
     }
     

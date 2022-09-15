@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXTransitionStyler.m
+//  PXTransitionStyler.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,9 +23,9 @@
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXTransitionStyler.h"
+#import "PXTransitionStyler.h"
 
-@implementation STKPXTransitionStyler
+@implementation PXTransitionStyler
 
 #pragma mark - Overrides
 
@@ -36,48 +36,48 @@
 
     dispatch_once(&onceToken, ^{
         handlers = @{
-             @"transition" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+             @"transition" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                  context.transitionInfos = declaration.transitionInfoList.mutableCopy;
              },
-             @"transition-property" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+             @"transition-property" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                  NSArray *names = declaration.nameListValue;
 
                  for (NSUInteger i = 0; i < names.count; i++)
                  {
-                     STKPXAnimationInfo *info = [self transitionInfoAtIndex:i context:context];
+                     PXAnimationInfo *info = [self transitionInfoAtIndex:i context:context];
                      NSString *name = names[i];
 
                      info.animationName = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
                  }
              },
-             @"transition-duration" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+             @"transition-duration" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                  NSArray *timeValues = declaration.secondsListValue;
 
                  for (NSUInteger i = 0; i < timeValues.count; i++)
                  {
-                     STKPXAnimationInfo *info = [self transitionInfoAtIndex:i context:context];
+                     PXAnimationInfo *info = [self transitionInfoAtIndex:i context:context];
                      NSNumber *time = timeValues[i];
 
                      info.animationDuration = time.floatValue;
                  }
              },
-             @"transition-timing-function" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+             @"transition-timing-function" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                  NSArray *timingFunctions = declaration.animationTimingFunctionList;
 
                  for (NSUInteger i = 0; i < timingFunctions.count; i++)
                  {
-                     STKPXAnimationInfo *info = [self transitionInfoAtIndex:i context:context];
+                     PXAnimationInfo *info = [self transitionInfoAtIndex:i context:context];
                      NSNumber *value = timingFunctions[i];
 
-                     info.animationTimingFunction = (STKPXAnimationTimingFunction) value.intValue;
+                     info.animationTimingFunction = (PXAnimationTimingFunction) value.intValue;
                  }
              },
-             @"transition-delay" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+             @"transition-delay" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                  NSArray *timeValues = declaration.secondsListValue;
 
                  for (NSUInteger i = 0; i < timeValues.count; i++)
                  {
-                     STKPXAnimationInfo *info = [self transitionInfoAtIndex:i context:context];
+                     PXAnimationInfo *info = [self transitionInfoAtIndex:i context:context];
                      NSNumber *time = timeValues[i];
 
                      info.animationDelay = time.floatValue;
@@ -89,7 +89,7 @@
     return handlers;
 }
 
-- (STKPXAnimationInfo *)transitionInfoAtIndex:(NSUInteger)index context:(STKPXStylerContext *)context
+- (PXAnimationInfo *)transitionInfoAtIndex:(NSUInteger)index context:(PXStylerContext *)context
 {
     NSMutableArray *infos = context.transitionInfos;
 
@@ -101,20 +101,20 @@
 
     while (infos.count <= index)
     {
-        [infos addObject:[[STKPXAnimationInfo alloc] init]];
+        [infos addObject:[[PXAnimationInfo alloc] init]];
     }
 
     return infos[index];
 }
 
-- (void)applyStylesWithContext:(STKPXStylerContext *)context
+- (void)applyStylesWithContext:(PXStylerContext *)context
 {
     // remove invalid transition infos
     NSMutableArray *infos = context.transitionInfos;
     NSMutableArray *toRemove = [[NSMutableArray alloc] init];
-    STKPXAnimationInfo *currentSettings = [[STKPXAnimationInfo alloc] initWithCSSDefaults];
+    PXAnimationInfo *currentSettings = [[PXAnimationInfo alloc] initWithCSSDefaults];
 
-    for (STKPXAnimationInfo *info in infos)
+    for (PXAnimationInfo *info in infos)
     {
         if (info.animationName.length == 0)
         {

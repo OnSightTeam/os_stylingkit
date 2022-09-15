@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXScene.h
+//  PXScene.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 6/11/12.
@@ -23,15 +23,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "STKPXRenderable.h"
+#import "PXRenderable.h"
 
-@class STKPXShapeView;
+@class STKShapeView;
 
 /**
- *  A top-level container for STKPXShapes. This is used to define the bounds of a set of STKPXShapes. It also is a centralized
+ *  A top-level container for PXShapes. This is used to define the bounds of a set of PXShapes. It also is a centralized
  *  container for all shape ids allowing you to retrieve shapes in a scene by their id.
  */
-@interface STKPXShapeDocument : NSObject <STKPXRenderable>
+@interface PXShapeDocument : NSObject <PXRenderable>
 
 /**
  *  The bounds of the shapes in this scene
@@ -41,22 +41,22 @@
 /**
  *  The top-level shape rendered by this scene.
  *
- *  If a collection of shapes are needed, then this shape will need to be a STKPXShapeGroup
+ *  If a collection of shapes are needed, then this shape will need to be a PXShapeGroup
  */
-@property (nonatomic, strong) id<STKPXRenderable> shape;
+@property (nonatomic, strong) id<PXRenderable> shape;
 
 /**
  *  The top-level view that this scene belongs to
  */
-@property (nonatomic, strong) STKPXShapeView *parentView;
+@property (nonatomic, strong) STKShapeView *parentView;
 
 /**
  *  Return the shape in this scene with the specfied name.
  *
  *  @param name The name of the shape
- *  @returns A STKPXRenderable or nil
+ *  @returns A PXRenderable or nil
  */
-- (id<STKPXRenderable>)shapeForName:(NSString *)name;
+- (id<PXRenderable>)shapeForName:(NSString *)name;
 
 /**
  *  Register a shape with the specified name with this scene.
@@ -64,6 +64,6 @@
  *  @param shape The shape to register
  *  @param name The shape's name
  */
-- (void)addShape:(id<STKPXRenderable>)shape forName:(NSString *)name;
+- (void)addShape:(id<PXRenderable>)shape forName:(NSString *)name;
 
 @end

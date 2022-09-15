@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXFileWatcher
+//  PXFileWatcher
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,17 +23,17 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXFileWatcher.h"
+#import "PXFileWatcher.h"
 
-@implementation STKPXFileWatcher
+@implementation PXFileWatcher
 
 // Singleton getter
-+ (STKPXFileWatcher *)sharedInstance
++ (PXFileWatcher *)sharedInstance
 {
-	static __strong STKPXFileWatcher *sharedInstance = nil;
+	static __strong PXFileWatcher *sharedInstance = nil;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		sharedInstance = [[STKPXFileWatcher alloc] init];
+		sharedInstance = [[PXFileWatcher alloc] init];
 	});
 	return sharedInstance;
 }
@@ -82,7 +82,7 @@
                                 handler();
                                 pending = NO;
 
-                                [[STKPXFileWatcher sharedInstance] watchFile:filePath handler:handler];
+                                [[PXFileWatcher sharedInstance] watchFile:filePath handler:handler];
                             });
                     });
                 }

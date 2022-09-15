@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXUICollectionViewCell.m
+//  PXUICollectionViewCell.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,36 +23,36 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXUICollectionViewCell.h"
+#import "PXUICollectionViewCell.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "UIView+STKPXStyling.h"
-#import "UIView+STKPXStyling-Private.h"
-#import "STKPXStylingMacros.h"
-#import "STKPXOpacityStyler.h"
-#import "STKPXLayoutStyler.h"
-#import "STKPXTransformStyler.h"
-#import "STKPXStyleUtils.h"
-#import "STKPXVirtualStyleableControl.h"
-#import "STKPXStyleUtils.h"
+#import "UIView+PXStyling.h"
+#import "UIView+PXStyling-Private.h"
+#import "PXStylingMacros.h"
+#import "PXOpacityStyler.h"
+#import "PXLayoutStyler.h"
+#import "PXTransformStyler.h"
+#import "PXStyleUtils.h"
+#import "PXVirtualStyleableControl.h"
+#import "PXStyleUtils.h"
 
-#import "STKPXShapeStyler.h"
-#import "STKPXFillStyler.h"
-#import "STKPXBorderStyler.h"
-#import "STKPXBoxShadowStyler.h"
-#import "STKPXAnimationStyler.h"
+#import "PXShapeStyler.h"
+#import "PXFillStyler.h"
+#import "PXBorderStyler.h"
+#import "PXBoxShadowStyler.h"
+#import "PXAnimationStyler.h"
 
 static NSDictionary *PSEUDOCLASS_MAP;
 static const char STYLE_CHILDREN;
 
-@interface STKPXUIImageViewWrapper_UICollectionViewCell : UIImageView @end
-@implementation STKPXUIImageViewWrapper_UICollectionViewCell @end
+@interface PXUIImageViewWrapper_UICollectionViewCell : UIImageView @end
+@implementation PXUIImageViewWrapper_UICollectionViewCell @end
 
-@implementation STKPXUICollectionViewCell
+@implementation PXUICollectionViewCell
 
 + (void)initialize
 {
-    if (self != STKPXUICollectionViewCell.class)
+    if (self != PXUICollectionViewCell.class)
         return;
     
     [UIView registerDynamicSubclass:self withElementName:@"collection-view-cell"];
@@ -68,14 +68,14 @@ static const char STYLE_CHILDREN;
 - (NSArray *)pxStyleChildren
 {
     NSArray *styleChildren;
-    STKPXVirtualStyleableControl *contentView;
+    PXVirtualStyleableControl *contentView;
     
     if (!objc_getAssociatedObject(self, &STYLE_CHILDREN))
     {
-        __weak STKPXUICollectionViewCell *weakSelf = self;
+        __weak PXUICollectionViewCell *weakSelf = self;
         
         // content-view
-        contentView = [[STKPXVirtualStyleableControl alloc] initWithParent:self elementName:@"content-view" viewStyleUpdaterBlock:^(STKPXRuleSet *ruleSet, STKPXStylerContext *context) {
+        contentView = [[PXVirtualStyleableControl alloc] initWithParent:self elementName:@"content-view" viewStyleUpdaterBlock:^(PXRuleSet *ruleSet, PXStylerContext *context) {
             
             if (context.usesColorOnly)
             {
@@ -89,11 +89,11 @@ static const char STYLE_CHILDREN;
         }];
         
         contentView.viewStylers = @[
-                                    STKPXOpacityStyler.sharedInstance,
-                                    STKPXShapeStyler.sharedInstance,
-                                    STKPXFillStyler.sharedInstance,
-                                    STKPXBorderStyler.sharedInstance,
-                                    STKPXBoxShadowStyler.sharedInstance,
+                                    PXOpacityStyler.sharedInstance,
+                                    PXShapeStyler.sharedInstance,
+                                    PXFillStyler.sharedInstance,
+                                    PXBorderStyler.sharedInstance,
+                                    PXBoxShadowStyler.sharedInstance,
                                     ];
         
         styleChildren = @[ contentView ];
@@ -128,26 +128,26 @@ static const char STYLE_CHILDREN;
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-    static dispatch_once_t onceToken;
+	static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
         stylers = @[
-            STKPXTransformStyler.sharedInstance,
+            PXTransformStyler.sharedInstance,
 
-            [[STKPXOpacityStyler alloc] initWithCompletionBlock: ^(id<STKPXStyleable> view, STKPXOpacityStyler *styler, STKPXStylerContext *context) {
-                ((STKPXUICollectionViewCell*)view).px_contentView.alpha = context.opacity;
+            [[PXOpacityStyler alloc] initWithCompletionBlock:^(PXUICollectionViewCell *view, PXOpacityStyler *styler, PXStylerContext *context) {
+                view.px_contentView.alpha = context.opacity;
             }],
 
-            STKPXShapeStyler.sharedInstance,
-            STKPXFillStyler.sharedInstance,
-            STKPXBorderStyler.sharedInstance,
-            STKPXBoxShadowStyler.sharedInstance,
+            PXShapeStyler.sharedInstance,
+            PXFillStyler.sharedInstance,
+            PXBorderStyler.sharedInstance,
+            PXBoxShadowStyler.sharedInstance,
             
-            STKPXAnimationStyler.sharedInstance,
+            PXAnimationStyler.sharedInstance,
         ];
     });
 
-    return stylers;
+	return stylers;
 }
 
 - (NSDictionary *)viewStylersByProperty
@@ -156,13 +156,13 @@ static const char STYLE_CHILDREN;
     static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
-        map = [STKPXStyleUtils viewStylerPropertyMapForStyleable:self];
+        map = [PXStyleUtils viewStylerPropertyMapForStyleable:self];
     });
 
     return map;
 }
 
-- (void)updateStyleWithRuleSet:(STKPXRuleSet *)ruleSet context:(STKPXStylerContext *)context
+- (void)updateStyleWithRuleSet:(PXRuleSet *)ruleSet context:(PXStylerContext *)context
 {
     if ([context stateFromStateNameMap:PSEUDOCLASS_MAP] == UIControlStateNormal)
     {
@@ -183,13 +183,13 @@ static const char STYLE_CHILDREN;
         {
             [self px_setBackgroundColor: [UIColor clearColor]];
             
-            if([self.px_backgroundView isKindOfClass:[STKPXUIImageViewWrapper_UICollectionViewCell class]] == NO)
+            if([self.px_backgroundView isKindOfClass:[PXUIImageViewWrapper_UICollectionViewCell class]] == NO)
             {
-                [self px_setBackgroundView: [[STKPXUIImageViewWrapper_UICollectionViewCell alloc] initWithImage:context.backgroundImage]];
+                [self px_setBackgroundView: [[PXUIImageViewWrapper_UICollectionViewCell alloc] initWithImage:context.backgroundImage]];
             }
             else
             {
-                STKPXUIImageViewWrapper_UICollectionViewCell *view = (STKPXUIImageViewWrapper_UICollectionViewCell *) self.backgroundView;
+                PXUIImageViewWrapper_UICollectionViewCell *view = (PXUIImageViewWrapper_UICollectionViewCell *) self.backgroundView;
                 view.image = context.backgroundImage;
             }
         }
@@ -202,13 +202,13 @@ static const char STYLE_CHILDREN;
         }
         else if(context.usesImage)
         {
-            if([self.px_selectedBackgroundView isKindOfClass:[STKPXUIImageViewWrapper_UICollectionViewCell class]] == NO)
+            if([self.px_selectedBackgroundView isKindOfClass:[PXUIImageViewWrapper_UICollectionViewCell class]] == NO)
             {
-                [self px_setSelectedBackgroundView: [[STKPXUIImageViewWrapper_UICollectionViewCell alloc] initWithImage:context.backgroundImage]];
+                [self px_setSelectedBackgroundView: [[PXUIImageViewWrapper_UICollectionViewCell alloc] initWithImage:context.backgroundImage]];
             }
             else
             {
-                STKPXUIImageViewWrapper_UICollectionViewCell *view = (STKPXUIImageViewWrapper_UICollectionViewCell *) self.px_selectedBackgroundView;
+                PXUIImageViewWrapper_UICollectionViewCell *view = (PXUIImageViewWrapper_UICollectionViewCell *) self.px_selectedBackgroundView;
                 view.image = context.backgroundImage;
             }
         }
@@ -219,12 +219,12 @@ static const char STYLE_CHILDREN;
 // Overrides
 //
 
-STKPX_LAYOUT_SUBVIEWS_OVERRIDE
+PX_LAYOUT_SUBVIEWS_OVERRIDE
 
 - (void)prepareForReuse
 {
     callSuper0(SUPER_PREFIX, @selector(prepareForReuse));
-    [STKPXStyleUtils invalidateStyleableAndDescendants:self];
+    [PXStyleUtils invalidateStyleableAndDescendants:self];
 }
 
 //
@@ -232,12 +232,12 @@ STKPX_LAYOUT_SUBVIEWS_OVERRIDE
 //
 
 // Ti Wrapped
-STKPX_WRAP_PROP(UIView, contentView);
-STKPX_WRAP_PROP(UIView, backgroundView);
-STKPX_WRAP_PROP(UIView, selectedBackgroundView);
+PX_WRAP_PROP(UIView, contentView);
+PX_WRAP_PROP(UIView, backgroundView);
+PX_WRAP_PROP(UIView, selectedBackgroundView);
 
-STKPX_WRAP_1(setBackgroundColor, color);
-STKPX_WRAP_1(setBackgroundView, view);
-STKPX_WRAP_1(setSelectedBackgroundView, view);
+PX_WRAP_1(setBackgroundColor, color);
+PX_WRAP_1(setBackgroundView, view);
+PX_WRAP_1(setSelectedBackgroundView, view);
 
 @end

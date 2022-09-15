@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXBarShadowStyler
+//  PXBarShadowStyler
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,16 +23,16 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXBarShadowStyler.h"
-#import "STKPXShapeView.h"
-#import "STKPXRectangle.h"
-#import "STKPXStroke.h"
-#import "STKPXSolidPaint.h"
-#import "STKPXShadowPaint.h"
-#import "STKPXShadowGroup.h"
+#import "PXBarShadowStyler.h"
+#import "STKShapeView.h"
+#import "PXRectangle.h"
+#import "PXStroke.h"
+#import "PXSolidPaint.h"
+#import "PXShadowPaint.h"
+#import "PXShadowGroup.h"
 #import <QuartzCore/QuartzCore.h>
 
-@implementation STKPXBarShadowStyler
+@implementation PXBarShadowStyler
 
 - (NSDictionary *)declarationHandlers
 {
@@ -41,17 +41,17 @@
 
     dispatch_once(&onceToken, ^{
         handlers = @{
-            @"shadow" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+            @"shadow" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 context.shadowUrl = declaration.URLValue;
             },
-            @"shadow-size" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+            @"shadow-size" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 CGSize size = declaration.sizeValue;
                 context.shadowBounds = CGRectMake(0.0f, 0.0f, size.width, size.height);
             },
-            @"shadow-inset": ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+            @"shadow-inset": ^(PXDeclaration *declaration, PXStylerContext *context) {
                 context.shadowInsets = declaration.insetsValue;
             },
-            @"shadow-padding" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+            @"shadow-padding" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 context.shadowPadding = declaration.floatValue;
             },
         };
@@ -60,7 +60,7 @@
     return handlers;
 }
 
-- (void)applyStylesWithContext:(STKPXStylerContext *)context
+- (void)applyStylesWithContext:(PXStylerContext *)context
 {
     if (context.shadowUrl)
     {
@@ -78,7 +78,7 @@
                 size = bounds.size;
             }
 
-            STKPXShapeView *shapeView = [[STKPXShapeView alloc] initWithFrame:bounds];
+            STKShapeView *shapeView = [[STKShapeView alloc] initWithFrame:bounds];
 
             [shapeView loadSceneFromURL:context.shadowUrl];
             context.shadowImage = shapeView.renderToImage;

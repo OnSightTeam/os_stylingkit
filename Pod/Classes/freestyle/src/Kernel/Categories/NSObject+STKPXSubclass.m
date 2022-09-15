@@ -16,15 +16,15 @@
 
 //
 //  NSObject+Swizzle.m
-//  STKPXStyleKit
+//  PXStyleKit
 //
 //  Modified by Anton Matosov
 //  Created by Pixate on 1/7/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "NSObject+STKPXSubclass.h"
-#import "NSObject+STKPXClass.h"
+#import "NSObject+PXSubclass.h"
+#import "NSObject+PXClass.h"
 #import <objc/runtime.h>
 #import "objc.h"
 
@@ -36,14 +36,14 @@ static void STKSwizzleRespondsToSelector(Class class);
 #define IMPL_BLOCK_CAST
 #endif
 
-void STKPXForceLoadNSObjectPXSubclass() {}
+void PXForceLoadNSObjectPXSubclass() {}
 
-@implementation NSObject (STKPXSubclass)
+@implementation NSObject (PXSubclass)
 
 STK_DEFINE_CLASS_LOG_LEVEL
 
 // object is the instance of a UIView that we need to 'subclass' (e.g. UIButton)
-// 'self' here is Pixate class (e.g. STKPXUIButton)
+// 'self' here is Pixate class (e.g. STKUIButton)
 + (void)subclassInstance:(id<NSObject>)object
 {
     // Safety check for nil

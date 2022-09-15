@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXMediaGroup.m
+//  PXMediaGroup.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,9 +23,9 @@
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXMediaGroup.h"
+#import "PXMediaGroup.h"
 
-@implementation STKPXMediaGroup
+@implementation PXMediaGroup
 {
     NSMutableArray *ruleSets_;
     NSMutableDictionary *ruleSetsByElementName_;
@@ -36,7 +36,7 @@
 
 #pragma mark - Initializers
 
-- (instancetype)initWithQuery:(id<STKPXMediaExpression>)query origin:(STKPXStylesheetOrigin)origin
+- (instancetype)initWithQuery:(id<PXMediaExpression>)query origin:(PXStylesheetOrigin)origin
 {
     if (self = [super init])
     {
@@ -54,7 +54,7 @@
     return ruleSets_;
 }
 
-- (NSArray *)ruleSetsForStyleable:(id<STKPXStyleable>)styleable
+- (NSArray *)ruleSetsForStyleable:(id<PXStyleable>)styleable
 {
     // gather keys
     NSString *elementName = styleable.pxStyleElementName;
@@ -74,7 +74,7 @@
     // find relevant ruleSets by element name
     if (elementName.length > 0)
     {
-        for (STKPXRuleSet *ruleSet in ruleSetsForElement)
+        for (PXRuleSet *ruleSet in ruleSetsForElement)
         {
             if (![items containsObject:ruleSet])
             {
@@ -87,7 +87,7 @@
     // find relevant ruleSets by id
     if (styleId.length > 0)
     {
-        for (STKPXRuleSet *ruleSet in ruleSetsForStyle)
+        for (PXRuleSet *ruleSet in ruleSetsForStyle)
         {
             if (![items containsObject:ruleSet])
             {
@@ -100,7 +100,7 @@
     // find relevant ruleSets by class
     for (NSString *aClass in styleClasses)
     {
-        for (STKPXRuleSet *ruleSet in ruleSetsByClass_[aClass])
+        for (PXRuleSet *ruleSet in ruleSetsByClass_[aClass])
         {
             if (![items containsObject:ruleSet])
             {
@@ -122,7 +122,7 @@
 
 #pragma mark - Methods
 
-- (void)addRuleSet:(STKPXRuleSet *)ruleSet toPartition:(NSMutableDictionary *)partition withKey:(NSString *)key
+- (void)addRuleSet:(PXRuleSet *)ruleSet toPartition:(NSMutableDictionary *)partition withKey:(NSString *)key
 {
     NSMutableArray *ruleSets = partition[key];
 
@@ -142,7 +142,7 @@
     [ruleSets addObject:ruleSet];
 }
 
-- (void)addRuleSet:(STKPXRuleSet *)ruleSet
+- (void)addRuleSet:(PXRuleSet *)ruleSet
 {
     if (ruleSet)
     {
@@ -157,7 +157,7 @@
         [ruleSet.specificity setSpecificity:kSpecificityTypeOrigin toValue:_origin];
 
         // setup lookup by element type
-        STKPXTypeSelector *typeSelector = ruleSet.targetTypeSelector;
+        PXTypeSelector *typeSelector = ruleSet.targetTypeSelector;
         // NOTE: we have to check for nil since hasUniversalType returns false with a nil typeSelector, but we need
         // the default to be true when typeSelector is nil
         NSString *elementName = (typeSelector == nil || typeSelector.hasUniversalType) ? nil : typeSelector.typeName;
@@ -256,7 +256,7 @@
     {
         [parts addObject:[NSString stringWithFormat:@"@media %@ {", _query.description]];
 
-        for (STKPXRuleSet *ruleSet in ruleSets_)
+        for (PXRuleSet *ruleSet in ruleSets_)
         {
             [parts addObject:[NSString stringWithFormat:@"  %@", ruleSet.description]];
         }
@@ -265,7 +265,7 @@
     }
     else
     {
-        for (STKPXRuleSet *ruleSet in ruleSets_)
+        for (PXRuleSet *ruleSet in ruleSets_)
         {
             [parts addObject:ruleSet.description];
         }

@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXRectangle.h
+//  PXRectangle.h
 //  Pixate
 //
 //  Created by Kevin Lindsey on 5/30/12.
@@ -23,13 +23,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "STKPXShape.h"
-#import "STKPXBoundable.h"
+#import "STKShape.h"
+#import "PXBoundable.h"
 
 /**
- *  A STKPXShape sub-class used to render rectangles
+ *  A PXShape sub-class used to render rectangles
  */
-@interface STKPXRectangle : STKPXShape <STKPXBoundable>
+@interface PXRectangle : STKShape <PXBoundable>
 
 /**
  *  The size (width and height) of this rectangle

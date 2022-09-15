@@ -15,30 +15,30 @@
  */
 
 //
-//  STKPXShapeStyler.m
+//  PXShapeStyler.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/18/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXShapeStyler.h"
-#import "STKPXShape.h"
-#import "STKPXEllipse.h"
-#import "STKPXRectangle.h"
-#import "STKPXArrowRectangle.h"
+#import "PXShapeStyler.h"
+#import "STKShape.h"
+#import "PXEllipse.h"
+#import "PXRectangle.h"
+#import "PXArrowRectangle.h"
 
-@implementation STKPXShapeStyler
+@implementation PXShapeStyler
 
 #pragma mark - Static Methods
 
-+ (STKPXShapeStyler *)sharedInstance
++ (PXShapeStyler *)sharedInstance
 {
-	static __strong STKPXShapeStyler *sharedInstance = nil;
+	static __strong PXShapeStyler *sharedInstance = nil;
 	static dispatch_once_t onceToken;
 
 	dispatch_once(&onceToken, ^{
-		sharedInstance = [[STKPXShapeStyler alloc] init];
+		sharedInstance = [[PXShapeStyler alloc] init];
 	});
 
 	return sharedInstance;
@@ -53,24 +53,24 @@
 
     dispatch_once(&onceToken, ^{
         handlers = @{
-            @"shape" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+            @"shape" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                 NSString *stringValue = declaration.stringValue;
 
                 if ([@"ellipse" isEqualToString:stringValue])
                 {
-                    context.shape = [[STKPXEllipse alloc] init];
+                    context.shape = [[PXEllipse alloc] init];
                 }
                 else if ([@"arrow-button-left" isEqualToString:stringValue])
                 {
-                    context.shape = [[STKPXArrowRectangle alloc] initWithDirection:STKPXArrowRectangleDirectionLeft];
+                    context.shape = [[PXArrowRectangle alloc] initWithDirection:PXArrowRectangleDirectionLeft];
                 }
                 else if ([@"arrow-button-right" isEqualToString:stringValue])
                 {
-                    context.shape = [[STKPXArrowRectangle alloc] initWithDirection:STKPXArrowRectangleDirectionRight];
+                    context.shape = [[PXArrowRectangle alloc] initWithDirection:PXArrowRectangleDirectionRight];
                 }
                 else
                 {
-                    context.shape = [[STKPXRectangle alloc] init];
+                    context.shape = [[PXRectangle alloc] init];
                 }
             },
         };

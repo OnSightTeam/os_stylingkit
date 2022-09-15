@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXUITableViewHeaderFooterView.m
+//  PXUITableViewHeaderFooterView.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,38 +23,38 @@
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXUITableViewHeaderFooterView.h"
+#import "PXUITableViewHeaderFooterView.h"
 #import <QuartzCore/QuartzCore.h>
 
-#import "UIView+STKPXStyling.h"
-#import "UIView+STKPXStyling-Private.h"
-#import "STKPXStylingMacros.h"
-#import "STKPXVirtualStyleableControl.h"
-#import "STKPXStyleUtils.h"
+#import "UIView+PXStyling.h"
+#import "UIView+PXStyling-Private.h"
+#import "PXStylingMacros.h"
+#import "PXVirtualStyleableControl.h"
+#import "PXStyleUtils.h"
 
-#import "STKPXOpacityStyler.h"
-#import "STKPXTransformStyler.h"
-#import "STKPXLayoutStyler.h"
+#import "PXOpacityStyler.h"
+#import "PXTransformStyler.h"
+#import "PXLayoutStyler.h"
 
-#import "STKPXShapeStyler.h"
-#import "STKPXFillStyler.h"
-#import "STKPXBorderStyler.h"
-#import "STKPXBoxShadowStyler.h"
-#import "STKPXAnimationStyler.h"
-#import "STKPXFontStyler.h"
-#import "STKPXPaintStyler.h"
-#import "STKPXTextContentStyler.h"
-#import "STKPXGenericStyler.h"
-#import "STKPXAttributedTextStyler.h"
+#import "PXShapeStyler.h"
+#import "PXFillStyler.h"
+#import "PXBorderStyler.h"
+#import "PXBoxShadowStyler.h"
+#import "PXAnimationStyler.h"
+#import "PXFontStyler.h"
+#import "PXPaintStyler.h"
+#import "PXTextContentStyler.h"
+#import "PXGenericStyler.h"
+#import "PXAttributedTextStyler.h"
 
 static const char STYLE_CHILDREN;
 static NSDictionary *LABEL_PSEUDOCLASS_MAP;
 
-@implementation STKPXUITableViewHeaderFooterView
+@implementation PXUITableViewHeaderFooterView
 
 + (void)initialize
 {
-    if (self != STKPXUITableViewHeaderFooterView.class)
+    if (self != PXUITableViewHeaderFooterView.class)
         return;
     
     [UIView registerDynamicSubclass:self withElementName:@"table-view-headerfooter-view"];
@@ -72,12 +72,12 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
 {
     if (!objc_getAssociatedObject(self, &STYLE_CHILDREN))
     {
-        __weak STKPXUITableViewHeaderFooterView *weakSelf = self;
+        __weak PXUITableViewHeaderFooterView *weakSelf = self;
         
         //
         // background-view
         //
-        STKPXVirtualStyleableControl *backgroundView = [[STKPXVirtualStyleableControl alloc] initWithParent:self elementName:@"background-view" viewStyleUpdaterBlock:^(STKPXRuleSet *ruleSet, STKPXStylerContext *context) {
+        PXVirtualStyleableControl *backgroundView = [[PXVirtualStyleableControl alloc] initWithParent:self elementName:@"background-view" viewStyleUpdaterBlock:^(PXRuleSet *ruleSet, PXStylerContext *context) {
             
             if(context.usesColorOnly && [context.color isEqual:[UIColor clearColor]])
             {
@@ -90,17 +90,17 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
         }];
         
         backgroundView.viewStylers = @[
-                                       STKPXOpacityStyler.sharedInstance,
-                                       STKPXShapeStyler.sharedInstance,
-                                       STKPXFillStyler.sharedInstance,
-                                       STKPXBorderStyler.sharedInstance,
-                                       STKPXBoxShadowStyler.sharedInstance,
+                                       PXOpacityStyler.sharedInstance,
+                                       PXShapeStyler.sharedInstance,
+                                       PXFillStyler.sharedInstance,
+                                       PXBorderStyler.sharedInstance,
+                                       PXBoxShadowStyler.sharedInstance,
                                        ];
         
         //
         // textLabel
         //
-        STKPXVirtualStyleableControl *textLabel = [[STKPXVirtualStyleableControl alloc] initWithParent:self elementName:@"text-label" viewStyleUpdaterBlock:^(STKPXRuleSet *ruleSet, STKPXStylerContext *context) {
+        PXVirtualStyleableControl *textLabel = [[PXVirtualStyleableControl alloc] initWithParent:self elementName:@"text-label" viewStyleUpdaterBlock:^(PXRuleSet *ruleSet, PXStylerContext *context) {
             
             if (context.usesColorOnly)
             {
@@ -123,21 +123,21 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
 
         textLabel.viewStylers = @[
                                   
-                                  STKPXTransformStyler.sharedInstance,
-                                  STKPXLayoutStyler.sharedInstance,
-                                  STKPXOpacityStyler.sharedInstance,
+                                  PXTransformStyler.sharedInstance,
+                                  PXLayoutStyler.sharedInstance,
+                                  PXOpacityStyler.sharedInstance,
                                   
-                                  STKPXShapeStyler.sharedInstance,
-                                  STKPXFillStyler.sharedInstance,
-                                  STKPXBorderStyler.sharedInstance,
+                                  PXShapeStyler.sharedInstance,
+                                  PXFillStyler.sharedInstance,
+                                  PXBorderStyler.sharedInstance,
                                   
-                                  [[STKPXBoxShadowStyler alloc] initWithCompletionBlock:^(id control, STKPXBoxShadowStyler *styler, STKPXStylerContext *context) {
-                                      STKPXShadowGroup *group = context.outerShadow;
+                                  [[PXBoxShadowStyler alloc] initWithCompletionBlock:^(id control, PXBoxShadowStyler *styler, PXStylerContext *context) {
+                                      PXShadowGroup *group = context.outerShadow;
                                       UILabel *view = weakSelf.textLabel;
                                       
                                       if (group.shadows.count > 0)
                                       {
-                                          STKPXShadow *shadow = group.shadows[0];
+                                          PXShadow *shadow = group.shadows[0];
                                           
                                           view.shadowColor = shadow.color;
                                           view.shadowOffset = CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset);
@@ -149,12 +149,12 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
                                       }
                                   }],
                                   
-                                  [[STKPXFontStyler alloc] initWithCompletionBlock:^(id control, STKPXFontStyler *styler, STKPXStylerContext *context) {
+                                  [[PXFontStyler alloc] initWithCompletionBlock:^(id control, PXFontStyler *styler, PXStylerContext *context) {
                                       UILabel *view = weakSelf.textLabel;
                                       view.font = context.font;
                                   }],
                                   
-                                  [[STKPXPaintStyler alloc] initWithCompletionBlock:^(id control, STKPXPaintStyler *styler, STKPXStylerContext *context) {
+                                  [[PXPaintStyler alloc] initWithCompletionBlock:^(id control, PXPaintStyler *styler, PXStylerContext *context) {
                                       UIColor *color = (UIColor *)[context propertyValueForName:@"color"];
                                       UILabel *view = weakSelf.textLabel;
                                       
@@ -171,35 +171,35 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
                                       }
                                   }],
                                   
-                                  [[STKPXTextContentStyler alloc] initWithCompletionBlock:^(id control, STKPXTextContentStyler *styler, STKPXStylerContext *context) {
+                                  [[PXTextContentStyler alloc] initWithCompletionBlock:^(id control, PXTextContentStyler *styler, PXStylerContext *context) {
                                       UILabel *view = weakSelf.textLabel;
                                       view.text = context.text;
                                   }],
                                   
-                                  [[STKPXGenericStyler alloc] initWithHandlers: @{
+                                  [[PXGenericStyler alloc] initWithHandlers: @{
                                                                                
-                                   @"text-align" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+                                   @"text-align" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                                       UILabel *view = weakSelf.textLabel;
                                       view.textAlignment = declaration.textAlignmentValue;
                                   },
-                                   @"text-transform" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+                                   @"text-transform" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                                       UILabel *view = weakSelf.textLabel;
-                                      view.text = [STKPXStylerContext transformString:view.text usingAttribute:declaration.stringValue];
+                                      view.text = [PXStylerContext transformString:view.text usingAttribute:declaration.stringValue];
                                   },
-                                   @"text-overflow" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+                                   @"text-overflow" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                                       UILabel *view = weakSelf.textLabel;
                                       view.lineBreakMode = declaration.lineBreakModeValue;
                                   }
                                                                                }],
-                                  STKPXAnimationStyler.sharedInstance
+                                  PXAnimationStyler.sharedInstance
                                   ];
 
         
         // attributed text
-        STKPXVirtualStyleableControl *attributedTextLabel =
-        [[STKPXVirtualStyleableControl alloc] initWithParent:self
+        PXVirtualStyleableControl *attributedTextLabel =
+        [[PXVirtualStyleableControl alloc] initWithParent:self
                                               elementName:@"attributed-text-label"
-                                    viewStyleUpdaterBlock:^(STKPXRuleSet *ruleSet, STKPXStylerContext *context) {
+                                    viewStyleUpdaterBlock:^(PXRuleSet *ruleSet, PXStylerContext *context) {
                                         // nothing for now
                                     }];
         
@@ -207,7 +207,7 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
         attributedTextLabel.defaultPseudoClass = @"normal";
         
         attributedTextLabel.viewStylers = @[
-            [[STKPXAttributedTextStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable> styleable, STKPXAttributedTextStyler *styler, STKPXStylerContext *context) {
+            [[PXAttributedTextStyler alloc] initWithCompletionBlock:^(PXVirtualStyleableControl *styleable, PXAttributedTextStyler *styler, PXStylerContext *context) {
 
                 UILabel *view = weakSelf.textLabel;
                 UIControlState state = ([context stateFromStateNameMap:LABEL_PSEUDOCLASS_MAP]);
@@ -252,29 +252,29 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
 - (NSArray *)viewStylers
 {
     static __strong NSArray *stylers = nil;
-    static dispatch_once_t onceToken;
+	static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
         
         stylers = @[
-            STKPXTransformStyler.sharedInstance,
+            PXTransformStyler.sharedInstance,
 
-            [[STKPXOpacityStyler alloc] initWithCompletionBlock:^(id<STKPXStyleable>view, STKPXOpacityStyler *styler, STKPXStylerContext *context) {
-                ((STKPXUITableViewHeaderFooterView *)view).px_contentView.alpha = context.opacity;
+            [[PXOpacityStyler alloc] initWithCompletionBlock:^(PXUITableViewHeaderFooterView *view, PXOpacityStyler *styler, PXStylerContext *context) {
+                view.px_contentView.alpha = context.opacity;
             }],
 
-            STKPXShapeStyler.sharedInstance,
-            STKPXFillStyler.sharedInstance,
-            STKPXBorderStyler.sharedInstance,
-            STKPXBoxShadowStyler.sharedInstance,
+            PXShapeStyler.sharedInstance,
+            PXFillStyler.sharedInstance,
+            PXBorderStyler.sharedInstance,
+            PXBoxShadowStyler.sharedInstance,
 
-            STKPXAnimationStyler.sharedInstance,
+            PXAnimationStyler.sharedInstance,
             
-            STKPXPaintStyler.sharedInstanceForTintColor,
+            PXPaintStyler.sharedInstanceForTintColor,
         ];
     });
 
-    return stylers;
+	return stylers;
 }
 
 - (NSDictionary *)viewStylersByProperty
@@ -283,13 +283,13 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
     static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
-        map = [STKPXStyleUtils viewStylerPropertyMapForStyleable:self];
+        map = [PXStyleUtils viewStylerPropertyMapForStyleable:self];
     });
 
     return map;
 }
 
-- (void)updateStyleWithRuleSet:(STKPXRuleSet *)ruleSet context:(STKPXStylerContext *)context
+- (void)updateStyleWithRuleSet:(PXRuleSet *)ruleSet context:(PXStylerContext *)context
 {
     if (context.usesColorOnly)
     {
@@ -309,7 +309,7 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
 - (void)prepareForReuse
 {
     callSuper0(SUPER_PREFIX, @selector(prepareForReuse));
-    [STKPXStyleUtils invalidateStyleableAndDescendants:self];
+    [PXStyleUtils invalidateStyleableAndDescendants:self];
 }
 
 - (id)pxStyleParent
@@ -333,8 +333,8 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
 // Wrappers
 //
 
-STKPX_WRAP_PROP(UIView, contentView);
-STKPX_WRAP_1(setBackgroundView, view);
-STKPX_WRAP_1(setBackgroundColor, color);
+PX_WRAP_PROP(UIView, contentView);
+PX_WRAP_1(setBackgroundView, view);
+PX_WRAP_1(setBackgroundColor, color);
 
 @end

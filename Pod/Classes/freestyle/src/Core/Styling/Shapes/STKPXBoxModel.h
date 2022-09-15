@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXBoxModel.h
+//  PXBoxModel.h
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,33 +23,33 @@
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXShape.h"
-#import "STKPXBoundable.h"
-#import "STKPXBorderInfo.h"
+#import "STKShape.h"
+#import "PXBoundable.h"
+#import "PXBorderInfo.h"
 
-typedef NS_ENUM(unsigned int, STKPXBoxSizing) {
-    STKPXBoxSizingContentBox,
-    STKPXBoxSizingPaddingBox,
-    STKPXBoxSizingBorderBox
+typedef NS_ENUM(unsigned int, PXBoxSizing) {
+    PXBoxSizingContentBox,
+    PXBoxSizingPaddingBox,
+    PXBoxSizingBorderBox
 };
 
-@interface STKPXBoxModel : STKPXShape <STKPXBoundable>
+@interface PXBoxModel : STKShape <PXBoundable>
 
-@property (nonatomic) id<STKPXPaint> borderTopPaint;
+@property (nonatomic) id<PXPaint> borderTopPaint;
 @property (nonatomic) CGFloat borderTopWidth;
-@property (nonatomic) STKPXBorderStyle borderTopStyle;
+@property (nonatomic) PXBorderStyle borderTopStyle;
 
-@property (nonatomic) id<STKPXPaint> borderRightPaint;
+@property (nonatomic) id<PXPaint> borderRightPaint;
 @property (nonatomic) CGFloat borderRightWidth;
-@property (nonatomic) STKPXBorderStyle borderRightStyle;
+@property (nonatomic) PXBorderStyle borderRightStyle;
 
-@property (nonatomic) id<STKPXPaint> borderBottomPaint;
+@property (nonatomic) id<PXPaint> borderBottomPaint;
 @property (nonatomic) CGFloat borderBottomWidth;
-@property (nonatomic) STKPXBorderStyle borderBottomStyle;
+@property (nonatomic) PXBorderStyle borderBottomStyle;
 
-@property (nonatomic) id<STKPXPaint> borderLeftPaint;
+@property (nonatomic) id<PXPaint> borderLeftPaint;
 @property (nonatomic) CGFloat borderLeftWidth;
-@property (nonatomic) STKPXBorderStyle borderLeftStyle;
+@property (nonatomic) PXBorderStyle borderLeftStyle;
 
 @property (nonatomic) CGSize radiusTopLeft;
 @property (nonatomic) CGSize radiusTopRight;
@@ -59,8 +59,8 @@ typedef NS_ENUM(unsigned int, STKPXBoxSizing) {
 @property (nonatomic, readonly) CGRect borderBounds;
 @property (nonatomic, readonly) CGRect contentBounds;
 
-@property (nonatomic) STKPXOffsets *padding;
-@property (nonatomic) STKPXBoxSizing boxSizing;
+@property (nonatomic) PXOffsets *padding;
+@property (nonatomic) PXBoxSizing boxSizing;
 
 - (instancetype)initWithBounds:(CGRect)bounds NS_DESIGNATED_INITIALIZER;
 
@@ -84,14 +84,14 @@ typedef NS_ENUM(unsigned int, STKPXBoxSizing) {
  */
 - (void)setCornerRadii:(CGSize)radii;
 
-- (void)setBorderPaint:(id<STKPXPaint>)paint;
+- (void)setBorderPaint:(id<PXPaint>)paint;
 - (void)setBorderWidth:(CGFloat)width;
-- (void)setBorderStyle:(STKPXBorderStyle)style;
-- (void)setBorderPaint:(id<STKPXPaint>)paint width:(CGFloat)width style:(STKPXBorderStyle)style;
+- (void)setBorderStyle:(PXBorderStyle)style;
+- (void)setBorderPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style;
 
-- (void)setBorderTopPaint:(id<STKPXPaint>)paint width:(CGFloat)width style:(STKPXBorderStyle)style;
-- (void)setBorderRightPaint:(id<STKPXPaint>)paint width:(CGFloat)width style:(STKPXBorderStyle)style;
-- (void)setBorderBottomPaint:(id<STKPXPaint>)paint width:(CGFloat)width style:(STKPXBorderStyle)style;
-- (void)setBorderLeftPaint:(id<STKPXPaint>)paint width:(CGFloat)width style:(STKPXBorderStyle)style;
+- (void)setBorderTopPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style;
+- (void)setBorderRightPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style;
+- (void)setBorderBottomPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style;
+- (void)setBorderLeftPaint:(id<PXPaint>)paint width:(CGFloat)width style:(PXBorderStyle)style;
 
 @end

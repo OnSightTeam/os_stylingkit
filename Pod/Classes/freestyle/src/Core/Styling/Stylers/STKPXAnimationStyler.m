@@ -15,7 +15,7 @@
  */
 
 //
-//  STKPXAnimationStyler.m
+//  PXAnimationStyler.m
 //  Pixate
 //
 //  Modified by Anton Matosov on 12/30/15.
@@ -23,22 +23,22 @@
 //  Copyright (c) 2013 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXAnimationStyler.h"
-#import "STKPXAnimationInfo.h"
-#import "STKPXAnimationPropertyHandler.h"
-#import "STKPXKeyframeAnimation.h"
+#import "PXAnimationStyler.h"
+#import "PXAnimationInfo.h"
+#import "PXAnimationPropertyHandler.h"
+#import "PXKeyframeAnimation.h"
 
-@implementation STKPXAnimationStyler
+@implementation PXAnimationStyler
 
 #pragma mark - Overrides
 
-+ (STKPXAnimationStyler *)sharedInstance
++ (PXAnimationStyler *)sharedInstance
 {
-	static __strong STKPXAnimationStyler *sharedInstance = nil;
+	static __strong PXAnimationStyler *sharedInstance = nil;
 	static dispatch_once_t onceToken;
 
 	dispatch_once(&onceToken, ^{
-		sharedInstance = [[STKPXAnimationStyler alloc] initWithCompletionBlock:nil];
+		sharedInstance = [[PXAnimationStyler alloc] initWithCompletionBlock:nil];
 	});
 
 	return sharedInstance;
@@ -51,95 +51,95 @@
 
     dispatch_once(&onceToken, ^{
         handlers = @{
-             @"animation" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+             @"animation" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                  context.animationInfos = declaration.animationInfoList.mutableCopy;
              },
-             @"animation-name" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+             @"animation-name" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                  NSArray *names = declaration.nameListValue;
 
                  for (NSUInteger i = 0; i < names.count; i++)
                  {
-                     STKPXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
+                     PXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
                      NSString *name = names[i];
 
                      info.animationName = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
                  }
              },
-             @"animation-duration" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+             @"animation-duration" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                  NSArray *timeValues = declaration.secondsListValue;
 
                  for (NSUInteger i = 0; i < timeValues.count; i++)
                  {
-                     STKPXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
+                     PXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
                      NSNumber *time = timeValues[i];
 
                      info.animationDuration = time.floatValue;
                  }
              },
-             @"animation-timing-function" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+             @"animation-timing-function" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                  NSArray *timingFunctions = declaration.animationTimingFunctionList;
 
                  for (NSUInteger i = 0; i < timingFunctions.count; i++)
                  {
-                     STKPXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
+                     PXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
                      NSNumber *value = timingFunctions[i];
 
-                     info.animationTimingFunction = (STKPXAnimationTimingFunction) value.intValue;
+                     info.animationTimingFunction = (PXAnimationTimingFunction) value.intValue;
                  }
              },
-             @"animation-iteration-count" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+             @"animation-iteration-count" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                  NSArray *counts = declaration.floatListValue;
 
                  for (NSUInteger i = 0; i < counts.count; i++)
                  {
-                     STKPXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
+                     PXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
                      NSNumber *count = counts[i];
 
                      info.animationIterationCount = (NSUInteger)count.floatValue;
                  }
              },
-             @"animation-direction" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+             @"animation-direction" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                  NSArray *directions = declaration.animationDirectionList;
 
                  for (NSUInteger i = 0; i < directions.count; i++)
                  {
-                     STKPXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
+                     PXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
                      NSNumber *value = directions[i];
 
-                     info.animationDirection = (STKPXAnimationDirection) value.intValue;
+                     info.animationDirection = (PXAnimationDirection) value.intValue;
                  }
              },
-             @"animation-play-state" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+             @"animation-play-state" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                  NSArray *playStates = declaration.animationPlayStateList;
 
                  for (NSUInteger i = 0; i < playStates.count; i++)
                  {
-                     STKPXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
+                     PXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
                      NSNumber *value = playStates[i];
 
-                     info.animationPlayState = (STKPXAnimationPlayState) value.intValue;
+                     info.animationPlayState = (PXAnimationPlayState) value.intValue;
                  }
              },
-             @"animation-delay" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+             @"animation-delay" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                  NSArray *timeValues = declaration.secondsListValue;
 
                  for (NSUInteger i = 0; i < timeValues.count; i++)
                  {
-                     STKPXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
+                     PXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
                      NSNumber *time = timeValues[i];
 
                      info.animationDelay = time.floatValue;
                  }
              },
-             @"animation-fill-mode" : ^(STKPXDeclaration *declaration, STKPXStylerContext *context) {
+             @"animation-fill-mode" : ^(PXDeclaration *declaration, PXStylerContext *context) {
                  NSArray *fillModes = declaration.animationFillModeList;
 
                  for (NSUInteger i = 0; i < fillModes.count; i++)
                  {
-                     STKPXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
+                     PXAnimationInfo *info = [self animationInfoAtIndex:i context:context];
                      NSNumber *value = fillModes[i];
 
-                     info.animationFillMode = (STKPXAnimationFillMode) value.intValue;
+                     info.animationFillMode = (PXAnimationFillMode) value.intValue;
                  }
              },
         };
@@ -148,7 +148,7 @@
     return handlers;
 }
 
-- (STKPXAnimationInfo *)animationInfoAtIndex:(NSUInteger)index context:(STKPXStylerContext *)context
+- (PXAnimationInfo *)animationInfoAtIndex:(NSUInteger)index context:(PXStylerContext *)context
 {
     NSMutableArray *infos = context.animationInfos;
 
@@ -160,20 +160,20 @@
 
     while (infos.count <= index)
     {
-        [infos addObject:[[STKPXAnimationInfo alloc] init]];
+        [infos addObject:[[PXAnimationInfo alloc] init]];
     }
 
     return infos[index];
 }
 
-- (void)applyStylesWithContext:(STKPXStylerContext *)context
+- (void)applyStylesWithContext:(PXStylerContext *)context
 {
     // remove invalid animation infos
     NSMutableArray *infos = context.animationInfos;
     NSMutableArray *toRemove = [[NSMutableArray alloc] init];
-    STKPXAnimationInfo *currentSettings = [[STKPXAnimationInfo alloc] initWithCSSDefaults];
+    PXAnimationInfo *currentSettings = [[PXAnimationInfo alloc] initWithCSSDefaults];
 
-    for (STKPXAnimationInfo *info in infos)
+    for (PXAnimationInfo *info in infos)
     {
         if (info.animationName.length == 0)
         {
@@ -231,18 +231,18 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         KEY_PATH_FROM_PROPERTY = @{
-            @"left": [[STKPXAnimationPropertyHandler alloc] initWithKeyPath:@"position.x" block:STKPXAnimationPropertyHandler.FloatValueBlock],
-            @"top": [[STKPXAnimationPropertyHandler alloc] initWithKeyPath:@"position.y" block:STKPXAnimationPropertyHandler.FloatValueBlock],
-            @"opacity": [[STKPXAnimationPropertyHandler alloc] initWithKeyPath:@"opacity" block:STKPXAnimationPropertyHandler.FloatValueBlock],
-            @"rotation": [[STKPXAnimationPropertyHandler alloc] initWithKeyPath:@"transform.rotation.z" block:STKPXAnimationPropertyHandler.FloatValueBlock],
-            @"scale": [[STKPXAnimationPropertyHandler alloc] initWithKeyPath:@"transform.scale" block:STKPXAnimationPropertyHandler.FloatValueBlock],
+            @"left": [[PXAnimationPropertyHandler alloc] initWithKeyPath:@"position.x" block:PXAnimationPropertyHandler.FloatValueBlock],
+            @"top": [[PXAnimationPropertyHandler alloc] initWithKeyPath:@"position.y" block:PXAnimationPropertyHandler.FloatValueBlock],
+            @"opacity": [[PXAnimationPropertyHandler alloc] initWithKeyPath:@"opacity" block:PXAnimationPropertyHandler.FloatValueBlock],
+            @"rotation": [[PXAnimationPropertyHandler alloc] initWithKeyPath:@"transform.rotation.z" block:PXAnimationPropertyHandler.FloatValueBlock],
+            @"scale": [[PXAnimationPropertyHandler alloc] initWithKeyPath:@"transform.scale" block:PXAnimationPropertyHandler.FloatValueBlock],
         };
     });
     
     return KEY_PATH_FROM_PROPERTY;
 }
 
-- (NSArray *)keyframeAnimationsFromInfos:(NSArray *)infos styleable:(id<STKPXStyleable>)styleable
+- (NSArray *)keyframeAnimationsFromInfos:(NSArray *)infos styleable:(id<PXStyleable>)styleable
 {
     NSMutableArray *result = [[NSMutableArray alloc] init];
     NSMutableDictionary *propertyHandlers = [[NSMutableDictionary alloc] initWithDictionary:[self defaultAnimationPropertyHandlers]];
@@ -255,25 +255,25 @@
     
     NSMutableDictionary *keyframes = [[NSMutableDictionary alloc] init];
 
-    [infos enumerateObjectsUsingBlock:^(STKPXAnimationInfo *info, NSUInteger idx, BOOL *stop) {
+    [infos enumerateObjectsUsingBlock:^(PXAnimationInfo *info, NSUInteger idx, BOOL *stop) {
         if (info.isValid)
         {
-            STKPXKeyframe *keyframe = info.keyframe;
+            PXKeyframe *keyframe = info.keyframe;
 
             if (keyframe)
             {
-                [keyframe.blocks enumerateObjectsUsingBlock:^(STKPXKeyframeBlock *block, NSUInteger idx, BOOL *stop) {
-                    [block.declarations enumerateObjectsUsingBlock:^(STKPXDeclaration *declaration, NSUInteger idx, BOOL *stop) {
-                        STKPXAnimationPropertyHandler *propertyHandler = propertyHandlers[declaration.name];
+                [keyframe.blocks enumerateObjectsUsingBlock:^(PXKeyframeBlock *block, NSUInteger idx, BOOL *stop) {
+                    [block.declarations enumerateObjectsUsingBlock:^(PXDeclaration *declaration, NSUInteger idx, BOOL *stop) {
+                        PXAnimationPropertyHandler *propertyHandler = propertyHandlers[declaration.name];
 
                         if (propertyHandler != nil)
                         {
                             NSString *keyPath = propertyHandler.keyPath;
-                            STKPXKeyframeAnimation *animation = keyframes[keyPath];
+                            PXKeyframeAnimation *animation = keyframes[keyPath];
 
                             if (animation == nil)
                             {
-                                animation = [[STKPXKeyframeAnimation alloc] init];
+                                animation = [[PXKeyframeAnimation alloc] init];
                                 animation.keyPath = keyPath;
                                 animation.duration = info.animationDuration;
                                 animation.fillMode = info.animationFillMode;
@@ -294,7 +294,7 @@
         }
     }];
 
-    [keyframes enumerateKeysAndObjectsUsingBlock:^(NSString *key, STKPXKeyframeAnimation *animation, BOOL *stop) {
+    [keyframes enumerateKeysAndObjectsUsingBlock:^(NSString *key, PXKeyframeAnimation *animation, BOOL *stop) {
         CAKeyframeAnimation *keyframe = animation.caKeyframeAnimation;
 
         if (keyframe != nil)

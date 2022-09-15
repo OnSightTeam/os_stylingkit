@@ -15,18 +15,18 @@
  */
 
 //
-//  STKPXLoggingUtils.m
+//  PXLoggingUtils.m
 //  Pixate
 //
 //  Created by Kevin Lindsey on 12/4/12.
 //  Copyright (c) 2012 Pixate, Inc. All rights reserved.
 //
 
-#import "STKPXLoggingUtils.h"
-#import "STKPXFileFunctionLogFormatter.h"
-#import "STKPXDelegateLogger.h"
+#import "PXLoggingUtils.h"
+#import "PXFileFunctionLogFormatter.h"
+#import "PXDelegateLogger.h"
 
-@implementation STKPXLoggingUtils
+@implementation PXLoggingUtils
 
 + (void)enableLogging
 {
@@ -39,7 +39,7 @@
 {
 #ifdef STK_LOGGING
     // create a custom formatter
-    STKPXFileFunctionLogFormatter *formatter = [[STKPXFileFunctionLogFormatter alloc] init];
+    PXFileFunctionLogFormatter *formatter = [[PXFileFunctionLogFormatter alloc] init];
 
     [[DDTTYLogger sharedInstance] setLogFormatter:formatter];
 
@@ -80,10 +80,10 @@
 #endif
 }
 
-+ (void)addLoggingDelegate:(id <STKPXLoggingDelegate>)delegate
++ (void)addLoggingDelegate:(id <PXLoggingDelegate>)delegate
 {
 #ifdef STK_LOGGING
-    [DDLog addLogger:[[STKPXDelegateLogger alloc] initWithDelegate:delegate]];
+    [DDLog addLogger:[[PXDelegateLogger alloc] initWithDelegate:delegate]];
 #endif
 }
 
