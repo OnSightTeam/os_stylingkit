@@ -42,7 +42,7 @@ static char const STYLE_CHILDREN;
 
 @implementation STKPXUIProgressView
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUIProgressView.class)
         return;

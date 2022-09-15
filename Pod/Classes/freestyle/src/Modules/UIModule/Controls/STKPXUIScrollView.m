@@ -42,7 +42,7 @@
 
 @implementation STKPXUIScrollView
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUIScrollView.class)
         return;

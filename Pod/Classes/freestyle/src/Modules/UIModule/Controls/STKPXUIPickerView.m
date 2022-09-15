@@ -42,7 +42,7 @@
 
 @implementation STKPXUIPickerView
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUIPickerView.class)
         return;

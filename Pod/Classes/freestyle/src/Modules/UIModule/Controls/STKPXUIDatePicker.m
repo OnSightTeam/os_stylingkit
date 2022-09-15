@@ -34,7 +34,7 @@
 
 @implementation STKPXUIDatePicker
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUIDatePicker.class)
         return;

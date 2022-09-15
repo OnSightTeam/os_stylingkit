@@ -72,7 +72,7 @@ static const char DETAIL_TEXT_LABEL_BACKGROUND_SET;
 
 @implementation STKPXUITableViewCell
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUITableViewCell.class)
         return;

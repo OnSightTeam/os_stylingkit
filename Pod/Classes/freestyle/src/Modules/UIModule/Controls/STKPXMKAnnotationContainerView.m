@@ -31,32 +31,4 @@
 
 @implementation STKPXMKAnnotationContainerView
 
-/* DISABLED
-+ (void)initialize
-{
-    if (self != STKPXMKAnnotationContainerView.class)
-        return;
- 
-    [UIView registerDynamicSubclass:self
-                           forClass:[STKPXMKAnnotationContainerView targetSuperclass]
-                    withElementName:@"annotation-container-view"];
-}
-
-+ (Class)targetSuperclass
-{
-	static Class targetSuperclass = nil;
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		targetSuperclass = NSClassFromString([[self description] substringFromIndex:2]);
-	});
-	return targetSuperclass;
-}
-
-- (void)layoutSubviews
-{
-	callSuper0(self, [self pxClass], _cmd);
-    [self updateStyles];
-}
-*/
-
 @end

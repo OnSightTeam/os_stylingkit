@@ -47,7 +47,7 @@ static char const STYLE_CHILDREN;
 
 @implementation STKPXUISwitch
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUISwitch.class)
         return;

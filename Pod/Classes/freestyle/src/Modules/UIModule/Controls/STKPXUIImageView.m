@@ -47,7 +47,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
 
 @implementation STKPXUIImageView
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUIImageView.class)
         return;

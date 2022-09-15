@@ -33,7 +33,7 @@
 
 @implementation STKPXUIWindow
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUIWindow.class)
         return;

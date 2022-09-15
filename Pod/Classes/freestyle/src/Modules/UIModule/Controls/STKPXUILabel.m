@@ -66,7 +66,7 @@ NSString *const kDefaultCacheLabelLineBreakMode = @"label.lineBreakMode";
 
 @implementation STKPXUILabel
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUILabel.class)
         return;

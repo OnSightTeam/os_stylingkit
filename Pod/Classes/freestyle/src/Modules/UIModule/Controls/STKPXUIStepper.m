@@ -45,7 +45,7 @@ static char const STYLE_CHILDREN;
 
 @implementation STKPXUIStepper
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUIStepper.class)
         return;

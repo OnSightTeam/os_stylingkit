@@ -32,7 +32,7 @@
 @implementation STKPXUITableViewCellContentView
 
 /* DISABLED
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUITableViewCellContentView.class)
         return;

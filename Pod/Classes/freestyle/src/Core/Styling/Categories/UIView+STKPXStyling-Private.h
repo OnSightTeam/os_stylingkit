@@ -38,7 +38,6 @@
 
 + (BOOL)pxHasAncestor:(Class)acenstorClass forView:(UIView *)view;
 
-//- (void)applyStyleMode:(STKPXStylingMode)mode;
 - (BOOL)isSubclassable;
 
 @end

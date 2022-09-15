@@ -60,7 +60,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
 
 #pragma mark - Static methods
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUINavigationBar.class)
         return;

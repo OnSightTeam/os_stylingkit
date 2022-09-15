@@ -50,7 +50,7 @@ static const char STYLE_CHILDREN;
 
 @implementation STKPXUICollectionViewCell
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUICollectionViewCell.class)
         return;

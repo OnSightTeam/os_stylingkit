@@ -46,7 +46,7 @@
 
 @implementation STKPXUITabBar
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUITabBar.class)
         return;

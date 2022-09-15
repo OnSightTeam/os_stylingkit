@@ -53,7 +53,7 @@ static const char STKPX_DELEGATE_PROXY; // the proxy for the old delegate
 
 @implementation UITableView (STKPXFreestyle)
 
-+ (void)initialize
++ (void) load
 {
     if (self != UITableView.class)
         return;
@@ -147,7 +147,7 @@ static const char STKPX_DELEGATE_PROXY; // the proxy for the old delegate
 
 @implementation STKPXUITableView
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUITableView.class)
         return;

@@ -48,7 +48,7 @@ static const char STYLE_CHILDREN;
 
 @implementation STKPXUITextView
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUITextView.class)
         return;

@@ -32,7 +32,7 @@
 @implementation STKPXUILayoutContainerView
 
 /* DISABLED
- + (void)initialize
+ + (void) load
 {
     if (self != STKPXUILayoutContainerView.class)
         return;

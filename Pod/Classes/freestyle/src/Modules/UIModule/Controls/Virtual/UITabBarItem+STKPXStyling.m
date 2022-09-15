@@ -46,7 +46,7 @@ void STKPXForceLoadUITabBarItemPXStyling() {}
 
 static NSDictionary *PSEUDOCLASS_MAP;
 
-+ (void)initialize
++ (void) load
 {
     if (self != UITabBarItem.class)
         return;

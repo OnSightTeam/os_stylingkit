@@ -47,7 +47,7 @@ static char const STYLE_CHILDREN;
 
 @implementation STKPXUISegmentedControl
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUISegmentedControl.class)
         return;

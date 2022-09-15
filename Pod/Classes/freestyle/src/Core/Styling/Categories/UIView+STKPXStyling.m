@@ -143,24 +143,12 @@ static NSMutableArray *DYNAMIC_SUBCLASSES;
 
 #pragma mark - Dynamic subclassing initializer and property
 
-+ (void)initialize
++ (void) load
 {
-    if (self != UIView.class)
-        return;
-    
-    @autoreleasepool
-    {
-#ifdef STKPX_LOGGING
-        // turn on logging
-        [STKPXLoggingUtils enableLogging];
-
-        // set logging level for all classes
-        //[STKPXLoggingUtils setGlobalLoggingLevel:LOG_LEVEL_VERBOSE];
-#endif
-
-        [self swizzleMethod:@selector(initWithFrame:) withMethod:@selector(stk_initWithFrame:)];
-        [self swizzleMethod:@selector(initWithCoder:) withMethod:@selector(stk_initWithCoder:)];
-    }
+	@autoreleasepool {
+		[self swizzleMethod:@selector(initWithFrame:) withMethod:@selector(stk_initWithFrame:)];
+		[self swizzleMethod:@selector(initWithCoder:) withMethod:@selector(stk_initWithCoder:)];
+	}
 }
 
 - (instancetype)stk_initWithFrame:(CGRect)frame

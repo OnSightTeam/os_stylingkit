@@ -48,7 +48,7 @@ static NSDictionary *PSEUDOCLASS_MAP;
 
 #pragma mark - Static methods
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUISlider.class)
         return;

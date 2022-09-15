@@ -97,7 +97,7 @@ static char PADDING;
 
 static NSDictionary *PSEUDOCLASS_MAP;
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUITextField.class)
         return;

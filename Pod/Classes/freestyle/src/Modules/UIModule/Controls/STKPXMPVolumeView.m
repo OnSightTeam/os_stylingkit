@@ -34,7 +34,7 @@
 
 @implementation STKPXMPVolumeView
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXMPVolumeView.class)
         return;

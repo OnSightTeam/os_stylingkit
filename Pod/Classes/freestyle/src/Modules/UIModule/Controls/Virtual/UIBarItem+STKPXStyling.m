@@ -49,7 +49,7 @@ void STKPXForceLoadUIBarItemPXStyling() {}
 @dynamic pxStyleParent;
 @dynamic pxStyleChildren;
 
-+ (void)initialize
++ (void) load
 {
     if (self != UIBarItem.class)
         return;

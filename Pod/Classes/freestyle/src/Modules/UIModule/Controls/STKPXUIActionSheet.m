@@ -37,7 +37,7 @@
 
 @implementation STKPXUIActionSheet
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUIActionSheet.class)
         return;

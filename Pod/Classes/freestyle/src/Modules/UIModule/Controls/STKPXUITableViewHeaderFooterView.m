@@ -52,7 +52,7 @@ static NSDictionary *LABEL_PSEUDOCLASS_MAP;
 
 @implementation STKPXUITableViewHeaderFooterView
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUITableViewHeaderFooterView.class)
         return;

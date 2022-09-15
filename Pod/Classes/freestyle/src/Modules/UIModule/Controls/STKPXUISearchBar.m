@@ -42,7 +42,7 @@
 
 @implementation STKPXUISearchBar
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUISearchBar.class)
         return;

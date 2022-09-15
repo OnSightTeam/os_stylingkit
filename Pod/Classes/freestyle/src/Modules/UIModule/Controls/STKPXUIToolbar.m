@@ -50,7 +50,7 @@ static NSDictionary *BUTTONS_PSEUDOCLASS_MAP;
 
 @implementation STKPXUIToolbar
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUIToolbar.class)
         return;

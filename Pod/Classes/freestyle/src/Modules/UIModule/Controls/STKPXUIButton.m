@@ -69,7 +69,7 @@ static const char STYLE_CHILDREN;
 
 #pragma mark - Static methods
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUIButton.class)
         return;
@@ -196,22 +196,6 @@ static const char STYLE_CHILDREN;
                 {
                     [(STKPXUIButton *)view px_setTitleShadowColor: shadow.color forState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]];
                     ((STKPXUIButton *)view).px_titleLabel.shadowOffset = CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset);
-
-                    /*
-                    NSMutableDictionary *attrs = [[NSMutableDictionary alloc] init];
-
-                    [attrs setObject:shadow.color forKey:UITextAttributeTextShadowColor];
-                    [attrs setObject:[NSValue valueWithCGSize:CGSizeMake(shadow.horizontalOffset, shadow.verticalOffset)] forKey:UITextAttributeTextShadowOffset];
-
-                    NSAttributedString *oldString = [view attributedTitleForState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]];
-                    NSMutableAttributedString *attrString = (oldString)
-                        ?   [[NSMutableAttributedString alloc] initWithAttributedString:oldString]
-                        :   [[NSMutableAttributedString alloc] initWithString:[view titleForState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]]];
-
-                    [attrString setAttributes:attrs range:NSMakeRange(0, attrString.length)];
-
-                    [view px_setAttributedTitle:attrString forState:[context stateFromStateNameMap:PSEUDOCLASS_MAP]];
-                    */
                 }
             }],
 
@@ -280,15 +264,8 @@ static const char STYLE_CHILDREN;
     return map;
 }
 
-//- (void)STKPX_UIControlEventTouchDown_Dummy {}
-
 - (void)updateStyleWithRuleSet:(STKPXRuleSet *)ruleSet context:(STKPXStylerContext *)context
 {
-//    [self addTarget:self action:@selector(STKPX_UIControlEventTouchDown_Dummy) forControlEvents:UIControlEventTouchDown];
-//    [self addTarget:self action:@selector(STKPX_UIControlEventTouchDown_Dummy) forControlEvents:UIControlEventTouchUpInside];
-
-    //- (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents
-
     // Solid colors are only supported for normal state, so we'll use images otherwise
     if (context.usesColorOnly)
     {
@@ -382,29 +359,6 @@ STKPX_WRAP_2v(setTitleShadowColor, color, forState, UIControlState, state);
 
 // Styling overrides
 STKPX_LAYOUT_SUBVIEWS_OVERRIDE
-
-/* HOLD
--(void)sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event
-{
-    //get the string indicating the action called
-    NSString *actionString = NSStringFromSelector(action);
-
-    //get the string for the action that you want to check for
-    NSString *UIControlEventTouchDownName = [[self actionsForTarget:target forControlEvent:UIControlEventTouchDown] lastObject];
-
-    if ([UIControlEventTouchDownName isEqualToString:actionString]){
-
-        [UIView transitionWithView:self duration:0.2 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-            [super sendAction:action to:target forEvent:event];
-        } completion:^(BOOL finished) {
-        }];
-
-    } else {
-        //not an event we are interested in, allow it pass through with no additional action
-        [super sendAction:action to:target forEvent:event];
-    }
-}
-*/
 
 
 @end

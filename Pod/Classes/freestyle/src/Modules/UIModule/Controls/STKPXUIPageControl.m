@@ -42,7 +42,7 @@
 
 @implementation STKPXUIPageControl
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUIPageControl.class)
         return;

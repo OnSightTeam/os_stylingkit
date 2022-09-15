@@ -35,7 +35,7 @@
 
 @implementation STKPXWKWebView
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXWKWebView.class)
         return;

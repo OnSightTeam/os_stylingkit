@@ -39,7 +39,7 @@
 
 @implementation STKPXMKMapView
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXMKMapView.class)
         return;

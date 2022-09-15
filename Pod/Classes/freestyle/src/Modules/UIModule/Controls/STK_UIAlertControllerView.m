@@ -31,7 +31,7 @@
 
 @implementation STK_UIAlertControllerView
 
-+ (void)initialize
++ (void) load
 {
   if (self != STK_UIAlertControllerView.class)
     return;

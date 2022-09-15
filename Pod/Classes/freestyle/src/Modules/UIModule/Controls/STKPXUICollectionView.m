@@ -53,7 +53,7 @@ static const char STKPX_DATASOURCE_PROXY; // the proxy for the old datasource
 
 @implementation UICollectionView (STKPXFreestyle)
 
-+ (void)initialize
++ (void) load
 {
     if (self != UICollectionView.class)
         return;
@@ -111,7 +111,7 @@ static const char STKPX_DATASOURCE_PROXY; // the proxy for the old datasource
 
 #pragma mark - Static load
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUICollectionView.class)
         return;

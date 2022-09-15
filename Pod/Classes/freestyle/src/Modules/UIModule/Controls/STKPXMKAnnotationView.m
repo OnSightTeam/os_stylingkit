@@ -39,7 +39,7 @@
 
 @implementation STKPXMKAnnotationView
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXMKAnnotationView.class)
         return;

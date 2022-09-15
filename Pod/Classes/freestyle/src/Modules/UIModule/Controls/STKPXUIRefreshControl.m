@@ -35,7 +35,7 @@
 
 @implementation STKPXUIRefreshControl
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUIRefreshControl.class)
         return;

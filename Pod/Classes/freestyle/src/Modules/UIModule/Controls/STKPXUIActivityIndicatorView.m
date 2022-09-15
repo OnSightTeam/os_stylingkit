@@ -41,7 +41,7 @@
 
 @implementation STKPXUIActivityIndicatorView
 
-+ (void)initialize
++ (void) load
 {
     if (self != STKPXUIActivityIndicatorView.class)
         return;
