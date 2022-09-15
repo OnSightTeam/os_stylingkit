@@ -99,7 +99,7 @@ STK_DEFINE_CLASS_LOG_LEVEL;
             }
         }
 
-        [UIView appearanceWhenContainedIn:[UIDatePicker class], [STK_UIAlertControllerView targetSuperclass], nil].styleMode = PXStylingNone;
+		[UIView appearanceWhenContainedIn:[UIDatePicker class], [STK_UIAlertControllerView targetSuperclass], nil].styleMode = PXStylingNone;
 
 
         // Set default styling mode of any UIView to 'normal' (i.e. stylable)
@@ -110,12 +110,16 @@ STK_DEFINE_CLASS_LOG_LEVEL;
 - (STKTheme*)registerThemeNamed:(NSString*)themeName
                        inBundle:(NSBundle*)bundle
 {
+	self.themes = nil;
+	
     if (self.themes[themeName])
     {
         DDLogWarn(@"Theme with name %@ already registered. %@", themeName, self.themes[themeName]);
     }
-    STKTheme* theme = [STKTheme themeWithName:themeName
-                                       bundle:bundle];
+	
+	STKTheme* theme = [STKTheme themeWithName: @""
+						   stylesheetFileName: themeName
+									   bundle: bundle];
     self.themes[themeName] = theme;
 
     return theme;
